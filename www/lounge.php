@@ -21,7 +21,7 @@
 		.contenedor-inner {
 			padding: 22px 22px 22px 375px;
 			height: 330px;
-			background: white url('lounge-fondo.<? echo rand (1, 2); ?>.png') left top no-repeat;
+			background: white url('/lounge-fondo.<? echo rand (1, 2); ?>.png') left top no-repeat;
 			-moz-border-radius: 5px;
 			-webkit-border-radius: 5px;
 			text-align: right;
