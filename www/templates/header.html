@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<head>
+<meta charset="UTF-8" />
+
+<meta name="ROBOTS" content="NOARCHIVE" />
+<title>{{ title }} </title>
+
+{% if madera > 0 %}
+	<style type="text/css">body { background: url("{{globals.base_url }}img/estructura/pino.png") !important; } #wrap { background: none !important; } html * { opacity: 0.99 !important; }</style>
+{% endif %}
+
+{% if putijoneame > 0 %}
+	<style type="text/css">body { text-decoration: blink !important; }</style>
+{% endif %}
+
+<meta name="generator" content="joneame" />
+
+{% if globals.noindex %}
+	<meta name="robots" content="noindex,follow"/>
+{% endif %}
+
+{% if globals.description %}
+	<meta name="description" content="{{ globals.description }}" />
+{% endif %}
+
+{% if globals.tags %}
+	<meta name="keywords" content="{{ globals.tags }}" />
+{% endif %}
+
+{% exec do_css_includes %}
+	
+<link rel="search" type="application/opensearchdescription+xml" title="{% trans _('Búsqueda en Jonéame') %}" href="http://{% exec get_server_name %}{{globals.base_url}}opensearch_plugin.php"/>
+
+<link rel="alternate" type="application/rss+xml" title="{% trans _('publicadas') %}" href="http://{% exec get_server_name %}{{globals.base_url}}rss2.php"/> 
+<link rel="alternate" type="application/rss+xml" title="{% trans _('pendientes') %}" href="http://{% exec get_server_name %}{{globals.base_url}}rss2.php?status=queued"/> 
+<link rel="alternate" type="application/rss+xml" title="{% trans _('comentarios') %}" href="http://{% exec get_server_name %}{{globals.base_url}}comments_rss2.php" />
+
+<link rel="shortcut icon" href="{{ globals.base_url }}{{ globals.favicon }}" type="image/x-png"/>
+
+{% if globals.link_id > 0 %}
+	<link rel="pingback" href="http://{% exec get_server_name %}{{globals.base_url}}xmlrpc.php"/>
+{% endif %}
+
+{% exec do_js_includes %}
+
+</head>
+
+<body id={{id}}  > 
+<div id="wrap">
+
+<div class="header">
+
+<a href="{{ globals.base_url }}" class="logo">Jonéame</a>
+
+<ul class="sections">
+<li><a href="{{ globals.base_url }}nueva_historia.php">nueva</a></li><li><a href="{{ globals.base_url }}jonealas.php">pendientes</a></li><li><a href="{{ globals.base_url }}cotillona.php">cotillona</a></li>
+{% if globals.cortos_activados %}
+	<li><a href="{{ globals.base_url }}corto.php">cortos</a></li>
+{% endif %}
+{% if globals.localhost %}
+	<li><a href="{{ globals.base_url }}sneakme/">notitas</a></li>   
+{% else %}
+	<li><a href="{{ globals.base_url }}notitas/">notitas</a></li>  
+{% endif %}
+<li><a href="{{ globals.base_url }}encuestas.php">encuestas</a></li>
+
+</ul>
+
+<ul class="user">
+
+<li><a href="{{ globals.base_url }}ayuda.php">Ayuda</a></li>
+{% if current_user.admin %}
+	<li><a href="{{ globals.base_url }}admin/index.php" target="_blank">{% trans _('Admin') %}</a></li>
+{% endif %}
+
+{% if current_user.user_id > 0 %}
+		
+	{% if cotillona == 0 %}			
+		{% if current_user.c_conversation > 0 %}
+			<li><a href="{% exec get_user_uri current_user.user_login %}/conversacion"><img src="{% exec get_cover_pixel %}" class="icon comment" />({{ current_user.c_conversation }})</a></li>
+		{% endif %}			
+		{% if current_user.p_conversation > 0 %}
+			<li><a href="{% exec post_get_base_url %}_conversacion"><img src="{% exec get_cover_pixel %}" class="icon post" />({{ current_user.p_conversation }})</a></li>
+		{% endif %}
+		<li><a href=" {% exec get_mensajes_uri current_user.user_login %}"><img src="{% exec get_cover_pixel %}" class="icon message" /> ({{ current_user.unread_messages }})</a></li>			
+		{% if current_user.polls > 0 %}
+				<li><a href="{{globals.base_url}}encuestas.php?unvoted=1"><img src="{% exec get_cover_pixel %}" class="icon poll-new" />({{ current_user.polls }})</a></li>
+		{% endif %}
+	{% endif %}
+
+	<li><a href="{{ globals.base_url }}login.php?op=logout&amp;return={{globals.uri|urlencode}}">{% trans _('Cerrar sesión') %}</a></li> 
+
+	<li class="login"><a href="{% exec get_user_uri current_user.user_login %}"><img src="{% exec get_avatar_url current_user.user_id, current_user.user_avatar, 20 %}" /></a><a href="{% exec get_user_uri current_user.user_login %}">{{ current_user.user_login}}</a></li>
+{% else %}
+	<li><a href="{{ globals.base_url }}register.php">{% trans _('Registrarse') %}</a></li>
+	{% if globals.return %}
+		<li class="login"><a href="{{ globals.base_url }}login.php?return={{globals.return|urlencode}}">{% trans _('Entrar') %}</a></li>
+	{% else %}
+		<li class="login"><a href="{{ globals.base_url }}login.php?return={{globals.uri|urlencode}}">{% trans _('Entrar') %}</a></li>
+	{% endif %}
+{% endif %}
+
+{#<li><img src="{% exec get_cover_pixel %}" style="margin-top: 8px;" onmouseout="tooltip.clear(event);"  onclick="tooltip.clear(this);" onmouseover="return tooltip.ajax_delayed(event, 'info.php', 0, 10000);" class="icon info"/></li>#}
+
+
+</ul>
+
+</div>
+
+<div class="subheader">
+<div class="corto">
+	
+{% if globals.cortos_activados AND not cotillona %}
+	{% exec do_banner_top %}
+{% endif %}
+
+</div>
+
+{% if globals.buscador_activado %}
+	<form action="{{ globals.base_url }}search.php" method="get" name="top_search" class="top_search">
+
+	{% if globals.q %}
+		<input type="search" name="q" value="{{globals.q|escape}}" />
+	{% else %}
+		<input name="q" type="text" value="{% trans _('buscar')%}..." 
+    onblur="if(this.value=='') this.value='{% trans _('buscar')%}...';" onfocus="if(this.value=='{% trans _('buscar')%}...') this.value='';"/>
+	{% endif %}
+
+	<input type="submit" value="buscar">
+
+	{% if globals.search_options %}
+	    {% for name, value in globals.search_options %}
+		<input type="hidden" name="{{name}}" value="{{value}}"/>
+	    {% endfor %}
+	{% endif %}
+
+	</form>
+{% endif %}
+
+
+</div>
+<div id="container">

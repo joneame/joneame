@@ -1,0 +1,7 @@
+Estos archivos han sido "comprimidos" usando el yuicompressor de yahoo.
+Los originales están en la carpeta "uncompressed".
+Para modificar uno, se ha de modificar allí, y luego ejecutar:
+
+yuicompressor archivo.css > archivo_comprimido.css
+
+Y luego mover el archivo_comprimido.css a su sitio.

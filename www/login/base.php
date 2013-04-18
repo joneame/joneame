@@ -1,0 +1,127 @@
+<?php
+// The source code packaged with this file is Free Software, Copyright (C) 2005 by
+// Ricardo Galli <gallir at uib dot es> and the Jonéame Development Team (admin@joneame.net)
+// It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
+// You can get copies of the licenses here:
+// 		http://www.affero.org/oagpl.html
+// AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
+
+// for the do_errors
+require_once(mnminclude.'html1.php');
+include mnminclude.'log.php';
+include_once mnminclude.'user.php';
+
+class OAuthBase {
+
+	function __construct() {
+		if ($_COOKIE['return']) $this->return = $_COOKIE['return'];
+		elseif ($_GET['return']) setcookie('return', $_GET['return'], 0);
+	}
+
+	function user_exists() {
+		global $db, $current_user;
+		
+		if ($this->uid) $sql = "select user_id, token, secret from auths where service='$this->service' and uid = $this->uid";
+		else $sql = "select user_id, token, secret from auths where service='$this->service' and name = '$this->username'";
+		$res = $db->get_row($sql);
+		
+                if ($res) {
+			$this->id = $res->user_id;
+			$this->token = $res->token;
+			$this->secret = $res->secret;
+
+			$this->user = new User($this->id);
+
+			if ($current_user->user_id && $current_user->user_id != $this->id) {
+				if (! $this->user->disabled) {
+					do_error(_('cuenta asociada a otro usuario').': '.$this->user->username, false, false);
+				}
+				// We read again, the previous user is another one, already disabled
+				$this->user = new User($current_user->user_id);
+			 	$this->id = $current_user->user_id;
+			} elseif (! $this->user->id || $this->user->disabled) {
+				do_error(_('usuario deshabilitado'), false, false);	
+			}
+		} else {
+
+			if ($current_user->user_id) {
+				$this->user = new User($current_user->user_id);
+				$this->id = $current_user->user_id;
+			} else {
+				$this->user = new User();
+			}
+		}
+
+		return $this->id;
+	}
+
+	function store_user() {
+		global $db, $globals;
+
+		$user = $this->user;
+		if (!$this->secret) $this->secret = $this->service . "-" . $globals['now'];
+		if (user_exists($this->username)) {
+			$i = 1;
+			while(user_exists($this->username . "_$i")) $i++;
+			$user->username = $this->username . "_$i";
+		} else {
+			$user->username = $this->username;
+		}
+		$user->username_register = $user->username;
+
+		if (! $user->pass || preg_match('/$\$/', $user->pass) ) {
+			$user->pass = "\$$this->service\$$this->secret";
+		}
+		if (! $user->names && $this->names) $user->names = $this->names;
+		if (! $user->url && $this->url) $user->url = $this->url;
+		if ( $user->id == 0) {
+			$user->date = $globals['now'];
+			$user->ip = $globals['user_ip'];
+			$user->email = $this->username.'@'.$this->service;
+			$user->email_register = $this->username.'@'.$this->service;
+		}
+		syslog(LOG_NOTICE, "Joneame new user from $this->service: $user->username, $user->names");
+		$user->store();
+
+		Log::insert('user_new', $user->id, $user->id);
+
+		$db->query("update users set user_validated_date = now() where user_id = $user->id and user_validated_date is null");
+		if ($this->avatar) {
+			require_once(mnminclude.'avatars.php');
+			avatars_get_from_url($user->id, $this->avatar);
+		}
+	}
+
+	function store_auth() {
+		global $db, $globals;
+		$user = $this->user;
+
+		$db->query("REPLACE INTO auths (user_id, service, uid, username, token, secret) VALUES ($user->id, '$this->service', $this->uid, '$this->username', '$this->token', '$this->secret')");
+	}
+
+	function user_login() {
+		global $current_user, $globals;
+		if (!$current_user->user_id) {
+			$user = $this->user;
+			$current_user->Authenticate($user->username, $user->pass, true);
+ 			// User authenticated, store clones
+                        foreach ($current_user->GetClones() as $id) 
+                                insert_clon($current_user->user_id, $id, 'COOK:'.$globals['user_ip']);			
+
+		}
+		$this->user_return();
+	}
+
+	function user_return() {
+		global $globals;
+
+		setcookie('return', '', time() - 10000);
+		if(!empty($this->return)) {
+			header('Location: http://'.get_server_name().$this->return);
+		} else {
+			header('Location: http://'.get_server_name().$globals['base_url']);
+		}
+		exit;
+	}
+}
+?>

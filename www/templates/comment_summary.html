@@ -1,0 +1,143 @@
+	{%if self.edited %}
+	<ol class="comments-list">
+	{%endif %}
+
+	<li id="ccontainer-{{ self.id }}">
+        
+         <div class="{{ comment_class }}"> 
+
+	{% if self.type != 'admin' AND self.type != 'especial' %}
+
+		 <a href="{% exec get_user_uri self.username %}"><img onmouseover="return tooltip.ajax_delayed(event, 'get_user_info.php', {{ self.author }});" onmouseout="tooltip.clear(event);" src="{% exec get_avatar_url self.author, self.avatar, 20%}" width="20" height="20" alt="" title="{{ self.username }},&nbsp;carisma:&nbsp;{{ self.user_karma }}" class="comment-avatar"/></a> 
+		{% if self.is_connected  %}
+			<a class="conectado" href="{{ globals.base_url }}cotillona.php" title="{{ self.username}} está actualmente en la cotillona"></a> 
+		{% endif %}
+	{% else %}
+		 <img src="{% exec get_admin_avatar 20 %} " class="comment-avatar"/> 
+	{% endif %}
+
+	<div class="comment-text"> 
+
+        <a href="{{ self.link_permalink}}/000{{self.order}}"><strong>#{{self.order}}</strong></a> 
+
+        {% if single_link %}
+		 <span id="comment-{{self.order}}"> 
+	{% endif %}
+
+	<span id="cid-{{ self.id }}"> 
+
+        {% if self.hidden OR self.ignored AND current_user.user_comment_pref == 0 %}
+		{% if self.ignored %}
+			{% trans _('comentario <b>ignorado</b>') %}
+		{% else %}
+			{% if self.hidden %}
+				{% trans _('comentario <b>sensurado</b>')%} , {{ self.karma }} {% trans _('de carisma') %}
+			{% else %}
+				{% if self.user_level == 'disabled' %} 
+					{% trans _('usuario <b>baneado o dado de baja</b>') %} 
+				{% endif %}
+			{% endif %}
+		{% endif %}
+
+		 <br/><a href="javascript:obtener('mostrar_comentario.php','comment','cid-{{self.id}}',0,{{ self.id }})" title=" {% trans _('ver comentario')%} ">» {% trans _('clic aquí para verlo') %}</a> 
+	{% else %}
+		{% exec self.return_text length, single_link %}
+	{% endif %}
+
+	{% if single_link %}
+		 </span> 
+	{% endif %}
+
+	 </span></div></div> 
+
+	
+	 <div class="{{ comment_meta_class }}"> 
+	
+	 <div class="comment-votes-info"> 
+
+{% if self.type != 'admin' AND self.type != 'especial' AND self.user_level != 'disabled' %}
+{% if current_user.user_id > 0 AND self.author != current_user.user_id AND single_link %}		
+			{% if current_user.user_karma > globals.min_karma_for_comment_votes AND  self.date > globals.now - globals.time_enabled_votes AND  self.voted|null  %}
+			 <span id="c-votes-{{ self.id }}"> 
+			 <a href="javascript:votar_comentario({{ current_user.user_id }}, {{ self.id}} ,-1)" title="{% trans _('voto negativo')%}"><img class="icon vote-down" src="{% exec get_cover_pixel %}" alt="{% trans _('voto negativo') %} "/></a> 
+			 <a href="javascript:votar_comentario({{ current_user.user_id }}, {{ self.id}} ,1)" title="{% trans _('voto positivo')%} "><img class="icon vote-up" src="{% exec get_cover_pixel %}" alt="{% trans _('voto positivo') %}"/></a> 
+			 </span>
+			
+			{% else %}
+				{% if self.voted > 0 %}
+					 <img class="icon voted-up" src="{% exec get_cover_pixel %}" alt="{% trans _('votado positivo')%} " title="{% trans _('votado positivo')%}"/>
+				{% else %}
+					{% if  self.voted < 0 %}
+						 <img class="icon voted-down" src="{% exec get_cover_pixel %}" alt="{% trans _('votado negativo')%}" title="{% trans _('votado negativo')%}"/>
+					{% endif %}
+				{% endif %}		
+			{% endif %}
+{% endif %}		
+{% endif %}
+
+	{% trans _('votos')%}: <span id="vc-{{self.id}}">{{ self.votes }}</span>, carisma: <span id="vk-{{self.id}}">{{ self.karma }}</span> 
+
+		
+	{% if self.votes > 0 AND self.date > (globals.now - 30*86400) %} 
+		<a class="fancybox" href="{{ globals.base_url }}backend/mostrar_comentarios_votos.php?id={{self.id}}"> 
+		<img class="icon info" src="{% exec get_cover_pixel %}" style="margin-top: -2px;" alt="+ info" title="{% trans _('¿quién ha votado?')%}"/></a> 
+	{% endif %}
+
+	{% if current_user.user_id > 0 %}
+		<a id="fav-{{self.id}}" href="javascript:obtener('comentario_favorito.php',{{ current_user.user_id }},'fav-{{self.id}}',0,{{self.id}})">{% exec favorite_icon self.favorite, 'comment'%}</a> 
+	{% endif %}
+
+         <a href="{% exec self.get_relative_individual_permalink %}" title="permalink"><img class="icon permalink img-flotante" src="{% exec get_cover_pixel %}"/></a> 
+
+	{% if current_user.user_id > 0 AND current_user.user_karma > globals.min_karma_for_comments %}
+		 <a href="javascript:comment_reply({{self.order}})"><img src="{% exec get_cover_pixel %}" class="icon comment-reply" style="margin-top: -2px;" alt="{% trans _('responder') %}" title="{% trans _('responder') %}"/></a> 
+	{% endif %}
+
+	 </div> 
+	
+	 <div class="comment-info"> 
+
+	{% if self.type == 'admin' %}
+		 <strong>{% trans _('la administración de Jonéame')%} </strong>  
+		{% if current_user.admin %}
+			  ({{ self.username}})  
+		{% endif %}
+	{% else %}
+		{% if self.type == 'especial' %}
+		 <a href="{% exec get_user_uri self.username %}" title="carisma: {{self.user_karma}}">{{self.username}}</a>{% trans _(' en nombre de la ')%}<a href="http://catlink.eu/7c0a9c"><strong>{% trans _('administraci&oacute;n de Jonéame')%}</a></strong> 
+		
+		{% else %}
+			{% if single_link %}
+				{% if self.user_level == 'disabled' %}
+					 <a href="{% exec get_user_uri self.username %}" title="carisma: {{self.user_karma}}" id="cauthor-{{self.order}}"><s>{{self.username}}</s></a>  
+				{% else %}
+					 <a href="{% exec get_user_uri self.username %}" title="carisma: {{self.user_karma}}" id="cauthor-{{self.order}}">{{self.username}}</a>  
+				{% endif %}
+			
+			{% else %}
+				{% if self.user_level == 'disabled' %}
+					 <a href="{% exec get_user_uri self.username %}" title="carisma: {{self.user_karma}}"><s>{{self.username}}</s></a>  
+				{% else %}
+					 <a href="{% exec get_user_uri self.username %}" title="carisma: {{self.user_karma}}">{{self.username}}</a>  
+				{% endif %}
+			{% endif %}
+		{% endif %}
+	{% endif %}
+		
+	{% if (globals.now - self.date) > 1209600 %}
+		{% trans _('el') %} {% exec get_date_time self.date  %}
+	{% else %}
+		{% trans _('hace')%} {% exec txt_time_diff self.date %}
+	{% endif %}
+
+	{% if current_user.user_level == 'god' %}
+		 {% trans _(' desde ')%} {{self.ip}}
+	{% endif %}
+
+	 </div></div> 
+	</li>
+
+	{%if self.edited %}
+		</ol>
+	{%endif %}
+

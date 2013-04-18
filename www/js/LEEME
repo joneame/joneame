@@ -1,0 +1,7 @@
+Estos archivos han sido "comprimidos" usando el closure compiler de google.
+Los originales están en la carpeta "uncompressed".
+Para modificar uno, se ha de modificar allí, y luego ejecutar:
+
+JAVA_HOME=/usr closure archivo.js > archivo_comprimido.js
+
+Y luego mover el archivo_comprimido.js a su sitio.
