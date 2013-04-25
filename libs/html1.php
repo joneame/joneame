@@ -143,9 +143,7 @@ function do_css_includes() {
 		echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$globals['base_url'].'css/'.$css.'" />';
 	}
 
-	if (file_exists($globals['css_main'])) { // fuck you, rewrite
-		echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$globals['base_url'].$globals['css_main'].'/'.filemtime($globals['css_main']).'"/>'."";
-	}
+	echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$globals['base_url'].$globals['css_main'].'/'.filemtime(mnmpath.$globals['css_main']).'"/>'."";
 }
 
 function do_js_includes() {
