@@ -298,11 +298,13 @@ function do_footer($credits = true) {
 
 	printf("\n<!-- Generado en %.3f segundos con %d peticiones -->", $gen_time, $qu);
 
+	/*
 	if ($current_user->user_id > 0) {
 		store_hit($gen_time, $qu, __DIR__.'/../generation-reg.txt');
 	} else {
 		store_hit($gen_time, $qu, __DIR__.'/../generation-unreg.txt');
 	}
+	*/
 	
 	echo "</body></html>";
 }
