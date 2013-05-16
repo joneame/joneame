@@ -26,10 +26,10 @@ var $avatar;
 			$eskaria = $db->get_row("SELECT * FROM cortos WHERE id = $this->id LIMIT 1");
 		elseif ($cortos_especiales)
 			$eskaria = $db->get_row("SELECT * FROM cortos WHERE por = ".$cortos_especiales->value1." AND activado = '1' ORDER BY RAND() LIMIT 1");
-		
-
-		else
-		$eskaria = $db->get_row("SELECT cortos.*, users.user_avatar, users.user_login  FROM cortos, users WHERE activado = '1' AND user_id=por AND user_level != 'disabled' ORDER BY RAND() LIMIT 1");
+		else {
+			$guessed_id = $db->get_var("SELECT FLOOR(1 + (RAND() * (MAX(cortos.id - 1)))) AS guessed_id FROM cortos");
+			$eskaria = $db->get_row("SELECT cortos.*, users.user_avatar, users.user_login  FROM cortos, users WHERE activado = '1' AND user_id=por AND user_level != 'disabled' AND cortos.id >= $guessed_id LIMIT 1");
+		}
 
 		$this->texto = $eskaria->texto;
 		
