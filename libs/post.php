@@ -126,7 +126,6 @@ class Post {
 			$this->content=$post->post_content;
 			$this->date=$post->date;
 			$this->level=$post->user_level;
-			var_dump($this->level);
 			if ($this->src == 'im') $this->src = 'jabber';
 			$this->read = true;
 			return true;
