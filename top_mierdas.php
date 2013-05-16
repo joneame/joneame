@@ -12,8 +12,11 @@ include(mnminclude.'link.php');
 
 $globals['ads'] = true;
 
-
-$sql = "SELECT link_id  FROM links WHERE  link_date > date_sub(now(), interval 1 month) and link_negatives > 0  and link_karma < 0 ORDER BY link_karma ASC LIMIT 50 ";
+if ($_GET['rango'] == 'todas') {
+	$sql = "SELECT link_id  FROM links WHERE link_negatives > 0  and link_karma < 0 ORDER BY link_karma ASC LIMIT 50 ";
+} else {
+	$sql = "SELECT link_id  FROM links WHERE  link_date > date_sub(now(), interval 1 month) and link_negatives > 0  and link_karma < 0 ORDER BY link_karma ASC LIMIT 50 ";
+}
 
 do_header(_('las peores :-)'));
 
