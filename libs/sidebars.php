@@ -160,7 +160,7 @@ function do_pron_stories() {
 
 	// The order is not exactly the votes
 	// but a time-decreasing function applied to the number of votes
-	 $res = $db->get_results("SELECT  * FROM `links` WHERE link_date > '$min_date' and ( link_status='published' or link_status='queued') and (link_title LIKE '%[NSFW]%' OR link_title LIKE '%[+18]% ') or link_category=207 ORDER  BY link_date DESC LIMIT 0,11");
+	 $res = $db->get_results("SELECT  * FROM `links` WHERE link_date > '$min_date' and ( link_status='published' or link_status='queued') and (link_title LIKE '%[NSFW]%' OR link_title LIKE '%[+18]% ') or link_category=207 ORDER  BY link_id DESC LIMIT 0,11");
 	if ($res) {
 $n = 0;
 		foreach ($res as $link) {
@@ -455,7 +455,7 @@ function do_categories_new($what_cat_type, $what_cat_id) {
     }
 
 
-    $categories = $db->get_results("SELECT category_id, category_name FROM categories ORDER BY category_name ASC");
+    $categories = $db->get_results("SELECT SQL_CACHE category_id, category_name FROM categories ORDER BY category_name ASC");
 
     if ($categories) {
         foreach ($categories as $category) {

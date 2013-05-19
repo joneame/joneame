@@ -20,7 +20,7 @@ class Post {
 	var $read = false;
 	var $can_answer = false;
 
-	const SQL = " post_id as id, post_user_id as author, post_is_answer as is_answer, user_login as username, user_karma, user_level as user_level, post_randkey as randkey, post_votes as votes, post_karma as karma, post_src as src, inet_ntoa(post_ip_int) as ip, post_type as tipo, user_avatar as avatar, post_content as content, UNIX_TIMESTAMP(posts.post_date) as date, favorite_link_id as favorite, vote_value as voted FROM posts
+	const SQL = " post_id as id, post_user_id as author, post_is_answer as is_answer, user_login as username, user_karma, user_level as user_level, user_level as level, post_randkey as randkey, post_votes as votes, post_karma as karma, post_src as src, inet_ntoa(post_ip_int) as ip, post_type as tipo, user_avatar as avatar, post_content as content, UNIX_TIMESTAMP(posts.post_date) as date, favorite_link_id as favorite, vote_value as voted FROM posts
     LEFT JOIN users on (user_id = post_user_id)
     LEFT JOIN favorites ON (@user_id > 0 and favorite_user_id =  @user_id and favorite_type = 'post' and favorite_link_id = post_id)
     LEFT JOIN votes ON (post_date > @enabled_votes and @user_id > 0 and vote_type='posts' and vote_link_id = post_id and vote_user_id = @user_id)";
@@ -175,10 +175,11 @@ class Post {
 		echo '<li id="pcontainer-'.$this->id.'">';
 
 		$this->hidden = $this->karma < -50 || $this->level == 'disabled';
-		//$this->ignored = $current_user->user_id > 0 && friend_exists($current_user->user_id, $this->author) < 0;
+		/* $this->ignored = $current_user->user_id > 0 && friend_exists($current_user->user_id, $this->author) < 0; */
+		$this->ignored = false;
 
 		$post_class = 'notita-body fondo-caja';
-		$post_meta_class = '';
+		$post_meta_class = $post_meta_class_link = '';
 
 		if ($this->karma > 90) {  //resaltado si carisma alto
 			$post_class .= ' high';
@@ -327,6 +328,7 @@ class Post {
 		global $current_user, $globals;
 
 		$notitas_edit_time = 3600;
+		$expand = null;
 
 		if (($this->author == $current_user->user_id &&
 			time() - $this->date < $notitas_edit_time ) ||
@@ -539,22 +541,16 @@ class Post {
         }
     }
 
-    function is_answer(){
-	global $db;
-	/* Regexpresion by @gallir */
-	if (preg_match('/^\s*@([^\s<>;:,\?\)]+(?:,\d+){0,1})/', $this->content, $array)) {
-           $id = explode(',', $array[1]);
-	   if ($id[1] > 0) return $id[1];
-	   else {
-
-		$login = $db->escape($id[0]);
-		$user_id = $db->get_var("SELECT user_id FROM users WHERE user_login='$login'");
-		$last_post = $db->get_var("select post_id from posts where post_user_id = $user_id and post_type != 'admin' order by post_date desc limit 1");
-		return 0;
-		
-	   }
-        } else return 0;
-    }
+	function is_answer() {
+		global $db;
+		/* Regexpresion by @gallir */
+		if (preg_match('/^\s*@([^\s<>;:,\?\)]+(?:,\d+){0,1})/', $this->content, $array)) {
+			$id = explode(',', $array[1]);
+			if (isset($id[1]) && $id[1] > 0) {
+				return (int)$id[1];
+			}
+		}
+	}
 
     function insert_answer(){
 	global $db;

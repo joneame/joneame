@@ -49,7 +49,7 @@
 			$this->dbhost = $dbhost;
                         /* neiko: 15/04/13 */
                         if (ini_get('display_errors') === '1') {
-                                $this->trace = $this->debug_all = true;
+                        	$this->trace = $this->debug_all = true;
                         }
 
 		}

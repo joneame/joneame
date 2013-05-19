@@ -53,12 +53,12 @@ class Link {
 
 	// sql fields to build an object from mysql
     	const SQL = " link_id as id, link_author as author, link_blog as blog, link_status as status, link_votes as votes, link_negatives as negatives, link_anonymous as anonymous, link_votes_avg as votes_avg, link_aleatorios_positivos as aleatorios_positivos, link_aleatorios_negativos as aleatorios_negativos, link_comments as comments, link_karma as karma, link_randkey as randkey, link_category as category, link_url as url, link_uri as uri, link_url_title as title, link_title as title, link_tags as tags, link_content as content, UNIX_TIMESTAMP(link_date) as date,  UNIX_TIMESTAMP(link_sent_date) as sent_date, link_sent as sent, UNIX_TIMESTAMP(link_modified) as modified, link_content_type as content_type, link_ip as ip, link_thumb_status as thumb_status, link_thumb_x as thumb_x, link_thumb_y as thumb_y, link_thumb as thumb, link_comentarios_permitidos as comentarios_permitidos, link_votos_permitidos as votos_permitidos, link_broken_link as broken_link, user_login as username, user_email as email, user_avatar as avatar, user_karma as user_karma, user_level, cat.category_name as category_name, meta.category_id as meta_id, favorite_link_id as favorite, clicks.counter as clicks, visits.counter as visits, votes.vote_value as voted FROM links
-    INNER JOIN users on (user_id = link_author)
-    LEFT JOIN (categories as cat, categories as meta) on (cat.category_id = links.link_category)
-    LEFT JOIN votes ON (link_date > @enabled_votes and vote_type='links' and vote_link_id = links.link_id and vote_user_id = @user_id and ( @user_id > 0  OR vote_ip_int = @ip_int ) )
-    LEFT JOIN favorites ON (@user_id > 0 and favorite_user_id =  @user_id and favorite_type = 'link' and favorite_link_id = links.link_id)
-    LEFT JOIN link_clicks as clicks on (clicks.id = links.link_id) 
-    LEFT JOIN link_visits as visits on (visits.id = links.link_id) ";
+	INNER JOIN users on (user_id = link_author)
+	LEFT JOIN (categories as cat, categories as meta) on (cat.category_id = links.link_category)
+	LEFT JOIN votes ON (link_date > @enabled_votes and vote_type='links' and vote_link_id = links.link_id and vote_user_id = @user_id and ( @user_id > 0  OR vote_ip_int = @ip_int ) )
+	LEFT JOIN favorites ON (@user_id > 0 and favorite_user_id =  @user_id and favorite_type = 'link' and favorite_link_id = links.link_id)
+	LEFT JOIN link_clicks as clicks on (clicks.id = links.link_id) 
+	LEFT JOIN link_visits as visits on (visits.id = links.link_id)";
 
 	static function from_db($id) {
         	global $db;
@@ -66,7 +66,7 @@ class Link {
 		if (is_numeric($id) && $id > 0) $selector = " link_id = $id ";
 		else $selector = " link_uri = '$id' ";
 
-		if(($object = $db->get_object("SELECT".Link::SQL." WHERE $selector", 'Link'))) {
+		if(($object = $db->get_object("SELECT".Link::SQL." WHERE $selector LIMIT 1", 'Link'))) {
 		    $object->read = true;
 		    return $object;
 		}
