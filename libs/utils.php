@@ -761,7 +761,7 @@ function get_url($url, $referer = false, $max=200000) {
     // curl_setopt($session,CURLOPT_RANGE,"0-$max"); // It gives error with some servers
     $response = @curl_exec($session);
     if (!$response) {
-            echo "<! -- CURL error " . curl_getinfo($session,CURLINFO_EFFECTIVE_URL) . ": " .curl_error($session) . " -->\n";
+            echo "<!-- CURL error " . curl_getinfo($session,CURLINFO_EFFECTIVE_URL) . ": " .curl_error($session) . " -->\n";
             return false;
     }
     $header_size = curl_getinfo($session,CURLINFO_HEADER_SIZE);
