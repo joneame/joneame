@@ -180,7 +180,7 @@ class Comment {
 			$this->content = preg_replace('/&\w*$/', '', mb_substr($this->content, 0 , $length));
 			$expand = '...&nbsp;&nbsp;' .
 
-				'<a href="javascript:obtener(\'mostrar_comentario.php\',\'comment\',\'cid-'.$this->id.'\',0,'.$this->id.')" title="'._('resto del comentario').'">&#187;&nbsp;'._('ver todo el comentario').'</a>';
+				'<a href="javascript:obtener(\'mostrar_comentario.php\',\'comment\',\'cid-'.$this->id.'\',0,'.$this->id.')" title="'._('resto del comentario').'">»&nbsp;'._('ver todo el comentario').'</a>';
 		}
 
 		return put_smileys($this->put_comment_tooltips(save_text_to_html($this->content, 'comments'))) . $expand;

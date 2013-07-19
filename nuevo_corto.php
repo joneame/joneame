@@ -63,12 +63,12 @@ function envia_corto($testu) {
 	
 
 	if ($corto->save_new_corto()) {
-		echo '<h3>'._('Se ha enviado tu propuesta, &iexcl;gracias!').'</h3>';
+		echo '<h3>'._('Se ha enviado tu propuesta, ¡gracias!').'</h3>';
 		echo '<h3>'._('Queda pendiente de aprobación por parte de la administración').'</h3><br/>';
 		$corto->get_single();
 		$corto->print_short_info();		
 	} else
-	echo '<h3>'._('Perdone las molestias: ha habido un error, int&eacute;ntelo m&aacute;s tarde').'</h3>';
+	echo '<h3>'._('Perdone las molestias: ha habido un error, inténtelo más tarde').'</h3>';
 	echo '</div>'."\n";
 
 }
@@ -81,23 +81,23 @@ function akatsa($message) {
 function carga_submit_cortos() {
 	echo '<h2>'._('Propuesta de un nuevo corto: etapa 1 de 2').'</h2>';
 	echo '<div class="faq">';
-	echo '<h3>'._('Te comentamos de qu&eacute; va, y c&oacute;mo tiene que ser:').'</h3>';
+	echo '<h3>'._('Te comentamos de qué va, y cómo tiene que ser:').'</h3>';
 	echo '<ul class="instruction-list">';
 	echo '<li><strong>'._('algo corto').':</strong> '._('no es un libro, con una frase basta (o dos-tres como mucho)').'</li>';
 	echo '<li><strong>'._('no seas cutre').':</strong> '._('gracias, pero todos conocemos el c&amp;p').'</li>';
-	echo '<li><strong>'._('no insultes a otros users').':</strong> '._('&iexcl;eh t&iacute;o!').'</li>';
-	echo '<li><strong>'._('no nos interesa lo que haga tu vecino').':</strong> '._('si no es algo disparatado, claro est&aacute;').'</li>';
-	echo '<br/><li>Una vez dicho eso, &iexcl;escr&iacute;benos tu propuesta!</li></ul></div>'."\n";
+	echo '<li><strong>'._('no insultes a otros users').':</strong> '._('¡eh tío!').'</li>';
+	echo '<li><strong>'._('no nos interesa lo que haga tu vecino').':</strong> '._('si no es algo disparatado, claro está').'</li>';
+	echo '<br/><li>Una vez dicho eso, ¡escríbenos tu propuesta!</li></ul></div>'."\n";
 
 	echo '<div class="genericform">';
-	echo '<h4>m&aacute;ndanos tu corto ;-)</h4><form class="fondo-caja" action="nuevo_corto.php" method="post" id="bidali" name="bidali">';
+	echo '<h4>mándanos tu corto ;-)</h4><form class="fondo-caja" action="nuevo_corto.php" method="post" id="bidali" name="bidali">';
 	echo '<fieldset>';
 	echo '<p><label for="testua">'._('texto (ojo: no incluyas código HTML)').':</label><br />';
 	echo '<input type="text" name="testua" id="testua" class="form-full" /></p>';
 	ts_print_form();
 	echo '<input type="hidden" name="phase" value="1" />';
 	echo '<input type="hidden" name="id" value="c_1" />';
-	echo '<p><input class="button" type="submit" value="'._('enviar corto &#187;').'" ';
+	echo '<p><input class="button" type="submit" value="'._('enviar corto »').'" ';
 	echo '/>&nbsp;&nbsp;&nbsp;<span id="working">&nbsp;</span></p>';
 	echo '</fieldset></form>';
 	echo '</div>';

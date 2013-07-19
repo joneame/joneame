@@ -113,7 +113,7 @@ function do_joneinfo() {
 	
 	echo '<p>Jonevisión (idea original de <a href="mafioso/zoidberg">Zoidberg</a>) es un concurso made in Jonéame. Trata de enviar <strong>canciones</strong> conocidas (o no), <strong>versionadas por los usuarios</strong>. Éstas serán subidas a una cuenta de <a href="http://www.goear.com">Goear</a>, y serán expuestas en esta misma página.</p>';
 
-	echo '<h5>¿C&oacute;mo participo?</h5>';
+	echo '<h5>¿Cómo participo?</h5>';
 	echo '<p>Cada joneante podrá subir tantas canciones como quiera siempre y cuando las suba todas a la misma cuenta de Goear. 
 	Una vez subida la canción a Goear, se enviará un correo electrónico indicando la URL a <em>jonevision@joneame.net</em></p>';
 	echo '<h5>¿Y las votaciones?</h5>';

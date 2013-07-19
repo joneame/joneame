@@ -17,7 +17,7 @@ if ($current_user->admin) {
 	
 	echo "<br/><br/><br/>";
 } else {
-	 do_error(_('Esta página es sólo para administradores, sal de aquí, cojones ya. <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>Le llamaremos a Chuck Norris para que te de una patada giratoria. O sino a Jack Bauer, que &uacute;ltimamente Chuck anda muy ocupado resolviendo conflictos con los chinos.'), 403);
+	 do_error(_('Esta página es sólo para administradores, sal de aquí, cojones ya. <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>Le llamaremos a Chuck Norris para que te de una patada giratoria. O sino a Jack Bauer, que últimamente Chuck anda muy ocupado resolviendo conflictos con los chinos.'), 403);
 }
 echo "</div>";
 echo "</div>"; // singlewrap

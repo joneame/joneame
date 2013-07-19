@@ -98,11 +98,11 @@ if ($encuestas) {
 		echo "		<description><![CDATA[<p>$encuesta->contenido";
 		echo '</p><p></p>';
                 foreach ($opciones as $opcion) {
-                echo '<p>Opci&oacute;n '.$numero .' : '. $opcion->info.'</p>';
+                echo '<p>Opción '.$numero .' : '. $opcion->info.'</p>';
                 $numero ++;
                 }
                 echo " <p></p>";
-                echo '<p>&#187;&nbsp;'._('pregunta').': <strong>'.$user->username.'</strong></p>';
+                echo '<p>»&nbsp;'._('pregunta').': <strong>'.$user->username.'</strong></p>';
 		echo "]]></description>\n";
 		echo "	</item>\n\n";
 	}

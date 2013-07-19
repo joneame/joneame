@@ -55,7 +55,7 @@ if (($current_user->user_level != "god" || $current_user->user_id == 0)) {
 
 
 	/*HEADER*/
-	do_header(_('Administraci&oacute;n de cortos'));
+	do_header(_('Administración de cortos'));
 	
 	admin_tabs();
 

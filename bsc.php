@@ -62,14 +62,14 @@ function show_profile() {
 
 		
 	/* Little info */
-	echo '&nbsp;<br/>'._('carisma m&iacute;nimo para enviar notas: ').$globals['min_karma_for_posts'].'';
-	echo '&nbsp;<br/>'._('carisma m&iacute;nimo para votar comentarios: ').$globals['min_karma_for_comment_votes'].'';
-	echo '&nbsp;<br/>'._('carisma m&iacute;nimo para votar negativo: ').$globals['min_karma_for_negatives'].'';
-	echo '&nbsp;<br/>'._('carisma m&iacute;nimo para escribir comentarios: ').$globals['min_karma_for_comments'].'';
-	echo '&nbsp;<br/>'._('carisma m&iacute;nimo para escribir en la queer chat: ').$globals['min_karma_for_sneaker'].'<br/><br/>';
+	echo '&nbsp;<br/>'._('carisma mínimo para enviar notas: ').$globals['min_karma_for_posts'].'';
+	echo '&nbsp;<br/>'._('carisma mínimo para votar comentarios: ').$globals['min_karma_for_comment_votes'].'';
+	echo '&nbsp;<br/>'._('carisma mínimo para votar negativo: ').$globals['min_karma_for_negatives'].'';
+	echo '&nbsp;<br/>'._('carisma mínimo para escribir comentarios: ').$globals['min_karma_for_comments'].'';
+	echo '&nbsp;<br/>'._('carisma mínimo para escribir en la queer chat: ').$globals['min_karma_for_sneaker'].'<br/><br/>';
 
 	/* Change user carisma manually */
-	echo _('raz&oacute;n de la BSC');
+	echo _('razón de la BSC');
 
 	echo ': <input type="text" autocomplete="off" name="texto" id="texto" /> <br/><br/>';
 
@@ -79,7 +79,7 @@ function show_profile() {
 	echo ': <input type="text" autocomplete="off" name="carisma" id="carisma" value="'.$user->karma.'" />';
 
 
-	echo '<li><input type="submit" name="save_profile" value="Bajada s&uacute;bita de carisma" class="button" /></li>';
+	echo '<li><input type="submit" name="save_profile" value="Bajada súbita de carisma" class="button" /></li>';
 
 
 	echo '</fieldset></div>';

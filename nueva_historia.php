@@ -90,7 +90,7 @@ exit;
 		$url = 'http://';
 	    }
 	    echo '<div class="genericform">';
-	    echo '<h4>direcci&oacute;n de la historia</h4>';
+	    echo '<h4>dirección de la historia</h4>';
 	    echo '<form class="fondo-caja" action="nueva_historia.php" method="post" id="thisform" onSubmit="$(\'#working\').html(\''._('espera').'...&nbsp;<img src=\\\'\'+img_src1+\'\\\'/>\'); return true;"><fieldset>';
 	    echo '<p><label for="url">'._('enlace').':</label><br />';
 	    echo '<input type="text" name="url" id="url" value="'.htmlspecialchars($url).'" class="form-full" onblur="if(this.value==\'\') this.value=\'http://\';" onclick="if(this.value==\''._('http://').'\') this.value=\'\';"/></p>';
@@ -99,7 +99,7 @@ exit;
 	    echo '<input type="hidden" name="key" value="'.md5($randkey.$current_user->user_id.$current_user->user_email.$site_key.get_server_name()).'" />'."\n";
 	    echo '<input type="hidden" name="randkey" value="'.$randkey.'" />';
 	    echo '<input type="hidden" name="id" value="c_1" />';
-	    echo '<p><input class="button" type="submit" value="'._('continuar &#187;').'" ';
+	    echo '<p><input class="button" type="submit" value="'._('continuar »').'" ';
 	    echo '/>&nbsp;&nbsp;&nbsp;<span id="working">&nbsp;</span></p>';
 	    echo '</fieldset></form>';
 	    echo '</div>';
@@ -113,7 +113,7 @@ exit;
 		echo '<li><strong>¿'._('has leído las').' <a href="condiciones.php" target="_blank">'._('condiciones de uso').'</a></strong>?</li>';
 		echo '<li><strong>'._('contenido interesante').':</strong> '._('en jonéame gusta el porno (por si no lo sabías), ¿crees que interesará tu historia?').'</li>';
 		echo '<li><strong>'._('no somos un medio serio').':</strong> '._('jonéame no es un medio serio, tómatelo todo a coña, pero no te privamos de noticias serias, si te gustan, o son de gran relevancia').'</li>';
-		echo '<li><strong>'._('busca antes').':</strong> '._('por favor, usa el buscador para as&iacute; evitar historias duplicadas').'</li>';
+		echo '<li><strong>'._('busca antes').':</strong> '._('por favor, usa el buscador para así evitar historias duplicadas').'</li>';
 		echo '<li><strong>'._('respeta el voto de los demás').':</strong> '._('en jonéame tenemos el voto mafia, al loro con él, si ves que tu historia no gusta, pasa a la siguiente y no te preocupes').'</li>';
 		
 		echo '</ul></div><br/>'."\n";
@@ -402,7 +402,7 @@ exit;
 
 		echo '<form action="nueva_historia.php" method="post" id="thisform" name="thisform">'."\n";
 
-		echo '<fieldset class="fondo-caja redondo inverso"><legend class="mini barra redondo">'._('informaci&oacute;n del enlace').'</legend>'."\n";
+		echo '<fieldset class="fondo-caja redondo inverso"><legend class="mini barra redondo">'._('información del enlace').'</legend>'."\n";
 		echo '<input type="hidden" name="url" id="url" value="'.htmlspecialchars($linkres->url).'" />'."\n";
 		echo '<input type="hidden" name="phase" value="2" />'."\n";
 		echo '<input type="hidden" name="randkey" value="'.intval($_POST['randkey']).'" />'."\n";
@@ -468,8 +468,8 @@ exit;
 		        echo '<span class="note">'.$trackback.'</span>'."\n";
 		        echo '<input type="hidden" name="trackback" id="trackback" value="'.$trackback.'"/></p>'."\n";
 		}
-		echo '<input class="button" type="button" onclick="window.history.go(-1)" value="'._('&#171; retroceder').'" />&nbsp;&nbsp;'."\n";
-		echo '<input class="button" type="submit" value="'._('continuar &#187;').'" />'."\n";
+		echo '<input class="button" type="button" onclick="window.history.go(-1)" value="'._('« retroceder').'" />&nbsp;&nbsp;'."\n";
+		echo '<input class="button" type="submit" value="'._('continuar »').'" />'."\n";
 		echo '</fieldset></div>'."\n";
 		echo '</form>'."\n";
 		echo '</div>'."\n";
@@ -530,7 +530,7 @@ exit;
 	       
 		if (link_errors($linkres)) {
 		        echo '<form class="genericform">'."\n";
-		        echo '<p><input class="button" type=button onclick="window.history.go(-1)" value="'._('&#171; retroceder').'"/></p>'."\n";
+		        echo '<p><input class="button" type=button onclick="window.history.go(-1)" value="'._('« retroceder').'"/></p>'."\n";
 		        echo '</form>'."\n";
 		        echo '</div>'."\n"; // opened in print_form_submit_error
 		        return;
@@ -567,8 +567,8 @@ exit;
 		echo '<input type="hidden" name="aleatorio" value="'.$_POST['aleatorio'].'" />'."\n";
 
 		echo '<br style="clear: both;" /><br style="clear: both;" />'."\n";
-		echo '<input class="button" type="button" onclick="window.history.go(-1)" value="'._('&#171; retroceder').'"/>&nbsp;&nbsp;'."\n";
-		echo '<input class="button" type="submit" value="'._('enviar a la cola y finalizar &#187;').'" ';
+		echo '<input class="button" type="button" onclick="window.history.go(-1)" value="'._('« retroceder').'"/>&nbsp;&nbsp;'."\n";
+		echo '<input class="button" type="submit" value="'._('enviar a la cola y finalizar »').'" ';
 		echo '/>&nbsp;&nbsp;&nbsp;<span id="working">&nbsp;</span>';
 		echo '</fieldset>'."\n";
 		echo '</form>'."\n";
@@ -736,7 +736,7 @@ exit;
 		        $dupe->print_summary();
 		        echo '<br style="clear: both;" /><br/>' . "\n";
 		        echo '<form class="genericform" action="">';
-		        echo '<input class="button" type="button" onclick="window.history.go(-1)" value="'._('&#171; retroceder').'" />';
+		        echo '<input class="button" type="button" onclick="window.history.go(-1)" value="'._('« retroceder').'" />';
 		        echo '</form>'. "\n";
 		        echo '</div>'. "\n";
 		        return true;

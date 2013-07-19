@@ -446,7 +446,7 @@ echo '<fieldset class="fondo-caja">';
 
 if (!$globals['cortos_activados']) {
 
-	echo _('Lo sentimos, los cortos est&aacute;n desactivados.');
+	echo _('Lo sentimos, los cortos están desactivados.');
 	echo '</fieldset>';
 	return;
 
@@ -466,7 +466,7 @@ if ($user->id ==$current_user->user_id) {
 }
 
 if ($zenbat == 0) {
-	echo _('El usuario no ha enviado ning&uacute;n corto');
+	echo _('El usuario no ha enviado ningún corto');
 	echo '</fieldset>';
 	return;
 }
@@ -485,7 +485,7 @@ if ($zenbat == 0) {
 			continue; //no lo muestra si está pendiente
 		} 
 
-		echo '<dl><dt>'._('N&uacute;mero ').$zenbakia.'';
+		echo '<dl><dt>'._('Número ').$zenbakia.'';
 		$corto->print_short_info();
 		$zenbakia ++;
 	} 
@@ -503,12 +503,12 @@ if ($zenbat == 0) {
 			echo '<dt>'._('Pendientes').':</dt><dd>';
 			echo $aktibatugabe._(' (Cantidad de cortos propuestos pendientes a aprobar)').'<br><br><br>';
 			echo '<dt>'._('AVISO').':</dt><dd>';
-			echo _('Si editas alg&uacute;n corto, este pasar&aacute; a estar de nuevo pendiente de la aprobaci&oacute;n de un administrador.');
+			echo _('Si editas algún corto, este pasará a estar de nuevo pendiente de la aprobación de un administrador.');
 			echo '</dd>';
 			echo '</dl>';
 		}
 
-	echo '<div class="redondo atencion">'._('La edici&oacute;n de cortos estar&aacute; limitada a '.$globals['ediciones_max_cortos'] .' veces por corto, sin limitaci&oacute;n por tiempo. Requerir&aacute;, al igual que el env&iacute;o, la aprobaci&oacute;n por parte de un administrador, por lo que no ser&aacute; inmediata. &Eacute;ste aprobar&aacute; el corto si su significado no var&iacute;a significativamente. Si el corto es rechazado, se mantendr&aacute; igual que antes y no perder&aacute;s las ediciones restantes.').'</div>';
+	echo '<div class="redondo atencion">'._('La edición de cortos estará limitada a '.$globals['ediciones_max_cortos'] .' veces por corto, sin limitación por tiempo. Requerirá, al igual que el envío, la aprobación por parte de un administrador, por lo que no será inmediata. Éste aprobará el corto si su significado no varía significativamente. Si el corto es rechazado, se mantendrá igual que antes y no perderás las ediciones restantes.').'</div>';
 		
 	}
 					

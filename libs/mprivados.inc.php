@@ -48,7 +48,7 @@ function inprimatu_orokorra() {
 		echo  print_simpleformat_buttons('mensaje');
 		echo '<input type="hidden" name="phase" value="1" />';
 		echo '<input type="hidden" name="id" value="c_1" />';
-		echo '<p><input class="button" type="submit" value="'._('&iexcl;enviar!').'" ';
+		echo '<p><input class="button" type="submit" value="'._('¡enviar!').'" ';
 
 		echo '/>&nbsp;&nbsp;&nbsp;<span id="working">&nbsp;</span></p>';
 		echo '</form>';
@@ -131,7 +131,7 @@ function inprimatu_aldaketak() {
 		
 		echo '<input type="hidden" name="phase" value="1" />';
 		echo '<input type="hidden" name="id" value="c_1" />';
-		echo '<br/><br/><p><input class="button" type="submit" value="'._('&iexcl;chachi!').'" />';
+		echo '<br/><br/><p><input class="button" type="submit" value="'._('¡chachi!').'" />';
 		echo '&nbsp;&nbsp;&nbsp;<span id="working">&nbsp;</span></p>';
 		echo '</form>';
 		echo '</fieldset>';
@@ -154,7 +154,7 @@ function bidali_pribatua() {
 
 	if ($_POST && !$_GET['env_pst']) {
 		if (!empty($_POST['mensaje'])) {
-			if (empty($_POST['titulo'])) $titulo = "(sin t&iacute;tulo)"; else $titulo = $_POST['titulo'];
+			if (empty($_POST['titulo'])) $titulo = "(sin título)"; else $titulo = $_POST['titulo'];
 			$msgprv = new Mezu;
 			$xtea = new XTEA($msgprv->getKey($user->id));
 			$contenido_mensaje = normalize_smileys(clean_text(clean_lines($_POST['mensaje'])));
@@ -210,12 +210,12 @@ function bidali_pribatua() {
 		echo  print_simpleformat_buttons('mensaje');
 		echo '<input type="hidden" name="phase" value="1" />';
 		echo '<input type="hidden" name="id" value="c_1" />';
-		echo '<p><input class="button" type="submit" value="'._('&iexcl;enviar!').'" ';
+		echo '<p><input class="button" type="submit" value="'._('¡enviar!').'" ';
 
 		echo '/>&nbsp;&nbsp;&nbsp;<span id="working">&nbsp;</span></p>';
 		echo '</form>';
 		echo '<br />';
-		echo '<div class="redondo atencion">La posibilidad de usar la mensajería privada podría ser desactivada por la administración de Jonéame en un caso de abuso como podr&iacute;an ser mensajes ofensivos contra otros usuarios, pudiendo llegar a la cancelaci&oacute;n de la cuenta. Si est&aacute;s sufriendo este tipo de abusos, por favor, env&iacute;anos un correo electr&oacute;nico a <a href="mailto:admin@joneame.net">admin@joneame.net</a> exponiendo el caso detalladamente y as&iacute; podremos tomar las medidas oportunas.</div>';
+		echo '<div class="redondo atencion">La posibilidad de usar la mensajería privada podría ser desactivada por la administración de Jonéame en un caso de abuso como podrían ser mensajes ofensivos contra otros usuarios, pudiendo llegar a la cancelación de la cuenta. Si estás sufriendo este tipo de abusos, por favor, envíanos un correo electrónico a <a href="mailto:admin@joneame.net">admin@joneame.net</a> exponiendo el caso detalladamente y así podremos tomar las medidas oportunas.</div>';
 		echo '</fieldset></div>';
 		// Posicionamos el cursor según lo que nos interese para facilitar a los usuarios
 		if ($vals) echo "<script type=\"text/javascript\">document.getElementById('mensaje').focus()</script>";

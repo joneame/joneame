@@ -131,7 +131,7 @@ function do_last_comments() {
 	// but a time-decreasing function applied to the number of votes
 	$res = $db->get_results("SELECT comment_id, comment_order, user_login, link_id, link_uri, link_title, link_comments FROM comments, users, links WHERE comment_user_id = user_id  AND comment_link_id = link_id ORDER BY comment_date DESC LIMIT 12");
 	if ($res) {
-		$output .= '<div class="sidebox"><h4><a href="'.$globals['base_url'].'ultimos_comentarios.php">'._('&uacute;ltimos comentarios').'</a></h4><ul class="topcommentsli fondo-caja espaciador">'."\n";
+		$output .= '<div class="sidebox"><h4><a href="'.$globals['base_url'].'ultimos_comentarios.php">'._('últimos comentarios').'</a></h4><ul class="topcommentsli fondo-caja espaciador">'."\n";
 		foreach ($res as $comment) {
 			$numero = $numero + 1;
 			$foo_link->uri = $comment->link_uri;
@@ -153,7 +153,7 @@ function do_pron_stories() {
 	require_once(mnminclude.'link.php');
 	$foo_link = new Link();
 	
-	$title = _('&iexcl;guarradas!');
+	$title = _('¡guarradas!');
 	$output = '<div class="sidebox"><h4><a href="'.$globals['base_url'].'search.php?q=nsfw">'.$title.'</a></h4><div class="fondo-caja column-list mnm-pop-container">';
 
 	$min_date = date("Y-m-d H:i:00", $globals['now'] - 172800); // 36 hours 
@@ -229,7 +229,7 @@ function do_humor_grafico_stories() {
 	require_once(mnminclude.'link.php');
 	$foo_link = new Link();
 	
-	$title = _('humor gr&aacute;fico');
+	$title = _('humor gráfico');
 	$output = '<div class="sidebox"><h4><a href="'.$globals['base_url'].'?category=13">'.$title.'</a></h4><div class="fondo-caja column-list mnm-pop-container">';
 
 	$min_date = date("Y-m-d H:i:00", $globals['now'] - 172800*50); // 36 hours 
@@ -403,7 +403,7 @@ function encuestas_mas_votadas() {
 
     if ($res) {
 
-$output .= '<h4 style="margin-top: 45px"><a href="'.$globals['base_url'].'encuestas.php">'._('encuestas m&aacute;s votadas').'</a></h4>';
+$output .= '<h4 style="margin-top: 45px"><a href="'.$globals['base_url'].'encuestas.php">'._('encuestas más votadas').'</a></h4>';
         $output .= '<ul class="topcommentsli fondo-caja espaciador">'."\n";
 
         foreach ($res as $p) {
@@ -425,7 +425,7 @@ function do_last_questions() {
     $res = $db->get_results("select encuesta_id, encuesta_title, user_login from encuestas, users where encuesta_user_id = user_id order by encuesta_id desc limit 8");
 
     if ($res) {
-	$output .= '<h4 style="margin-top: 45px"><a href="'.$globals['base_url'].'encuestas.php">'._('&uacute;ltimas encuestas').'</a></h4>';
+	$output .= '<h4 style="margin-top: 45px"><a href="'.$globals['base_url'].'encuestas.php">'._('últimas encuestas').'</a></h4>';
         $output .= '<ul class="topcommentsli fondo-caja espaciador">'."\n";
         foreach ($res as $p) {
             $output .= '<li><strong>'.$p->user_login.'</strong>: <a onmouseout="tooltip.clear(event);"  onclick="tooltip.clear(this);" onmouseover="return tooltip.ajax_delayed(event, \'get_encuesta.php\', \''.$p->encuesta_id.'\', 10000);" href="'.get_encuesta_uri($p->encuesta_id).'"><em>'.$p->encuesta_title.'</em></a></li>'."\n";
@@ -490,7 +490,7 @@ function do_saved_searches() {
 
     if (!$busquedas) return;
 
-    echo '<h4>b&uacute;squedas guardadas</h4>';
+    echo '<h4>búsquedas guardadas</h4>';
     echo '<div class="column-list-busqueda fondo-caja">' . "\n";
     echo '<ul>' . "\n";
 

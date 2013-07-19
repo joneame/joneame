@@ -176,7 +176,7 @@ function errors($joneavision){
 
 function error($text){
 	echo '<img src="'.get_cover_pixel().'" style="margin-top: 8px;" class="icon info"/> '.$text.'</br><br/>';
-	echo '<input class="button" type="button" onclick="window.history.go(-1)" value="'._('&#171; madre de dios (atrás)').'"/>&nbsp;&nbsp;'."\n";
+	echo '<input class="button" type="button" onclick="window.history.go(-1)" value="'._('« madre de dios (atrás)').'"/>&nbsp;&nbsp;'."\n";
 
 
 }

@@ -76,7 +76,7 @@ function do_edit() {
     }
 
     echo '<label for="title" accesskey="2">'._('título de la historia').':</label>'."\n";
-    echo '<span class="note">m&aacute;ximo de 120 caracteres</span>';
+    echo '<span class="note">máximo de 120 caracteres</span>';
 
     // Is it an image or video?
     echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
@@ -216,7 +216,7 @@ function do_edit() {
 
 
 
-    echo '<br/><input class="button" type="submit" value="'._('editar &#187;').'" />'."\n";
+    echo '<br/><input class="button" type="submit" value="'._('editar »').'" />'."\n";
     echo '</fieldset>'."\n";
     echo '</form>'."\n";
     echo '</div>'."\n";
@@ -364,7 +364,7 @@ function do_save() {
 
     echo '<form class="note" method="GET" action="historia.php" >';
     echo '<input type="hidden" name="id" value="'.$linkres->id.'" />'."\n";
-    echo '<input class="button" type="button" onclick="window.history.go(-1)" value="'._('&#171; modificar').'">&nbsp;&nbsp;'."\n";;
+    echo '<input class="button" type="button" onclick="window.history.go(-1)" value="'._('« modificar').'">&nbsp;&nbsp;'."\n";;
     echo '<input class="button" type="submit" value="'._('ir a la historia').'" />'."\n";
     echo '</form>'. "\n";
 }

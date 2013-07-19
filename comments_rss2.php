@@ -33,7 +33,7 @@ if ($_REQUEST['q']) {
     $ids = implode(",", $search_ids['ids']);
     $sql = "SELECT comment_id FROM comments WHERE comment_id in ($ids) ORDER BY comment_id DESC LIMIT $rows";
     $last_modified = $db->get_var("SELECT UNIX_TIMESTAMP(comment_date) FROM comments WHERE comment_id in ($ids) ORDER BY comment_id DESC LIMIT 1");
-    $title = _('Jonéame: b&uacute;squeda en comentarios') . ': ' . htmlspecialchars(strip_tags($_REQUEST['q']));
+    $title = _('Jonéame: búsqueda en comentarios') . ': ' . htmlspecialchars(strip_tags($_REQUEST['q']));
     $globals['redirect_feedburner'] = false;
 } elseif(!empty($_GET['id'])) {
     //
@@ -75,7 +75,7 @@ if ($_REQUEST['q']) {
         $from_time = "date_sub(now(), interval 5 day)";
     $sql = "SELECT DISTINCT comments1.comment_id FROM comments AS comments1  INNER JOIN comments AS comments2 WHERE comments1.comment_link_id = comments2.comment_link_id AND comments2.comment_user_id=$id AND comments2.comment_date > $from_time order by comments1.comment_id desc LIMIT $rows";
     $last_modified = $db->get_var("SELECT UNIX_TIMESTAMP(comments1.comment_date) FROM comments AS comments1  INNER JOIN comments AS comments2 WHERE comments1.comment_link_id = comments2.comment_link_id AND comments2.comment_user_id=$id AND comments2.comment_date > $from_time order by comments1.comment_id desc LIMIT 1");
-    $title = _('Jonéame: conversaci&oacute;n de ') . $username;
+    $title = _('Jonéame: conversación de ') . $username;
     $globals['redirect_feedburner'] = false;
 } elseif(!empty($_GET['author_id'])) {
     //
@@ -154,7 +154,7 @@ if ($comments) {
         echo "      <dc:creator>$comment->username</dc:creator>\n";
         echo "      <guid>".$link->get_permalink()."/000".$comment->order."</guid>\n";
         echo "      <description><![CDATA[<p>$content";
-        echo '</p><p>&#187;&nbsp;'._('autor').': <strong>'.$comment->username.'</strong></p>';
+        echo '</p><p>»&nbsp;'._('autor').': <strong>'.$comment->username.'</strong></p>';
         echo "]]></description>\n";
         echo "  </item>\n\n";
     }

@@ -6,7 +6,7 @@
 		{% trans _('Noticia descartada por incumplir las') %} <a href="{{ globals.legal}} #tos"> {% trans _('condiciones de uso') %} </a>
 	{% else %} 
 
-		    {% trans _('El enlace de esta historia contiene material sólo apto para adultos y adem&aacute;s ha sido <strong>descartada por incumplir las') %} <a href="{{ globals.legal}}#tos">{% trans _('condiciones de uso') %} </a></strong>
+		    {% trans _('El enlace de esta historia contiene material sólo apto para adultos y además ha sido <strong>descartada por incumplir las') %} <a href="{{ globals.legal}}#tos">{% trans _('condiciones de uso') %} </a></strong>
 		     
 	{% endif %}
 
@@ -22,8 +22,8 @@
 
 
 {% if self.status == 'published' AND self.tiene_negativos AND NOT self.nsfw  %}
-	 <div class="warn"><strong> {% trans _('Aviso autom&aacute;tico de la mafia') %}</strong>: 
-	 {% trans _('Noticia controvertida, por favor lee los comentarios, a saber qu&eacute; han liado estos...') %}
+	 <div class="warn"><strong> {% trans _('Aviso automático de la mafia') %}</strong>: 
+	 {% trans _('Noticia controvertida, por favor lee los comentarios, a saber qué han liado estos...') %}
 	 </div> 
 			
 {% endif %}
@@ -36,7 +36,7 @@
 		{% if self.status != 'published' %}
 			{% trans _('Esta noticia tiene varios votos sensuradores. El enlace de esta historia contiene material sólo apto para adultos') %}  
 		{% else %}   
-			{% trans _('Noticia controvertida, por favor, lee los comentarios. Ojo. El enlace de esta historia contiene material s&oacute;lo apto para adultos.') %}
+			{% trans _('Noticia controvertida, por favor, lee los comentarios. Ojo. El enlace de esta historia contiene material sólo apto para adultos.') %}
 		{% endif %}
 
 		 </div> 
@@ -44,8 +44,8 @@
 	{% else %} 
 		{% if not self.tiene_negativos AND self.status != 'abuse' %}
 
-		<div class="porn"><strong>{% trans _('&iexcl;&iexcl;Oiga!!') %} </strong> 
-		{% trans _('El enlace de esta historia contiene material s&oacute;lo apto para adultos.') %}
+		<div class="porn"><strong>{% trans _('¡¡Oiga!!') %} </strong> 
+		{% trans _('El enlace de esta historia contiene material sólo apto para adultos.') %}
 		</div> 
 
 		{% endif %}
@@ -56,7 +56,7 @@
 			
 {% if self.votes_enabled AND not self.discarded AND self.tiene_negativos AND not self.is_nsfw AND self.status != 'published' %}
 			
-	 <div class="warn"><strong> {% trans _('Aviso autom&aacute;tico') %} </strong>:  
+	 <div class="warn"><strong> {% trans _('Aviso automático') %} </strong>:  
 
 	{% if self.negative_value == -1 || self.negative_value == -2 %}
 			{% trans _('Esta noticia podría ser <strong>') %} {% exec get_negative_vote self.negative_value %} </strong>

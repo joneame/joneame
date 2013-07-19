@@ -55,9 +55,9 @@ function do_tabs($tab_name, $tab_selected = false, $extra_tab = false) {
 
 		// shake it
 		if ($tab_selected == 'shakeit') {
-			echo '<li '.$active.'><a href="'.$globals['base_url'].'jonealas.php" title="'.$reload_text.'">'._('jon&eacute;alas').'</a></li>';
+			echo '<li '.$active.'><a href="'.$globals['base_url'].'jonealas.php" title="'.$reload_text.'">'._('jonéalas').'</a></li>';
 		} else {
-			echo '<li><a href="'.$globals['base_url'].'jonealas.php">'._('jon&eacute;alas').'</a></li>';
+			echo '<li><a href="'.$globals['base_url'].'jonealas.php">'._('jonéalas').'</a></li>';
 		}
 		// END STANDARD TABS
 
@@ -110,10 +110,10 @@ function do_header($title, $id='home') {
 
  	//echo '<li><a href="'.$globals['base_url'].'search.php">'. _('buscar').'</a></li>';
 	if($current_user->authenticated) {
-  		echo '<li><a href="'.$globals['base_url'].'login.php?op=logout&amp;return='.urlencode($_SERVER['REQUEST_URI']).'">'. _('chapar la sesi&oacute;n').'</a></li>';
+  		echo '<li><a href="'.$globals['base_url'].'login.php?op=logout&amp;return='.urlencode($_SERVER['REQUEST_URI']).'">'. _('chapar la sesión').'</a></li>';
  		echo '<li class="noborder"><a href="'.get_user_uri($current_user->user_login).'" title="'.$current_user->user_login.'"><img src="'.get_avatar_url($current_user->user_id, $current_user->user_avatar, 20).'" width="15" height="15" alt="'.$current_user->user_login.'"/></a></li>';
 	} else {
-  		echo '<li class="noborder"><a href="'.$globals['base_url'].'login.php?return='.urlencode($_SERVER['REQUEST_URI']).'">'. _('iniciar sesi&oacute;n').'</a></li>';
+  		echo '<li class="noborder"><a href="'.$globals['base_url'].'login.php?return='.urlencode($_SERVER['REQUEST_URI']).'">'. _('iniciar sesión').'</a></li>';
 	}
 
 
@@ -207,18 +207,18 @@ function do_pages($total, $page_size=15) {
 	echo '<div class="pages">';
 
 	if($current==1) {
-		echo '<span class="nextprev">&#171;</span>';
+		echo '<span class="nextprev">«</span>';
 	} else {
 		$i = $current-1;
-		echo '<a href="?page='.$i.$query.'">&#171;</a>';
+		echo '<a href="?page='.$i.$query.'">«</a>';
 	}
 
 	echo '<span class="current">'.$current.'</span>';
 	if($current<$total_pages) {
 		$i = $current+1;
-		echo '<a href="?page='.$i.$query.'">&#187;</a>';
+		echo '<a href="?page='.$i.$query.'">»</a>';
 	} else {
-		echo '<span class="nextprev">&#187;</span>';
+		echo '<span class="nextprev">»</span>';
 	}
 	echo "</div>\n";
 

@@ -130,7 +130,7 @@ class LinkMobile extends Link{
         } elseif( !$this->voted) {
             echo '<a href="javascript:menealo('."$current_user->user_id,$this->id".')" id="a-shake-'.$this->id.'">'._('jonéalo').'</a>';
         } else {
-            if ($this->voted > 0) $mess = _('&#161;bibaaa!');
+            if ($this->voted > 0) $mess = _('¡bibaaa!');
             else $mess = ':-(';
             echo '<span id="a-shake-'.$this->id.'">'.$mess.'</span>';
         }
@@ -169,10 +169,10 @@ class LinkMobile extends Link{
 			if ($this->votes_enabled == false) {
 				echo '<span>'._('chapado').'</span>';
 			} elseif( !$this->voted) {
-echo '<a href="javascript:menealo('."$current_user->user_id,$this->id".')" id="a-shake-'.$this->id.'">'._('jon&eacute;ala').'</a>';
+echo '<a href="javascript:menealo('."$current_user->user_id,$this->id".')" id="a-shake-'.$this->id.'">'._('jonéala').'</a>';
 				
 			} else {
-				if ($this->voted > 0) $mess = _('&#161;&#161;Biba!!');
+				if ($this->voted > 0) $mess = _('¡¡Biba!!');
 				else $mess = ':-(';
 				echo '<span id="a-shake-'.$this->id.'">'.$mess.'</span>';
 			}
@@ -205,7 +205,7 @@ echo '<a href="javascript:menealo('."$current_user->user_id,$this->id".')" id="a
 //si detecta NSFW o +18 en el titulo muestra un aviso
 			if ((stripos($this -> title , '[NSFW]') || stripos($this -> title , '[+18]')  != FALSE )  && $this->status != 'abuse') {
 				echo '<div class="porn"><strong>'._('Oiga!!').'</strong> ';
-				echo _('el enlace de esta historia podr&iacute;a contener material solo apto para adultos.');
+				echo _('el enlace de esta historia podría contener material solo apto para adultos.');
 				echo "</div>\n";
 //fin del aviso
 			} elseif ( $this->votes_enabled  && !$this->is_discarded() &&  $this->negatives > 1 && $this->negatives > $this->votes/6 ) {

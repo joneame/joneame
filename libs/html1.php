@@ -78,14 +78,14 @@ function do_tabs($tab_name, $tab_selected = false, $extra_tab = false) {
 
 		// shake it
 		if ($tab_selected == 'shakeit') {
-			echo '<li '.$active.'><a href="'.$globals['base_url'].'jonealas.php" title="'.$reload_text.'">'._('&iexcl;jon&eacute;alas todas!').'</a></li>';
+			echo '<li '.$active.'><a href="'.$globals['base_url'].'jonealas.php" title="'.$reload_text.'">'._('¡jonéalas todas!').'</a></li>';
 		} else {
 			echo '<li><a href="'.$globals['base_url'].'jonealas.php">'._('votar historias').'</a></li>';
 		}
 
 		// report links
 		if ($tab_selected == 'report_links') {
-			echo '<li '.$active.'><a href="'.$globals['base_url'].'broken_link.php" title="'.$reload_text.'">'._('&iexcl;corr&iacute;gelas todas!').'</a></li>';
+			echo '<li '.$active.'><a href="'.$globals['base_url'].'broken_link.php" title="'.$reload_text.'">'._('¡corrígelas todas!').'</a></li>';
 		} else {
 			echo '<li><a href="'.$globals['base_url'].'broken_link.php">'._('enlaces reportados').'</a></li>';
 		}
@@ -208,7 +208,7 @@ function do_footer($credits = true) {
 	echo '</div>'."";
 
 	echo '<div id="footcol3">'."";
-	echo '<h5>jon&eacute;ame</h5>'."";
+	echo '<h5>jonéame</h5>'."";
 	echo '<ul id="joneamefooter">'."";
 	echo '<li><a href="http://twitter.com/joneame">en twitter</a></li>'."";
         if ($globals['blog'])
@@ -216,7 +216,7 @@ function do_footer($credits = true) {
         else 
 		echo '<li><a href="http://mischorradas.wordpress.com">blog</a></li>'."";
 	if ($globals['version_movil'])
-		echo '<li><a href="http://movil.joneame.net">versi&oacute;n m&oacute;vil</a></li>'."";
+		echo '<li><a href="http://movil.joneame.net">versión móvil</a></li>'."";
 	echo '<li><a href="'.$globals['base_url'].'cortos.php">cortos</a></li>'."";
 	echo '<li><a href="'.$globals['base_url'].'top_mierdas.php">¿historias?</a></li>'."";
 	echo '<li><a href="'.$globals['base_url'].'encuestas.php">encuestas</a></li>'."";
@@ -475,10 +475,10 @@ function do_pages($total, $page_size=25, $margin = true, $mini = false) {
 	}
 
 	if($current==1) {
-		echo '<span class="barra semi-redondo nextprev">&#171; '._('anterior'). '</span>';
+		echo '<span class="barra semi-redondo nextprev">« '._('anterior'). '</span>';
 	} else {
 		$i = $current-1;
-		echo '<a class="barra semi-redondo" href="?page='.$i.$query.'">&#171; '._('anterior').'</a>';
+		echo '<a class="barra semi-redondo" href="?page='.$i.$query.'">« '._('anterior').'</a>';
 	}
  if ($total_pages > 0) {
 	if($start>1) {
@@ -508,9 +508,9 @@ function do_pages($total, $page_size=25, $margin = true, $mini = false) {
         
 	 if($total < 0 || $current<$total_pages) {
 		$i = $current+1;
-		echo '<a class="barra semi-redondo" href="?page='.$i.$query.'">'._('siguiente').' &#187;</a>';
+		echo '<a class="barra semi-redondo" href="?page='.$i.$query.'">'._('siguiente').' »</a>';
 	} else {
-		echo '<span class="barra semi-redondo nextprev">&#187; '._('siguiente'). '</span>';
+		echo '<span class="barra semi-redondo nextprev">» '._('siguiente'). '</span>';
 	}
 	echo '</div>'.'<!--html1:do_pages-->';
 

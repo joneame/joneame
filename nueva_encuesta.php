@@ -84,11 +84,11 @@ function print_empty_submit_form() {
 	global $globals, $pregunta, $_POST;
 
 	echo '<br/><div class="genericform">';
-	echo '<h4>m&aacute;ndanos tu pregunta</h4>';
+	echo '<h4>mándanos tu pregunta</h4>';
 	echo '<fieldset class="fondo-caja"><form action="nueva_encuesta.php" method="post" id="bidali" name="bidali">';
 	echo '<input type="text" name="pregunta" id="pregunta" class="form-full" value="" /></p>';
 	echo '<input type="hidden" name="fase" value="1" />';
-	echo '<input class="button" type="submit" value="'._('siguiente &#187;').'" ';
+	echo '<input class="button" type="submit" value="'._('siguiente »').'" ';
 	echo '/>&nbsp;&nbsp;&nbsp;<span id="working">&nbsp;</span>';
 	echo '</form></fieldset>';
 	echo '</div>';
@@ -132,9 +132,9 @@ function do_submit1 () {
 		echo '</fieldset><br/>'."\n";
 		
 
-		echo '<p><input class="button" type=button onclick="window.history.go(-1)" value="'._('&#171; retroceder').'"/> ';
+		echo '<p><input class="button" type=button onclick="window.history.go(-1)" value="'._('« retroceder').'"/> ';
 		echo '<input type="hidden" name="fase" value="2" />'."\n";
-		echo '<input class="button" type="submit" value="'._('siguiente &#187;').'" ';
+		echo '<input class="button" type="submit" value="'._('siguiente »').'" ';
 		echo '/>&nbsp;&nbsp;&nbsp;<span id="working">&nbsp;</span></p>';
 		echo '</fieldset>';
 		echo '</div>';
@@ -204,9 +204,9 @@ function do_submit2 () {
 		echo '<a src="'.get_cover_pixel().'" href="javascript:add_option()"><img class="icon add" alt="añadir opcion" title="añadir opcion"/></a>';
 		echo '</fieldset><br/>'."\n";
 
-		echo '<p><input class="button" type=button onclick="window.history.go(-1)" value="'._('&#171; retroceder').'"/> ';
+		echo '<p><input class="button" type=button onclick="window.history.go(-1)" value="'._('« retroceder').'"/> ';
 		echo '<input type="hidden" name="fase" value="3" />'."\n";
-		echo '<input class="button" type="submit" value="'._('enviar y finalizar &#187;').'" ';
+		echo '<input class="button" type="submit" value="'._('enviar y finalizar »').'" ';
 		echo '/>&nbsp;&nbsp;&nbsp;<span id="working">&nbsp;</span></p>';
 		echo '</form>';
 
@@ -312,7 +312,7 @@ function error_encuesta($mess) {
 	echo '<h4 class="redondo">&nbsp;&nbsp;'._($mess).'</h4><br/>'."\n";
 
 	echo '<form class="genericform">'."\n";
-	echo '<p><input class="button" type=button onclick="window.history.go(-1)" value="'._('&#171; retroceder').'"/></p>'."\n";
+	echo '<p><input class="button" type=button onclick="window.history.go(-1)" value="'._('« retroceder').'"/></p>'."\n";
 	echo '</form>'."\n";
 	echo '</div>'."\n";
 	

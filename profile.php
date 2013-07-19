@@ -50,7 +50,7 @@ if(!$user->read()) {
 }
 $globals['ads'] = true;
 $save_messages = save_profile();
-do_header(_('edici&oacute;n del perfil del usuario'). ': ' . $user->username);
+do_header(_('edición del perfil del usuario'). ': ' . $user->username);
 echo $save_messages; // We do it later because teh profile could change header's info
 show_profile();
 do_footer();
@@ -63,10 +63,10 @@ function show_profile() {
 	echo '<fieldset>';
 	echo '<div class="profile-sidebar">';
 	echo '<img class="espaciador" style="padding: 0;" src="'.get_avatar_url($user->id, $user->avatar, 80).'" width="80" height="80" alt="'.$user->username.'" title="avatar" /><br/>';
-	echo '<div class="help-topic">'._('Puedes poner tu direcci&oacute;n de <b>Jabber</b> o <b>Google Talk</b> si quieres conectarte a la cotillona o mandar notitas desde all&iacute;. Los contactos que debes agregar son:<br/><b>cotillona@joneame.net</b><br/><b>notitas@joneame.net</b>').'</div>';
+	echo '<div class="help-topic">'._('Puedes poner tu dirección de <b>Jabber</b> o <b>Google Talk</b> si quieres conectarte a la cotillona o mandar notitas desde allí. Los contactos que debes agregar son:<br/><b>cotillona@joneame.net</b><br/><b>notitas@joneame.net</b>').'</div>';
 	
 	include_once(mnminclude.'avatars.php');
-        if (is_avatars_enabled()) echo '<div class="help-topic">'._('Los avatares no deben ser mayores de 100KB, y s&oacute;lo se aceptan formatos jpg, gif o png, sin transparencias.').'</div>';
+        if (is_avatars_enabled()) echo '<div class="help-topic">'._('Los avatares no deben ser mayores de 100KB, y sólo se aceptan formatos jpg, gif o png, sin transparencias.').'</div>';
 	echo '</div>';
 	echo '<input type="hidden" name="process" value="1" />';
 	echo '<input type="hidden" name="user_id" value="'.$user->id.'" />';
@@ -82,7 +82,7 @@ function show_profile() {
 	echo '</dd>';
         echo '</li>';
 	if($current_user->user_level == 'god')
-		echo '<span class="note">'._('eres god. esto te da derecho a ponerte o poner a alguien un nombre de menos de 3 caracteres, o con caracteres especiales. ten en cuenta que dando mal uso a esto &uacute;ltimo, podr&iacute;as conseguir que la persona a la que editas el perfil no pueda volver a iniciar sesi&oacute;n o cosas mucho peores, ').'<span style="color: red;">'._('&#161;ten much&iacute;simo cuidado: la puedes cagar pero bien!').'</span></span><br/>';
+		echo '<span class="note">'._('eres god. esto te da derecho a ponerte o poner a alguien un nombre de menos de 3 caracteres, o con caracteres especiales. ten en cuenta que dando mal uso a esto último, podrías conseguir que la persona a la que editas el perfil no pueda volver a iniciar sesión o cosas mucho peores, ').'<span style="color: red;">'._('¡ten muchísimo cuidado: la puedes cagar pero bien!').'</span></span><br/>';
 
 	echo '<li>';
 	echo '<dt>'._('nombre real').'</dt>';
@@ -98,13 +98,13 @@ function show_profile() {
 
 	echo '<li>';
 
-	echo '<dt>'._('correo electr&oacute;nico').'</dt>';
+	echo '<dt>'._('correo electrónico').'</dt>';
 	echo '<dd><input type="text" autocomplete="off" name="email" id="email" value="'.$user->email.'" onkeyup="enablebutton(this.form.checkbutton2, null, this)"/>';
 	echo '&nbsp;&nbsp;<input type="button" class="button" id="checkbutton2" disabled="disabled" value="'._('verificar').'" onclick="checkfield(\'email\', this.form, this.form.email)"/>';
 	echo '&nbsp;<span id="emailcheckitvalue"></span></dd>';
 	echo '</li>';
 	echo '<li>';
-	echo '<dt>'._('p&aacute;gina web').'</dt>';
+	echo '<dt>'._('página web').'</dt>';
 	echo '<dd><input type="text" autocomplete="off" name="url" id="url" value="'.$user->url.'" /></dd>';
 	echo '</li>';
 
@@ -129,7 +129,7 @@ function show_profile() {
 	}
 	if ($current_user->admin) {
 		echo '<li>';
-		echo '<dt>' . _("cumplea&ntilde;os") . ' </dt>' . "\n";
+		echo '<dt>' . _("cumpleaños") . ' </dt>' . "\n";
 		echo '<dd><select name="dia">';
 		$partes = explode (',', $user->birth);
 		$cuenta = 1;
@@ -163,7 +163,7 @@ function show_profile() {
 	}
 
 
-	echo '<span class="note">'._('introduce aqu&iacute; una nueva contrase&ntilde;a para cambiarla -no se cambiar&aacute; si la dejas en blanco-:').'</span><br/>';
+	echo '<span class="note">'._('introduce aquí una nueva contraseña para cambiarla -no se cambiará si la dejas en blanco-:').'</span><br/>';
 
 
 	echo '<li>';
@@ -184,12 +184,12 @@ echo '<dd><input type="password" autocomplete="off" id="verify" name="password2"
       
        	echo '<li>';
         print_checkbox('thumbs', $user->thumb);
-	echo '&nbsp;<span>mostrar thumbnails (im&aacute;genes que acompa&ntilde;an a los joneos)</span>';
+	echo '&nbsp;<span>mostrar thumbnails (imágenes que acompañan a los joneos)</span>';
 	echo '</li>';
 
 
 	if ($admin_mode) {
-		echo '&nbsp;<br/><span class="note" style="margin-top: 10px;">'._('opciones para administradores (&#161;cuidado!):').'</span><br/>';
+		echo '&nbsp;<br/><span class="note" style="margin-top: 10px;">'._('opciones para administradores (¡cuidado!):').'</span><br/>';
 
 		echo '<li><dt>' . _("estado") . '</dt>' . "\n";
 		echo '<dd><select name="user_level">';
@@ -200,11 +200,11 @@ echo '<dd><input type="password" autocomplete="off" id="verify" name="password2"
 		}
 		echo '</select></dd></li>';
 		/* Little info */
-		echo '&nbsp;<br/>'._('carisma m&iacute;nimo para enviar notas: ').$globals['min_karma_for_posts'].'';
-		echo '&nbsp;<br/>'._('carisma m&iacute;nimo para votar comentarios: ').$globals['min_karma_for_comment_votes'].'';
-		echo '&nbsp;<br/>'._('carisma m&iacute;nimo para votar negativo: ').$globals['min_karma_for_negatives'].'';
-		echo '&nbsp;<br/>'._('carisma m&iacute;nimo para escribir comentarios: ').$globals['min_karma_for_comments'].'';
-		echo '&nbsp;<br/>'._('carisma m&iacute;nimo para escribir en la cotillona: ').$globals['min_karma_for_sneaker'].'<br/><br/>';
+		echo '&nbsp;<br/>'._('carisma mínimo para enviar notas: ').$globals['min_karma_for_posts'].'';
+		echo '&nbsp;<br/>'._('carisma mínimo para votar comentarios: ').$globals['min_karma_for_comment_votes'].'';
+		echo '&nbsp;<br/>'._('carisma mínimo para votar negativo: ').$globals['min_karma_for_negatives'].'';
+		echo '&nbsp;<br/>'._('carisma mínimo para escribir comentarios: ').$globals['min_karma_for_comments'].'';
+		echo '&nbsp;<br/>'._('carisma mínimo para escribir en la cotillona: ').$globals['min_karma_for_sneaker'].'<br/><br/>';
 		/* Change user carisma manually */
 		echo '<li><dt>'._('carisma').'</dt>';
 		echo '<dd><input type="text" autocomplete="off" name="karma" id="karma" value="'.$user->karma.'" /></dd>';
@@ -221,10 +221,10 @@ echo '<dd><input type="password" autocomplete="off" id="verify" name="password2"
 	if ($user->id == $current_user->user_id) {
 		echo '<br/><div class="fondo-caja"><h4>'._('darse de baja') . '</h4><fieldset>';
 		echo '<ul class="edicion-perfil">';
-		echo '<li><span class="note" style="font-size: 110%;">'._('&#161;atenci&oacute;n! tu cuenta ser&aacute; dada de baja.').'</span></li>';
-		echo '<li><span class="note">'._('se eliminar&aacute;n autom&aacute;ticamente todos tus datos personales. tus notitas, env&iacute;os y comentarios NO se borrar&aacute;n. no podr&aacute;s volver a iniciar sesi&oacute;n con esta cuenta.').'</span></li>';
+		echo '<li><span class="note" style="font-size: 110%;">'._('¡atención! tu cuenta será dada de baja.').'</span></li>';
+		echo '<li><span class="note">'._('se eliminarán automáticamente todos tus datos personales. tus notitas, envíos y comentarios NO se borrarán. no podrás volver a iniciar sesión con esta cuenta.').'</span></li>';
 		echo '<li style="margin-top: 10px"><input name="disable" type="checkbox" value="1"/>&nbsp;'._('lo he entendido y quiero darme de baja').'</li>';
-		echo '<li><input type="submit" name="disabledme" value="'._('adi&oacute;s, mundo cruel').'" class="button" /></li>';
+		echo '<li><input type="submit" name="disabledme" value="'._('adiós, mundo cruel').'" class="button" /></li>';
 		echo '</fieldset></div>';
 	}
 	echo "</ul></form></div>\n";
@@ -265,7 +265,7 @@ function save_profile() {
 			$errors++;
 		}
 		if(!check_username($_POST['username'])) {
-			$messages .= '<p class="form-error-submit-perfil">'._('nombre de usuario err&oacute;neo, caracteres no admitidos').'</p>';
+			$messages .= '<p class="form-error-submit-perfil">'._('nombre de usuario erróneo, caracteres no admitidos').'</p>';
 			$errors++;
 
 		} elseif (user_exists(trim($_POST['username'])) ) {
@@ -280,10 +280,10 @@ function save_profile() {
 	else $user->thumb= 0;
 
 	if($user->email != trim($_POST['email']) && !check_email(trim($_POST['email']))) {
-		$messages .= '<p class="form-error-submit-perfil">'._('el correo electr&oacute;nico no es correcto').'</p>';
+		$messages .= '<p class="form-error-submit-perfil">'._('el correo electrónico no es correcto').'</p>';
 		$errors++;
 	} elseif (!$admin_mode && trim($_POST['email']) != $current_user->user_email && email_exists(trim($_POST['email']))) {
-		$messages .= '<p class="form-error-submit-perfil">'. _('ya existe otro usuario con esa direcci&oacute;n de correo'). '</p>';
+		$messages .= '<p class="form-error-submit-perfil">'. _('ya existe otro usuario con esa dirección de correo'). '</p>';
 		$errors++;
 	} else {
 		$user->email=trim($_POST['email']);
@@ -300,7 +300,7 @@ function save_profile() {
 
 
 		if ($im_count > 0) {
-			$messages .= '<p class="form-error-submit-perfil">'. _('ya hay otro usuario con la misma direcci&oacute;n de MI, no se ha grabado'). '</p>';
+			$messages .= '<p class="form-error-submit-perfil">'. _('ya hay otro usuario con la misma dirección de MI, no se ha grabado'). '</p>';
 			$_POST['public_info'] = '';
 			$errors++;
 		}
@@ -312,14 +312,14 @@ function save_profile() {
 		// Check phone number
 		if (!empty($_POST['phone'])) {
 			if ( !preg_match('/^\+[0-9]{9,16}$/', $_POST['phone'])) {
-				$messages .= '<p class="form-error-submit-perfil">'. _('n&uacute;mero telef&oacute;nico err&oacute;neo, no se ha grabado'). '</p>';
+				$messages .= '<p class="form-error-submit-perfil">'. _('número telefónico erróneo, no se ha grabado'). '</p>';
 				$_POST['phone'] = '';
 				$errors++;
 			} else {
 				$phone = $db->escape($_POST['phone']);
 				$phone_count = intval($db->get_var("select count(*) from users where user_id != $user->id and user_level != 'disabled' and user_phone='$phone'"));
 				if ($phone_count > 0) {
-					$messages .= '<p class="form-error-submit-perfil">'. _('ya hay otro usuario con el mismo n&uacute;mero, no se ha grabado'). '</p>';
+					$messages .= '<p class="form-error-submit-perfil">'. _('ya hay otro usuario con el mismo número, no se ha grabado'). '</p>';
 					$_POST['phone'] = '';
 					$errors++;
 				}
@@ -342,7 +342,7 @@ function save_profile() {
 	}
 	if(!empty($_POST['password']) || !empty($_POST['password2'])) {
 		if(! check_password($_POST["password"]) ) {
-    	    $messages .= '<p class="form-error-submit-perfil">'._('Clave demasiado corta, debe ser de 6 o m&aacute;s caracteres e incluir may&uacute;sculas, min&uacute;sculas y n&uacute;meros').'</p>';
+    	    $messages .= '<p class="form-error-submit-perfil">'._('Clave demasiado corta, debe ser de 6 o más caracteres e incluir mayúsculas, minúsculas y números').'</p>';
         	$errors=1;
 	    } else if(trim($_POST['password']) !== trim($_POST['password2'])) {
 			$messages .= '<p class="form-error-submit-perfil">'._('las claves no son iguales, no se ha modificado').'</p>';
@@ -373,7 +373,7 @@ function save_profile() {
                 $user->avatar = $avatar_mtime;
             }
         } else {
-            $messages .= '<p class="form-error-submit-perfil">'._('el tamaño de la imagen excede el l&iacute;mite').'</p>';
+            $messages .= '<p class="form-error-submit-perfil">'._('el tamaño de la imagen excede el límite').'</p>';
             $errors = 1;
             $user->avatar = 0;
         }

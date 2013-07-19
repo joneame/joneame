@@ -22,7 +22,7 @@ if (! $user_id > 0) {
 
 $clones = $db->get_results("select distinct user_login, clon_ip from clones, users where clon_from = $user_id and user_id = clon_to order by clon_date desc limit 20");
 if (! $clones) {
-    print _('no hay ning&uacute;n clon'); //no hay ningun clon
+    print _('no hay ningún clon'); //no hay ningun clon
     die;
 }
 echo '<div style="width:550px;padding: 5px 5px;text-align:left">';

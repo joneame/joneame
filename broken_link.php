@@ -12,7 +12,7 @@ include(mnminclude.'link.php');
 
 $globals['ads'] = true;
 
-do_header(_('Reportar historias err&oacute;neas') . ' | Jonéame');
+do_header(_('Reportar historias erróneas') . ' | Jonéame');
 
 do_tabs('main', 'report_links');
 

@@ -242,7 +242,7 @@ if ($links) {
         
         if ($link->status != 'published') $rel = 'rel="nofollow"';
         else $rel = '';
-        echo "<p>&#187;&nbsp;<a href='http://".get_server_name().$globals['base_url']."backend/go.php?id=".$link->id."' $rel>"._('historia original')."</a></p>";
+        echo "<p>»&nbsp;<a href='http://".get_server_name().$globals['base_url']."backend/go.php?id=".$link->id."' $rel>"._('historia original')."</a></p>";
         echo "]]></description>\n";
         if ($thumb) {
             echo '      <media:thumbnail url="'.$link->thumb."\" width='$link->thumb_x' height='$link->thumb_y' />\n";

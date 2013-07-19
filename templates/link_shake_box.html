@@ -20,7 +20,7 @@
 		{% if self.status == 'queued' AND current_user.user_id > 0  %}
 					
 			<a class="shakebox-central" href='javascript:jonea({{ current_user.user_id}}, {{self.id}}, {{self.id}},&quot;{{self.md5}}&quot;)'
- id="a-shake-{{self.id}}">{% trans _('jon&eacute;ala') %} </a>
+ id="a-shake-{{self.id}}">{% trans _('jonéala') %} </a>
 					
 			{% if current_user.user_id > 0 AND globals.aleatorios_usuarios_activados %}
 				<a href='javascript:jonea({{ current_user.user_id}}, {{self.id}}, {{self.id}},&quot;{{self.md5}}&quot;)'
@@ -28,7 +28,7 @@
 			{% endif %}
 		{% else %}
 			<a href='javascript:jonea({{ current_user.user_id}}, {{self.id}}, {{self.id}},&quot;{{self.md5}}&quot;)'
- id="a-shake-{{self.id}}"> {% trans _('jon&eacute;ala') %} </a> 
+ id="a-shake-{{self.id}}"> {% trans _('jonéala') %} </a> 
 		{% endif %}
 
 	{% else %}
@@ -39,7 +39,7 @@
 						<span id="a-shake-{{ self.id }}">{% trans  _('valió ') %} {{ self.aleatorio_valor }}</span>
 			{% else %}
 				{% if self.voted >= 0 %}
-					<span id="a-shake-{{ self.id }}">{% trans  _('&#161;&#161;Biba!!')  %}</span>
+					<span id="a-shake-{{ self.id }}">{% trans  _('¡¡Biba!!')  %}</span>
 				{% else %} 
 					{% if self.voted < 0 %}
 						<span id="a-shake-{{ self.id }}">{% trans _(':-(')  %}</span>

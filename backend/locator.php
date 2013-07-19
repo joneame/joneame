@@ -21,7 +21,7 @@ $info = geoip_record_by_name($ip);
 /* Country flag here */
 $a = new ip2country("../countries.txt","../flags/"); 
 $arr=$a->parseIP($ip); 
-echo "Pa&iacute;s localizado: ".$info[country_name]." <img src=\"".$arr[2]."\" title=\"".$arr[1]."\"><br />"; 
+echo "País localizado: ".$info[country_name]." <img src=\"".$arr[2]."\" title=\"".$arr[1]."\"><br />"; 
 
 echo "Provincia/Continente: ".$info[continent_code];
 echo "<br/>";

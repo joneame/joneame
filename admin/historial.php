@@ -33,7 +33,7 @@ if ($current_user->admin) {
 	echo '<div class="genericform" style="margin:10px; text-align: center">';
 	echo '<form action="historial.php" method="post" id="bidali" name="bidali">';
 
-	echo '<label>A&ntilde;adir nota para: </label>';
+	echo '<label>Añadir nota para: </label>';
 	echo '<select name="who" id="who">';
 		
 	// Menuda liada que viene aquí
@@ -53,7 +53,7 @@ if ($current_user->admin) {
 	
 	echo '<br/><br/><br/>';
 } else {
-	 do_error(_('Esta página es sólo para administradores, sal de aqui, cojones ya. <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>Le llamaremos a Chuck Norris para que te de una patada giratoria. O sino a Jack Bauer, que &uacute;ltimamente Chuck anda muy ocupado resolviendo conflictos con los chinos.'), 403);
+	 do_error(_('Esta página es sólo para administradores, sal de aqui, cojones ya. <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>Le llamaremos a Chuck Norris para que te de una patada giratoria. O sino a Jack Bauer, que últimamente Chuck anda muy ocupado resolviendo conflictos con los chinos.'), 403);
 	
 }
 echo "</div>";

@@ -127,12 +127,12 @@ class Encuesta {
 		echo '<div class="news-submitted" style="float: right; width: 210px;">';
 		echo '<a href="'.get_user_uri($this->nick).'"><span><img onmouseover="return tooltip.ajax_delayed(event, \'get_user_info.php\', '.$this->user_id.');" onmouseout="tooltip.clear(event);" class="avatar" src="'.get_avatar_url($this->autor, $this->avatar, 80).'" width="40" height="40" alt="'.$this->nick.'"/></span></a>'; 
 		echo 'por <strong><a href="'.get_user_uri($this->nick).'">'.$this->nick.'</a></strong><br/>';
-		echo 'empez&oacute; el <strong>'.$this->comienzo.'</strong><br/>';
+		echo 'empezó el <strong>'.$this->comienzo.'</strong><br/>';
 
 		if (!$this->finished)
-			echo 'finalizar&aacute; el <strong>'.$this->finish.'</strong>';
+			echo 'finalizará el <strong>'.$this->finish.'</strong>';
                 else 
-			echo 'finaliz&oacute; el <strong>'.$this->finish.'</strong>';
+			echo 'finalizó el <strong>'.$this->finish.'</strong>';
 	
 		echo '<br/><br/>usuarios que han votado: <strong><span id="usuarios-totales-'.$this->id.'">'.$this->votos_totales.'</span></strong>';
 		echo '<br/>opiniones: <strong><span id="opiniones-'.$this->id.'">'.$this->comentarios.'</span></strong>';

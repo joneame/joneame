@@ -47,7 +47,7 @@ if ($_POST['process'] == 'editcomment') {
 
 } else if($_REQUEST['editar'] ) {
  
-	do_header(_('Edici&oacute;n de corto'));
+	do_header(_('Edición de corto'));
         print_edit_form($corto);
       
 }

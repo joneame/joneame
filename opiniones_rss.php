@@ -83,7 +83,7 @@ if ($opiniones) {
 		echo '</p><p></p>';
             
                 echo " <p></p>";
-                echo '<p>&#187;&nbsp;'._('autor').': <strong>'.$user->username.'</strong></p>';
+                echo '<p>»&nbsp;'._('autor').': <strong>'.$user->username.'</strong></p>';
 		echo "]]></description>\n";
 		echo "	</item>\n\n";
 	}

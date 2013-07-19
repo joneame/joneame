@@ -417,7 +417,7 @@ function print_logs() {
 	}
 		
 	} else {
-		echo _('no hay registros o la noticia est&aacute; pasada de moda');
+		echo _('no hay registros o la noticia está pasada de moda');
 	}
 
 	echo '</div><br />';
@@ -453,10 +453,10 @@ function do_comment_pages($total, $current, $reverse = true) {
 	echo '<div class="pages">';
 
 	if($current==1) {
-		echo '<span class="barra semi-redondo nextprev">&#171; '._('anterior').'</span>';
+		echo '<span class="barra semi-redondo nextprev">« '._('anterior').'</span>';
 	} else {
 		$i = $current-1;
-		echo '<a class="barra semi-redondo" href="'.get_comment_page_url($i, $total_pages, $query).'">&#171; '._('anterior').'</a>';
+		echo '<a class="barra semi-redondo" href="'.get_comment_page_url($i, $total_pages, $query).'">« '._('anterior').'</a>';
 	}
 
 	$dots_before = $dots_after = false;
@@ -480,9 +480,9 @@ function do_comment_pages($total, $current, $reverse = true) {
 	
 	if($current<$total_pages) {
 		$i = $current+1;
-		echo '<a class="barra semi-redondo" href="'.get_comment_page_url($i, $total_pages, $query).'">'._('siguiente').' &#187;</a>';
+		echo '<a class="barra semi-redondo" href="'.get_comment_page_url($i, $total_pages, $query).'">'._('siguiente').' »</a>';
 	} else {
-		echo '<span class="barra semi-redondo nextprev">'._('siguiente'). ' &#187;</span>';
+		echo '<span class="barra semi-redondo nextprev">'._('siguiente'). ' »</span>';
 	}
 	echo "</div>\n";
 

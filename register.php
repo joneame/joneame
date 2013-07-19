@@ -69,7 +69,7 @@ function do_register0() {
 	echo '<input type="hidden" name="process" value="1"/>' . "\n";
 	echo '</fieldset>' . "\n";
 	echo '</form>' . "\n";
-	echo '<div class="recoverpass" align="center"><h4 class="boton"><a href="login.php?op=recover">'._('&iquest;Has olvidado la contrase&ntilde;a?').'</a></h4></div>'."\n";
+	echo '<div class="recoverpass" align="center"><h4 class="boton"><a href="login.php?op=recover">'._('¿Has olvidado la contraseña?').'</a></h4></div>'."\n";
 
 
 

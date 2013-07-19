@@ -31,7 +31,7 @@ if (!$_REQUEST['admin']) $_REQUEST['admin'] = "pendientes";
  * Bakarrik god mailako erabiltzaileak sar daitezke. - aritz
  */
 if (($current_user->user_level=="god" && $current_user->user_id > 0)) {
-	do_header(_('Administraci&oacute;n de cortos'));
+	do_header(_('Administración de cortos'));
 	admin_tabs($_REQUEST["admin"]);
 	echo '<div id="singlewrap">' . "\n";
 	cargacortos($_REQUEST["admin"]);
@@ -162,7 +162,7 @@ function karga_konfigurazioa($key) {
 	 $smu->change_special_message(0, 0);
 
 	
-	echo '<div class="genericform"><fieldset><legend><span class="sign">configuraci&oacute;n de cortos</span></legend><div align="center">';
+	echo '<div class="genericform"><fieldset><legend><span class="sign">configuración de cortos</span></legend><div align="center">';
 
 	echo '<form action="cortos.php?admin=configuracion" method="post" id="bidali" name="bidali">';
 	
@@ -196,7 +196,7 @@ function karga_konfigurazioa($key) {
 	echo '<input type="hidden" name="phase" value="1" />';
 	echo '<br/><br/>';
 	
-	echo '<p><input class="button" type="submit" value="'._('&iexcl;chachi!').', '._('&iexcl;chachi!').', '._('&iexcl;chachi!').'" ';
+	echo '<p><input class="button" type="submit" value="'._('¡chachi!').', '._('¡chachi!').', '._('¡chachi!').'" ';
 
 	echo '/>&nbsp;&nbsp;&nbsp;<span id="working">&nbsp;</span></p>';
 	echo '</form>';

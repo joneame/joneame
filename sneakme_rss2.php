@@ -112,7 +112,7 @@ if ($posts) {
 		}
 	}
         echo "      <description><![CDATA[$content";
-        echo '</p><p>&#187;&nbsp;'._('autor').': <strong>'.$username.'</strong></p>';
+        echo '</p><p>»&nbsp;'._('autor').': <strong>'.$username.'</strong></p>';
         echo "]]></description>\n";
         echo "  </item>\n\n";
     }
