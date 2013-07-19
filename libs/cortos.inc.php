@@ -135,7 +135,7 @@
 
 		if ($corto->existe_pendiente_de_edicion()) {
 		
-		do_header('Cortos | Pink Power'); //inicializamos header, puesto que antes no se ha inicializado
+		do_header('Cortos | Jonéame'); //inicializamos header, puesto que antes no se ha inicializado
 		echo _('Ya existe una edición pendiente para este mismo corto. <br/>');
 		return;
 		}

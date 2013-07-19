@@ -24,7 +24,7 @@ $globals['ads'] = true;
 
 $cat= intval($_REQUEST['category']);
 
-do_header(_('Pink Power | Publicadas por la mafia') . '');
+do_header(_('Jonéame | Publicadas por la mafia') . '');
 do_tabs('main','published');
 
 
