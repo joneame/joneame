@@ -101,8 +101,8 @@ padding: 0 7px;
 background: #5a8cbe url(/img/estructura/tabmain.3.png) repeat left top;
 line-height: 24px;
 margin-right: 3px;
-border-bottom-left-radius: 5px;
-border-bottom-right-radius: 5px;
+border-bottom-left-radius: 3px;
+border-bottom-right-radius: 3px;
 box-shadow: #ccc 0px 1px 1px;
 }
 
@@ -287,8 +287,8 @@ margin: 3em 0 0;
 clear: both;
 padding: 5px 0 15px 0;
 position: relative;
-border-top-left-radius: 5px;
-border-top-right-radius: 5px;
+border-top-left-radius: 3px;
+border-top-right-radius: 3px;
 }
 
 #footcol1, #footcol2, #footcol3, #footcol4, #footcol5 {
@@ -702,8 +702,8 @@ font-weight: normal;
 display: block;
 padding: 4px 0 4px 0;
 background: white url(/img/estructura/general.7.png) no-repeat 0 -305px;
-border-top-left-radius: 5px;
-border-top-right-radius: 5px;
+border-top-left-radius: 3px;
+border-top-right-radius: 3px;
 border: 1px solid #4b7db0;
 color: white;
 border-bottom: 0 !important;
@@ -716,8 +716,8 @@ border-bottom: 0;
 padding: 4px 0 4px 0;
 background: white url(/img/estructura/general.7.png) no-repeat 0 -352px;
 border-color: #4b7db0;
-border-top-left-radius: 5px;
-border-top-right-radius: 5px;
+border-top-left-radius: 3px;
+border-top-right-radius: 3px;
 text-shadow: 0 0 1px rgba(255, 255, 255, 0.7);
 }
 
@@ -735,8 +735,8 @@ border: 1px solid #D9AA95 !important;
 padding: 4px 0 4px 0;
 background: white url(/img/estructura/general.7.png) no-repeat 0 -399px;
 border-color: #D9AA95;
-border-top-left-radius: 5px;
-border-top-right-radius: 5px;
+border-top-left-radius: 3px;
+border-top-right-radius: 3px;
 }
 
 .jnm-abuse, .jnm-abuse a, .jnm-abuse a:visited {
@@ -748,8 +748,8 @@ display: block;
 border: 1px solid #D9AA95 !important;
 padding: 4px 0 4px 0;
 background: white url(/img/estructura/general.7.png) no-repeat 0 -446px;
-border-top-left-radius: 5px;
-border-top-right-radius: 5px;
+border-top-left-radius: 3px;
+border-top-right-radius: 3px;
 }
 
 .mnm-queued, .mnm-queued a, .mnm-queued a:visited {
@@ -760,8 +760,8 @@ color: #4b7db0;
 
 .menealo {
 background-color: #fff;
-border-bottom-left-radius: 5px;
-border-bottom-right-radius: 5px;
+border-bottom-left-radius: 3px;
+border-bottom-right-radius: 3px;
 }
 
 .menealo a {
@@ -778,13 +778,13 @@ background: url(/img/estructura/general.7.png) repeat-x scroll 0 -225px;
 display: block;
 padding: 3px 0;
 border: 1px solid #4b7db0;
-border-bottom-left-radius: 5px;
-border-bottom-right-radius: 5px;
+border-bottom-left-radius: 3px;
+border-bottom-right-radius: 3px;
 }
 
 .menealo div {
-border-bottom-left-radius: 5px;
-border-bottom-right-radius: 5px;
+border-bottom-left-radius: 3px;
+border-bottom-right-radius: 3px;
 }
 
 .news-body h1 {
@@ -1199,8 +1199,8 @@ border-right: 1px solid;
 min-height: 25px;
 border-color: #4b7db0;
 color: #333333;
-border-top-left-radius: 5px;
-border-top-right-radius: 5px;
+border-top-left-radius: 3px;
+border-top-right-radius: 3px;
 }
 
 .comment-meta, .comment-meta-hidden {
@@ -2110,8 +2110,8 @@ color: #eee;
 height: 12px;
 overflow: hidden;
 position: relative;
-border-top-left-radius: 5px;
-border-top-right-radius: 5px;
+border-top-left-radius: 3px;
+border-top-right-radius: 3px;
 text-align: left;
 font-weight: bold;
 font-size: 9pt;
@@ -2237,8 +2237,8 @@ color: white;
 .boton {
 margin: 20px 0 0;
 text-align: center;
-border-bottom-left-radius: 5px;
-border-bottom-right-radius: 5px;
+border-bottom-left-radius: 3px;
+border-bottom-right-radius: 3px;
 }
 
 .izquierda {
@@ -2250,7 +2250,7 @@ text-align: left;
 .mnm-pop, .estado, .tabsub-shakeit, .news-shakeit, #tooltip-text,
 .ayuda-contenido, .thumbnail, .header.uno ul.secciones li,
 .usuario li a /*, .userlist */ {
-border-radius: 5px;
+border-radius: 3px;
 }
 
 .semi-redondo, img,
@@ -2260,7 +2260,7 @@ input, textarea, button, .button,
 .barra-carisma-outer, .barra-encuesta-outer,
 .mejor-comentario, .c-edit, .header-avatar,
 .n-edit, .geo-edit {
-border-radius: 3px;
+border-radius: 2px;
 }
 
 .simpleformat {
@@ -2343,8 +2343,8 @@ background: #5a8cbe url(/img/estructura/tabsub.3.png) repeat left top;
 line-height: 24px;
 margin-right: 3px;
 margin-top: 1px;
-border-top-left-radius: 5px;
-border-top-right-radius: 5px;
+border-top-left-radius: 3px;
+border-top-right-radius: 3px;
 }
 
 .tabsub li.current a {
@@ -2631,11 +2631,15 @@ input[type=submit], .corto-meta, .tabhoriz {
 text-shadow: 0 1px 1px #113355;
 }
 
+/*
 .sombra-fuerte, .header.uno,
 .barra, h4, .boton, .busqueda, #modalContainer .header, .comment-meta {
 text-shadow: 0 1px 1px black;
 }
+*/
 
+.sombra-fuerte, .header.uno,
+.barra, h4, .boton, .busqueda, #modalContainer .header, .comment-meta,
 .sombra-suave, .texto, .c-edit, .tabmain  {
 text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
 }
@@ -2852,8 +2856,8 @@ padding: 0 7px;
 background: #5a8cbe url(/img/estructura/tabhoriz.png) repeat right top;
 line-height: 24px;
 margin-right: 3px;
-border-bottom-left-radius: 5px;
-border-top-left-radius: 5px;
+border-bottom-left-radius: 3px;
+border-top-left-radius: 3px;
 box-shadow: 0 2px 2px #CCC;
 width: 150px;
 margin-left: 50px;
@@ -2933,8 +2937,8 @@ margin: 10px 0 10px 25px;
 padding: 2px 4px 3px 7px;
 overflow: hidden;
 position: relative;
-border-bottom-left-radius: 5px;
-border-bottom-right-radius: 5px;
+border-bottom-left-radius: 3px;
+border-bottom-right-radius: 3px;
 font-size: 8pt;
 clear: left;
 background: #B7CFE1;
@@ -3116,8 +3120,8 @@ bottom: 4px;
 
 .without-votebox {
 border-bottom: 1px solid;
-border-bottom-left-radius: 5px;
-border-bottom-right-radius: 5px;
+border-bottom-left-radius: 3px;
+border-bottom-right-radius: 3px;
 }
 
 .encuesta-opciones dt {

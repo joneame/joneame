@@ -166,7 +166,7 @@ if ($new_status && $tab_option == 1) {
 
 echo '<ol class="notitas-list">';
 echo '<li id="pcontainer">';
-echo '<div style="padding-bottom: 10px; clear: left;" class="notita-body fondo-caja">';
+echo '<div style="padding-bottom: 10px; clear: left;" class="redondo notita-body fondo-caja">';
 
 foreach ($new_status as $new_user_status_id){
 	$usuario = new User ($new_user_status_id);
