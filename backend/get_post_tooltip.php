@@ -13,6 +13,7 @@ if (! defined('mnmpath')) {
 }
 include_once(mnminclude.'post.php');
 include_once(mnminclude.'user.php');
+include_once(mnminclude.'geo.php');
 
 if (!empty($_GET['id'])) {
     if (preg_match('/(.+)-(\d+)/u', $_GET['id'], $matches) > 0) {
@@ -49,7 +50,7 @@ if (!empty($_GET['id'])) {
 			echo '<div style="float: left;"><img style="margin-right: 5px" src="'.get_avatar_url($usuario->id, $usuario->avatar, 80).'" width="80" height="80" alt="'.$usuario->username.'"/></div>';
 		echo '<strong>' . _('usuario') . ':</strong>&nbsp;' . $usuario->username;
 		if ($current_user->user_id > 0 && $current_user->user_id  != $usuario->id)  {
-			echo '&nbsp;' . friend_teaser($current_user->user_id, $usuario->id);
+			// echo '&nbsp;' . friend_teaser($current_user->user_id, $usuario->id);
 		}
 		echo '<br/>';
 		if ($usuario->estado) echo '<strong>' . $usuario->username . '</strong>&nbsp;' . $usuario->estado . '<br/>';
@@ -86,7 +87,6 @@ if (!empty($_GET['id'])) {
     die;
 }
 $post = new Post;
-$post->id=$id;
 $post->read_basic();
 
 if(!$post->read) die;
