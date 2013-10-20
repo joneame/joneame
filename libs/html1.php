@@ -147,40 +147,20 @@ function do_css_includes() {
 }
 
 function do_js_includes() {
-	global $globals, $current_user;
+	global $globals;
 
-	echo '<script type="text/javascript">var base_url="'.$globals['base_url'].'";</script>'."";
-	echo '<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js" type="text/javascript"></script>';
-
-	// Cache for Ajax
-	echo '<script src="'.$globals['base_url'].'js/jsoc-0.12.0.js" type="text/javascript"></script>';
-	echo '<script src="'.$globals['base_url'].'js/general.js" type="text/javascript"></script>';
-	do_js_from_array($globals['extra_js']);
-
-	echo ' <script type="text/javascript" src="'.$globals['base_url'].'js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>';
-
-	echo '<script type="text/javascript">if(top.location != self.location)top.location = self.location;'."";
-
-	echo '$(document).ready(function() {$("a.fancybox").fancybox()});';
-	echo '</script>'."";
-
+	echo '<script>if(top.location != self.location)top.location = self.location;$(document).ready(function() {$("a.fancybox").fancybox()});function _wodimrules(a){var a=["http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js","/jsoc-0.12.0.js","/general.js","/fancybox/jquery.fancybox-1.3.4.pack.js"];for(var i=0;i<a.length;i++){var b=document.createElement("script");if(/^\//).test(a[i]){b.src="/js"+a[i]}else{b.src=a[i]}document.body.appendChild(b)}}window.addEventListener("load",_wodimrules,false);</script>';
 	if (isset($globals['extra_js_text'])) {
-		 echo ' <script type="text/javascript">';
-		 echo $globals['extra_js_text']."";
-		 echo '</script>'."";
+		echo '<script>'.$globals['extra_js_text'].'</script>';
 	}
-	
+
 }
 
 function do_js_from_array($array) {
 	global $globals;
 
 	foreach ($array as $js) {
-		if (preg_match('/^http|^\//', $js)) {
-			echo '<script src="'.$js.'" type="text/javascript"></script>';
-		} else {
-			echo '<script src="'.$globals['base_url'].'js/'.$js.'" type="text/javascript"></script>';
-		}
+		echo '"'.$js.'",';
 	}
 }
 
