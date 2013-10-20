@@ -48,7 +48,7 @@ if (!$corto->texto) do_error('el corto no existe', 404);
 
 if ($corto->id_autor != $current_user->user_id && !$corto->activado) do_error('El corto no existe', 403);
 
-do_header(_('Corto de '.$corto->por.': '.text_to_summary($corto->texto).' | Jonéame'));
+do_header(_('Corto de '.$corto->por.': '.htmlspecialchars(text_to_summary($corto->texto)).' | Jonéame'));
 
 $corto->do_corto();
 

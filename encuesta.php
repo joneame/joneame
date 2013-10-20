@@ -35,7 +35,7 @@ if (!$encuesta->read)
 
 $globals['extra_js'] = array('polls.js');
 
-do_header(_('Encuesta: '.text_to_summary($encuesta->titulo).' | Jonéame'));
+do_header(_('Encuesta: '.htmlspecialchars(text_to_summary($encuesta->titulo)).' | Jonéame'));
 
 echo '<div id="sidebar">';
 do_last_questions ();
