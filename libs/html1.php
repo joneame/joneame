@@ -149,7 +149,7 @@ function do_css_includes() {
 function do_js_includes() {
 	global $globals;
 
-	echo '<script>if(top.location!=self.location)top.location=self.location;$(document).ready(function(){$("a.fancybox").fancybox()});function _wodimrules(){var a=['.do_js_from_array($globals['extra_js']).'"http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js","/jsoc-0.12.0.js","/general.js","/fancybox/jquery.fancybox-1.3.4.pack.js"];for(var i=0;i<a.length;i++){var b=document.createElement("script");if(/^\//).test(a[i]){b.src="/js"+a[i]}else{b.src=a[i]}document.body.appendChild(b)}}window.addEventListener("load",_wodimrules,false);</script>';
+	echo '<script>if(top.location!=self.location)top.location=self.location;$(document).ready(function(){$("a.fancybox").fancybox()});function _wodimrules(){var a=['.do_js_from_array($globals['extra_js']).'"http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js","/jsoc-0.12.0.js","/general.js","/fancybox/jquery.fancybox-1.3.4.pack.js"];for(var i=0;i<a.length;i++){var b=document.createElement("script");if((/^\//).test(a[i])){b.src="/js"+a[i]}else{b.src=a[i]}document.body.appendChild(b)}}window.addEventListener("load",_wodimrules,false);</script>';
 	if (isset($globals['extra_js_text'])) {
 		echo '<script>'.$globals['extra_js_text'].'</script>';
 	}
