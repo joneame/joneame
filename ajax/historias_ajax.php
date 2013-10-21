@@ -81,7 +81,7 @@ switch($what){
 }
 
 function print_burradas(){
-	global $db, $globals, $link, $tab, $current_page;
+	global $db, $globals, $link, $tab, $current_page, $limit;
 
 	echo '<div class="comments">';
 
@@ -202,7 +202,7 @@ function print_best_comments() {
 	// Print tabs
 	print_story_tabs($tab);
 
-	$comments = $db->get_col("SELECT comment_id FROM comments WHERE comment_link_id=$link->id ORDER BY comment_karma DESC, comment_id asc ");
+	$comments = $db->get_col("SELECT comment_id FROM comments WHERE comment_link_id=$link->id ORDER BY comment_karma DESC, comment_id asc $limit");
 	
 	if ($comments) {
 		echo '<ol class="comments-list">';
