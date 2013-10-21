@@ -183,7 +183,9 @@ echo '</ol>';
 if ($option == '_geo') {
 	echo '<br/><div class="topheading"><h2>notitas de las últimas 24 horas</h2></div>';
 	echo '<div id="map" style="width: 95%; height: 500px;margin:0 0 0 20px;"></div></div>';
+	echo '<script>';
 	include 'js/geoposts.js';
+	echo '</script>';
 } else {
 	$posts = $db->get_col($sql);
 	if ($posts) {
