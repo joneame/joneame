@@ -111,7 +111,7 @@ if (!empty($_REQUEST['friends'])) {
 	do_header(_('Developers | Jonéame'));
 	
 } else {
-	do_header(_('Cotillona | Jonéame | Cotillona'));
+	do_header(_('Cotillona | Jonéame'));
 }
 
 ?>
