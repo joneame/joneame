@@ -11,13 +11,19 @@ function do_admins() {
 
         if (! $current_user->admin) return false;
 
-        foreach (array('god', 'admin') as $level) {
-                $res = $db->get_col("select user_login from users where user_level = '$level' and user_id != $current_user->user_id order by user_login asc");
+        foreach (array('god', 'admin', 'devel') as $level) {
+                $res = $db->get_results("select user_login, user_login_register from users where user_level = '$level' order by user_login asc");
                 if ($res) {
                         $comment .= "<strong>$level</strong>: ";
+                        $users = array();
                         foreach ($res as $user) {
-                                $comment .= $user . ' ';
+                                if ($user->user_login == $user->user_login_register) {
+                                        $users[] = $user->user_login;
+                                } else {
+                                        $users[] = sprintf('%s (<em>%s</em>)', $user->user_login, $user->user_login_register);
+                                }
                         }
+                        $comment .= implode(', ', $users);
                 }
                 $comment .= "<br>";
         }
@@ -29,11 +35,21 @@ function do_last() {
 
         if (! $current_user->admin) return false;
         $list = '<strong>Últimos registrados</strong><br/>';
-        $res = $db->get_col("select user_login from users where user_level != 'disabled' AND user_validated_date IS NOT NULL order by user_id desc limit 20");
+        $res = $db->get_results("select user_login, user_avatar, user_date, user_email, user_ip from users where user_level != 'disabled' AND user_validated_date IS NOT NULL order by user_id desc limit 20");
+        
         if ($res) {
-                foreach ($res as $user) {
-                        $list .= text_to_html('http://'.get_server_name().get_user_uri($user)).'<br/>';
-                }
+            $list .= '<table>';
+            $list .= '<tr><th>nick</th><th>registrado</th><th>correo</th><th>dirección ip</th></tr>';
+            foreach ($res as $user) {
+                $list .= sprintf('<tr><td><img src="%s" /> <a href="%s">%s</a></td><td>%s</td><td>%s</td><td>%s</td></tr>',
+                    get_avatar_url($user->user_id, $user->user_avatar, 20),
+                    get_user_uri($user->user_login),
+                    $user->user_login,
+                    $user->user_date,
+                    $user->user_email,
+                    $user->user_ip);
+            }
+            $list .= '</table>';
         }
 
         return $list;
