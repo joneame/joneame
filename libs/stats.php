@@ -11,7 +11,7 @@ function do_admins() {
 
         if (! $current_user->admin) return false;
 
-        foreach (array('god', 'admin', 'devel') as $level) {
+        foreach (array('god', 'admin', 'devel', 'special') as $level) {
                 $res = $db->get_results("select user_login, user_login_register from users where user_level = '$level' order by user_login asc");
                 if ($res) {
                         $comment .= "<strong>$level</strong>: ";
