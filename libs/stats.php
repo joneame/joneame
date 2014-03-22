@@ -35,7 +35,7 @@ function do_last() {
 
         if (! $current_user->admin) return false;
         $list = '<strong>Últimos registrados</strong><br/>';
-        $res = $db->get_results("select user_login, user_avatar, user_date, user_email, user_ip from users where user_level != 'disabled' AND user_validated_date IS NOT NULL order by user_id desc limit 20");
+        $res = $db->get_results("select user_id, user_login, user_avatar, user_date, user_email, user_ip from users where user_level != 'disabled' AND user_validated_date IS NOT NULL order by user_id desc limit 20");
         
         if ($res) {
             $list .= '<table>';
