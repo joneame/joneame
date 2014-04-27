@@ -90,9 +90,6 @@ if ($_REQUEST['id'] == 'faq') {
 */
 } elseif ($_REQUEST['id'] == 'legal') {
 	echo '<h2>Información legal bajo el dominio joneame.net</h2>';
-	echo '<h3>Información legal (LSSI)</h3>';
-	echo '<p>En conformidad al Art. 10 de la Ley 34/2002, de 11 de julio, de servicios de la sociedad de la información y de comercio electrónico se informa:</p>';
-	echo '<p>El dominio joneame.net es propiedad de y está administrado por:<blockquote>Jon Arano (NIF 72575979-P)<br/>c/ M. de Valdespina, número 10, 4C<br/>48260 Ermua, Bizkaia<br/>Spain</blockquote></p>';
 	echo '<h3>Sobre los datos de los usuarios (LOPD)</h3>';
 	echo '<p>El titular podrá ejercitar (si lo desea) los derechos reconocidos en la LOPD sobre este fichero, siempre y cuando se trate de información PRIVADA. Los usuarios pueden realizar estas acciones enviando una solicitud a admin&#64;joneame&#46;net. </p><p>El propio usuario podrá dar de baja su cuenta de usuario desde el sitio web en el momento que así lo desee, sin necesidad de enviar ningún email a la administración.</p>';
 	echo '<p>Las empresas que llevan las estadísticas de acceso a joneame.net (Google), podrían usar <em>cookies</em> con fines estadísticos. Los usuarios pueden eliminarlos o impedir el envío de esos <em>cookies</em> desde las opciones de su navegador.</p>';
@@ -103,8 +100,8 @@ if ($_REQUEST['id'] == 'faq') {
 	echo '<p><strong>Información pública: </strong> Toda actividad (anteriormente descrita) realizada voluntariamente por el propio usuario en el sitio web.</p>';
 	echo '<h3>Sobre la información privada</h3>';
 	echo '<p> joneame.net elimina la IP de todos los votos pasados 2 meses de la emisión del mismo, y, si se diera el caso de la deshabilitación de una cuenta de usuario <em>(por el propio usuario, o por incumplir las normas de uso)</em>, su email de registro será eliminado, pasados 2 meses de la deshabilitación de la misma. En el caso de la IP de comentarios o historias, se mantiene (y no será eliminada) por si fuera necesaria en un futuro, y se entregará, o borrará, sólo si un juez la requiere.</p>';
-	
-	
+
+
 	echo '<h3>Exclusión de garantías y responsabilidad</h3>';
 	echo '<p><em>Los administradores y propietarios de joneame.net</em> no garantizan la licitud, fiabilidad, exactitud, exhaustividad, actualidad y utilidad de los contenidos.</p>';
 	echo '<p>El establecimiento de un hiperenlace, enlace, intercambio, no implica en ningún caso la existencia de relaciones entre <em>los administradores de joneame.net</em> y el propietario del lugar web con la que se establezca, ni la aceptación y aprobación de sus contenidos o servicios.</p>';
@@ -210,12 +207,12 @@ function ayuda_tabs($tab_selected = false) {
 	$tabs = array('¿Qué es Jonéame?'=>'joneame',
 			'FAQ'=>'faq',
 			'Ignores'=>'ignores',
-			'Emoticonos'=>'emoticonos',	
+			'Emoticonos'=>'emoticonos',
 			'Login'=>'login',
 			'Cotillona'=>'cotillona',
-			'Mensajes privados'=>'privados',		
+			'Mensajes privados'=>'privados',
 /*
-			'Historias'=>'historias',			
+			'Historias'=>'historias',
 			'Cortos'=>'cortos',
 			'Notitas'=>'notitas',
 */
