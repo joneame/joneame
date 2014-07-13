@@ -3,7 +3,7 @@
 // Ricardo Galli <gallir at uib dot es> and the Jonéame Development Team (admin@joneame.net)
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 include('config.php');
@@ -59,7 +59,7 @@ switch ($_REQUEST['w']) {
         break;
     case 'links':
     default:
-        $rss_program = 'rss2.php';    
+        $rss_program = 'rss2.php';
 }
 
 /*** SIDEBAR ****/
@@ -80,12 +80,12 @@ print_search_form();
 if(!empty($_REQUEST['q'])) {
  echo '<div style="font-size:85%;margin-top: 5px">';
     echo _('encontrados').': '.$response['rows'].', '._('tiempo total').': '.sprintf("%1.3f",$response['time']).' '._('segundos');
-	echo '&nbsp;<a href="'.$globals['base_url'].$rss_program.'?'.htmlspecialchars($_SERVER['QUERY_STRING']).'" rel="rss"><img src="'.$globals['base_url'].'img/iconos/feed.png" alt="rss2" height="16" width="16"  style="vertical-align:top"/></a>';
+    echo '&nbsp;<a href="'.$globals['base_url'].$rss_program.'?'.htmlspecialchars($_SERVER['QUERY_STRING']).'" rel="rss"><img src="'.$globals['base_url'].'img/iconos/feed.png" alt="rss2" height="16" width="16"  style="vertical-align:top"/></a>';
 
 /*guardar en favoritos*/
 if ($current_user->user_id > 0) {
-	$favicon = imagen($current_user->user_id, $_REQUEST['q']);
-	echo '&nbsp;<a id=favoritos href="javascript:obtener(\'busqueda_fav.php\',\''.$current_user->user_id.'\',\'favoritos\',0,\''.$_REQUEST['q'].'\')">'.$favicon.'</a>';
+    $favicon = imagen($current_user->user_id, $_REQUEST['q']);
+    echo '&nbsp;<a id=favoritos href="javascript:obtener(\'busqueda_fav.php\',\''.$current_user->user_id.'\',\'favoritos\',0,\''.$_REQUEST['q'].'\')">'.$favicon.'</a>';
 }
 echo '</div>';
 }
@@ -103,27 +103,27 @@ if ($response['ids']) {
 
 
     foreach($response['ids'] as $id) {
-        
-        //$obj->basic_summary = true; 
+
+        //$obj->basic_summary = true;
         switch ($_REQUEST['w']) {
             case 'posts':
-		$obj = Post::from_db($id);
+        $obj = Post::from_db($id);
                 $obj->print_summary(300);
                 break;
             case 'comments':
-		$obj = Comment::from_db($id);
+        $obj = Comment::from_db($id);
                 $obj->print_summary(false, 300);
                 break;
             case 'links':
             default:
-  		$obj = Link::from_db($id);
+          $obj = Link::from_db($id);
                 $obj->print_summary();
-		break;               
+        break;
         }
     }
 
    if ($_REQUEST['w'] == "posts" or $_REQUEST['w'] == "comments")
-	echo '</ol>';
+    echo '</ol>';
 }
 
 do_pages($rows, $page_size);
@@ -158,7 +158,7 @@ function print_search_form() {
         }
     }
     echo '</select>';
-        
+
     $visibility = $_REQUEST['w'] != 'links' ? ' disabled="disabled"' : '';
     echo '&nbsp;&nbsp;<select name="p" id="p" '.$visibility.'>';
     switch ($_REQUEST['p']) {
@@ -233,7 +233,7 @@ function print_search_form() {
 
     echo '<script type="text/javascript">';
     echo '$(document).ready(function() {';
-    echo '    $("#w").change(function() {'; 
+    echo '    $("#w").change(function() {';
     echo '        type = $("#w").val();';
 //  echo '        if (type == "links") $("#link_options").css("visibility", "visible");';
 //  echo '        else $("#link_options").css("visibility", "hidden");';

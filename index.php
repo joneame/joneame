@@ -3,7 +3,7 @@
 // Ricardo Galli <gallir at uib dot es> and the Jonéame Development Team (admin@joneame.net)
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 include('config.php');
@@ -24,24 +24,24 @@ do_header(_('Jonéame') . '');
 do_tabs('main','published');
 
 if ($globals['meta_current'] > 0) {
-	$from_where = "FROM links WHERE link_status='published' and link_category in (".$globals['meta_categories'].") ";
+    $from_where = "FROM links WHERE link_status='published' and link_category in (".$globals['meta_categories'].") ";
 
-} else if (isset($globals['meta']) && $current_user->user_id > 0) { // Check authenticated 
+} else if (isset($globals['meta']) && $current_user->user_id > 0) { // Check authenticated
 
-	switch ($globals['meta']) {
-		case '_friends':
-			$from_time = '"'.date("Y-m-d H:00:00", $globals['now'] - 86400*4).'"';
-			$from_where = "FROM links, friends WHERE link_date >  $from_time and link_status='published' and friend_type='manual' and friend_from = $current_user->user_id and friend_to=link_author and friend_value > 0";
-		
-		break;
-		default:
-		
-			$from_where = "FROM links WHERE link_status='published' ";
-	}
+    switch ($globals['meta']) {
+        case '_friends':
+            $from_time = '"'.date("Y-m-d H:00:00", $globals['now'] - 86400*4).'"';
+            $from_where = "FROM links, friends WHERE link_date >  $from_time and link_status='published' and friend_type='manual' and friend_from = $current_user->user_id and friend_to=link_author and friend_value > 0";
+
+        break;
+        default:
+
+            $from_where = "FROM links WHERE link_status='published' ";
+    }
 
 } else {
 
-	$from_where = "FROM links WHERE link_status='published' ";
+    $from_where = "FROM links WHERE link_status='published' ";
 }
 
 
@@ -52,13 +52,13 @@ do_saved_searches();
 do_banner_right();
 echo '<br/>';
 do_categories_new ('index', $cat);
-if ($globals['mostrar_caja_pron'])  do_pron_stories();	
-if ($globals['mostrar_caja_publicadas']) do_best_stories(); 
-     
+if ($globals['mostrar_caja_pron'])  do_pron_stories();
+if ($globals['mostrar_caja_publicadas']) do_best_stories();
+
 if ($page < 2) {
-	do_best_comments();
+    do_best_comments();
         do_last_comments();
-	do_vertical_tags('published');
+    do_vertical_tags('published');
 }
 
 echo '</div>' . "\n";
@@ -71,7 +71,7 @@ echo '<a href="https://twitter.com/joneame" class="twitter-follow-button" data-s
 echo '<script src="//platform.twitter.com/widgets.js" type="text/javascript"></script>';
 
 if($cat) {
-	$from_where .= " AND link_category=$cat ";
+    $from_where .= " AND link_category=$cat ";
 }
 
 $order_by = " ORDER BY link_date DESC ";
@@ -81,10 +81,10 @@ $rows = $db->get_var("SELECT count(*) $from_where");
 $links = $db->get_col("SELECT link_id $from_where $order_by LIMIT $offset,$page_size");
 
 if ($links) {
-	foreach($links as $link_id) {
-		$link = Link::from_db($link_id);
-		$link->print_summary();
-	}
+    foreach($links as $link_id) {
+        $link = Link::from_db($link_id);
+        $link->print_summary();
+    }
 }
 
 do_pages($rows, $page_size);

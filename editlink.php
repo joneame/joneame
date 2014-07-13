@@ -19,13 +19,13 @@ do_header(_("editar historia"), "post");
 echo '<div id="singlewrap">'."\n";
 echo '<div class="genericform">'."\n";
 
-if (!empty($_REQUEST['id']) && is_numeric($_REQUEST['id'])) { 
+if (!empty($_REQUEST['id']) && is_numeric($_REQUEST['id'])) {
     $link_id = intval($_REQUEST['id']);
     $linkres = Link::from_db($link_id);
     if (!$linkres->is_editable() || intval($_GET['user'] != $current_user->user_id)) {
         echo '<div class="form-error-submit">&nbsp;&nbsp;'._("historia no modificable").'</div>'."\n";
         return;
-    } 
+    }
     if ($_POST['phase'] == "1") {
         do_save();
         fork("backend/send_pingbacks.php?id=$linkres->id");
@@ -68,7 +68,7 @@ function do_edit() {
 
     echo "\n";
 
-   
+
     if($current_user->admin) {
         echo '<p><label for="url">'._('url de la noticia').':</label>'."\n";
         echo '<br/><input type="url" id="url" name="url" value="'.htmlspecialchars($link_url).'" size="80" />';
@@ -85,8 +85,8 @@ function do_edit() {
     echo '<br/><input type="text" id="title" name="title" value="'.$link_title.'" size="80" maxlength="120" />';
 
     // Allow to change the status
-    if (($linkres->status != 'published' || ($current_user->admin)) && 
-            (( !$linkres->is_discarded() && $current_user->user_id == $linkres->author) 
+    if (($linkres->status != 'published' || ($current_user->admin)) &&
+            (( !$linkres->is_discarded() && $current_user->user_id == $linkres->author)
                     || $current_user->admin)) {
         echo '&nbsp;';
         echo '<select name="status" id="status">';
@@ -97,55 +97,55 @@ function do_edit() {
 
         // Status options
         if ($linkres->status == 'queued' && !$current_user->admin) { //another if for admin
-		echo '<option value="autodiscard">'.$linkres->get_status_text('autodiscard').'</option>';
-		if ($linkres->status != 'duplicated')
-		echo '<option value="duplicated">'.$linkres->get_status_text('duplicated').'</option>';
+        echo '<option value="autodiscard">'.$linkres->get_status_text('autodiscard').'</option>';
+        if ($linkres->status != 'duplicated')
+        echo '<option value="duplicated">'.$linkres->get_status_text('duplicated').'</option>';
 
         } elseif ($current_user->admin) {
-		 
-		echo '<option value="abuse">'.$linkres->get_status_text('abuse').'</option>';
-		echo '<option value="autodiscard">'.$linkres->get_status_text('autodiscard').'</option>';
-		echo '<option value="queued">'.$linkres->get_status_text('queued').'</option>';
-		if ($linkres->status != 'published')
-		echo '<option value="published">'.$linkres->get_status_text('published').'</option>';
-		if ($linkres->status != 'duplicated')
-		echo '<option value="duplicated">'.$linkres->get_status_text('duplicated').'</option>';
-		
+
+        echo '<option value="abuse">'.$linkres->get_status_text('abuse').'</option>';
+        echo '<option value="autodiscard">'.$linkres->get_status_text('autodiscard').'</option>';
+        echo '<option value="queued">'.$linkres->get_status_text('queued').'</option>';
+        if ($linkres->status != 'published')
+        echo '<option value="published">'.$linkres->get_status_text('published').'</option>';
+        if ($linkres->status != 'duplicated')
+        echo '<option value="duplicated">'.$linkres->get_status_text('duplicated').'</option>';
+
         }
 
         echo '</select>';
     }
 
     if ($current_user->admin || $current_user->user_id == $linkres->author) {
-	
-	    if ($linkres->status != 'duplicated') $disabled = 'disabled="true"';
-	    else $disabled = '';
 
-	    echo '<br/><script type="text/javascript">';
-	    echo '$(document).ready(function() {';
-	    echo '    $("#status").change(function() {'; 
-	    echo '        status = $("#status").val();';
-	    echo '        if (status == "duplicated") { $("#duplicada").attr("disabled", false);  }';
-	    echo '        else { $("#duplicada").attr("disabled", true);}';
-	    echo '    });';
-	    echo '});';
-	    echo '</script>';
-	
-	    
-	    echo '<label for="title" accesskey="2">'._('historia duplicada').':</label>'."\n";
-	    echo '<span class="note">enlace original</span>';
+        if ($linkres->status != 'duplicated') $disabled = 'disabled="true"';
+        else $disabled = '';
 
-	    require_once mnminclude.'dupe.class.php';
-	    $dupe = new Dupe;
-	    $dupe->id = $linkres->id;
-
-	    if ($dupe->get())
-		$url = $dupe->duplicate;	
-	    else
-		$url = 'http://joneame.net/historia/blablabla';
+        echo '<br/><script type="text/javascript">';
+        echo '$(document).ready(function() {';
+        echo '    $("#status").change(function() {';
+        echo '        status = $("#status").val();';
+        echo '        if (status == "duplicated") { $("#duplicada").attr("disabled", false);  }';
+        echo '        else { $("#duplicada").attr("disabled", true);}';
+        echo '    });';
+        echo '});';
+        echo '</script>';
 
 
-	    echo '<br/><input type="text" '.$disabled.' id="duplicada" name="duplicated" value="'.$url.'" size="80" maxlength="120" onblur="if(this.value==\'\') this.value=\'http://joneame.net/historia/blablabla\';" onclick="if(this.value==\''._('http://joneame.net/historia/blablabla').'\') this.value=\'\';"/>';
+        echo '<label for="title" accesskey="2">'._('historia duplicada').':</label>'."\n";
+        echo '<span class="note">enlace original</span>';
+
+        require_once mnminclude.'dupe.class.php';
+        $dupe = new Dupe;
+        $dupe->id = $linkres->id;
+
+        if ($dupe->get())
+        $url = $dupe->duplicate;
+        else
+        $url = 'http://joneame.net/historia/blablabla';
+
+
+        echo '<br/><input type="text" '.$disabled.' id="duplicada" name="duplicated" value="'.$url.'" size="80" maxlength="120" onblur="if(this.value==\'\') this.value=\'http://joneame.net/historia/blablabla\';" onclick="if(this.value==\''._('http://joneame.net/historia/blablabla').'\') this.value=\'\';"/>';
     }
 
     echo '</p>'."\n";
@@ -170,19 +170,19 @@ function do_edit() {
 
     //bloquear comentarios y votos
     if($current_user->admin) {
-	echo '<fieldset class="redondo">'."\n";
-	if ($linkres->votos_permitidos)
-	    echo '<input type="checkbox" checked="checked" name="votes" value="1" style="margin: 0" id="votospermitidos"/>';
-	else
-	    echo '<input type="checkbox" name="votes" value="1" style="margin: 0" id="votospermitidos"/>';
-	echo '<label for="votospermitidos">&nbsp;'._('votos permitidos').'</label>';
-	echo '&nbsp;&nbsp;&nbsp;&nbsp;';
-	if ($linkres->comentarios_permitidos)
-	    echo '<input type="checkbox" checked="checked" name="comentarios" value="1" style="margin: 0" id="comentariospermitidos"/>';
-	else
-	    echo '<input type="checkbox" name="comentarios" value="1" id="comentariospermitidos"/>';
-	echo '<label for="comentariospermitidos">&nbsp;'._('comentarios permitidos').'</label>'."\n";
-	echo '</fieldset>';
+    echo '<fieldset class="redondo">'."\n";
+    if ($linkres->votos_permitidos)
+        echo '<input type="checkbox" checked="checked" name="votes" value="1" style="margin: 0" id="votospermitidos"/>';
+    else
+        echo '<input type="checkbox" name="votes" value="1" style="margin: 0" id="votospermitidos"/>';
+    echo '<label for="votospermitidos">&nbsp;'._('votos permitidos').'</label>';
+    echo '&nbsp;&nbsp;&nbsp;&nbsp;';
+    if ($linkres->comentarios_permitidos)
+        echo '<input type="checkbox" checked="checked" name="comentarios" value="1" style="margin: 0" id="comentariospermitidos"/>';
+    else
+        echo '<input type="checkbox" name="comentarios" value="1" id="comentariospermitidos"/>';
+    echo '<label for="comentariospermitidos">&nbsp;'._('comentarios permitidos').'</label>'."\n";
+    echo '</fieldset>';
     }
 
   echo '<br/>';
@@ -190,16 +190,16 @@ function do_edit() {
   print_categories_form($linkres->category);
 
   if ($current_user->admin) {
-	echo '<br/>';
-	echo '<p><label for="trackback">'._('enviar trackback').':</label><br />'."\n";
-	if (empty($trackback)) {
-		echo '<input type="text" name="trackback" id="trackback" value="'.$trackback.'" class="form-full" /></p>'."\n";
-	} else {
-		echo '<span class="note">'.$trackback.'</span>'."\n";
-		echo '<input type="hidden" name="trackback" id="trackback" value="'.$trackback.'"/></p>'."\n";
-	}
+    echo '<br/>';
+    echo '<p><label for="trackback">'._('enviar trackback').':</label><br />'."\n";
+    if (empty($trackback)) {
+        echo '<input type="text" name="trackback" id="trackback" value="'.$trackback.'" class="form-full" /></p>'."\n";
+    } else {
+        echo '<span class="note">'.$trackback.'</span>'."\n";
+        echo '<input type="hidden" name="trackback" id="trackback" value="'.$trackback.'"/></p>'."\n";
+    }
 
-  
+
    if ($linkres->has_thumb()) {
             echo '<input type="checkbox" name="thumb_delete" value="1" id="thumb_delete"/><label for="thumb_delete">'._('eliminar imagen').'</label><br/>';
    } else {
@@ -208,7 +208,7 @@ function do_edit() {
 
    if ($linkres->broken_link > 0) {
             echo '<input type="checkbox" name="no_hay_alternativas" value="1" id="tno_hay_alternativas"/><label for="no_hay_alternativas">'._('no hay enlace alternativo').'</label><br/>';
-   } 
+   }
 
     }
 
@@ -231,24 +231,24 @@ function do_save() {
 
     if ($current_user->admin) {
 
-	     if (!empty($_POST['url'])){
-		    if ($_POST['url'] != $linkres->url || $_POST['no_hay_alternativas'] == 1) $linkres->broken_link = 0; // Un admin corrije el enlace
-		    $linkres->url = clean_input_url($_POST['url']);
-	     }
-	       
-	     if ($_POST['thumb_delete']) {
-		    $linkres->thumb = '';
-		    $linkres->thumb_status = 'deleted';
-		    $linkres->thumb_x = 0;
-		    $linkres->thumb_y = 0;
-		    $linkres->store_thumb();
-		}
+         if (!empty($_POST['url'])){
+            if ($_POST['url'] != $linkres->url || $_POST['no_hay_alternativas'] == 1) $linkres->broken_link = 0; // Un admin corrije el enlace
+            $linkres->url = clean_input_url($_POST['url']);
+         }
+
+         if ($_POST['thumb_delete']) {
+            $linkres->thumb = '';
+            $linkres->thumb_status = 'deleted';
+            $linkres->thumb_x = 0;
+            $linkres->thumb_y = 0;
+            $linkres->store_thumb();
+        }
 
              if ($_POST['thumb_get']) $linkres->get_thumb();
 
-	     $linkres->votos_permitidos = $db->escape($_POST['votes']);
-	     $linkres->comentarios_permitidos = $db->escape($_POST['comentarios']);
-     
+         $linkres->votos_permitidos = $db->escape($_POST['votes']);
+         $linkres->comentarios_permitidos = $db->escape($_POST['comentarios']);
+
      }
 
      $titulua = clean_text($_POST['title'], 40);
@@ -268,7 +268,7 @@ function do_save() {
         $quitar = 1;
      }
 
-     if ($quitar == 1) $linkres->title = $titulua.$gehitu; 
+     if ($quitar == 1) $linkres->title = $titulua.$gehitu;
      if (!$zer['0']) $_POST['title'] = Str_Replace("[NSFW]", "", $_POST['title']);
      if (!$zer['1']) $_POST['title'] = Str_Replace("[+18]", "", $_POST['title']);
      if ($quitar != 1) $linkres->title  = $_POST['title'];
@@ -280,7 +280,7 @@ function do_save() {
      $new_status = $_POST['status'];
 
      // change the status
-     if ($current_user->admin && $new_status == 'published' && $linkres->date == $linkres->sent_date )           		$insert_publish_log = true;
+     if ($current_user->admin && $new_status == 'published' && $linkres->date == $linkres->sent_date )                   $insert_publish_log = true;
 
 
      if (status_change_allowed($new_status)) {
@@ -294,32 +294,32 @@ function do_save() {
 
     if ($_POST['duplicated'] && $linkres->status == 'duplicated' && $_POST['duplicated'] != 'http://joneame.net/historia/blablabla'){
           $url = clean_input_url($_POST['duplicated']);
-	  $url = preg_replace('/#[^\/]*$/', '', $url); // Remove the "#", people just abuse
+      $url = preg_replace('/#[^\/]*$/', '', $url); // Remove the "#", people just abuse
           $url = preg_replace('/^http:\/\/http:\/\//', 'http://', $url); // Some users forget to delete the http://
 
           if (! preg_match('/^\w{3,6}:\/\//', $url)) { // http:// forgotten, add it
                       $url = 'http://'.$url;
           }
 
-	require_once(mnminclude.'dupe.class.php');
-	$dupe = new Dupe;
-	$dupe->id = $linkres->id;
-	$dupe->duplicated = $url;
+    require_once(mnminclude.'dupe.class.php');
+    $dupe = new Dupe;
+    $dupe->id = $linkres->id;
+    $dupe->duplicated = $url;
 
-	if (!$dupe->get()) $dupe->insert_duplicated_url();
-	else 		 $dupe->edit_link();
-	
-        
+    if (!$dupe->get()) $dupe->insert_duplicated_url();
+    else          $dupe->edit_link();
+
+
      }
-	
-    if ($insert_publish_log) $linkres->date = $globals['now']; 
+
+    if ($insert_publish_log) $linkres->date = $globals['now'];
 
     if (!link_edit_errors($linkres)) {
 
         if (empty($linkres->uri)) $linkres->get_uri();
 
-	/* Está enviada */
-	$linkres->sent = 1;
+    /* Está enviada */
+    $linkres->sent = 1;
 
         $linkres->store();
         tags_insert_string($linkres->id, $dblang, $linkres->tags, $linkres->date);
@@ -331,15 +331,15 @@ function do_save() {
 
             log_insert('link_discard', $linkres->id, $current_user->user_id);
 
-            if ($linkres->author == $current_user->user_id && !$insert_publish_log)  
+            if ($linkres->author == $current_user->user_id && !$insert_publish_log)
                 log_insert('link_edit', $linkres->id, $linkres->author);
-            
+
         } else if ($linkres->sent && !$insert_publish_log) {
             log_conditional_insert('link_edit', $linkres->id, $current_user->user_id, 60);
         } else if ($insert_publish_log)   {
-	 log_insert('link_publish', $linkres->id, $linkres->author); //insertar log de publicacion manual
+     log_insert('link_publish', $linkres->id, $linkres->author); //insertar log de publicacion manual
 
-	}
+    }
         echo '<div class="form-error-submit">&nbsp;&nbsp;'._("historia actualizada").'</div>'."\n";
     }
 
@@ -352,15 +352,15 @@ function do_save() {
     echo '<input type="hidden" name="trackback" value="'.htmlspecialchars(trim($_POST['trackback'])).'" />'."\n";
     if(!empty($_POST['trackback'])) {
 
-			require_once(mnminclude.'trackback.php');
-			$trackres = new Trackback;
-			$trackres->url=clean_input_url($_POST['trackback']);
-			$trackres->link_id=$linkres->id;
-			$trackres->link=$linkres->url;
-			$trackres->author=$linkres->author;
-			$res = $trackres->send($linkres);
-		}
-		fork("backend/send_pingbacks.php?id=$linkres->id");
+            require_once(mnminclude.'trackback.php');
+            $trackres = new Trackback;
+            $trackres->url=clean_input_url($_POST['trackback']);
+            $trackres->link_id=$linkres->id;
+            $trackres->link=$linkres->url;
+            $trackres->author=$linkres->author;
+            $res = $trackres->send($linkres);
+        }
+        fork("backend/send_pingbacks.php?id=$linkres->id");
 
     echo '<form class="note" method="GET" action="historia.php" >';
     echo '<input type="hidden" name="id" value="'.$linkres->id.'" />'."\n";
@@ -370,33 +370,33 @@ function do_save() {
 }
 
 function status_change_allowed($new_status) {
-	global $current_user, $linkres;
+    global $current_user, $linkres;
 
-	$allowed = false;
+    $allowed = false;
 
-	switch ($new_status) {
-		case ('abuse'):
-			if ($current_user->admin)
-			$allowed =   true;
-		case ('discard'):
-			if ($current_user->admin)
-			$allowed =   true;
-		case ('queued'):
-			if ($current_user->admin)
-			$allowed =   true;
-		case ('published'):
-			if ($current_user->admin)
-			$allowed =   true;
-		case ('duplicated'):
-			if ($current_user->admin)
-			$allowed =   true;
-		case ('autodiscard'):
-			if (($linkres->author == $current_user->user_id && !$linkres->is_discarded()) || $current_user->admin)
-			$allowed = true;
-			
-	}
+    switch ($new_status) {
+        case ('abuse'):
+            if ($current_user->admin)
+            $allowed =   true;
+        case ('discard'):
+            if ($current_user->admin)
+            $allowed =   true;
+        case ('queued'):
+            if ($current_user->admin)
+            $allowed =   true;
+        case ('published'):
+            if ($current_user->admin)
+            $allowed =   true;
+        case ('duplicated'):
+            if ($current_user->admin)
+            $allowed =   true;
+        case ('autodiscard'):
+            if (($linkres->author == $current_user->user_id && !$linkres->is_discarded()) || $current_user->admin)
+            $allowed = true;
 
-	return $allowed;
+    }
+
+    return $allowed;
 
 }
 
@@ -423,12 +423,12 @@ function link_edit_errors($linkres) {
 
     if(strlen($linkres->title) < 4) {
         echo '<div class="form-error-submit">&nbsp;&nbsp;'._("Título incompleto").'</div>';
-	$error = true;
+    $error = true;
     }
 
     if(strlen($linkres->content) < 6 && !$globals['permitir_sin_entradilla']) {
         echo '<div class="form-error-submit">&nbsp;&nbsp;'._("Entradilla incompleta").'</div>';
-	$error = true;
+    $error = true;
     }
 
     if(mb_strlen(html_entity_decode($linkres->title, ENT_COMPAT, 'UTF-8'), 'UTF-8') > 120  || mb_strlen(html_entity_decode($linkres->content, ENT_COMPAT, 'UTF-8'), 'UTF-8') > 550 ) {

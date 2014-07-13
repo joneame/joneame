@@ -3,7 +3,7 @@
 // Jon Arano (arano.jon@gmail.com)
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 include('config.php');
@@ -33,11 +33,11 @@ $links = $db->get_col("SELECT link_id FROM links WHERE link_status != 'autodisca
 $link = new Link;
 if ($links) {
 
-	foreach($links as $link_id) {
-		$link = Link::from_db($link_id);
-		$link->print_summary();
-		
-	}
+    foreach($links as $link_id) {
+        $link = Link::from_db($link_id);
+        $link->print_summary();
+
+    }
 }
 echo "\n"."\n"."\n";
 echo '<br>';

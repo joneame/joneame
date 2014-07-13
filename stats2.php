@@ -3,7 +3,7 @@
 // Jon Arano <arano.jon@gmail.com>
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 include('config.php');
@@ -14,30 +14,30 @@ if (! $current_user->admin) do_error(_('Esta página es sólo para administrador
 do_header(_('Estadísticas | Jonéame'));
 
 $users = $db->get_results("
-	select date_format(user_date, '%m/%Y') as month, count(*) as count from users
-	group by year(user_date), month(user_date)
+    select date_format(user_date, '%m/%Y') as month, count(*) as count from users
+    group by year(user_date), month(user_date)
 ");
 $users_formatted = "";
 foreach ($users as $month) {
-	$users_formatted .= sprintf("['%s', %d],", $month->month, $month->count);
+    $users_formatted .= sprintf("['%s', %d],", $month->month, $month->count);
 }
 
 $links = $db->get_results("
-	select date_format(link_sent_date, '%m/%Y') as month, count(*) as count, sum(link_status='published') as count2
-	from links group by year(link_sent_date), month(link_sent_date);
+    select date_format(link_sent_date, '%m/%Y') as month, count(*) as count, sum(link_status='published') as count2
+    from links group by year(link_sent_date), month(link_sent_date);
 ");
 $links_formatted = "";
 foreach ($links as $month) {
-	$links_formatted .= sprintf("['%s', %d, %d],", $month->month, $month->count, $month->count2);
+    $links_formatted .= sprintf("['%s', %d, %d],", $month->month, $month->count, $month->count2);
 }
 
 $comments = $db->get_results("
-	select date_format(comment_date, '%m/%Y') as month, count(*) as count, sum(comment_votes > 1) as count2, sum(comment_votes > 3) as count3
-	from comments group by year(comment_date), month(comment_date);
+    select date_format(comment_date, '%m/%Y') as month, count(*) as count, sum(comment_votes > 1) as count2, sum(comment_votes > 3) as count3
+    from comments group by year(comment_date), month(comment_date);
 ");
 $comments_formatted = "";
 foreach ($comments as $month) {
-	$comments_formatted .= sprintf("['%s', %d, %d, %d],", $month->month, $month->count, $month->count2, $month->count3);
+    $comments_formatted .= sprintf("['%s', %d, %d, %d],", $month->month, $month->count, $month->count2, $month->count3);
 }
 ?>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>

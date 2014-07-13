@@ -3,7 +3,7 @@
 // Jonéame Development Team (admin@joneame.net)
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 include('config.php');
@@ -43,7 +43,7 @@ $globals['encuesta'] = $encuesta;
 
 // Change to a min_value is times is changed for the current link_status
 if ($globals['time_enabled_comments_status'][$link->status]) {
-    $globals['time_enabled_comments'] = min($globals['time_enabled_comments_status'][$link->status], 
+    $globals['time_enabled_comments'] = min($globals['time_enabled_comments_status'][$link->status],
                                             $globals['time_enabled_comments']);
 }
 
@@ -71,9 +71,9 @@ echo "</li>\n";
 echo "</ol>\n";
 
 if ($current_user->authenticated) {
-	echo '<div id="ajaxcontainer"><div id="ajaxcomments"></div></div>';
+    echo '<div id="ajaxcontainer"><div id="ajaxcomments"></div></div>';
         print_comment_form();
-	echo '</div>';
+    echo '</div>';
 } else {
         echo '<div class="barra redondo">'."\n";
         echo '<a href="'.$globals['base_url'].'login.php?return='.$_SERVER['REQUEST_URI'].'">'._('Entra con tu cuenta de usuario').'</a> '._('si deseas escribir tu opinión a esta encuesta').'. '._('O crea tu cuenta haciendo clic'). ' <a href="'.$globals['base_url'].'register.php">aquí</a>'."\n";
@@ -85,29 +85,29 @@ echo '</div>';
 do_footer();
 
 function print_comment_form() {
-	global $encuesta, $current_user, $globals;
+    global $encuesta, $current_user, $globals;
 
-	// esto debería estar en do_header pero me parece que paso. además así sólo se carga cuando sea necesario
-	echo '<script type="text/javascript" src="'.$globals['base_url'].'js/poll_com.js"></script>';
-	
-	echo '<div class="commentform">'."\n";
-	echo '<form action="" method="post">'."\n";
-	echo '<h4>'._('escribe un comentario').'</h4><fieldset class="fondo-caja">'."\n";
-	echo '<div style="float: right;">'."\n";
-	print_simpleformat_buttons('poll_content');
-	echo '</div><span class="note"><strong>'._('¡eh tío!').':</strong> '._('comentarios serios, constructivos, xenófobos, racistas o difamatorios causarán el baneo de la cuenta de usuario y expulsión de la mafia').'</span></label>'."\n";
-	echo '<div style="margin-top: 10px;"><textarea name="poll_content" id="poll_content" cols="75" rows="12"></textarea></div>'."\n";
-	echo '<input type="button" class="button" name="submit" id="submit_com" value="'._('enviar comentario').'" onClick="submit_comment();"/>'."\n";
+    // esto debería estar en do_header pero me parece que paso. además así sólo se carga cuando sea necesario
+    echo '<script type="text/javascript" src="'.$globals['base_url'].'js/poll_com.js"></script>';
 
-	echo '<img id="spinner" class="blank" src="'.$globals['base_url'].'img/estructura/pixel.gif" width="16" height="16"/>';
+    echo '<div class="commentform">'."\n";
+    echo '<form action="" method="post">'."\n";
+    echo '<h4>'._('escribe un comentario').'</h4><fieldset class="fondo-caja">'."\n";
+    echo '<div style="float: right;">'."\n";
+    print_simpleformat_buttons('poll_content');
+    echo '</div><span class="note"><strong>'._('¡eh tío!').':</strong> '._('comentarios serios, constructivos, xenófobos, racistas o difamatorios causarán el baneo de la cuenta de usuario y expulsión de la mafia').'</span></label>'."\n";
+    echo '<div style="margin-top: 10px;"><textarea name="poll_content" id="poll_content" cols="75" rows="12"></textarea></div>'."\n";
+    echo '<input type="button" class="button" name="submit" id="submit_com" value="'._('enviar comentario').'" onClick="submit_comment();"/>'."\n";
 
-	echo '<br/><span id="error_com"></span>';
+    echo '<img id="spinner" class="blank" src="'.$globals['base_url'].'img/estructura/pixel.gif" width="16" height="16"/>';
 
-	echo '<input type="hidden" id="process" name="process" value="newcomment" />'."\n";
-	echo '<input type="hidden" id="poll_id" name="poll_id" value="'.$encuesta->id.'" />'."\n";
-	echo '<input type="hidden" id="user_id" name="user_id" value="'.$current_user->user_id.'" />'."\n";
-	echo '</fieldset>'."\n";
-	echo '</form>'."\n";
-	echo "</div>\n";
+    echo '<br/><span id="error_com"></span>';
+
+    echo '<input type="hidden" id="process" name="process" value="newcomment" />'."\n";
+    echo '<input type="hidden" id="poll_id" name="poll_id" value="'.$encuesta->id.'" />'."\n";
+    echo '<input type="hidden" id="user_id" name="user_id" value="'.$current_user->user_id.'" />'."\n";
+    echo '</fieldset>'."\n";
+    echo '</form>'."\n";
+    echo "</div>\n";
 
 }

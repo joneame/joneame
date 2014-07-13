@@ -3,7 +3,7 @@
 // Ricardo Galli <gallir at uib dot es> and the Jonéame Development Team (admin@joneame.net)
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 include('../config.php');
@@ -48,45 +48,45 @@ if (!$link->sent) {
 
 // Only if the link has been not published, let them play
 if ($current_user->user_id == 0) {
-	if (! $anonnymous_vote) {
-		error(_('los votos anónimos están temporalmente deshabilitados'));
-	} else {
-		// Check that there are not too much annonymous votes
-		if ($link->status == 'published') $anon_to_user_votes = max(3, $anon_to_user_votes); // Allow more ano votes if published. 
-		if ($link->anonymous >  $link->votes * $anon_to_user_votes) {
-			error(_('demasiados votos anónimos para esta noticia, regístrate como mafioso o espera a que más usuarios registrados la voten'));
-		}
-	}
+    if (! $anonnymous_vote) {
+        error(_('los votos anónimos están temporalmente deshabilitados'));
+    } else {
+        // Check that there are not too much annonymous votes
+        if ($link->status == 'published') $anon_to_user_votes = max(3, $anon_to_user_votes); // Allow more ano votes if published.
+        if ($link->anonymous >  $link->votes * $anon_to_user_votes) {
+            error(_('demasiados votos anónimos para esta noticia, regístrate como mafioso o espera a que más usuarios registrados la voten'));
+        }
+    }
 }
 
 if($current_user->user_id != $user) {
-	error(_('usuario incorrecto: '). $current_user->user_id . ' vs '. htmlspecialchars($_REQUEST['user']));
+    error(_('usuario incorrecto: '). $current_user->user_id . ' vs '. htmlspecialchars($_REQUEST['user']));
 }
 
 if($current_user->user_id > 0) {
-	$value = ($current_user->user_karma > 22) ? 22 : $current_user->user_karma;
+    $value = ($current_user->user_karma > 22) ? 22 : $current_user->user_karma;
 }
 
 if($current_user->user_id == 0) {
-	$value=$anon_carisma;
+    $value=$anon_carisma;
 }
 
 $link->insert_aleatorio = false;
 
 if (!$link->insert_vote($value)) {
-	error(_('ya has votado antes esta historia'));
+    error(_('ya has votado antes esta historia'));
 }
 
 if ($link->status == 'discard' && $current_user->user_id > 0 && $link->votes > $link->negatives && $link->karma > 0) {
-	$link->read_basic();
-	$link->status = 'queued';
-	$link->store_basic();
+    $link->read_basic();
+    $link->status = 'queued';
+    $link->store_basic();
 }
 
 echo $link->json_votes_info(intval($value));
 
 function error($mess) {
-	$dict['error'] = $mess;
-	echo json_encode_single($dict);
-	die;
+    $dict['error'] = $mess;
+    echo json_encode_single($dict);
+    die;
 }

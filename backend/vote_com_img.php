@@ -3,7 +3,7 @@
 // Ricardo Galli <gallir at uib dot es> and the Jonéame Development Team (admin@joneame.net)
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 include_once('../config.php');
@@ -17,7 +17,7 @@ if (! $id > 0) die;
 
 $votes_comments = $db->get_row("select link_votes, link_anonymous, link_comments from links where link_id=$id");
 $im = imagecreate(200, 16);
-   
+
 $bg = imagecolorallocatealpha($im, 66, 158, 233, 207);
 $textcolor = imagecolorallocate($im, 66, 158, 233);
 

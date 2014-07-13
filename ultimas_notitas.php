@@ -3,7 +3,7 @@
 // Jonéame Development Team (admin@joneame.net)
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 include('config.php');
@@ -31,20 +31,20 @@ $min_date = date("Y-m-d H:00:00", time() - 86000);
 
 $posts = $db->get_col("SELECT post_id FROM posts WHERE post_date > '$min_date' ORDER BY post_date DESC");
 
-	if ($posts) {
+    if ($posts) {
 
-		echo '<div id="newswrap">'."\n";
-		echo '<div class="notes">';
-		echo '<ol class="notitas-list">';
+        echo '<div id="newswrap">'."\n";
+        echo '<div class="notes">';
+        echo '<ol class="notitas-list">';
 
-		foreach($posts as $post_id) {						 
-			$post = Post::from_db($post_id);
-			$post->print_summary();
-		}
+        foreach($posts as $post_id) {
+            $post = Post::from_db($post_id);
+            $post->print_summary();
+        }
 
-		echo "</ol>\n";
-		echo '</div>';
-		echo '</div>';
-	}
+        echo "</ol>\n";
+        echo '</div>';
+        echo '</div>';
+    }
 
 do_footer();

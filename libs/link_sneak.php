@@ -23,6 +23,6 @@ echo "</div>\n";
 echo "</div>\n";
 
 for ($i=0; $i<10;$i++) {
-	echo '<div id="sneaker-'.$i.'" class="mini-sneaker-item">&nbsp;';
-	echo "</div>\n";
+    echo '<div id="sneaker-'.$i.'" class="mini-sneaker-item">&nbsp;';
+    echo "</div>\n";
 }

@@ -3,7 +3,7 @@
 // Jonéame Development Team (admin@joneame.net)
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 include '../config.php';
@@ -30,35 +30,35 @@ switch ($donde) {
 case 'votos_historia':
 
 
-	$sql = "select user_login, vote_date, vote_value from users, votes where vote_type='links' and vote_link_id=$peticion and user_id=vote_user_id order by vote_date asc";
+    $sql = "select user_login, vote_date, vote_value from users, votes where vote_type='links' and vote_link_id=$peticion and user_id=vote_user_id order by vote_date asc";
 
-	$votos_historia = $db->get_results($sql);
+    $votos_historia = $db->get_results($sql);
 
-		if (!$votos_historia) {
+        if (!$votos_historia) {
 
-			 echo "No se ha encontrado";
-			 die;
+             echo "No se ha encontrado";
+             die;
 
-		}
+        }
 
-	echo "Votos a la historia número ".$peticion.'<br/><br/>';
+    echo "Votos a la historia número ".$peticion.'<br/><br/>';
 
-	foreach ($votos_historia as $voto) {
+    foreach ($votos_historia as $voto) {
 
-		echo "Login: ".$voto->user_login." Fecha: ".$voto->vote_date." Valor: ".$voto->vote_value."<br/>";
+        echo "Login: ".$voto->user_login." Fecha: ".$voto->vote_date." Valor: ".$voto->vote_value."<br/>";
 
-		}
+        }
 
 die;
 
 case 'clones':
 
-	if ($current_user->user_level != 'god'){
+    if ($current_user->user_level != 'god'){
 
-	 	 echo 'Mal, muy mal';
-		 die;
+          echo 'Mal, muy mal';
+         die;
 
-	}
+    }
 
 $clones = $db->get_results("select distinct user_id, user_login, user_avatar from clones, users where clon_from = $peticion and user_id = clon_to and clon_date > date_sub(now(), interval 30 day) order by clon_date desc");
 
@@ -84,64 +84,64 @@ foreach ($clones as  $clon) {
         echo '</div>';
 }
 
-	
+
 
 die;
 
 case 'ip_votos_usuario':
 
-	require_once mnminclude.'user.php';
-	require_once mnminclude.'link.php';
+    require_once mnminclude.'user.php';
+    require_once mnminclude.'link.php';
 
-	if ($current_user->user_level != 'god'){
+    if ($current_user->user_level != 'god'){
 
-	 	 echo 'Mal, muy mal';
-		 die;
-	}
+          echo 'Mal, muy mal';
+         die;
+    }
 
-	$usuario = new User;
-	$usuario->id = $peticion;
+    $usuario = new User;
+    $usuario->id = $peticion;
 
-		if (!$usuario->read() ) {
+        if (!$usuario->read() ) {
 
-		echo "usuario no encontrado";
-		die;
+        echo "usuario no encontrado";
+        die;
 
-		}
+        }
 
-	echo $usuario->username. " Email: ".$usuario->email."<br/>";
-	
-	$sql = $db->get_results("SELECT link_id, vote_value, vote_date FROM links, votes WHERE vote_type='links' and vote_user_id=$usuario->id AND vote_link_id=link_id ORDER BY vote_date DESC LIMIT 500");
+    echo $usuario->username. " Email: ".$usuario->email."<br/>";
 
-	if (!$sql) {
+    $sql = $db->get_results("SELECT link_id, vote_value, vote_date FROM links, votes WHERE vote_type='links' and vote_user_id=$usuario->id AND vote_link_id=link_id ORDER BY vote_date DESC LIMIT 500");
 
-		echo "No hay votos";
-		die;
+    if (!$sql) {
 
-		}		
+        echo "No hay votos";
+        die;
 
-	foreach ($sql as $voto) {
+        }
 
-		$link = new Link;
-		$link->id = $voto->link_id;
-		$link->read();
-		echo "Voto a ".$link->title. " ->".$link->get_permalink()." Valor: ".$voto->vote_value." el día ".$voto->vote_date."<br/>";
-		}
-		die;
+    foreach ($sql as $voto) {
+
+        $link = new Link;
+        $link->id = $voto->link_id;
+        $link->read();
+        echo "Voto a ".$link->title. " ->".$link->get_permalink()." Valor: ".$voto->vote_value." el día ".$voto->vote_date."<br/>";
+        }
+        die;
 
 case 'buscar_ip':
 
-	if ($current_user->user_level != 'god'){
+    if ($current_user->user_level != 'god'){
 
-	 	 echo 'Mal, muy mal';
-		 die;
-	}
+          echo 'Mal, muy mal';
+         die;
+    }
 
 
-default: 
+default:
 
-	 echo 'Wrong hole';
-	 die;
+     echo 'Wrong hole';
+     die;
 
 
 
@@ -159,12 +159,12 @@ echo '<option value="votos_historia">votos de una historia</option>';
 
          if ($current_user->user_level == 'god') {
 
-		echo '<option value="clones">clones de una IP</option>';
-		echo '<option value="ip_votos_usuario">IP de los votos de un usuario</option>';
-		//echo '<option value="buscar_ip">buscar una IP</option>';
+        echo '<option value="clones">clones de una IP</option>';
+        echo '<option value="ip_votos_usuario">IP de los votos de un usuario</option>';
+        //echo '<option value="buscar_ip">buscar una IP</option>';
 
-	}
-              
+    }
+
 
 echo '<input type="hidden" name="buscar" value="1" />'."\n";
 echo '<input class="button" type="submit" value="'._('buscar').'" />'."\n";

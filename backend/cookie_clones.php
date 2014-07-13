@@ -3,7 +3,7 @@
 // Jon Arano <arano.jon@gmail.com>
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 include_once('../config.php');
@@ -27,12 +27,12 @@ if (! $clones) {
 }
 foreach ($clones as  $clon) {
 
-		if (preg_match('/COOK:/i', $clon->clon_ip)){
-			echo '<ul>';
-			echo '<li><a href="'.get_user_uri($clon->user_login).'">'.$clon->user_login."</a></li>\n";
-			echo '</ul>';
-		} 
+        if (preg_match('/COOK:/i', $clon->clon_ip)){
+            echo '<ul>';
+            echo '<li><a href="'.get_user_uri($clon->user_login).'">'.$clon->user_login."</a></li>\n";
+            echo '</ul>';
+        }
 
-	}
+    }
 
 ?>

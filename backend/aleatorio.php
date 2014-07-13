@@ -3,7 +3,7 @@
 // Ricardo Galli <gallir at uib dot es> and the Jonéame Development Team (admin@joneame.net)
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 include('../config.php');
@@ -43,7 +43,7 @@ if (!$globals ['aleatorios_usuarios_activados']) {
 }
 
 if(!$link->is_votable()) {
-	error(_('votos chapaus'));
+    error(_('votos chapaus'));
 }
 
 if( $link->status != 'queued') {
@@ -51,7 +51,7 @@ if( $link->status != 'queued') {
 }
 
 if($current_user->user_id != $_REQUEST['user']) {
-	error(_('Usuario incorrecto'). $current_user->user_id . '-'. htmlspecialchars($_REQUEST['user']));
+    error(_('Usuario incorrecto'). $current_user->user_id . '-'. htmlspecialchars($_REQUEST['user']));
 }
 
 
@@ -71,21 +71,21 @@ $value = ($current_user->user_karma > 20) ? '22' : $current_user->user_karma;
 $link->insert_aleatorio = true;
 
 if (!$link->insert_vote($value)) {
-	error(_('ya has votado antes'));
+    error(_('ya has votado antes'));
 }
 
 
 if ($link->status == 'discard' && $link->votes > $link->negatives && $link->karma > 0) {
-	$link->read_basic();
-	$link->status = 'queued';
-	$link->store_basic();
+    $link->read_basic();
+    $link->status = 'queued';
+    $link->store_basic();
 }
-	
+
 echo $link->json_votes_info_aleatorio(intval($value));
 
 function error($mess) {
-	$dict['error'] = $mess;
-	echo json_encode($dict);
-	die;
+    $dict['error'] = $mess;
+    echo json_encode($dict);
+    die;
 }
 ?>

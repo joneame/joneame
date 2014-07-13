@@ -3,7 +3,7 @@
 // Benjamí Villoslada <benjami at bitassa dot cat>.
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 include('config.php');
@@ -30,8 +30,8 @@ switch($errn) {
     $errp = _('error de servidor');
     break;
   default:
-	$errn = false;
-	$errp = false;
+    $errn = false;
+    $errp = false;
 }
 
 do_error($errp, $errn, false);

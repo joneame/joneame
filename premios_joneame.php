@@ -3,7 +3,7 @@
 // Jonéame Development Team (admin@joneame.net)
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 include 'config.php';
@@ -29,11 +29,11 @@ $votos = $db->get_results("SELECT *  FROM encuestas_votes, users WHERE  optid=$o
 echo '<strong>Opción numero'.$numero.': '.$opcion->info.' </strong><br/><br/>';
 $numero ++;
 
-	foreach ($votos as $voto){
-	echo 'Votado por: '.$voto->user_login.'<br/>';
+    foreach ($votos as $voto){
+    echo 'Votado por: '.$voto->user_login.'<br/>';
 
-		}
-	echo '<br/>';
+        }
+    echo '<br/>';
 }
 echo '<br/><br/>';
 }

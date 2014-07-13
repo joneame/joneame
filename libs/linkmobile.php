@@ -3,7 +3,7 @@
 // Ricardo Galli <gallir at uib dot es> and the Jonéame Development Team (admin@joneame.net)
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 require_once(mnminclude.'link.php');
@@ -76,7 +76,7 @@ class LinkMobile extends Link{
             $comments_mess = _('sin chorradas');
         }
         echo '<span class="comments"><a href="'.$this->get_relative_permalink().'">'.$comments_mess. '</a></span>';
-    
+
         if ($globals['link']) {
             // Print meta and category
             echo ' <span class="tool">'._('en').': ';
@@ -101,10 +101,10 @@ class LinkMobile extends Link{
         echo '</div>'."\n";
 
     }
-    
+
     function print_shake_box() {
         global $current_user, $anonnymous_vote, $site_key, $globals;
-        
+
         switch ($this->status) {
             case 'queued': // another color box for not-published
                 $box_class = 'mnm-queued';
@@ -141,113 +141,113 @@ class LinkMobile extends Link{
 
 
 }
-	
-	function print_shake_box() {
-		global $current_user, $anonnymous_vote, $site_key, $globals;
-		
-		switch ($this->status) {
-			case 'queued': // another color box for not-published
-				$box_class = 'mnm-queued';
-				break;
-			case 'abuse': // another color box for discarded
-			case 'autodiscard': // another color box for discarded
-			case 'discard': // another color box for discarded
-				$box_class = 'mnm-discarded';
-				break;
-			case 'published': // default for published
-			default:
-				$box_class = 'mnm-published';
-				break;
-		}
-		echo '<div class="news-shakeit">';
-		echo '<div class="'.$box_class.'">';
-		echo '<a id="a-votes-'.$this->id.'" href="'.$this->get_relative_permalink().'">'.($this->votes+$this->anonymous).'</a></div>';
 
-		if (! $globals['bot']) {
-			echo '<div class="menealo" id="a-va-'.$this->id.'">';
+    function print_shake_box() {
+        global $current_user, $anonnymous_vote, $site_key, $globals;
 
-			if ($this->votes_enabled == false) {
-				echo '<span>'._('chapado').'</span>';
-			} elseif( !$this->voted) {
+        switch ($this->status) {
+            case 'queued': // another color box for not-published
+                $box_class = 'mnm-queued';
+                break;
+            case 'abuse': // another color box for discarded
+            case 'autodiscard': // another color box for discarded
+            case 'discard': // another color box for discarded
+                $box_class = 'mnm-discarded';
+                break;
+            case 'published': // default for published
+            default:
+                $box_class = 'mnm-published';
+                break;
+        }
+        echo '<div class="news-shakeit">';
+        echo '<div class="'.$box_class.'">';
+        echo '<a id="a-votes-'.$this->id.'" href="'.$this->get_relative_permalink().'">'.($this->votes+$this->anonymous).'</a></div>';
+
+        if (! $globals['bot']) {
+            echo '<div class="menealo" id="a-va-'.$this->id.'">';
+
+            if ($this->votes_enabled == false) {
+                echo '<span>'._('chapado').'</span>';
+            } elseif( !$this->voted) {
 echo '<a href="javascript:menealo('."$current_user->user_id,$this->id".')" id="a-shake-'.$this->id.'">'._('jonéala').'</a>';
-				
-			} else {
-				if ($this->voted > 0) $mess = _('¡¡Biba!!');
-				else $mess = ':-(';
-				echo '<span id="a-shake-'.$this->id.'">'.$mess.'</span>';
-			}
-			echo '</div>'."\n";
-		
-		echo '</div>'."\n";
-	}
 
-	function print_warn() {
-		global $db, $globals;
-			
+            } else {
+                if ($this->voted > 0) $mess = _('¡¡Biba!!');
+                else $mess = ':-(';
+                echo '<span id="a-shake-'.$this->id.'">'.$mess.'</span>';
+            }
+            echo '</div>'."\n";
+
+        echo '</div>'."\n";
+    }
+
+    function print_warn() {
+        global $db, $globals;
+
 //si el estado es abuso muestra un aviso
-					 if ($this->status == 'abuse') {
-				    echo '<div class="warn"><strong>'._('Aviso').'</strong>: ';
-				    echo _('historia descartada por violar las').' <a href="'.$globals['legal'].'#tos">'._('normas de uso').'</a>';
-				    echo "</div>\n";
-				} 
-			 else {
-				$this->warned = false;
-			      }
+                     if ($this->status == 'abuse') {
+                    echo '<div class="warn"><strong>'._('Aviso').'</strong>: ';
+                    echo _('historia descartada por violar las').' <a href="'.$globals['legal'].'#tos">'._('normas de uso').'</a>';
+                    echo "</div>\n";
+                }
+             else {
+                $this->warned = false;
+                  }
  if ($this->status == 'abuse' && stripos($this -> title , '[NSFW]') && stripos($this -> title , '[+18]')  != FALSE) {
-				    echo '<div class="warn"><strong>'._('Aviso').'</strong>: ';
-				    echo _('historia descartada por violar las').' <a href="'.$globals['legal'].'#tos">'._('normas de uso').'</a>' ;
-				    echo "</div>\n";
-				} 
-			 else {
-				$this->warned = false;
-			      }
+                    echo '<div class="warn"><strong>'._('Aviso').'</strong>: ';
+                    echo _('historia descartada por violar las').' <a href="'.$globals['legal'].'#tos">'._('normas de uso').'</a>' ;
+                    echo "</div>\n";
+                }
+             else {
+                $this->warned = false;
+                  }
 //fin del aviso
 //si detecta NSFW o +18 en el titulo muestra un aviso
-			if ((stripos($this -> title , '[NSFW]') || stripos($this -> title , '[+18]')  != FALSE )  && $this->status != 'abuse') {
-				echo '<div class="porn"><strong>'._('Oiga!!').'</strong> ';
-				echo _('el enlace de esta historia podría contener material solo apto para adultos.');
-				echo "</div>\n";
+            if ((stripos($this -> title , '[NSFW]') || stripos($this -> title , '[+18]')  != FALSE )  && $this->status != 'abuse') {
+                echo '<div class="porn"><strong>'._('Oiga!!').'</strong> ';
+                echo _('el enlace de esta historia podría contener material solo apto para adultos.');
+                echo "</div>\n";
 //fin del aviso
-			} elseif ( $this->votes_enabled  && !$this->is_discarded() &&  $this->negatives > 1 && $this->negatives > $this->votes/6 ) {
-			$this->warned = true;
-			echo '<div class="warn"><strong>'._('Aviso automático de la mafia').'</strong>: ';
-			if ($this->status == 'published') {
-				echo _('historia controvertida, por favor lee las chorradas, a saber qué han liado estos.');
-			} elseif ($this->author == $current_user->user_id && $this->is_editable()) {
-					echo _('Esta noticia tiene varios votos sensuradores. Si la descartas manualmente tu carisma no será afectado');
-			} else {
-				// Only says "what" if most votes are "wrong" or "duplicated" 
-				$negatives = $db->get_row("select vote_value, count(vote_value) as count from votes where vote_type='links' and vote_link_id=$this->id and vote_value < 0 group by vote_value order by count desc limit 1");
-				if ($negatives->count > 2 && $negatives->count >= $this->negatives/2 && ($negatives->vote_value == -1 || $negatives->vote_value == -3)) {
-					echo _('Esta noticia podría ser <strong>'). get_negative_vote($negatives->vote_value) . '</strong>. ';
-				} else {
-					echo _('Esta noticia tiene varios votos sensuradores.');
-				}
-				if(!$this->voted ) {
-					echo ' <a href="'.$this->get_relative_permalink().'/votos">' ._('Asegúrate').'</a> ' . _('antes de jonear') . '.';
-				
-				}
+            } elseif ( $this->votes_enabled  && !$this->is_discarded() &&  $this->negatives > 1 && $this->negatives > $this->votes/6 ) {
+            $this->warned = true;
+            echo '<div class="warn"><strong>'._('Aviso automático de la mafia').'</strong>: ';
+            if ($this->status == 'published') {
+                echo _('historia controvertida, por favor lee las chorradas, a saber qué han liado estos.');
+            } elseif ($this->author == $current_user->user_id && $this->is_editable()) {
+                    echo _('Esta noticia tiene varios votos sensuradores. Si la descartas manualmente tu carisma no será afectado');
+            } else {
+                // Only says "what" if most votes are "wrong" or "duplicated"
+                $negatives = $db->get_row("select vote_value, count(vote_value) as count from votes where vote_type='links' and vote_link_id=$this->id and vote_value < 0 group by vote_value order by count desc limit 1");
+                if ($negatives->count > 2 && $negatives->count >= $this->negatives/2 && ($negatives->vote_value == -1 || $negatives->vote_value == -3)) {
+                    echo _('Esta noticia podría ser <strong>'). get_negative_vote($negatives->vote_value) . '</strong>. ';
+                } else {
+                    echo _('Esta noticia tiene varios votos sensuradores.');
+                }
+                if(!$this->voted ) {
+                    echo ' <a href="'.$this->get_relative_permalink().'/votos">' ._('Asegúrate').'</a> ' . _('antes de jonear') . '.';
 
-			}
-			echo "</div>\n";
-		} else {
-			$this->warned = false;
-		}
-	}
+                }
 
-	function print_problem_form() {
-		global $current_user, $db, $anon_karma, $anonnymous_vote, $globals, $site_key;
+            }
+            echo "</div>\n";
+        } else {
+            $this->warned = false;
+        }
+    }
 
-		echo '<form  class="tool" action="" id="problem-'.$this->id.'">';
-		echo '<select '.$status.' name="ratings"  onchange="';
-		echo 'report_problem(this.form,'."$current_user->user_id, $this->id, "."'".$this->md5."'".')';
-		echo '">';
-		echo '<option value="0" selected="selected">'._('sensura').'</option>';
-		foreach (array_keys($globals['negative_votes_values']) as $pvalue) {
-			echo '<option value="'.$pvalue.'">'.$globals['negative_votes_values'][$pvalue].'</option>';
-		}
-		echo '</select>';
-		echo '</form>';
-	}
+    function print_problem_form() {
+        global $current_user, $db, $anon_karma, $anonnymous_vote, $globals, $site_key;
+
+        echo '<form  class="tool" action="" id="problem-'.$this->id.'">';
+        echo '<select '.$status.' name="ratings"  onchange="';
+        echo 'report_problem(this.form,'."$current_user->user_id, $this->id, "."'".$this->md5."'".')';
+        echo '">';
+        echo '<option value="0" selected="selected">'._('sensura').'</option>';
+        foreach (array_keys($globals['negative_votes_values']) as $pvalue) {
+            echo '<option value="'.$pvalue.'">'.$globals['negative_votes_values'][$pvalue].'</option>';
+        }
+        echo '</select>';
+        echo '</form>';
+    }
 
 }

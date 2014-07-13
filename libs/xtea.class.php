@@ -2,8 +2,8 @@
     /* PHP Implementation of XTEA (www.php-einfach.de)
      *
      * XTEA was designed in 1997 by David Wheeler and Roger Needham
-	  * of the Cambridge Computer Laboratory.
-	  * It is not subject to any patents.
+      * of the Cambridge Computer Laboratory.
+      * It is not subject to any patents.
      *
      * It is a 64-bit Feistel cipher, consisting of 64 rounds.
      * XTA has a key length of 128 bits.
@@ -34,11 +34,11 @@
 class XTEA {
 
    //Private
-	var $key;
+    var $key;
 
-	// CBC or ECB Mode
-	// normaly, CBC Mode would be the right choice
-	var $cbc = 1;
+    // CBC or ECB Mode
+    // normaly, CBC Mode would be the right choice
+    var $cbc = 1;
 
    function XTEA($key) {
       $this->key_setup($key);
@@ -115,127 +115,127 @@ class XTEA {
 
    //Bereitet den Key zum ver/entschluesseln vor
    function key_setup($key) {
-		if(is_array($key))
-      	$this->key = $key;
-		else if(isset($key) && !empty($key))
-			$this->key = $this->_str2long(str_pad($key, 16, $key));
-		else
-			$this->key = array(0,0,0,0);
+        if(is_array($key))
+          $this->key = $key;
+        else if(isset($key) && !empty($key))
+            $this->key = $this->_str2long(str_pad($key, 16, $key));
+        else
+            $this->key = array(0,0,0,0);
    }
 
 
-	//Performs a benchmark
-	function benchmark($length=1000) {
-		//1000 Byte String
-		$string = str_pad("", $length, "text");
+    //Performs a benchmark
+    function benchmark($length=1000) {
+        //1000 Byte String
+        $string = str_pad("", $length, "text");
 
 
-		//Key-Setup
-		$start1 = time() + (double)microtime();
-		$xtea = new XTEA("key");
-		$end1 = time() + (double)microtime();
+        //Key-Setup
+        $start1 = time() + (double)microtime();
+        $xtea = new XTEA("key");
+        $end1 = time() + (double)microtime();
 
-		//Encryption
-		$start2 = time() + (double)microtime();
-		$xtea->Encrypt($string);
-		$end2 = time() + (double)microtime();
-
-
-
-		echo "Encrypting ".$length." bytes: ".round($end2-$start2,2)." seconds (".round($length/($end2-$start2),2)." bytes/second)<br>";
-
-
-	}
-
-	//verify the correct implementation of the blowfish algorithm
-	function check_implementation() {
-
-		$xtea = new XTEA("");
-		$vectors = array(
-			array(array(0x00000000,0x00000000,0x00000000,0x00000000), array(0x41414141,0x41414141), array(0xed23375a,0x821a8c2d)),
-			array(array(0x00010203,0x04050607,0x08090a0b,0x0c0d0e0f), array(0x41424344,0x45464748), array(0x497df3d0,0x72612cb5)),
-
-		);
-
-		//Correct implementation?
-		$correct = true;
-		//Test vectors, see http://www.schneier.com/code/vectors.txt
-		foreach($vectors AS $vector) {
-      	$key = $vector[0];
-			$plain = $vector[1];
-			$cipher = $vector[2];
-
-			$xtea->key_setup($key);
-			$return = $xtea->block_encrypt($vector[1][0],$vector[1][1]);
-
-			if((int)$return[0] != (int)$cipher[0] || (int)$return[1] != (int)$cipher[1])
-				$correct = false;
-
-		}
-
-		return $correct;
-
-	}
+        //Encryption
+        $start2 = time() + (double)microtime();
+        $xtea->Encrypt($string);
+        $end2 = time() + (double)microtime();
 
 
 
-	/***********************************
-			Some internal functions
-	 ***********************************/
+        echo "Encrypting ".$length." bytes: ".round($end2-$start2,2)." seconds (".round($length/($end2-$start2),2)." bytes/second)<br>";
+
+
+    }
+
+    //verify the correct implementation of the blowfish algorithm
+    function check_implementation() {
+
+        $xtea = new XTEA("");
+        $vectors = array(
+            array(array(0x00000000,0x00000000,0x00000000,0x00000000), array(0x41414141,0x41414141), array(0xed23375a,0x821a8c2d)),
+            array(array(0x00010203,0x04050607,0x08090a0b,0x0c0d0e0f), array(0x41424344,0x45464748), array(0x497df3d0,0x72612cb5)),
+
+        );
+
+        //Correct implementation?
+        $correct = true;
+        //Test vectors, see http://www.schneier.com/code/vectors.txt
+        foreach($vectors AS $vector) {
+          $key = $vector[0];
+            $plain = $vector[1];
+            $cipher = $vector[2];
+
+            $xtea->key_setup($key);
+            $return = $xtea->block_encrypt($vector[1][0],$vector[1][1]);
+
+            if((int)$return[0] != (int)$cipher[0] || (int)$return[1] != (int)$cipher[1])
+                $correct = false;
+
+        }
+
+        return $correct;
+
+    }
+
+
+
+    /***********************************
+            Some internal functions
+     ***********************************/
    function block_encrypt($y, $z) {
-	   $sum=0;
-	   $delta=0x9e3779b9;
+       $sum=0;
+       $delta=0x9e3779b9;
 
 
-	   /* start cycle */
-	   for ($i=0; $i<32; $i++)
-	      {
-	      $y      = $this->_add($y,
-	                        $this->_add($z << 4 ^ $this->_rshift($z, 5), $z) ^
-	                            $this-> _add($sum, $this->key[$sum & 3]));
+       /* start cycle */
+       for ($i=0; $i<32; $i++)
+          {
+          $y      = $this->_add($y,
+                            $this->_add($z << 4 ^ $this->_rshift($z, 5), $z) ^
+                                $this-> _add($sum, $this->key[$sum & 3]));
 
-	      $sum    = $this->_add($sum, $delta);
+          $sum    = $this->_add($sum, $delta);
 
-	      $z      = $this->_add($z,
-	                        $this->_add($y << 4 ^ $this->_rshift($y, 5), $y) ^
-	                              $this->_add($sum, $this->key[$this->_rshift($sum, 11) & 3]));
+          $z      = $this->_add($z,
+                            $this->_add($y << 4 ^ $this->_rshift($y, 5), $y) ^
+                                  $this->_add($sum, $this->key[$this->_rshift($sum, 11) & 3]));
 
-	      }
+          }
 
-	   /* end cycle */
-	   $v[0]=$y;
-	   $v[1]=$z;
+       /* end cycle */
+       $v[0]=$y;
+       $v[1]=$z;
 
-	   return array($y,$z);
+       return array($y,$z);
 
    }
 
    function block_decrypt($y, $z) {
-	   $delta=0x9e3779b9;
-	   $sum=0xC6EF3720;
-	   $n=32;
+       $delta=0x9e3779b9;
+       $sum=0xC6EF3720;
+       $n=32;
 
-	   /* start cycle */
-	   for ($i=0; $i<32; $i++)
-	      {
-	      $z      = $this->_add($z,
-	                	-($this->_add($y << 4 ^ $this->_rshift($y, 5), $y) ^
-	                  	$this->_add($sum, $this->key[$this->_rshift($sum, 11) & 3])));
-	      $sum    = $this->_add($sum, -$delta);
-	      $y      = $this->_add($y,
-	                          -($this->_add($z << 4 ^ $this->_rshift($z, 5), $z) ^
-	                                    $this->_add($sum, $this->key[$sum & 3])));
+       /* start cycle */
+       for ($i=0; $i<32; $i++)
+          {
+          $z      = $this->_add($z,
+                        -($this->_add($y << 4 ^ $this->_rshift($y, 5), $y) ^
+                          $this->_add($sum, $this->key[$this->_rshift($sum, 11) & 3])));
+          $sum    = $this->_add($sum, -$delta);
+          $y      = $this->_add($y,
+                              -($this->_add($z << 4 ^ $this->_rshift($z, 5), $z) ^
+                                        $this->_add($sum, $this->key[$sum & 3])));
 
-	      }
-	   /* end cycle */
+          }
+       /* end cycle */
 
-	   return array($y,$z);
+       return array($y,$z);
     }
 
 
 
 
-  	function _rshift($integer, $n) {
+      function _rshift($integer, $n) {
         // convert to 32 bits
         if (0xffffffff < $integer || -0xffffffff > $integer) {
             $integer = fmod($integer, 0xffffffff + 1);

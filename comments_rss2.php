@@ -14,7 +14,7 @@ if(!empty($_REQUEST['rows'])) {
     $rows = intval($_REQUEST['rows']);
     if ($rows > 300) $rows = 100; //avoid abuses
 } else $rows = 100;
-    
+
 // Bug in FeedBurner, it needs all items
 if (preg_match('/feedburner/i', $_SERVER['HTTP_USER_AGENT'])) {
     $if_modified = 0;
@@ -57,21 +57,21 @@ if ($_REQUEST['q']) {
     $individual_user = true;
     $id = guess_user_id($_GET['user_id']);
     $username = $db->get_var("select user_login from users where user_id=$id");
-    if ($if_modified > 0) 
+    if ($if_modified > 0)
         $from_time = "AND comment_date > FROM_UNIXTIME($if_modified)";
     $sql = "SELECT comment_id FROM comments WHERE comment_user_id=$id $from_time ORDER BY comment_date DESC LIMIT $rows";
     $last_modified = $db->get_var("SELECT UNIX_TIMESTAMP(comment_date) FROM comments WHERE comment_user_id=$id ORDER BY comment_date DESC LIMIT 1");
     $title = _('Jonéame: comentarios de ') . $username;
     $globals['redirect_feedburner'] = false;
 } elseif(!empty($_GET['conversation_id'])) {
-    // 
+    //
     // Comments in news where the user has commented
     //
     $id = guess_user_id($_GET['conversation_id']);
     $username = $db->get_var("select user_login from users where user_id=$id");
-    if ($if_modified > 0 && $if_modified > time() - 86400*3 ) 
+    if ($if_modified > 0 && $if_modified > time() - 86400*3 )
         $from_time = "FROM_UNIXTIME($if_modified)";
-    else 
+    else
         $from_time = "date_sub(now(), interval 5 day)";
     $sql = "SELECT DISTINCT comments1.comment_id FROM comments AS comments1  INNER JOIN comments AS comments2 WHERE comments1.comment_link_id = comments2.comment_link_id AND comments2.comment_user_id=$id AND comments2.comment_date > $from_time order by comments1.comment_id desc LIMIT $rows";
     $last_modified = $db->get_var("SELECT UNIX_TIMESTAMP(comments1.comment_date) FROM comments AS comments1  INNER JOIN comments AS comments2 WHERE comments1.comment_link_id = comments2.comment_link_id AND comments2.comment_user_id=$id AND comments2.comment_date > $from_time order by comments1.comment_id desc LIMIT 1");
@@ -84,7 +84,7 @@ if ($_REQUEST['q']) {
     $individual_user = true;
     $id = guess_user_id($_GET['author_id']);
     $username = $db->get_var("select user_login from users where user_id=$id");
-    if ($if_modified > 0) 
+    if ($if_modified > 0)
         $from_time = "AND comment_date > FROM_UNIXTIME($if_modified)";
     $sql = "SELECT comment_id FROM comments, links  WHERE link_author=$id and comment_link_id=link_id $from_time ORDER BY comment_date DESC LIMIT $rows";
     $last_modified = $db->get_var("SELECT UNIX_TIMESTAMP(comment_date) FROM comments, links WHERE link_author=$id and comment_link_id=link_id ORDER BY comment_date DESC LIMIT 1");
@@ -97,7 +97,7 @@ if ($_REQUEST['q']) {
     $individual_user = true;
     $id = guess_user_id($_GET['answers_id']);
     $username = $db->get_var("select user_login from users where user_id=$id");
-    if ($if_modified > 0) 
+    if ($if_modified > 0)
         $from_time = "AND conversation_time > FROM_UNIXTIME($if_modified)";
     $sql = "SELECT conversation_from FROM conversations  WHERE  conversation_user_to=$id and conversation_type='comment' $from_time ORDER BY conversation_time DESC LIMIT $rows";
     $last_modified = $db->get_var("SELECT UNIX_TIMESTAMP(conversation_time) FROM conversations WHERE conversation_user_to=$id and conversation_type='comment'  ORDER BY conversation_time DESC LIMIT 1");
@@ -108,7 +108,7 @@ if ($_REQUEST['q']) {
     // All comments
     //
     $id = 0;
-    if ($if_modified > 0) 
+    if ($if_modified > 0)
         $from_time = "WHERE comment_date > FROM_UNIXTIME($if_modified)";
     $sql = "SELECT comment_id FROM comments $from_time ORDER BY comment_date DESC LIMIT $rows";
     $last_modified = $db->get_var("SELECT UNIX_TIMESTAMP(comment_date) FROM comments ORDER BY comment_date DESC LIMIT 1");
@@ -158,17 +158,17 @@ if ($comments) {
         echo "]]></description>\n";
         echo "  </item>\n\n";
     }
-} 
+}
 
 do_footer();
 
 function do_header($title) {
     global $if_modified, $last_modified, $dblang, $globals;
 
-    if (!$last_modified > 0) { 
+    if (!$last_modified > 0) {
         if ($if_modified > 0)
             $last_modified = $if_modified;
-        else 
+        else
             $last_modified = time();
     }
     header('X-If-Modified: '. gmdate('D, d M Y H:i:s',$if_modified));
@@ -184,7 +184,7 @@ function do_header($title) {
     echo '     xmlns:content="http://purl.org/rss/1.0/modules/content/"'."\n";
     echo '     xmlns:wfw="http://wellformedweb.org/CommentAPI/"'."\n";
     echo '     xmlns:dc="http://purl.org/dc/elements/1.1/"'."\n";
-   
+
     echo ' >'. "\n";
     echo '<channel>'."\n";
     echo'   <title>'.$title.'</title>'."\n";

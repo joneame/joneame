@@ -4,32 +4,32 @@
 // Beldar <beldar.cat at gmail dot com>
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 if (! defined('mnmpath')) {
-	include_once('../config.php');
-	header('Content-Type: text/html; charset=utf-8');
-	stats_increment('ajax');
+    include_once('../config.php');
+    header('Content-Type: text/html; charset=utf-8');
+    stats_increment('ajax');
 }
 include_once(mnminclude.'post.php');
 
 
 if (!empty($_GET['id'])) {
-	if (preg_match('/([\w\.\-_]+)-(\d+)/', $_GET['id'], $matches) > 0) {
-		$user = $db->escape($matches[1]);
-		$date = $matches[2];
-		$id = (int) $db->get_var("select post_id from posts, users where user_login = '$user' and post_user_id = user_id and post_type != 'admin' and post_date < FROM_UNIXTIME($date) order by post_date desc limit 1");
-		if (!$id > 0) {
-			echo '<strong>Error: </strong>' . _('usuario o nota no encontrada');
-			die;
-		}
-	} else {
-		$id = intval($_GET['id']);
-	}
+    if (preg_match('/([\w\.\-_]+)-(\d+)/', $_GET['id'], $matches) > 0) {
+        $user = $db->escape($matches[1]);
+        $date = $matches[2];
+        $id = (int) $db->get_var("select post_id from posts, users where user_login = '$user' and post_user_id = user_id and post_type != 'admin' and post_date < FROM_UNIXTIME($date) order by post_date desc limit 1");
+        if (!$id > 0) {
+            echo '<strong>Error: </strong>' . _('usuario o nota no encontrada');
+            die;
+        }
+    } else {
+        $id = intval($_GET['id']);
+    }
 
 } else {
-	die;
+    die;
 }
 $post = new Post;
 $post->id=$id;

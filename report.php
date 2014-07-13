@@ -3,35 +3,35 @@
 // David Martí <neikokz@gmail.com>
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 include('config.php');
 include(mnminclude.'html1.php');
 
 function peta() {
-	header('Location: http://'.get_server_name().$globals['base_url']);
-	die;
+    header('Location: http://'.get_server_name().$globals['base_url']);
+    die;
 }
 
 if (!$globals['reports_notitas']) {
-	do_error('Los reports están desactivados', 403);
+    do_error('Los reports están desactivados', 403);
 }
 
 if ($_POST['done']) {
-	do_header('Reportar notita');
-	echo '<div id="singlewrap"><div class="genericform"><div class="genericform">
-		<h4>Reportar notita</h4>
-		<fieldset class="fondo-caja espaciador borde">
-		¿De verdad pensabas que ibamos a enviar el reporte? Tu reporte ha sido enviado a /dev/null
-		</fieldset>
-		</div></div></div>';
-	do_footer();
-	die;
+    do_header('Reportar notita');
+    echo '<div id="singlewrap"><div class="genericform"><div class="genericform">
+        <h4>Reportar notita</h4>
+        <fieldset class="fondo-caja espaciador borde">
+        ¿De verdad pensabas que ibamos a enviar el reporte? Tu reporte ha sido enviado a /dev/null
+        </fieldset>
+        </div></div></div>';
+    do_footer();
+    die;
 }
 
 if (!is_numeric($_REQUEST['p']) || $current_user->user_id == 0)
-	peta();
+    peta();
 
 $reported_id = intval($_REQUEST['p']);
 
@@ -39,7 +39,7 @@ $reported_post = new Post();
 $reported_post->id = $reported_id;
 
 if (!$reported_post->read())
-	peta();
+    peta();
 
 do_header('Reportar notita');
 

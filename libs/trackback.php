@@ -3,106 +3,106 @@
 // Ricardo Galli <gallir at uib dot es> and the Jonéame Development Team (admin@joneame.net)
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 class Trackback {
-	var $id = 0;
-	var $author = 0;
-	var $link_id = 0;
-	var $type = 'out';
-	var $status = 'pendent';
-	var $date = false;
-	var $ip = 0;
-	var $url  = '';
-	var $title = '';
-	var $link = '';
-	var $content = '';
-	var $read = false;
+    var $id = 0;
+    var $author = 0;
+    var $link_id = 0;
+    var $type = 'out';
+    var $status = 'pendent';
+    var $date = false;
+    var $ip = 0;
+    var $url  = '';
+    var $title = '';
+    var $link = '';
+    var $content = '';
+    var $read = false;
 
-	function store() {
-		global $db, $globals;
+    function store() {
+        global $db, $globals;
 
-		if(!$this->date) $this->date=time();
-		if($this->ip == 0) $this->ip = $globals['user_ip_int'];
-		$trackback_date=$this->date;
-		$trackback_ip_int=$this->ip;
-		$trackback_author = $this->author;
-		$trackback_link_id = $this->link_id;
-		$trackback_type = $this->type;
-		$trackback_status = $this->status;
-		$trackback_url = $db->escape(trim($this->url));
-		$trackback_link = $db->escape(trim($this->link));
-		$trackback_title = $db->escape(trim($this->title));
-		$trackback_content = $db->escape(trim($this->content));
-		if($this->id===0) {
-			$db->query("INSERT INTO trackbacks (trackback_user_id, trackback_link_id, trackback_type, trackback_date, trackback_ip_int, trackback_status, trackback_link, trackback_url, trackback_title, trackback_content) VALUES ($trackback_author, $trackback_link_id, '$trackback_type', FROM_UNIXTIME($trackback_date), $trackback_ip_int, '$trackback_status', '$trackback_link', '$trackback_url', '$trackback_title', '$trackback_content')");
-			$this->id = $db->insert_id;
-		} else {
-			$db->query("UPDATE trackbacks set trackback_user_id=$trackback_author, trackback_link_id=$trackback_link_id, trackback_type='$trackback_type', trackback_date=FROM_UNIXTIME($trackback_date), trackback_ip_int=$trackback_ip_int, trackback_status='$trackback_status', trackback_link='$trackback_link', trackback_url='$trackback_url', trackback_title='$trackback_title', trackback_content='$trackback_content' WHERE trackback_id=$this->id");
-		}
-	}
-	
-	function read() {
-		global $db;
+        if(!$this->date) $this->date=time();
+        if($this->ip == 0) $this->ip = $globals['user_ip_int'];
+        $trackback_date=$this->date;
+        $trackback_ip_int=$this->ip;
+        $trackback_author = $this->author;
+        $trackback_link_id = $this->link_id;
+        $trackback_type = $this->type;
+        $trackback_status = $this->status;
+        $trackback_url = $db->escape(trim($this->url));
+        $trackback_link = $db->escape(trim($this->link));
+        $trackback_title = $db->escape(trim($this->title));
+        $trackback_content = $db->escape(trim($this->content));
+        if($this->id===0) {
+            $db->query("INSERT INTO trackbacks (trackback_user_id, trackback_link_id, trackback_type, trackback_date, trackback_ip_int, trackback_status, trackback_link, trackback_url, trackback_title, trackback_content) VALUES ($trackback_author, $trackback_link_id, '$trackback_type', FROM_UNIXTIME($trackback_date), $trackback_ip_int, '$trackback_status', '$trackback_link', '$trackback_url', '$trackback_title', '$trackback_content')");
+            $this->id = $db->insert_id;
+        } else {
+            $db->query("UPDATE trackbacks set trackback_user_id=$trackback_author, trackback_link_id=$trackback_link_id, trackback_type='$trackback_type', trackback_date=FROM_UNIXTIME($trackback_date), trackback_ip_int=$trackback_ip_int, trackback_status='$trackback_status', trackback_link='$trackback_link', trackback_url='$trackback_url', trackback_title='$trackback_title', trackback_content='$trackback_content' WHERE trackback_id=$this->id");
+        }
+    }
 
-		if($this->id == 0 && !empty($this->link)  && $this->link_id > 0) 
-			$cond = "trackback_type = '$this->type' AND trackback_link_id = $this->link_id AND trackback_link = '$this->link'";
+    function read() {
+        global $db;
 
-		else $cond = "trackback_id = $this->id";
-	
-		if(($link = $db->get_row("SELECT * FROM trackbacks WHERE $cond"))) {
-			$this->id=$link->trackback_id;
-			$this->author=$link->trackback_user_id;
-			$this->link_id=$link->trackback_link_id;
-			$this->type=$link->trackback_type;
-			$this->status=$link->trackback_status;
-			$this->link=$link->trackback_link;
-			$this->url=$link->trackback_url;
-			$this->title=$link->trackback_title;
-			$this->content=$link->trackback_content;
-			$this->ip=$link->trackback_ip_int;
-			$date=$link->trackback_date;
-			$this->date=$db->get_var("SELECT UNIX_TIMESTAMP('$date')");
-			$this->read = true;
-			return true;
-		}
-		$this->read = false;
-		return false;
-	}
+        if($this->id == 0 && !empty($this->link)  && $this->link_id > 0)
+            $cond = "trackback_type = '$this->type' AND trackback_link_id = $this->link_id AND trackback_link = '$this->link'";
 
-	// Send a Trackback
-	function send($link) {
+        else $cond = "trackback_id = $this->id";
 
-		if (empty($this->url)) return;
+        if(($link = $db->get_row("SELECT * FROM trackbacks WHERE $cond"))) {
+            $this->id=$link->trackback_id;
+            $this->author=$link->trackback_user_id;
+            $this->link_id=$link->trackback_link_id;
+            $this->type=$link->trackback_type;
+            $this->status=$link->trackback_status;
+            $this->link=$link->trackback_link;
+            $this->url=$link->trackback_url;
+            $this->title=$link->trackback_title;
+            $this->content=$link->trackback_content;
+            $this->ip=$link->trackback_ip_int;
+            $date=$link->trackback_date;
+            $this->date=$db->get_var("SELECT UNIX_TIMESTAMP('$date')");
+            $this->read = true;
+            return true;
+        }
+        $this->read = false;
+        return false;
+    }
 
-		$this->title = clean_input_url($link->url);
+    // Send a Trackback
+    function send($link) {
 
-		if (preg_match('/^ping:/', $this->url)) { // we got a pingback adress
-			require_once(mnminclude.'IXR_Library.inc.php');
-			$url = preg_replace('/^ping:/', '', $this->url);
-			$client = new IXR_Client($url);
-			$client->timeout = 3;
-			$client->useragent .= ' -- Joneame/2';
-			$client->debug = false;
-			if ($client->query('pingback.ping', $link->get_permalink(), $this->link )) {
-				$this->status='ok';
-				$this->store();
-				syslog(LOG_NOTICE, "Joneame, pingback sent: $this->link, $this->url");
-				return true;
-			} else {
-				// Be quiet for pingbacks
-				$this->status='error';
-				$this->title = $client->getErrorMessage();
-				$this->store();
-				syslog(LOG_NOTICE, "Joneame, out pingback error: $url ".$link->get_permalink().': '.$client->getErrorCode().' '.$client->getErrorMessage());
-				return false;
-			}
-		}
+        if (empty($this->url)) return;
 
-		// Send standard old trackback
+        $this->title = clean_input_url($link->url);
+
+        if (preg_match('/^ping:/', $this->url)) { // we got a pingback adress
+            require_once(mnminclude.'IXR_Library.inc.php');
+            $url = preg_replace('/^ping:/', '', $this->url);
+            $client = new IXR_Client($url);
+            $client->timeout = 3;
+            $client->useragent .= ' -- Joneame/2';
+            $client->debug = false;
+            if ($client->query('pingback.ping', $link->get_permalink(), $this->link )) {
+                $this->status='ok';
+                $this->store();
+                syslog(LOG_NOTICE, "Joneame, pingback sent: $this->link, $this->url");
+                return true;
+            } else {
+                // Be quiet for pingbacks
+                $this->status='error';
+                $this->title = $client->getErrorMessage();
+                $this->store();
+                syslog(LOG_NOTICE, "Joneame, out pingback error: $url ".$link->get_permalink().': '.$client->getErrorCode().' '.$client->getErrorMessage());
+                return false;
+            }
+        }
+
+        // Send standard old trackback
         $title = urlencode($link->title);
-		// Convert everything to HTML and the strip all html tags.
+        // Convert everything to HTML and the strip all html tags.
         $excerpt = urlencode(strip_tags(text_to_html($link->content)));
 
         $blog_name = urlencode(get_server_name());
@@ -120,8 +120,8 @@ class Trackback {
         if ( '' == $trackback_url['port'] )
                 $trackback_url['port'] = 80;
         $fs = @fsockopen($trackback_url['host'], $trackback_url['port'], $errno, $errstr, 5);
-		if($fs && ($res=@fputs($fs, $http_request)) ) {
-		/*********** DEBUG **********
+        if($fs && ($res=@fputs($fs, $http_request)) ) {
+        /*********** DEBUG **********
         $debug_file = '/tmp/trackback.log';
         $fp = fopen($debug_file, 'a');
         fwrite($fp, "\n*****\nRequest:\n\n$http_request\n\nResponse:\n\n");
@@ -130,46 +130,46 @@ class Trackback {
         }
         fwrite($fp, "\n\n");
         fclose($fp);
-		/*********** DEBUG ************/
-        	@fclose($fs);
-			$this->status='ok';
-			$this->store();
-			syslog(LOG_NOTICE, "Joneame, trackback sent: $this->link, $this->url");
-			return true;	
-		}
-		$this->status='error';	
-		$this->store();
+        /*********** DEBUG ************/
+            @fclose($fs);
+            $this->status='ok';
+            $this->store();
+            syslog(LOG_NOTICE, "Joneame, trackback sent: $this->link, $this->url");
+            return true;
+        }
+        $this->status='error';
+        $this->store();
         return false;
-	}
+    }
 
-	function abuse() {
-		global $globals, $db;
+    function abuse() {
+        global $globals, $db;
 
-		$trackback_url = parse_url($this->url);
-		$host = $trackback_url['host'];
+        $trackback_url = parse_url($this->url);
+        $host = $trackback_url['host'];
 
-		if ($host == get_server_name()) return false;
+        if ($host == get_server_name()) return false;
 
-		if ($host && $this->link_id && $this->type == 'in') {
-			$tbs = (int) $db->get_var("select count(*) from trackbacks where trackback_type='in' and trackback_link_id = $this->link_id and trackback_url like '%://$host/%'");
-			if ($tbs > 0) {
-				syslog(LOG_NOTICE, "Joneame: too many trackbacks/pingbacks from $host ($this->url)");
-				$this->status = 'error';
-				$this->store();
-				return true;
-			}
-		}
+        if ($host && $this->link_id && $this->type == 'in') {
+            $tbs = (int) $db->get_var("select count(*) from trackbacks where trackback_type='in' and trackback_link_id = $this->link_id and trackback_url like '%://$host/%'");
+            if ($tbs > 0) {
+                syslog(LOG_NOTICE, "Joneame: too many trackbacks/pingbacks from $host ($this->url)");
+                $this->status = 'error';
+                $this->store();
+                return true;
+            }
+        }
 
-		if ($globals['user_ip'] !=  $_SERVER["SERVER_ADDR"]) {
-			$tbs = (int) $db->get_var("select count(*) from trackbacks where trackback_date > date_sub(now(), interval 120 minute) and trackback_type='in' and trackback_ip_int = $globals[user_ip_int]");
-			if ($tbs > 2) {
-				syslog(LOG_NOTICE, "Joneame: trackback/pingback abuse from $globals[user_ip], $this->link, $this->url");
-				if (!empty($this->link) && $this->type == 'in') {
-					$this->status = 'error';
-					$this->store();
-				}
-				return true;
-			}
-		} 
-	}
+        if ($globals['user_ip'] !=  $_SERVER["SERVER_ADDR"]) {
+            $tbs = (int) $db->get_var("select count(*) from trackbacks where trackback_date > date_sub(now(), interval 120 minute) and trackback_type='in' and trackback_ip_int = $globals[user_ip_int]");
+            if ($tbs > 2) {
+                syslog(LOG_NOTICE, "Joneame: trackback/pingback abuse from $globals[user_ip], $this->link, $this->url");
+                if (!empty($this->link) && $this->type == 'in') {
+                    $this->status = 'error';
+                    $this->store();
+                }
+                return true;
+            }
+        }
+    }
 }

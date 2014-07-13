@@ -5,7 +5,7 @@
 // Alberto Vidal <a24v7b at gmail dot com>
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 function do_contained_pages($id, $total, $current, $page_size, $program, $type, $container = false) {
@@ -17,7 +17,7 @@ function do_contained_pages($id, $total, $current, $page_size, $program, $type, 
     $start=max($current-intval($index_limit/2), 1);
     $end=min($start+$index_limit-1, $total_pages);
     $start=max($end-$index_limit+1,1);
-    
+
     echo '<div class="pages">';
     if($start>1) {
         $i = 1;

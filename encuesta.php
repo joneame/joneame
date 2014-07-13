@@ -3,7 +3,7 @@
 // Jonéame Development Team (admin@joneame.net)
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 include('config.php');
@@ -31,7 +31,7 @@ if (!isset($_REQUEST['id']) && $globals['base_encuesta_url'] && $_SERVER['PATH_I
 $encuesta->read(); //no eliminar, da error al votar
 
 if (!$encuesta->read)
-	do_error(_('no existe la encuesta'), 404);
+    do_error(_('no existe la encuesta'), 404);
 
 $globals['extra_js'] = array('polls.js');
 
@@ -49,33 +49,33 @@ encuestas_utils();
 $encuesta->print_encuesta();
 
 
-// Print polls comments 
+// Print polls comments
 
 $sql = "SELECT id FROM polls_comments WHERE encuesta_id=$encuesta->id ORDER BY orden ASC";
 $poll_comment = $db->get_col($sql);
 
 if ($poll_comment) {
-   
-    echo '<div class="comments">'; 
+
+    echo '<div class="comments">';
     echo '<ol class="comments-list">';
 
     foreach ($poll_comment as $dbanswer) {
 
         $answer = new Opinion;
-	$answer->id = $dbanswer;
-	$answer->read();
-        
+    $answer->id = $dbanswer;
+    $answer->read();
+
         echo $answer->print_opinion();
-       
+
     }
     echo "</ol>\n";
-  
+
 }
 
 // User can comment
-if ( $current_user->user_id > 0 ){ 
-	echo '<div id="ajaxcontainer"><div id="ajaxcomments"></div></div>';
-	print_comment_form();
+if ( $current_user->user_id > 0 ){
+    echo '<div id="ajaxcontainer"><div id="ajaxcomments"></div></div>';
+    print_comment_form();
 
 } else {
         echo '<div class="barra redondo">'."\n";
@@ -87,48 +87,48 @@ if ( $current_user->user_id > 0 ){
 
 echo '</div>';
 
-echo '</div></div>'; //newswrap notes 
+echo '</div></div>'; //newswrap notes
 
 do_footer();
 
 function print_comment_form() {
-	global $encuesta, $current_user, $globals;
-	
-	echo '<div class="commentform">'."\n";
-	echo '<form action="" method="post">'."\n";
-	echo '<h4>'._('escribe un comentario').'</h4><fieldset class="fondo-caja">'."\n";
-	echo '<div style="float: right;">'."\n";
-	print_simpleformat_buttons('poll_content');
-	echo '</div><span class="note"><strong>'._('¡eh tío!').':</strong> '._('opiniones serias, constructivos, xenófobos, racistas o difamatorios causarán el baneo de la cuenta de usuario y expulsión de la mafia').'</span></label>'."\n";
-	echo '<div style="margin-top: 10px;"><textarea name="poll_content" id="poll_content" cols="75" rows="12"></textarea></div>'."\n";
-	echo '<input type="button" class="button" name="submit" id="submit_com" value="'._('enviar comentario').'" onClick="submit_comment();"/>'."\n";
+    global $encuesta, $current_user, $globals;
 
-	echo '<img id="spinner" class="blank" src="'.$globals['base_url'].'img/estructura/pixel.gif" width="16" height="16"/>';
+    echo '<div class="commentform">'."\n";
+    echo '<form action="" method="post">'."\n";
+    echo '<h4>'._('escribe un comentario').'</h4><fieldset class="fondo-caja">'."\n";
+    echo '<div style="float: right;">'."\n";
+    print_simpleformat_buttons('poll_content');
+    echo '</div><span class="note"><strong>'._('¡eh tío!').':</strong> '._('opiniones serias, constructivos, xenófobos, racistas o difamatorios causarán el baneo de la cuenta de usuario y expulsión de la mafia').'</span></label>'."\n";
+    echo '<div style="margin-top: 10px;"><textarea name="poll_content" id="poll_content" cols="75" rows="12"></textarea></div>'."\n";
+    echo '<input type="button" class="button" name="submit" id="submit_com" value="'._('enviar comentario').'" onClick="submit_comment();"/>'."\n";
 
-	echo '<br/><span id="error_com"></span>';
+    echo '<img id="spinner" class="blank" src="'.$globals['base_url'].'img/estructura/pixel.gif" width="16" height="16"/>';
 
-	echo '<input type="hidden" id="process" name="process" value="newcomment" />'."\n";
-	echo '<input type="hidden" id="poll_id" name="poll_id" value="'.$encuesta->id.'" />'."\n";
-	echo '<input type="hidden" id="user_id" name="user_id" value="'.$current_user->user_id.'" />'."\n";
-	echo '</fieldset>'."\n";
-	echo '</form>'."\n";
-	echo "</div>\n";
+    echo '<br/><span id="error_com"></span>';
+
+    echo '<input type="hidden" id="process" name="process" value="newcomment" />'."\n";
+    echo '<input type="hidden" id="poll_id" name="poll_id" value="'.$encuesta->id.'" />'."\n";
+    echo '<input type="hidden" id="user_id" name="user_id" value="'.$current_user->user_id.'" />'."\n";
+    echo '</fieldset>'."\n";
+    echo '</form>'."\n";
+    echo "</div>\n";
 
 }
 
 // must be the same as in encuestas.php!!
 function encuestas_utils(){
-	global $globals, $current_user;
+    global $globals, $current_user;
 
-	echo '<div style="margin-top: 25px;">'; // :D
-	echo '<ul class="barra redondo herramientas">';
-	if ($current_user->user_id > 0)
-	echo '<li><a href="'.$globals['base_url'].'nueva_encuesta.php" class="icon poll-new">enviar nueva encuesta</a></li>';
-	if (!$_REQUEST['fecha_fin'])
-	echo '<li><a href="'.$globals['base_url'].'encuestas.php?fecha_fin=1" class="icon permalink">ordenar por fecha de finalización</a></li>'; 
-	if (!$_REQUEST['unvoted'])
-	echo '<li><a href="'.$globals['base_url'].'encuestas.php?unvoted=1" class="icon permalink">no votadas</a></li>'; 
+    echo '<div style="margin-top: 25px;">'; // :D
+    echo '<ul class="barra redondo herramientas">';
+    if ($current_user->user_id > 0)
+    echo '<li><a href="'.$globals['base_url'].'nueva_encuesta.php" class="icon poll-new">enviar nueva encuesta</a></li>';
+    if (!$_REQUEST['fecha_fin'])
+    echo '<li><a href="'.$globals['base_url'].'encuestas.php?fecha_fin=1" class="icon permalink">ordenar por fecha de finalización</a></li>';
+    if (!$_REQUEST['unvoted'])
+    echo '<li><a href="'.$globals['base_url'].'encuestas.php?unvoted=1" class="icon permalink">no votadas</a></li>';
 
         echo '<li><a href="'.$globals['base_url'].'encuestas_rss.php" class="icon rss">encuestas por RSS</a></li>';
-	echo '</ul></div><br/>';
+    echo '</ul></div><br/>';
 }

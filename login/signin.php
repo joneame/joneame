@@ -3,7 +3,7 @@
 // Ricardo Galli <gallir at uib dot es> and the Jonéame Development Team (admin@joneame.net)
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 error_reporting(E_ALL);
@@ -16,13 +16,13 @@ $service = clean_input_string($_GET['service']);
 $op = clean_input_string($_GET['op']);
 
 switch ($service) {
-	case 'twitter':
-	default:
-		require_once('twitter.php');
-		$req = new TwitterOAuth();
-		if ($op == 'init') {
-			$req->authRequest();
-		} else {
-			$req->authorize();
-		}
+    case 'twitter':
+    default:
+        require_once('twitter.php');
+        $req = new TwitterOAuth();
+        if ($op == 'init') {
+            $req->authRequest();
+        } else {
+            $req->authorize();
+        }
 }

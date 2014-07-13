@@ -15,7 +15,7 @@ if(!empty($_REQUEST['rows'])) {
     $rows = intval($_REQUEST['rows']);
     if ($rows > 200) $rows = 50; //avoid abuses
 } else $rows = 50;
-    
+
 // Bug in FeedBurner, it needs all items
 if (preg_match('/feedburner/i', $_SERVER['HTTP_USER_AGENT'])) {
     $if_modified = 0;
@@ -32,7 +32,7 @@ if(!empty($_REQUEST['time'])) {
     /////
     if(!($time = check_integer('time')))
         die;
-    $sql = "SELECT link_id, link_votes as votes FROM links WHERE "; 
+    $sql = "SELECT link_id, link_votes as votes FROM links WHERE ";
     if ($time < 0 || $time > 86400*5) $time = 86400*2;
     $from = time()-$time;
     $sql .= "link_date > FROM_UNIXTIME($from) AND ";
@@ -98,7 +98,7 @@ if(!empty($_REQUEST['time'])) {
             $status = 'published';
         }
     }
-    
+
     switch ($status) {
         case 'published':
             $order_field = 'link_date';
@@ -126,12 +126,12 @@ if(!empty($_REQUEST['time'])) {
         comment it out
         You have been warned ******/
 
-   
-    
+
+
     /*****  END WARNING ******/
-    
-    
-    
+
+
+
     if($status == 'all' || $status == 'all_local') {
         $from_where = "FROM links WHERE link_status in  ('published', 'queued') AND link_date > date_sub(now(), interval 7 day) ";
     } else {
@@ -147,7 +147,7 @@ if(!empty($_REQUEST['time'])) {
         }
         $title = _('Jonéame') . ": " . htmlspecialchars(strip_tags($_REQUEST['q']));
     }
-    
+
 
     if(($meta=check_integer('meta'))) {
         $cat_list = meta_get_categories_list($meta);
@@ -168,7 +168,7 @@ if(!empty($_REQUEST['time'])) {
             $from_where .= " AND link_category in ($cats) ";
         }
     }
-    
+
     $order_by = " ORDER BY $order_field DESC ";
     $last_modified = $db->get_var("SELECT UNIX_TIMESTAMP($order_field) $from_where $order_by LIMIT 1");
     if ($if_modified > 0) {
@@ -189,11 +189,11 @@ if(! check_ban($globals['user_ip'], 'ip', true) && ! check_ban_proxy() ) {
 
 if ($links) {
     foreach($links as $link_id) {
-	$link = Link::from_db($link_id);	
+    $link = Link::from_db($link_id);
         $category_name = $db->get_var("SELECT category_name FROM categories WHERE category_id = $link->category AND category_lang='$dblang'");
         $content = text_to_html(htmlentities2unicodeentities($link->content));
         $permalink = $link->get_short_permalink();
-    
+
         echo "  <item>\n";
 
         // joneame own namespace
@@ -239,7 +239,7 @@ if ($links) {
         if (time() - $link->date < 172800) { // Only add the votes/comments image if the link has less than two days
             echo '<p><a href="'.$permalink.'"><img src="http://'. get_server_name() .$globals['base_url'].'backend/vote_com_img.php?id='. $link->id .'" alt="votes" width="200" height="16"/></a></p>';
         }
-        
+
         if ($link->status != 'published') $rel = 'rel="nofollow"';
         else $rel = '';
         echo "<p>»&nbsp;<a href='http://".get_server_name().$globals['base_url']."backend/go.php?id=".$link->id."' $rel>"._('historia original')."</a></p>";
@@ -287,7 +287,7 @@ function do_header($title) {
     echo'   <title>'.$title.'</title>'."\n";
     echo '  <atom:link href="http://'.get_server_name().htmlentities(clean_input_url($_SERVER['REQUEST_URI'])).'" rel="self" type="application/rss+xml" />'."\n";
     echo'   <link>http://'.get_server_name().$home.'</link>'."\n";
-  
+
     echo'   <description>'._('Sitio colaborativo de noticias nada serias').'</description>'."\n";
     echo'   <pubDate>'.date("r", $last_modified).'</pubDate>'."\n";
     echo'   <generator>http://blog.joneame.net/</generator>'."\n";
@@ -300,4 +300,4 @@ function do_footer() {
 }
 
 ?>
- 
+

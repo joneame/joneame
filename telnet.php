@@ -3,7 +3,7 @@
 // Ricardo Galli <gallir at uib dot es> and the Jonéame Development Team (admin@joneame.net)
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 include('config.php');
@@ -104,13 +104,13 @@ function to_html(data) {
     else if (data.uid > 0)  {
         html += '<div class="sneaker-who">';
         html += '<a target="_blank" href="mafioso.php?login='+data.who+'">'+data.who.substring(0,15)+'</a></div>';
-    } else 
+    } else
         html += '<div class="sneaker-who">'+data.who.substring(0,15)+'</div>';
     if (data.status == '<? echo _('en portada');?>')
         html += '<div class="sneaker-status"><a target="_blank" href="./"><span class="sneaker-published">'+data.status+'</span></a></div>';
     else if (data.status == '<? echo _('descartada');?>')
         html += '<div class="sneaker-status"><a target="_blank" href="jonealas.php?meta=_descartadas"><span class="sneaker-discarded">'+data.status+'</span></a></div>';
-    else 
+    else
         html += '<div class="sneaker-status"><a target="_blank" href="jonealas.php">'+data.status+'</a></div>';
     return html;
 }
@@ -143,20 +143,20 @@ echo "</form>\n";
 if ($current_user->user_id > 0) {
     echo '<form name="chat_form" onsubmit="return send_chat(this);">';
 
-	/*SELECTOR*/
+    /*SELECTOR*/
     echo '<select name="donde" id="donde">';
-    echo '<option value="" selected="selected">Todos</option>';                  
-    echo '<option value="@">Amigos</option>';         
- 
-    if ($current_user->admin)             
-   	echo '<option value="#">Il capos</option>';      
+    echo '<option value="" selected="selected">Todos</option>';
+    echo '<option value="@">Amigos</option>';
 
-    if ($current_user->devel)      
-        echo '<option value="%">Devels</option>';      
+    if ($current_user->admin)
+       echo '<option value="#">Il capos</option>';
+
+    if ($current_user->devel)
+        echo '<option value="%">Devels</option>';
 
     echo '</select>&nbsp;';
 
-	/*SELECTOR*/
+    /*SELECTOR*/
 
     echo _('mensaje') . ': <input type="text" name="comment" id="comment-input" value="" size="90" maxlength="230" autocomplete="off" />&nbsp;<input type="submit" value="'._('enviar').'" class="sendmessage"/>';
     echo '</form>';

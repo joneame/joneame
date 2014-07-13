@@ -3,7 +3,7 @@
 // Jon Arano (arano.jon@gmail.com)
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 include('config.php');
@@ -29,59 +29,59 @@ $id = $db->escape($_REQUEST['id']);
 
 if ((isset($id) && $id > 0) || $_POST['enviando'] > 0 ) {
 
-	if ($_POST['enviando'] > 0) $id = $db->escape($_POST['enviando']);
+    if ($_POST['enviando'] > 0) $id = $db->escape($_POST['enviando']);
 
-	$link = Link::from_db($id);
+    $link = Link::from_db($id);
 
-	if ($link->read) {
+    if ($link->read) {
 
-	echo '<h2>Reportar link</h2><br/>';
+    echo '<h2>Reportar link</h2><br/>';
 
-	
-	if ($_POST['enviando'] == 0) {
-		echo '<div class="genericform" style="margin:10px; text-align: center">';
-		echo '<form action="broken_link.php" method="post" id="enviar" name="enviar">';
-		echo '<p>Estás a punto de reportar a la comunidad este enlace como inválido, es decir, que el mismo ha dejado de funcionar y no carga. La comunidad podrá encargarse de buscar un enlace sustituto para esta historia. ¿Estás seguro?</p>';
-		echo '</div>';
-		$link->print_summary();
-		echo '<input type="hidden" name="enviando" value="'.$id.'">';
 
-		echo '<div class="genericform" style="margin:10px; text-align: center">';
-		echo '</br><p><input class="button" type="submit" value="'._('Sí, reportar historia').'"</p>';
-		echo '</div>';
+    if ($_POST['enviando'] == 0) {
+        echo '<div class="genericform" style="margin:10px; text-align: center">';
+        echo '<form action="broken_link.php" method="post" id="enviar" name="enviar">';
+        echo '<p>Estás a punto de reportar a la comunidad este enlace como inválido, es decir, que el mismo ha dejado de funcionar y no carga. La comunidad podrá encargarse de buscar un enlace sustituto para esta historia. ¿Estás seguro?</p>';
+        echo '</div>';
+        $link->print_summary();
+        echo '<input type="hidden" name="enviando" value="'.$id.'">';
 
-		echo '&nbsp;&nbsp;&nbsp;<span id="working">&nbsp;</span></p>';
-		echo '</form>';
+        echo '<div class="genericform" style="margin:10px; text-align: center">';
+        echo '</br><p><input class="button" type="submit" value="'._('Sí, reportar historia').'"</p>';
+        echo '</div>';
 
-	} else {
-	
-		echo '<div class="genericform" style="margin:10px; text-align: center">';
-		
-		if ($link->broken_link > 0) {
+        echo '&nbsp;&nbsp;&nbsp;<span id="working">&nbsp;</span></p>';
+        echo '</form>';
 
-		echo '<p>Algún usuario ya ha reportado esta historia. Gracias de todas maneras.</p>';
-		echo '</br><p><a href="broken_link.php"><input class="button" value="'._('Ver todas las historias').'"</a></p>';
-		echo '</div>';
-		
-		} else {
+    } else {
 
-		$link->broken_link = $current_user->user_id;
-		$link->store();
-		echo '<p>Historia reportada. Gracias.</p>';
-		echo '</br><p><a href="broken_link.php"><input class="button" value="'._('Ver todas las historias').'"</a></p>';
-		echo '</div>';
-		}
+        echo '<div class="genericform" style="margin:10px; text-align: center">';
 
-	}
-	
+        if ($link->broken_link > 0) {
 
-	} else {
+        echo '<p>Algún usuario ya ha reportado esta historia. Gracias de todas maneras.</p>';
+        echo '</br><p><a href="broken_link.php"><input class="button" value="'._('Ver todas las historias').'"</a></p>';
+        echo '</div>';
 
-	echo '<h2>El link no existe</h2><br/>'; 
+        } else {
 
-	
+        $link->broken_link = $current_user->user_id;
+        $link->store();
+        echo '<p>Historia reportada. Gracias.</p>';
+        echo '</br><p><a href="broken_link.php"><input class="button" value="'._('Ver todas las historias').'"</a></p>';
+        echo '</div>';
+        }
 
-	}
+    }
+
+
+    } else {
+
+    echo '<h2>El link no existe</h2><br/>';
+
+
+
+    }
 
 } else {
 
@@ -95,15 +95,15 @@ echo '<h2>Historias con enlaces inválidos reportados</h2><br/>';
 
 if ($links) {
 
-	echo '<p>¿Nos ayudas a buscar enlaces correctos para estas historias? Déjanos un comentario en los comentarios con un enlace alternativo para que algún administrador pueda corregirlo.</p><br/>';
+    echo '<p>¿Nos ayudas a buscar enlaces correctos para estas historias? Déjanos un comentario en los comentarios con un enlace alternativo para que algún administrador pueda corregirlo.</p><br/>';
 
-	foreach($links as $link_id) {
-		$link = Link::from_db($link_id);
-		$link->print_summary();
-		
-	}
+    foreach($links as $link_id) {
+        $link = Link::from_db($link_id);
+        $link->print_summary();
 
-	do_pages($rows, $page_size);
+    }
+
+    do_pages($rows, $page_size);
 } else {
 echo '<p>No hay historias inválidas reportadas. Utiliza el icono al final del titular si ves que algún enlace no funciona y la comunidad pueda buscar enlaces alternativos. ¡Gracias!</p><br/>';
 }

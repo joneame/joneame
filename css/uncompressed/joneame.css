@@ -43,7 +43,7 @@ background: white;
 position: relative;
 }
 
-.banner-right { 
+.banner-right {
 width: 100%;
 height: 252px;
 margin: 10px 0 10px 0;
@@ -902,42 +902,42 @@ padding: 0 0 0 5px; /* from box border */
 }
 
 .column-one-list ul { /* benjami: differences with column-list */
-	padding-left: 0px; /* from box border */
-	padding-right: 35px;
+    padding-left: 0px; /* from box border */
+    padding-right: 35px;
 }
 
 .column-select-us ul { /* benjami: differences with column-list */
-	padding-left: 15px; /* from box border */
+    padding-left: 15px; /* from box border */
 }
 
 .column-list li {
-	float: left;
-	width: 50%;
-	margin: 0;
-	padding-bottom: 5px;
-	font-size: 75%;
-	border: none;
-	background: none;
+    float: left;
+    width: 50%;
+    margin: 0;
+    padding-bottom: 5px;
+    font-size: 75%;
+    border: none;
+    background: none;
 }
 
 .column-one-list li, .column-select-us li {
-	font-size: 90%;
-	/*border: 1px solid #000; test*/
-	border: none;
-	padding: 5px 0 5px 25px;
-	margin: 0 0 0 0;
+    font-size: 90%;
+    /*border: 1px solid #000; test*/
+    border: none;
+    padding: 5px 0 5px 25px;
+    margin: 0 0 0 0;
 }
 
 .column-list li a, .column-list li span, .column-one-list li a, .column-one-list li span, .column-select-us li a, .column-select-us li span {
-	border: none;
-	background: none;
-	display: inline;
+    border: none;
+    background: none;
+    display: inline;
 }
 
 .column-list li a, .column-one-list li a {
-	background: url(/img/iconos/sprite.png) no-repeat 3px -320px;
-	padding: 2px 0 0 21px;
-	color: #333;
+    background: url(/img/iconos/sprite.png) no-repeat 3px -320px;
+    padding: 2px 0 0 21px;
+    color: #333;
 }
 
 .column-list-busqueda li a, .column-one-list-busqueda li a {
@@ -946,7 +946,7 @@ padding: 2px 0 0 21px;
 color: #333;
 }
 
-.column-one-busqueda ul { 
+.column-one-busqueda ul {
 padding-left: 0px;
 padding-right: 35px;
 }
@@ -981,82 +981,82 @@ padding: 5px 0 5px 10px;
 
 
 .column-list-busqueda li a, .column-list-busqueda li span, .column-one-list li a, .column-one-list li span, .column-select-us li a, .column-select-us li span {
-	border: none;
-	background: none;
-	display: inline;
+    border: none;
+    background: none;
+    display: inline;
 }
 
 .column-list-busqueda li a, .column-one-list li a {
-	background: url(/img/iconos/sprite.png) no-repeat 3px -975px;
-	padding: 2px 0 0 21px;
-	color: #333;
+    background: url(/img/iconos/sprite.png) no-repeat 3px -975px;
+    padding: 2px 0 0 21px;
+    color: #333;
 }
 
 .column-select-us li a {
-	padding: 0 0 0 0;
+    padding: 0 0 0 0;
 }
 
 
 /* submit form */
 
 #thisform .column-list {
-	margin: -15px 0 20px 0;
-	min-height: 185px;
+    margin: -15px 0 20px 0;
+    min-height: 185px;
 }
 
 #thisform .column-list li {
-	font-size: 100%;
-	font-weight: normal;
+    font-size: 100%;
+    font-weight: normal;
 }
 
 #thisform .column-list ul {
-	padding-left: 15px;
-	margin: 0px;
+    padding-left: 15px;
+    margin: 0px;
 }
 
 .column-one-list li.thiscat {
-	font-weight: bold;
-	background: #adcee9;
-	background-image: url(/img/common/arrow-l.png);
-	background-repeat: no-repeat;
-	background-position: center left;
+    font-weight: bold;
+    background: #adcee9;
+    background-image: url(/img/common/arrow-l.png);
+    background-repeat: no-repeat;
+    background-position: center left;
 }
 
 .column-select-us li.thiscat {
-	font-weight: bold;
-	font-size: 115%;
-	background: #adcee9;
-	background-image: url(/img/common/arrow-l.png);
-	background-repeat: no-repeat;
-	background-position: center left;
+    font-weight: bold;
+    font-size: 115%;
+    background: #adcee9;
+    background-image: url(/img/common/arrow-l.png);
+    background-repeat: no-repeat;
+    background-position: center left;
 }
 
 .column-one-list li.thiscat a:hover {
-	color: #FFF;
+    color: #FFF;
 }
 
 .column-list li.thiscat {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 /*
 .column-list li a:hover {
-	background-position: 4px -100px;
+    background-position: 4px -100px;
 }
 */
 
 .column-list li {
-	clear: none;
+    clear: none;
 }
 
 .categorylist li {
-	float: left;
-	width: 25%;
-	margin: 0;
-	padding-bottom: 5px;
-	font-size: 75%;
-	border: none;
-	background: none;
+    float: left;
+    width: 25%;
+    margin: 0;
+    padding-bottom: 5px;
+    font-size: 75%;
+    border: none;
+    background: none;
 }
 
 /* submit form */
@@ -1696,7 +1696,7 @@ z-index:9999;
 margin: 0;
 padding: 0;
 background: url(/img/estructura/sombra-tooltip.png) no-repeat bottom right !important;
-background: url(/img/estructura/sombra-tooltip-ie6.gif) no-repeat bottom right; 
+background: url(/img/estructura/sombra-tooltip-ie6.gif) no-repeat bottom right;
 }
 
 #tooltip-text {
@@ -1839,9 +1839,9 @@ border: 1px solid #255B85;
 color: white;
 cursor: pointer;
 font-family: 'Arial',sans-serif; /* This is a workaround. Firefox tries to imitate (poorly)
-				    the GUI style of the system it is running into. So if you've
-				    enabled "Tahoma" as global default font in your SO, buttons
-				    will use Tahoma. --Neiko */
+                    the GUI style of the system it is running into. So if you've
+                    enabled "Tahoma" as global default font in your SO, buttons
+                    will use Tahoma. --Neiko */
 }
 
 input[type=submit]:hover, button:hover, .button:hover {
@@ -2121,13 +2121,13 @@ text-shadow: 0 1px 1px rgba(0, 0, 0, 1);
 }
 
 .barra a, h4 a, .boton a, .barra a:visited, h4 a:visited, .boton a:visited {
-color: white !important; 		/* overrides .fondo-caja style, since some .barra h4 are into
-					   a .fondo-caja div or fieldset --Neiko */
+color: white !important;         /* overrides .fondo-caja style, since some .barra h4 are into
+                       a .fondo-caja div or fieldset --Neiko */
 }
 
 .barra a:hover, h4 a:hover, .boton a:hover {
-color: white !important; 		/* overrides .fondo-caja style, since some .barra h4 are into
-					   a .fondo-caja div or fieldset --Neiko */
+color: white !important;         /* overrides .fondo-caja style, since some .barra h4 are into
+                       a .fondo-caja div or fieldset --Neiko */
 }
 
 #sidebar h4 {
@@ -3219,11 +3219,11 @@ cursor: pointer;
 /* Menéame colors and images */
 
 /***
-All images referenced by the CSS and distributed in the tar file are 
-copyrighted by Benjamí Villoslada and published under a CC license: 
+All images referenced by the CSS and distributed in the tar file are
+copyrighted by Benjamí Villoslada and published under a CC license:
 http://creativecommons.org/licenses/by-sa/2.5/
 
-Source code was developed by Ricardo Galli, it's published 
+Source code was developed by Ricardo Galli, it's published
 under the Affero GPL License (http://meneame.net/COPYING) unless
 stated otherwise in individual files.
 ***/
@@ -3295,9 +3295,9 @@ bottom: 0px;
 display: none;
 }
 .icon {
-	background: url(/img/iconos/icons-sprite.png);
-	width: 16px;
-	height: 16px;
+    background: url(/img/iconos/icons-sprite.png);
+    width: 16px;
+    height: 16px;
 }
 
 .mini-icon,
@@ -3305,15 +3305,15 @@ display: none;
 .icon.vote-down,
 .icon.voted-up,
 .icon.voted-down {
-	width: 12px;
-	height: 8px;
+    width: 12px;
+    height: 8px;
 }
 
 .mini-icon,
 .icon.permalink-mini,
 .icon.info-mini {
-	width: 10px;
-	height: 10px;
+    width: 10px;
+    height: 10px;
 }
 
 .icon.edit-clock,
@@ -3326,426 +3326,426 @@ display: none;
 .icon.edit-clock-6,
 .icon.edit-clock-7,
 .icon.edit-clock-iddqd {
-	width: 17px;
+    width: 17px;
 }
 
 a.icon {
-	width: auto;
-	height: auto;
-	background-repeat: no-repeat;
+    width: auto;
+    height: auto;
+    background-repeat: no-repeat;
 }
 
 .icon.post-new {
-	background-position: 0 0;
+    background-position: 0 0;
 }
 
 .icon.jabber {
-	background-position: 0 -32px;
+    background-position: 0 -32px;
 }
 
 .icon.message-send {
-	background-position: 0 -64px;
+    background-position: 0 -64px;
 }
 
 .icon.rss {
-	background-position: 0 -96px;
+    background-position: 0 -96px;
 }
 
 .icon.wrench,
 .icon.config,
 .icon.configure {
-	background-position: 0 -128px;
+    background-position: 0 -128px;
 }
 
 .icon.broadcast {
-	background-position: 0 -160px;
+    background-position: 0 -160px;
 }
 
 .icon.info {
-	background-position: 0 -224px;
+    background-position: 0 -224px;
 }
 
 .icon.delete {
-	background-position: 0 -256px;
+    background-position: 0 -256px;
 }
 
 .icon.friend {
-	background-position: 0 -288px;
+    background-position: 0 -288px;
 }
 
 .icon.message-reply {
-	background-position: 0 -320px;
+    background-position: 0 -320px;
 }
 
 .icon.heart-off {
-	background-position: 0 -352px;
+    background-position: 0 -352px;
 }
 
 .icon.heart-on,
 .icon.heart {
-	background-position: 0 -384px;
+    background-position: 0 -384px;
 }
 
 .icon.permalink {
-	background-position: 0 -416px;
+    background-position: 0 -416px;
 }
 
 .icon.post-reply {
-	background-position: 0 -448px;
+    background-position: 0 -448px;
 }
 
 .icon.magnifying-glass,
 .icon.mglass,
 .icon.magnify {
-	background-position: 0 -480px;
+    background-position: 0 -480px;
 }
 
 .icon.post {
-	background-position: 0 -512px;
+    background-position: 0 -512px;
 }
 
 .icon.help {
-	background-position: 0 -544px;
+    background-position: 0 -544px;
 }
 
 .icon.message {
-	background-position: 0 -576px;
+    background-position: 0 -576px;
 }
 
 .icon.comment {
-	background-position: 0 -608px;
+    background-position: 0 -608px;
 }
 
 .icon.folder {
-	background-position: 0 -640px;
+    background-position: 0 -640px;
 }
 
 .icon.folder-down {
-	background-position: 0 -672px;
+    background-position: 0 -672px;
 }
 
 .icon.comment {
-	background-position: 0 -704px;
+    background-position: 0 -704px;
 }
 
 .icon.tick {
-	background-position: 0 -736px;
+    background-position: 0 -736px;
 }
 
 .icon.heart-black {
-	background-position: 0 -768px;
+    background-position: 0 -768px;
 }
 
 .icon.poll-new {
-	background-position: 0 -800px;
+    background-position: 0 -800px;
 }
 
 .icon.picture,
 .icon.image {
-	background-position: 0 -832px;
+    background-position: 0 -832px;
 }
 
 .icon.video {
-	background-position: 0 -864px;
+    background-position: 0 -864px;
 }
 
 .icon.story-edit {
-	background-position: 0 -896px;
+    background-position: 0 -896px;
 }
 
 .icon.geo-edit {
-	background-position: 0 -928px;
+    background-position: 0 -928px;
 }
 
 .icon.edit {
-	background-position: 0 -960px;
+    background-position: 0 -960px;
 }
 
 .icon.refresh,
 .icon.reload {
-	background-position: 0 -992px;
+    background-position: 0 -992px;
 }
 
 .icon.story-popular,
 .icon.popular,
 .icon.medal-gold {
-	background-position: 0 -1024px;
+    background-position: 0 -1024px;
 }
 
 .icon.story-discarded,
 .icon.discarded,
 .icon.trash {
-	background-position: 0 -1056px;
+    background-position: 0 -1056px;
 }
 
 .icon.story-queueing,
 .icon.story-sending {
-	background-position: 0 -1088px;
+    background-position: 0 -1088px;
 }
 
 .icon.trackback {
-	background-position: 0 -1120px;
+    background-position: 0 -1120px;
 }
 
 .icon.favicon-technorati {
-	background-position: 0 -1152px;
+    background-position: 0 -1152px;
 }
 
 .icon.favicon-google {
-	background-position: 0 -1184px;
+    background-position: 0 -1184px;
 }
 
 .icon.favicon-askjeeves {
-	background-position: 0 -1216px;
+    background-position: 0 -1216px;
 }
 
 .icon.edit-clock,
 .icon.edit-clock-0 {
-	background-position: 0 -1248px;
+    background-position: 0 -1248px;
 }
 
 .icon.edit-clock-1 {
-	background-position: 0 -1280px;
+    background-position: 0 -1280px;
 }
 
 .icon.edit-clock-2 {
-	background-position: 0 -1312px;
+    background-position: 0 -1312px;
 }
 
 .icon.edit-clock-3 {
-	background-position: 0 -1344px;
+    background-position: 0 -1344px;
 }
 
 .icon.edit-clock-4 {
-	background-position: 0 -1376px;
+    background-position: 0 -1376px;
 }
 
 .icon.edit-clock-5 {
-	background-position: 0 -1408px;
+    background-position: 0 -1408px;
 }
 
 .icon.edit-clock-6 {
-	background-position: 0 -1440px;
+    background-position: 0 -1440px;
 }
 
 .icon.edit-clock-7 {
-	background-position: 0 -1472px;
+    background-position: 0 -1472px;
 }
 
 .icon.edit-clock-iddqd {
-	background-position: 0 -1504px;
+    background-position: 0 -1504px;
 }
 
 .icon.play {
-	background-position: 0 -1536px;
+    background-position: 0 -1536px;
 }
 
 .icon.pause {
-	background-position: 0 -1568px;
+    background-position: 0 -1568px;
 }
 
 .icon.logout {
-	background-position: 0 -1600px;
+    background-position: 0 -1600px;
 }
 
 .icon.info-mini {
-	background-position: -3px -1634px;
+    background-position: -3px -1634px;
 }
 
 .icon.vote-up {
-	background-position: -2px -1668px;
+    background-position: -2px -1668px;
 }
 
 .icon.vote-down {
-	background-position: -2px -1700px;
+    background-position: -2px -1700px;
 }
 
 .icon.voted-up {
-	background-position: -2px -1732px;
+    background-position: -2px -1732px;
 }
 
 .icon.voted-down {
-	background-position: -2px -1766px;
+    background-position: -2px -1766px;
 }
 
 .icon.bold {
-	background-position: 0 -1794px;
+    background-position: 0 -1794px;
 }
 
 .icon.italic {
-	background-position: 0 -1826px;
+    background-position: 0 -1826px;
 }
 
 .icon.mozilla,
 .icon.mozilla-firefox,
 .icon.firefox {
-	background-position: 0 -1858px;
+    background-position: 0 -1858px;
 }
 
 .icon.message-sent {
-	background-position: 0 -1890px;
+    background-position: 0 -1890px;
 }
 
 .icon.error {
-	background-position: 0 -1922px;
+    background-position: 0 -1922px;
 }
 
 .icon.mglass-mini {
-	background-position: 0 -1954px;
+    background-position: 0 -1954px;
 }
 
 .icon.favicon-twitter {
-	background: url(/img/iconos/twitter.ico) 1px center no-repeat;
+    background: url(/img/iconos/twitter.ico) 1px center no-repeat;
 }
 
 .icon.favicon-facebook {
-	background-position: 0 -2018px;
+    background-position: 0 -2018px;
 }
 
 .icon.favicon-friendfeed {
-	background-position: 0 -2050px;
+    background-position: 0 -2050px;
 }
 
 .icon.favicon-bitacoras {
-	background-position: 0 -2082px;
+    background-position: 0 -2082px;
 }
 
 .icon.favicon-myspace {
-	background-position: 0 -2114px;
+    background-position: 0 -2114px;
 }
 
 .icon.hourglass,
 .icon.hglass,
 a .hglass {
-	background-position: 0 -2146px;
+    background-position: 0 -2146px;
 }
 
 .icon.permalink-mini {
-	background-position: -3px -2180px;
+    background-position: -3px -2180px;
 }
 
 .icon.comment-reply {
-	background-position: 0 -2210px;
+    background-position: 0 -2210px;
 }
 
 .icon.arrow-down {
-	background-position: 0 -2242px;
+    background-position: 0 -2242px;
 }
 
 .icon.sneak-connected {
-	background-position: 0 -2274px;
+    background-position: 0 -2274px;
 }
 
 .icon.add {
-	background-position: 0 -2305px;
+    background-position: 0 -2305px;
 }
 
 .icon.strikethrough,
 .icon.strikethru,
 .icon.strike {
-	background-position: 0 -2338px;
+    background-position: 0 -2338px;
 }
 
 .icon.edit-mini {
-	background-position: 0 -2370px;
-	width: 12px;
-	height: 11px;
+    background-position: 0 -2370px;
+    width: 12px;
+    height: 11px;
 }
 
 .icon.thumb-up {
-	background-position: 0 -2466px;
+    background-position: 0 -2466px;
 }
 
 .icon.thumb-down {
-	background-position: 0 -2498px;
+    background-position: 0 -2498px;
 }
 
 .icon.thumb-voted-up {
-	background-position: 0 -2402px;
+    background-position: 0 -2402px;
 }
 
 .icon.thumb-voted-down {
-	background-position: 0 -2434px;
+    background-position: 0 -2434px;
 }
 
 .icon.favicon-tuenti {
-	background-position: 0 -2530px;
+    background-position: 0 -2530px;
 }
 
 .icon.spinner {
-	background: url(/img/iconos/spinner.gif);
+    background: url(/img/iconos/spinner.gif);
 }
 
 .x-error {
-	background: red !important;
+    background: red !important;
 }
 
 .icon.sneak-icon {
-	background: url(/img/iconos/coti.png);
-	width: 24px;
-	height: 20px;
+    background: url(/img/iconos/coti.png);
+    width: 24px;
+    height: 20px;
 }
 
 .icon.sneak-icon.vote-published {
-	background-position: 0 -140px;
+    background-position: 0 -140px;
 }
 
 .icon.sneak-icon.vote-queued {
-	background-position: 0 -100px;
+    background-position: 0 -100px;
 }
 
 .icon.sneak-icon.comment-new {
-	background-position: 0 0;
+    background-position: 0 0;
 }
 
 .icon.sneak-icon.comment-edit {
-	background-position: 0 -20px;
+    background-position: 0 -20px;
 }
 
 .icon.sneak-icon.story-new {
-	background-position: 0 -40px;
+    background-position: 0 -40px;
 }
 
 .icon.sneak-icon.story-published {
-	background-position: 0 -120px;
+    background-position: 0 -120px;
 }
 
 .icon.sneak-icon.chat {
-	background-position: 0 -180px;
+    background-position: 0 -180px;
 }
 
 .icon.sneak-icon.post-new {
-	background-position: 0 -220px;
+    background-position: 0 -220px;
 }
 
 .icon.sneak-icon.geo-edit {
-	background-position: 0 -80px;
+    background-position: 0 -80px;
 }
 
 .icon.sneak-icon.story-discarded {
-	background-position: 0 -160px;
+    background-position: 0 -160px;
 }
 
 .icon.sneak-icon.vote-negative {
-	background-position: 0 -200px;
+    background-position: 0 -200px;
 }
 
 .icon.sneak-icon.poll-new {
-	background-position: 0 -240px;
+    background-position: 0 -240px;
 }
 
 .icon.sneak-icon.story-edit {
-	background-position: 0 -60px;
+    background-position: 0 -60px;
 }
 /*
  * FancyBox - jQuery Plugin
  * Simple and fancy lightbox alternative
  *
  * Examples and documentation at: http://fancybox.net
- * 
+ *
  * Copyright (c) 2008 - 2010 Janis Skarnelis
  * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
- * 
+ *
  * Version: 1.3.4 (11/11/2010)
  * Requires: jQuery v1.3+
  *
@@ -3755,308 +3755,308 @@ a .hglass {
  */
 
 #fancybox-loading {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	width: 40px;
-	height: 40px;
-	margin-top: -20px;
-	margin-left: -20px;
-	cursor: pointer;
-	overflow: hidden;
-	z-index: 1104;
-	display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin-top: -20px;
+    margin-left: -20px;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 1104;
+    display: none;
 }
 
 #fancybox-loading div {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 40px;
-	height: 480px;
-	background-image: url(/img/fancybox/fancybox.png);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 480px;
+    background-image: url(/img/fancybox/fancybox.png);
 }
 
 #fancybox-overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	z-index: 1100;
-	display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1100;
+    display: none;
 }
 
 #fancybox-tmp {
-	padding: 0;
-	margin: 0;
-	border: 0;
-	overflow: auto;
-	display: none;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    overflow: auto;
+    display: none;
 }
 
 #fancybox-wrap {
-	position: absolute;
-	top: 0;
-	left: 0;
-	padding: 20px;
-	z-index: 1101;
-	outline: none;
-	display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    z-index: 1101;
+    outline: none;
+    display: none;
 }
 
 #fancybox-outer {
-	position: relative;
-	width: 100%;
-	height: 100%;
-	background: #fff;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #fff;
 }
 
 #fancybox-content {
-	width: 0;
-	height: 0;
-	padding: 0;
-	outline: none;
-	position: relative;
-	overflow: hidden;
-	z-index: 1102;
-	border: 0px solid #fff;
+    width: 0;
+    height: 0;
+    padding: 0;
+    outline: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1102;
+    border: 0px solid #fff;
 }
 
 #fancybox-hide-sel-frame {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: transparent;
-	z-index: 1101;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: 1101;
 }
 
 #fancybox-close {
-	position: absolute;
-	top: -15px;
-	right: -15px;
-	width: 30px;
-	height: 30px;
-	background: transparent url(/img/fancybox/fancybox.png) -40px 0px;
-	cursor: pointer;
-	z-index: 1103;
-	display: none;
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 30px;
+    height: 30px;
+    background: transparent url(/img/fancybox/fancybox.png) -40px 0px;
+    cursor: pointer;
+    z-index: 1103;
+    display: none;
 }
 
 #fancybox-error {
-	color: #444;
-	font: normal 12px/20px Arial;
-	padding: 14px;
-	margin: 0;
+    color: #444;
+    font: normal 12px/20px Arial;
+    padding: 14px;
+    margin: 0;
 }
 
 #fancybox-img {
-	width: 100%;
-	height: 100%;
-	padding: 0;
-	margin: 0;
-	border: none;
-	outline: none;
-	line-height: 0;
-	vertical-align: top;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    border: none;
+    outline: none;
+    line-height: 0;
+    vertical-align: top;
 }
 
 #fancybox-frame {
-	width: 100%;
-	height: 100%;
-	border: none;
-	display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
 }
 
 #fancybox-left, #fancybox-right {
-	position: absolute;
-	bottom: 0px;
-	height: 100%;
-	width: 35%;
-	cursor: pointer;
-	outline: none;
-	background: transparent url(/img/fancybox/blank.gif);
-	z-index: 1102;
-	display: none;
+    position: absolute;
+    bottom: 0px;
+    height: 100%;
+    width: 35%;
+    cursor: pointer;
+    outline: none;
+    background: transparent url(/img/fancybox/blank.gif);
+    z-index: 1102;
+    display: none;
 }
 
 #fancybox-left {
-	left: 0px;
+    left: 0px;
 }
 
 #fancybox-right {
-	right: 0px;
+    right: 0px;
 }
 
 #fancybox-left-ico, #fancybox-right-ico {
-	position: absolute;
-	top: 50%;
-	left: -9999px;
-	width: 30px;
-	height: 30px;
-	margin-top: -15px;
-	cursor: pointer;
-	z-index: 1102;
-	display: block;
+    position: absolute;
+    top: 50%;
+    left: -9999px;
+    width: 30px;
+    height: 30px;
+    margin-top: -15px;
+    cursor: pointer;
+    z-index: 1102;
+    display: block;
 }
 
 #fancybox-left-ico {
-	background-image: url(/img/fancybox/fancybox.png);
-	background-position: -40px -30px;
+    background-image: url(/img/fancybox/fancybox.png);
+    background-position: -40px -30px;
 }
 
 #fancybox-right-ico {
-	background-image: url(/img/fancybox/fancybox.png);
-	background-position: -40px -60px;
+    background-image: url(/img/fancybox/fancybox.png);
+    background-position: -40px -60px;
 }
 
 #fancybox-left:hover, #fancybox-right:hover {
-	visibility: visible; /* IE6 */
+    visibility: visible; /* IE6 */
 }
 
 #fancybox-left:hover span {
-	left: 20px;
+    left: 20px;
 }
 
 #fancybox-right:hover span {
-	left: auto;
-	right: 20px;
+    left: auto;
+    right: 20px;
 }
 
 .fancybox-bg {
-	position: absolute;
-	padding: 0;
-	margin: 0;
-	border: 0;
-	width: 20px;
-	height: 20px;
-	z-index: 1001;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    width: 20px;
+    height: 20px;
+    z-index: 1001;
 }
 
 #fancybox-bg-n {
-	top: -20px;
-	left: 0;
-	width: 100%;
-	background-image: url(/img/fancybox/fancybox-x.png);
+    top: -20px;
+    left: 0;
+    width: 100%;
+    background-image: url(/img/fancybox/fancybox-x.png);
 }
 
 #fancybox-bg-ne {
-	top: -20px;
-	right: -20px;
-	background-image: url(/img/fancybox/fancybox.png);
-	background-position: -40px -162px;
+    top: -20px;
+    right: -20px;
+    background-image: url(/img/fancybox/fancybox.png);
+    background-position: -40px -162px;
 }
 
 #fancybox-bg-e {
-	top: 0;
-	right: -20px;
-	height: 100%;
-	background-image: url(/img/fancybox/fancybox-y.png);
-	background-position: -20px 0px;
+    top: 0;
+    right: -20px;
+    height: 100%;
+    background-image: url(/img/fancybox/fancybox-y.png);
+    background-position: -20px 0px;
 }
 
 #fancybox-bg-se {
-	bottom: -20px;
-	right: -20px;
-	background-image: url(/img/fancybox/fancybox.png);
-	background-position: -40px -182px; 
+    bottom: -20px;
+    right: -20px;
+    background-image: url(/img/fancybox/fancybox.png);
+    background-position: -40px -182px;
 }
 
 #fancybox-bg-s {
-	bottom: -20px;
-	left: 0;
-	width: 100%;
-	background-image: url(/img/fancybox/fancybox-x.png);
-	background-position: 0px -20px;
+    bottom: -20px;
+    left: 0;
+    width: 100%;
+    background-image: url(/img/fancybox/fancybox-x.png);
+    background-position: 0px -20px;
 }
 
 #fancybox-bg-sw {
-	bottom: -20px;
-	left: -20px;
-	background-image: url(/img/fancybox/fancybox.png);
-	background-position: -40px -142px;
+    bottom: -20px;
+    left: -20px;
+    background-image: url(/img/fancybox/fancybox.png);
+    background-position: -40px -142px;
 }
 
 #fancybox-bg-w {
-	top: 0;
-	left: -20px;
-	height: 100%;
-	background-image: url(/img/fancybox/fancybox-y.png);
+    top: 0;
+    left: -20px;
+    height: 100%;
+    background-image: url(/img/fancybox/fancybox-y.png);
 }
 
 #fancybox-bg-nw {
-	top: -20px;
-	left: -20px;
-	background-image: url(/img/fancybox/fancybox.png);
-	background-position: -40px -122px;
+    top: -20px;
+    left: -20px;
+    background-image: url(/img/fancybox/fancybox.png);
+    background-position: -40px -122px;
 }
 
 #fancybox-title {
-	font-family: Helvetica;
-	font-size: 12px;
-	z-index: 1102;
+    font-family: Helvetica;
+    font-size: 12px;
+    z-index: 1102;
 }
 
 .fancybox-title-inside {
-	padding-bottom: 10px;
-	text-align: center;
-	color: #333;
-	background: #fff;
-	position: relative;
+    padding-bottom: 10px;
+    text-align: center;
+    color: #333;
+    background: #fff;
+    position: relative;
 }
 
 .fancybox-title-outside {
-	padding-top: 10px;
-	color: #fff;
+    padding-top: 10px;
+    color: #fff;
 }
 
 .fancybox-title-over {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	color: #FFF;
-	text-align: left;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: #FFF;
+    text-align: left;
 }
 
 #fancybox-title-over {
-	padding: 10px;
-	background-image: url(/img/fancybox/fancy_title_over.png);
-	display: block;
+    padding: 10px;
+    background-image: url(/img/fancybox/fancy_title_over.png);
+    display: block;
 }
 
 .fancybox-title-float {
-	position: absolute;
-	left: 0;
-	bottom: -20px;
-	height: 32px;
+    position: absolute;
+    left: 0;
+    bottom: -20px;
+    height: 32px;
 }
 
 #fancybox-title-float-wrap {
-	border: none;
-	border-collapse: collapse;
-	width: auto;
+    border: none;
+    border-collapse: collapse;
+    width: auto;
 }
 
 #fancybox-title-float-wrap td {
-	border: none;
-	white-space: nowrap;
+    border: none;
+    white-space: nowrap;
 }
 
 #fancybox-title-float-left {
-	padding: 0 0 0 15px;
-	background: url(/img/fancybox/fancybox.png) -40px -90px no-repeat;
+    padding: 0 0 0 15px;
+    background: url(/img/fancybox/fancybox.png) -40px -90px no-repeat;
 }
 
 #fancybox-title-float-main {
-	color: #FFF;
-	line-height: 29px;
-	font-weight: bold;
-	padding: 0 0 3px 0;
-	background: url(/img/fancybox/fancybox-x.png) 0px -40px;
+    color: #FFF;
+    line-height: 29px;
+    font-weight: bold;
+    padding: 0 0 3px 0;
+    background: url(/img/fancybox/fancybox-x.png) 0px -40px;
 }
 
 #fancybox-title-float-right {
-	padding: 0 0 0 15px;
-	background: url(/img/fancybox/fancybox.png) -55px -90px no-repeat;
+    padding: 0 0 0 15px;
+    background: url(/img/fancybox/fancybox.png) -55px -90px no-repeat;
 }

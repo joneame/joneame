@@ -92,7 +92,7 @@ function onLoad(foo_lat, foo_lng, foo_zoom, foo_icontype) {
                                 GDownloadUrl(base_url+"geo/"+overlay.myType+".php?id="+overlay.myId, function(data, responseCode) {
                                         overlay.openInfoWindowHtml(data);
                                 });
-                        } 
+                        }
                 });
                 get_json();
         }

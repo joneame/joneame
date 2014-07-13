@@ -13,7 +13,7 @@ header('Pragma:');
 </head>
 <body>
  <script
-   src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/XdCommReceiver.js" 
+   src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/XdCommReceiver.js"
    type="text/javascript"></script>
 
 </body>

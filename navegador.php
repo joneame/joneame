@@ -3,7 +3,7 @@
 // David Martí <neikokz@gmail.com>.
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 include('config.php');
@@ -16,23 +16,23 @@ $ua = browser_info();
 $navegador = "fail";
 
 if ($ua['firefox'])
-	$navegador = "Firefox ".$ua['firefox'];
+    $navegador = "Firefox ".$ua['firefox'];
 if ($ua['shiretoko'])
-	$navegador = "Shiretoko ".$ua['shiretoko'];
+    $navegador = "Shiretoko ".$ua['shiretoko'];
 if ($ua['iceweasel'])
-	$navegador = "Iceweasel ".$ua['iceweasel'];
+    $navegador = "Iceweasel ".$ua['iceweasel'];
 if ($ua['msie'])
-	$navegador = "Internet Explorer ".$ua['msie'];
+    $navegador = "Internet Explorer ".$ua['msie'];
 if ($ua['opera'])
-	$navegador = "Opera ".$ua['opera'];
+    $navegador = "Opera ".$ua['opera'];
 if ($ua['chrome'])
-	$navegador = "Chrome ".$ua['chrome'];
+    $navegador = "Chrome ".$ua['chrome'];
 if ($ua['safari'])
-	$navegador = "Safari ".$ua['safari'];
+    $navegador = "Safari ".$ua['safari'];
 if ($ua['konqueror'])
         $navegador = "Konqueror ".$ua['konqueror'];
 if ($navegador == "fail")
-	$navegador = "un navegador desconocido :(";
+    $navegador = "un navegador desconocido :(";
 
 echo '<div id="singlewrap">';
 
@@ -43,17 +43,17 @@ echo '<fieldset class="fondo-caja espaciador">';
 echo 'Estás usando <strong>'.$navegador.'</strong>. ';
 
 if ($ua['firefox'] && $ua['firefox'] < 3)
-	navegador_incorrecto();
+    navegador_incorrecto();
 if ($ua['shiretoko'] && $ua['shiretoko'] < 3)
-	navegador_incorrecto();
+    navegador_incorrecto();
 if ($ua['iceweasel'] && $ua['iceweasel'] < 3)
-	navegador_incorrecto();
+    navegador_incorrecto();
 if ($ua['msie'] && $ua['msie'] < 7)
-	navegador_incorrecto();
+    navegador_incorrecto();
 if ($ua['opera'] && $ua['opera'] < 9)
-	navegador_incorrecto();
+    navegador_incorrecto();
 if ($ua['safari'] && $ua['safari'] < 3)
-	navegador_incorrecto();
+    navegador_incorrecto();
 if ($ua['konqueror'] && $ua['konqueror'] < 4)
         navegador_incorrecto();
 

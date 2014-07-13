@@ -3,7 +3,7 @@
 // Ricardo Galli <gallir at uib dot es> and the Jonéame Development Team (admin@joneame.net)
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 include('config.php');
@@ -58,43 +58,43 @@ var author = false;
 
 
 function toggle(what, field) {
-	eval(what +' = ! '+what);
-	load_xmls();
-	return false;
+    eval(what +' = ! '+what);
+    load_xmls();
+    return false;
 }
 
 function load_xmls() {
-	if (geo_marker_mgr)
-		geo_marker_mgr.clearMarkers();
-	if (published) {
-		geo_load_xml('link', 'published', 0);
-	}
-	if (queued) {
-		geo_load_xml('link', 'queued', 0);
-	}
-	if (author) {
-		geo_load_xml('author', '', 0);
-	}
+    if (geo_marker_mgr)
+        geo_marker_mgr.clearMarkers();
+    if (published) {
+        geo_load_xml('link', 'published', 0);
+    }
+    if (queued) {
+        geo_load_xml('link', 'queued', 0);
+    }
+    if (author) {
+        geo_load_xml('author', '', 0);
+    }
 }
 
 function onLoad(foo_lat, foo_lng, foo_zoom, foo_icontype) {
-	baseicon = new GIcon();
-	baseicon.iconSize = new GSize(20, 25);
-	baseicon.iconAnchor = new GPoint(10, 25);
-	baseicon.infoWindowAnchor = new GPoint(5, 1);
-	if (geo_basic_load(18, 15, 2)) {
-		geo_map.addControl(new GLargeMapControl());
-		// From http://gmaps-utility-library.googlecode.com/svn/trunk/markermanager/
-		geo_marker_mgr = new MarkerManager(geo_map, {trackMarkers:false});
-		load_xmls();
-		GEvent.addListener(geo_map, 'click', function (overlay, point) {
-			if (overlay && overlay.myId > 0) {
-				GDownloadUrl(base_url+"geo/"+overlay.myType+".php?id="+overlay.myId, function(data, responseCode) {
-					overlay.openInfoWindowHtml(data);
-				});
-			}
-		});
-	}
+    baseicon = new GIcon();
+    baseicon.iconSize = new GSize(20, 25);
+    baseicon.iconAnchor = new GPoint(10, 25);
+    baseicon.infoWindowAnchor = new GPoint(5, 1);
+    if (geo_basic_load(18, 15, 2)) {
+        geo_map.addControl(new GLargeMapControl());
+        // From http://gmaps-utility-library.googlecode.com/svn/trunk/markermanager/
+        geo_marker_mgr = new MarkerManager(geo_map, {trackMarkers:false});
+        load_xmls();
+        GEvent.addListener(geo_map, 'click', function (overlay, point) {
+            if (overlay && overlay.myId > 0) {
+                GDownloadUrl(base_url+"geo/"+overlay.myType+".php?id="+overlay.myId, function(data, responseCode) {
+                    overlay.openInfoWindowHtml(data);
+                });
+            }
+        });
+    }
 }
 //]]>
 </script>

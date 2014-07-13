@@ -3,7 +3,7 @@
 // Jonéame Development Team (admin@joneame.net)
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 require_once(mnminclude.'user.php');
@@ -15,15 +15,15 @@ $corto = new Corto;
 $corto->get_random();
 
 if ($corto->aux->status) {
-	$izena = $corto->aux->value2;
+    $izena = $corto->aux->value2;
 } else {
-	$izena = '<a href='.get_user_uri($corto->por, 'cortos').' target="_blank">'.$corto->por.'</a>';
+    $izena = '<a href='.get_user_uri($corto->por, 'cortos').' target="_blank">'.$corto->por.'</a>';
 }
 
 $info =  _('v').': <span id="vc-'.$corto->id.'">'.$corto->votos.'</span>, '._('c').': <span id="vk-'.$corto->id.'">'.$corto->carisma.'</span>';
 
 if ($current_user->user_id > 0 && $corto->id_autor != $current_user->user_id) {
-	$corto->iconos_votos();
+    $corto->iconos_votos();
 }
 
 echo ' <a href="'.get_corto_uri($corto->id).'" class="moar">';
@@ -36,12 +36,12 @@ $cortado = text_sub_text($texto, 115);
 echo $izena.': '.$cortado;
 
 if (strlen($cortado) < strlen($texto)) {
-	echo ' <a href="'.get_corto_uri($corto->id).'" class="moar">[Más]</a>';
+    echo ' <a href="'.get_corto_uri($corto->id).'" class="moar">[Más]</a>';
 }
 
 if ($corto->votos > 0) {
-	echo '<span>';
+    echo '<span>';
 
-	$corto->info_votos();
-	echo ' '.$info.'</span>';
+    $corto->info_votos();
+    echo ' '.$info.'</span>';
 }

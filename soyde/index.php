@@ -3,18 +3,18 @@
 // David Martí <neikokz@gmail.com>
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 // Cada frase debe comenzar en mayúsculas y no ser finalizada con un punto (será añadido después) --neiKo
 
 $soyde_mensajes = array (
-	"Yo no joneo gatos ni pr0n,<br />yo joneo REDES",
-	"Voto mafia a cada noticia interesante<br />que es enviada",
-	"Exijo mis joneos de gatitos diarios",
-	"Me paso media vida en /b/",
-	"Cuando nos hacen spam, hay redada",
-	"Lo veo todo de color azul"
+    "Yo no joneo gatos ni pr0n,<br />yo joneo REDES",
+    "Voto mafia a cada noticia interesante<br />que es enviada",
+    "Exijo mis joneos de gatitos diarios",
+    "Me paso media vida en /b/",
+    "Cuando nos hacen spam, hay redada",
+    "Lo veo todo de color azul"
 );
 
 $i = rand(0, count($soyde_mensajes) - 1);
@@ -88,10 +88,10 @@ a:hover {
     <!-- <h2>liada parda</h2> -->
 
     <div class="foot">
-      <? echo $soy_joneante; ?>.<br/><strong>Soy Joneante.</strong><br/><br/>      
-      
+      <? echo $soy_joneante; ?>.<br/><strong>Soy Joneante.</strong><br/><br/>
+
       <div class="contacto">
-	<a href="javascript:location.reload();">Recargar</a>
+    <a href="javascript:location.reload();">Recargar</a>
       </div>
     </div>
   </div>

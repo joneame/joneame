@@ -3,7 +3,7 @@
 // Ricardo Galli <gallir at uib dot es> and the Jonéame Development Team (admin@joneame.net)
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 require_once (mnminclude.'sphinxapi.php');
@@ -23,18 +23,18 @@ function sphinx_do_search($by_date = false, $start = 0, $count = 50) {
     global $globals;
 
     $start_time = microtime(true);
-    
+
 
 /*    switch($_REQUEST['w']) {
-	case 'posts':
-	$indices = $_REQUEST['w'];
-	break;
-	case 'links':
-	$indices = $_REQUEST['w'];
-	break;
-	default:*/
-    	$indices = $_REQUEST['w'].' '.$_REQUEST['w'].'_delta';
-/*	break;
+    case 'posts':
+    $indices = $_REQUEST['w'];
+    break;
+    case 'links':
+    $indices = $_REQUEST['w'];
+    break;
+    default:*/
+        $indices = $_REQUEST['w'].' '.$_REQUEST['w'].'_delta';
+/*    break;
     }*/
     $cl = new SphinxClient ();
     $cl->SetServer ($globals['sphinx_server'], $globals['sphinx_port']);
@@ -128,7 +128,7 @@ function sphinx_do_search($by_date = false, $start = 0, $count = 50) {
             }
         }
     }
-	//var_dump($response);
+    //var_dump($response);
     $response['time'] = microtime(true) - $start_time;
     return $response;
 }
@@ -164,7 +164,7 @@ function db_get_search_links($by_date = false, $start = 0, $count = 50) {
         $hours = intval($_REQUEST['h']);
         $where .= " and link_date > date_sub(now(), interval $hours hour)";
     }
-    if ($where && $from) { 
+    if ($where && $from) {
         $sql = "select link_id from $from where $where $order limit $start,$count";
         $response['rows'] = $db->get_var("select count(*) from $from where $where");
         if ($response['rows'] > 0) {
@@ -218,7 +218,7 @@ function search_parse_query() {
                 $_REQUEST['p'] = 'tags';
                 break;
         }
-    } 
+    }
 
 
     // Check filters and clean

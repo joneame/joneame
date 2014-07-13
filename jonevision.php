@@ -3,7 +3,7 @@
 // Jon Arano <arano.jon@gmail.com>, Aritz Olea <aritz@itxaropena.org>
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 include('config.php');
@@ -20,79 +20,79 @@ echo '<div class="genericform">'; // gotta hate u!
 
 $canciones = $db->get_results("SELECT id FROM jonevision ORDER BY puntos DESC LIMIT 16");
 
-/* 
+/*
 
-	echo '<div id="singlewrap">';
-	echo '<h2 class="faq-title">Votaciones</h2><br/>';
-	echo '<div class="faq" style="margin: 0 30px 75px 150px;">';
-	
-	echo '<h3><img src="'.get_cover_pixel().'" style="margin-top: 8px;" class="icon info"/><strong> Cosas que debes saber antes de votar</strong></h3></br>';
-	
-	echo '<p>-Utilizaremos el clásico sistema de eurovisión. 12 al que más y 0 al que menos.</p><p>-Hay 14 canciones osea que a 6 canciones debes darle 0 puntos.</p>-Recuerda que no podrás cambiar tu voto, osea que piénsatelo bien.</p><p>-Si eres participante NO puedes votarte a ti mismo, pon 0 puntos a las tuyas y reparte los puntos entre los demás.';
-	
-	echo '<h3><img src="'.get_cover_pixel().'" style="margin-top: 8px;" class="icon info"/><strong> El premio</strong></h3></br>';
-	echo '<p>-El usuario ganador (en caso de ser anónimo, será para el primer usuario "conocido") se llevará <strong>gratis</strong> una camiseta de Jonéame (firmada por Jonarano)</p>';
-	
-	echo '<h3><img src="'.get_cover_pixel().'" style="margin-top: 8px;" class="icon info"/><strong> Cómo votar</strong></h3></br>';
+    echo '<div id="singlewrap">';
+    echo '<h2 class="faq-title">Votaciones</h2><br/>';
+    echo '<div class="faq" style="margin: 0 30px 75px 150px;">';
 
-	echo '<p>-Selecciona la puntuación deseada para cada canción (6 DEBEN ser 0). Asegúrate que no repites puntuaciones, sino tendrás que volver a empezar. Una vez has terminado, pulsa el botón "¡Trampolín a la fama!"</p>';
+    echo '<h3><img src="'.get_cover_pixel().'" style="margin-top: 8px;" class="icon info"/><strong> Cosas que debes saber antes de votar</strong></h3></br>';
 
-	echo '<h3><img src="'.get_cover_pixel().'" style="margin-top: 8px;" class="icon info"/><strong> Dudas</strong></h3></br>';
-	echo '<p>-Si todavía tienes dudas ponte en contacto con nosotros antes de votar en la <a href="cotillona.php">cotillona</a> o lee <a href="http://blog.joneame.net/2010/12/10/jonevision-votacione/"> nuestro blog</a> </p>';
+    echo '<p>-Utilizaremos el clásico sistema de eurovisión. 12 al que más y 0 al que menos.</p><p>-Hay 14 canciones osea que a 6 canciones debes darle 0 puntos.</p>-Recuerda que no podrás cambiar tu voto, osea que piénsatelo bien.</p><p>-Si eres participante NO puedes votarte a ti mismo, pon 0 puntos a las tuyas y reparte los puntos entre los demás.';
 
-	echo '<br/>';
-	
-	echo '<h3><img src="'.get_cover_pixel().'" style="margin-top: 8px;" class="icon info"/><strong> ¿Y las canciones?</strong></h3></br>';
-	echo '<p>-Echa un vistazo a las canciones si estás indeciso o no las recuerdas.</p>';
-		
+    echo '<h3><img src="'.get_cover_pixel().'" style="margin-top: 8px;" class="icon info"/><strong> El premio</strong></h3></br>';
+    echo '<p>-El usuario ganador (en caso de ser anónimo, será para el primer usuario "conocido") se llevará <strong>gratis</strong> una camiseta de Jonéame (firmada por Jonarano)</p>';
+
+    echo '<h3><img src="'.get_cover_pixel().'" style="margin-top: 8px;" class="icon info"/><strong> Cómo votar</strong></h3></br>';
+
+    echo '<p>-Selecciona la puntuación deseada para cada canción (6 DEBEN ser 0). Asegúrate que no repites puntuaciones, sino tendrás que volver a empezar. Una vez has terminado, pulsa el botón "¡Trampolín a la fama!"</p>';
+
+    echo '<h3><img src="'.get_cover_pixel().'" style="margin-top: 8px;" class="icon info"/><strong> Dudas</strong></h3></br>';
+    echo '<p>-Si todavía tienes dudas ponte en contacto con nosotros antes de votar en la <a href="cotillona.php">cotillona</a> o lee <a href="http://blog.joneame.net/2010/12/10/jonevision-votacione/"> nuestro blog</a> </p>';
+
+    echo '<br/>';
+
+    echo '<h3><img src="'.get_cover_pixel().'" style="margin-top: 8px;" class="icon info"/><strong> ¿Y las canciones?</strong></h3></br>';
+    echo '<p>-Echa un vistazo a las canciones si estás indeciso o no las recuerdas.</p>';
+
 }
 */
 $puesto = 1;
-	foreach ($canciones as $jonevision){
-		$cancion = new Jonevision;
-		$cancion->id = $jonevision->id;
-		$cancion->read();
-		echo 'Puesto '.$puesto.'<br/>';
-		$puesto = $puesto +1;
-		$cancion->print_jonevision();
-		echo "\n";
-	}
+    foreach ($canciones as $jonevision){
+        $cancion = new Jonevision;
+        $cancion->id = $jonevision->id;
+        $cancion->read();
+        echo 'Puesto '.$puesto.'<br/>';
+        $puesto = $puesto +1;
+        $cancion->print_jonevision();
+        echo "\n";
+    }
 
-/* 
-if ($current_user->user_id == 1){ 
+/*
+if ($current_user->user_id == 1){
 
-	echo '<h3><img src="'.get_cover_pixel().'" style="margin-top: 8px;" class="icon info"/><strong> Lo importante</strong></h3></br>';
-	echo '<p>-Aquí tienes tu libreta. Piénsatelo bien y asegúrate que todo sea correcto (acuérdate que no puedes cambiar el voto).</p>';
-	echo '<h3><img src="'.get_cover_pixel().'" style="margin-top: 8px;" class="icon info"/><strong> ¡Que gane el mejor!</strong></h3></br>';
+    echo '<h3><img src="'.get_cover_pixel().'" style="margin-top: 8px;" class="icon info"/><strong> Lo importante</strong></h3></br>';
+    echo '<p>-Aquí tienes tu libreta. Piénsatelo bien y asegúrate que todo sea correcto (acuérdate que no puedes cambiar el voto).</p>';
+    echo '<h3><img src="'.get_cover_pixel().'" style="margin-top: 8px;" class="icon info"/><strong> ¡Que gane el mejor!</strong></h3></br>';
 
-	$canciones = $db->get_results("SELECT id FROM jonevision ORDER BY id");
-	echo '<form action="votajonea.php" method="POST">';
-		foreach ($canciones as $jonevision){
-			$cancion = new Jonevision;
-			$cancion->id = $jonevision->id;
-			$cancion->read();
-	echo '<p><select name="'.$cancion->id.'"';
+    $canciones = $db->get_results("SELECT id FROM jonevision ORDER BY id");
+    echo '<form action="votajonea.php" method="POST">';
+        foreach ($canciones as $jonevision){
+            $cancion = new Jonevision;
+            $cancion->id = $jonevision->id;
+            $cancion->read();
+    echo '<p><select name="'.$cancion->id.'"';
 
-		$n = array('-1', '0', '1', '2', '3', '4', '5', '6', '7', '8', '10', '12');
+        $n = array('-1', '0', '1', '2', '3', '4', '5', '6', '7', '8', '10', '12');
 
-		foreach ($n as $m){
+        foreach ($n as $m){
 
-		if ($m == 0) $selected = "selected='selected'";
-			else $selected = '';
-		if ($m == 1) $puntos = "punto";
-		else $puntos = "puntos";
-	echo '<option value="'.$m.'" '.$selected.'>'.$m.' '.$puntos.'</option>';
-	
-		}
+        if ($m == 0) $selected = "selected='selected'";
+            else $selected = '';
+        if ($m == 1) $puntos = "punto";
+        else $puntos = "puntos";
+    echo '<option value="'.$m.'" '.$selected.'>'.$m.' '.$puntos.'</option>';
 
-	echo '</select> ';
-	echo '<strong>'.$cancion->titulo.'</strong> por '.$cancion->login.'</p>';
-	echo "\n";
-		}
-	
-	echo '<br/><br/><input type="submit" value="¡Trampolín a la fama!"><br/>';
-	echo '<input type="hidden" name="user_id" value="'.$current_user->user_id.'">'."\n";
-	echo '</div></div>';
+        }
+
+    echo '</select> ';
+    echo '<strong>'.$cancion->titulo.'</strong> por '.$cancion->login.'</p>';
+    echo "\n";
+        }
+
+    echo '<br/><br/><input type="submit" value="¡Trampolín a la fama!"><br/>';
+    echo '<input type="hidden" name="user_id" value="'.$current_user->user_id.'">'."\n";
+    echo '</div></div>';
 
 }*/
 

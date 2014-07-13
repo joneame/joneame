@@ -3,7 +3,7 @@
 // Jonéame Development Team (admin@joneame.net)
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 class Dupe {
@@ -25,7 +25,7 @@ class Dupe {
     function link(){
 
         if ($this->dupe) return $this->duplicate;
-        
+
         return false;
     }
 
@@ -45,27 +45,27 @@ class Dupe {
         return true;
 
         return false;
-    
-    
+
+
     }
 
     function insert_duplicated_url(){
-		global $db;
+        global $db;
 
-		if ($db->query("INSERT into duplicates (link_id, duplicate) VALUES ($this->id, '$this->duplicated')")) return true;
-		
-		return false;
+        if ($db->query("INSERT into duplicates (link_id, duplicate) VALUES ($this->id, '$this->duplicated')")) return true;
+
+        return false;
 
     }
 
     function edit_link(){
-	global $db;
+    global $db;
 
-	if ($db->query("UPDATE duplicates SET duplicate='$this->duplicated' WHERE link_id=$this->id")) return true;
-		
-		return false;
+    if ($db->query("UPDATE duplicates SET duplicate='$this->duplicated' WHERE link_id=$this->id")) return true;
 
-	}
+        return false;
+
+    }
 
 }
 

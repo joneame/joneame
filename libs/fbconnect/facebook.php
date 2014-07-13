@@ -151,7 +151,7 @@ class Facebook {
     // then fall back to cookies, which may have cached user information
     // Cookies are also used to receive session data via the Javascript API
 
-	/************ Commented out by gallir
+    /************ Commented out by gallir
     else if ($cookies =
              $this->get_valid_fb_params($_COOKIE, null, $this->api_key)) {
 
@@ -167,7 +167,7 @@ class Facebook {
                       $cookies['session_key'],
                       $expires);
     }
-	************/
+    ************/
 
     // finally, if we received no parameters, but the 'auth_token' GET var
     // is present, then we are in the middle of auth handshake,

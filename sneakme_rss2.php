@@ -3,7 +3,7 @@
 // Ricardo Galli <gallir at uib dot es> and the Jonéame Development Team (admin@joneame.net)
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 include('config.php');
@@ -14,7 +14,7 @@ if(!empty($_REQUEST['rows'])) {
     $rows = intval($_REQUEST['rows']);
     if ($rows > 300) $rows = 100; //avoid abuses
 } else $rows = 100;
-    
+
 $if_modified = get_if_modified();
 if ($if_modified) {
     if ($if_modified < time() - 250000) { // Last 3 days at most
@@ -105,12 +105,12 @@ if ($posts) {
         echo "      <pubDate>".date("r", $post->date)."</pubDate>\n";
         echo "      <dc:creator>$username</dc:creator>\n";
         echo "      <guid>http://".get_server_name().post_get_base_url($username).'/'.$post->id."</guid>\n";
-	if ($post->tipo != 'admin') {
-		// Insert GEO
-		if (($latlng = geo_latlng('user', $post->author))) {
-		echo "      <georss:point>$latlng->lat $latlng->lng</georss:point>\n";
-		}
-	}
+    if ($post->tipo != 'admin') {
+        // Insert GEO
+        if (($latlng = geo_latlng('user', $post->author))) {
+        echo "      <georss:point>$latlng->lat $latlng->lng</georss:point>\n";
+        }
+    }
         echo "      <description><![CDATA[$content";
         echo '</p><p>»&nbsp;'._('autor').': <strong>'.$username.'</strong></p>';
         echo "]]></description>\n";
@@ -123,10 +123,10 @@ if ($posts) {
 function do_header($title) {
     global $if_modified, $last_modified, $dblang, $globals;
 
-    if (!$last_modified > 0) { 
+    if (!$last_modified > 0) {
         if ($if_modified > 0)
             $last_modified = $if_modified;
-        else 
+        else
             $last_modified = time();
     }
     header('X-If-Modified: '. gmdate('D, d M Y H:i:s',$if_modified));
@@ -137,9 +137,9 @@ function do_header($title) {
     }
     header('Last-Modified: ' .  gmdate('D, d M Y H:i:s', $last_modified) . ' GMT');
     header('Content-type: text/xml; charset=UTF-8', true);
-   
+
     echo '<rss version="2.0" '."\n";
-   
+
     echo '  xmlns:content="http://purl.org/rss/1.0/modules/content/"'."\n";
     echo '  xmlns:wfw="http://wellformedweb.org/CommentAPI/"'."\n";
     echo '  xmlns:dc="http://purl.org/dc/elements/1.1/"'."\n";
@@ -149,7 +149,7 @@ function do_header($title) {
     echo '  <title>'.$title.'</title>'."\n";
     echo ' '."\n";
     echo '  <link>http://'.get_server_name().post_get_base_url().'</link>'."\n";
- 
+
     echo '  <description>'._('Sitio colaborativo de noticias nada serias').'</description>'."\n";
     echo '  <pubDate>'.date("r", $last_modified).'</pubDate>'."\n";
     echo '  <generator>http://blog.joneame.net/</generator>'."\n";

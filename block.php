@@ -3,7 +3,7 @@
 // Jonéame Development Team (admin@joneame.net)
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 include('config.php');
@@ -14,12 +14,12 @@ do_header(_('Sitio bloqueado - Blocked site | Jonéame'));
 
 <div id="singlewrap"><div class="genericform"><div class="genericform">
 <h4>Este sitio ha sido bloqueado - This site has been blocked</h4>
-<fieldset class="fondo-caja espaciador borde">Los enlaces desde este sitio han sido bloqueados por abuso o falta de 
+<fieldset class="fondo-caja espaciador borde">Los enlaces desde este sitio han sido bloqueados por abuso o falta de
 autorización.<br/><br/>
 <dt>Posibles razones:</dt>
-	<dd><b>1.</b> La web no está autorizada a enlazar este sitio web.</dd>
+    <dd><b>1.</b> La web no está autorizada a enlazar este sitio web.</dd>
         <dd><b>2.</b> Se han detectado abusos y se ha bloqueado el acceso.</dd>
-	<dd><b>3.</b> La administración ha decidido bloquear este sitio.</dd>
+    <dd><b>3.</b> La administración ha decidido bloquear este sitio.</dd>
 <dt>Sitio desde el cual intentas acceder:</dt>
 <dd><?php echo !empty($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'Desconocido'; ?></dd>
 <br/><br/>
@@ -30,9 +30,9 @@ Para acceder a Jonéame, haz clic <a href="http://joneame.net/">aquí.</a>
 Links from this site were blocked due to abuse or lack of autorization.
 <br/><br/>
 <dt>Possible reasons:</dt>
-	<dd><b>1.</b> The site is not autorized to link us.</dd>
+    <dd><b>1.</b> The site is not autorized to link us.</dd>
         <dd><b>2.</b> Abuses were detected so the access was blocked.</dd>
-	<dd><b>3.</b> Our administration decided to block this site.</dd>
+    <dd><b>3.</b> Our administration decided to block this site.</dd>
 <dt>Site from which you tried to access:</dt>
 <dd><?php echo !empty($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'Unknown'; ?></dd>
 <br/><br/>

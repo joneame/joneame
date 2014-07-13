@@ -3,7 +3,7 @@
 // Jonéame Development Team (admin@joneame.net)
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 include('../config.php');
@@ -15,33 +15,33 @@ header('Content-Type: text/plain; charset=UTF-8');
 $user = intval($_REQUEST['user']);
 
 if(check_ban_proxy()) {
-	error(_('IP no permitida'));
+    error(_('IP no permitida'));
 }
 
 if(!($id=check_integer('id'))) {
-	error(_('falta el ID del comentario'));
+    error(_('falta el ID del comentario'));
 }
 
 if(empty($user)) {
-	error(_('falta el código de usuario'));
+    error(_('falta el código de usuario'));
 }
 
 if($current_user->user_id != $user) {
-	error(_('usuario incorrecto'));
+    error(_('usuario incorrecto'));
 }
 
 if (empty($_REQUEST['value']) || ! is_numeric($_REQUEST['value'])) {
-	error(_('falta el valor del voto'));
+    error(_('falta el valor del voto'));
 }
 
 if ($current_user->user_karma < $globals['min_karma_for_comment_votes']) {
-	error(_('carisma demasiado bajo como para votar comentarios'));
+    error(_('carisma demasiado bajo como para votar comentarios'));
 }
 
 $value = intval($_REQUEST['value']);
 
 if ($value != -1 && $value != 1) {
-	error(_('valor del voto incorrecto'));
+    error(_('valor del voto incorrecto'));
 }
 
 
@@ -52,25 +52,25 @@ $vote->link=$id;
 $vote->aleatorio = false;
 
 if ($vote->exists()) {
-	error(_('ya has votado antes'));
+    error(_('ya has votado antes'));
 }
 
 if ($current_user->user_karma > 20) $vote->value = $value * 22;  //si tiene mas de 20 carisma el valor es siempre 21
 else $vote->value = $value * $current_user->user_karma; //sino el voto vale el carisma del usuario
- 
+
 $votes_info = $db->get_row("select autor, votos, carisma, UNIX_TIMESTAMP(fecha) as date from polls_comments where id=$id");
 
 
 if ($votes_info->autor == $current_user->user_id) {
-	error(_('no puedes votar a tus comentarios'));
+    error(_('no puedes votar a tus comentarios'));
 }
 
 if ($votes_info->date < time() - $globals['time_enabled_votes']) {
-	error(_('votos cerrados'.$votes_info->date));
+    error(_('votos cerrados'.$votes_info->date));
 }
 
 if (!$vote->insert()) {
-	error(_('ya has votado antes'));
+    error(_('ya has votado antes'));
 }
 
 
@@ -90,7 +90,7 @@ echo json_encode($dict);
 $db->query("update polls_comments set votos=votos+1, carisma=carisma+$vote->value where id=$id and autor != $current_user->user_id");
 
 function error($mess) {
-	$dict['error'] = $mess;
-	echo json_encode($dict);
-	die;
+    $dict['error'] = $mess;
+    echo json_encode($dict);
+    die;
 }

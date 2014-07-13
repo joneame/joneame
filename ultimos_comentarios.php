@@ -3,7 +3,7 @@
 // Jonéame Development Team (admin@joneame.net)
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 include('config.php');
@@ -15,28 +15,28 @@ $min_date = date("Y-m-d H:00:00", time() - 86000);
 
 $comments = $db->get_results("SELECT comment_id, link_id FROM comments,links WHERE comment_date > '$min_date' and link_id=comment_link_id ORDER BY comment_date DESC");
 
-	if ($comments) {
+    if ($comments) {
 
-		echo '<h2> Comentarios escritos las últimas 24 horas </h2><br/>';
-		echo '<ol class="comments-list">';
-		require_once(mnminclude.'comment.php');
-		require_once(mnminclude.'link.php');
+        echo '<h2> Comentarios escritos las últimas 24 horas </h2><br/>';
+        echo '<ol class="comments-list">';
+        require_once(mnminclude.'comment.php');
+        require_once(mnminclude.'link.php');
 
-		foreach($comments as $comment_id) {
-			
-			 if ($last_link != $comment_id->link_id) {
-				$link = Link::from_db($comment_id->link_id);
-				echo '<h4 class="izquierda">';
-				echo '<a href="'.$link->get_permalink().'">'. $link->title. '</a>';
-				echo ' ['.$link->comments.']';
-				echo '</h4>';
-				$last_link = $comment_id->link_id;
-			 }
+        foreach($comments as $comment_id) {
 
-                	$comment = Comment::from_db($comment_id->comment_id);
-			$comment->print_summary($link, 700, true);
-			echo "\n";
-		}
-		echo "</ol>\n";
-	}
+             if ($last_link != $comment_id->link_id) {
+                $link = Link::from_db($comment_id->link_id);
+                echo '<h4 class="izquierda">';
+                echo '<a href="'.$link->get_permalink().'">'. $link->title. '</a>';
+                echo ' ['.$link->comments.']';
+                echo '</h4>';
+                $last_link = $comment_id->link_id;
+             }
+
+                    $comment = Comment::from_db($comment_id->comment_id);
+            $comment->print_summary($link, 700, true);
+            echo "\n";
+        }
+        echo "</ol>\n";
+    }
 do_footer();

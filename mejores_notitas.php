@@ -3,7 +3,7 @@
 // Jonéame Development Team (admin@joneame.net)
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 include('config.php');
@@ -49,7 +49,7 @@ if (!empty($_GET['month']) && !empty($_GET['year']) && ($month = (int) $_GET['mo
         do_error(_('no hay notas seleccionadas'), 500);
         die;
     }
-  
+
 
 
 $globals['ads'] = true;
@@ -77,8 +77,8 @@ $nota->print_post_teaser($rss_option);
 echo '<ol class="notitas-list">';
 
 foreach ($notas as $dbpost) {
-	$nota = Post::from_db($dbpost->post_id);
-	$nota->print_summary();			
+    $nota = Post::from_db($dbpost->post_id);
+    $nota->print_summary();
 }
 
 echo "</ol>\n";
@@ -90,24 +90,24 @@ echo '</div>'."\n";
 do_footer();
 
 function print_period_tabs() { //funcion de la barra
-	global $range_values, $range_names, $month, $year;
+    global $range_values, $range_names, $month, $year;
 
-	if(!($current_range = check_integer('range')) || $current_range < 1 || $current_range >= count($range_values)) $current_range = 0;
-	echo '<ul class="tabsub-shakeit">'."\n";
-	if ($month> 0 && $year > 0) {
-		echo '<li class="tabsub-this"><a href="mejores_notitas.php?month='.$month.'&amp;year='.$year.'">' ."$month-$year". '</a></li>'."\n";
-		$current_range = -1;
-	} elseif(!($current_range = check_integer('range')) || $current_range < 1 || $current_range >= count($range_values)) {
-		$current_range = 0;
-	}
+    if(!($current_range = check_integer('range')) || $current_range < 1 || $current_range >= count($range_values)) $current_range = 0;
+    echo '<ul class="tabsub-shakeit">'."\n";
+    if ($month> 0 && $year > 0) {
+        echo '<li class="tabsub-this"><a href="mejores_notitas.php?month='.$month.'&amp;year='.$year.'">' ."$month-$year". '</a></li>'."\n";
+        $current_range = -1;
+    } elseif(!($current_range = check_integer('range')) || $current_range < 1 || $current_range >= count($range_values)) {
+        $current_range = 0;
+    }
 
-	for($i=0; $i<count($range_values) /* && $range_values[$i] < 60 */; $i++) {
-		if($i == $current_range)  {
-			$active = ' class="tabsub-this"';
-		} else {
-			$active = "";
-		}
-		echo '<li'.$active.'><a href="mejores_notitas.php?range='.$i.'">' .$range_names[$i]. '</a></li>'."\n";
-	}
-	echo '</ul>'."\n";
+    for($i=0; $i<count($range_values) /* && $range_values[$i] < 60 */; $i++) {
+        if($i == $current_range)  {
+            $active = ' class="tabsub-this"';
+        } else {
+            $active = "";
+        }
+        echo '<li'.$active.'><a href="mejores_notitas.php?range='.$i.'">' .$range_names[$i]. '</a></li>'."\n";
+    }
+    echo '</ul>'."\n";
 }

@@ -3,7 +3,7 @@
 // David Martí <neikokz@gmail.com>.
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 include('config.php');
@@ -12,12 +12,12 @@ include(mnminclude.'user.php');
 include(mnminclude.'cortos.class.php');
 
 if (!empty($globals['lounge_cortos'])) {
-	header('Location: http://'.get_server_name().$globals['base_url'].$globals['lounge_cortos']);
-	die;
+    header('Location: http://'.get_server_name().$globals['base_url'].$globals['lounge_cortos']);
+    die;
 }
 
 if (!$globals['cortos_activados'])
-	do_error('Cortos desactivados', 403, false);
+    do_error('Cortos desactivados', 403, false);
 
 $corto = new Corto;
 
@@ -37,11 +37,11 @@ if (!isset($_REQUEST['id']) && $globals['base_corto_url'] && $_SERVER['PATH_INFO
 }
 
 if ($corto->id)
-	$corto->get_single();
+    $corto->get_single();
 else {
-	$corto->get_random();
-	header('Location: ' . $corto->get_relative_individual_permalink());
-	die;
+    $corto->get_random();
+    header('Location: ' . $corto->get_relative_individual_permalink());
+    die;
 }
 
 if (!$corto->texto) do_error('el corto no existe', 404);

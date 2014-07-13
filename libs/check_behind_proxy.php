@@ -3,7 +3,7 @@
 // Ricardo Galli <gallir at uib dot es>
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 function isIPIn($ip,$net,$mask) {
@@ -29,30 +29,30 @@ function isPrivateIP($ip) {
 }
 
 function check_ip_behind_proxy() {
-	static $last_seen = '';
+    static $last_seen = '';
 
-	// Temporalely disabled, not useful
-	// return $_SERVER["REMOTE_ADDR"];
-	
-	if(!empty($last_seen) ) return $last_seen;
+    // Temporalely disabled, not useful
+    // return $_SERVER["REMOTE_ADDR"];
+    
+    if(!empty($last_seen) ) return $last_seen;
 
-	if (!empty($_SERVER["HTTP_X_FORWARDED_FOR"])) {
-		$user_ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
-	} else if (!empty($_SERVER["HTTP_CLIENT_IP"])) {
-		$user_ip = $_SERVER["HTTP_CLIENT_IP"];
-	} else {
-		$last_seen = $_SERVER["REMOTE_ADDR"];
-		return $last_seen;
-	}
+    if (!empty($_SERVER["HTTP_X_FORWARDED_FOR"])) {
+        $user_ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+    } else if (!empty($_SERVER["HTTP_CLIENT_IP"])) {
+        $user_ip = $_SERVER["HTTP_CLIENT_IP"];
+    } else {
+        $last_seen = $_SERVER["REMOTE_ADDR"];
+        return $last_seen;
+    }
 
-	$ips = preg_split('/[, ]/', $user_ip);
-	foreach ($ips as $last_seen) {
-		if (preg_match('/^[1-9]\d{0,2}\.(\d{1,3}\.){2}[1-9]\d{0,2}$/s', $last_seen)
-			&& !isPrivateIP($last_seen) ) {
-			return $last_seen;
-		}
-	}
+    $ips = preg_split('/[, ]/', $user_ip);
+    foreach ($ips as $last_seen) {
+        if (preg_match('/^[1-9]\d{0,2}\.(\d{1,3}\.){2}[1-9]\d{0,2}$/s', $last_seen)
+            && !isPrivateIP($last_seen) ) {
+            return $last_seen;
+        }
+    }
 
-	$last_seen = $_SERVER["REMOTE_ADDR"];
-	return $last_seen;
+    $last_seen = $_SERVER["REMOTE_ADDR"];
+    return $last_seen;
 }

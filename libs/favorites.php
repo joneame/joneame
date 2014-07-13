@@ -3,7 +3,7 @@
 // Ricardo Galli <gallir at uib dot es> and the Jonéame Development Team (admin@joneame.net)
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 define('FAV_YES', '<img src="'.get_cover_pixel().'" class="img-flotante icon heart-on" title="'._('en favoritos').'" alt="del"/>');
@@ -17,7 +17,7 @@ function favorite_icon($status, $type='link') {
             if ($status) return FAV_POST_YES;
             else return FAV_POST_NO;
             break;
-	case 'comment':
+    case 'comment':
             if ($status) return FAV_POST_YES;
             else return FAV_POST_NO;
             break;
@@ -44,7 +44,7 @@ function favorite_delete($user, $link, $type='link') {
 }
 
 function favorite_add_delete($user, $link, $type='link') {
-  
+
     if(favorite_exists($user, $link, $type)) {
         favorite_delete($user, $link, $type);
         return favorite_icon(false, $type);
@@ -55,7 +55,7 @@ function favorite_add_delete($user, $link, $type='link') {
 }
 
 function favorite_teaser($user, $link, $type='link') {
-   
+
     if (favorite_exists($user, $link, $type)) {
         return favorite_icon(true, $type);
     } else {

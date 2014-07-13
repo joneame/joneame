@@ -111,7 +111,7 @@ class SphinxClient
         $this->_host        = "localhost";
         $this->_port        = 6583;
 
-	
+
 
         // per-query settings
         $this->_offset      = 0;
@@ -183,7 +183,7 @@ class SphinxClient
             $this->_error = "expected searchd protocol version 1+, got version '$v'";
             return false;
         }
-	
+
         // all ok, send my version
         fwrite ( $fp, pack ( "N", 1 ) );
         return $fp;
@@ -251,7 +251,7 @@ class SphinxClient
             $this->_warning = sprintf ( "searchd command v.%d.%d older than client's v.%d.%d, some options might not work",
                 $ver>>8, $ver&0xff, $client_ver>>8, $client_ver&0xff );
         }
-	
+
 
         return $response;
     }
@@ -430,7 +430,7 @@ class SphinxClient
     /// WARNING: grouping is done in fixed memory and thus its results
     /// are only approximate; so there might be more groups reported
     /// in total_found than actually present. @count might also
-    /// be underestimated. 
+    /// be underestimated.
     ///
     /// for example, if sorting by relevance and grouping by "published"
     /// attribute with SPH_GROUPBY_DAY function, then the result set will
@@ -751,7 +751,7 @@ class SphinxClient
                     if ( $type==SPH_ATTR_FLOAT )
                     {
                         list(,$uval) = unpack ( "N*", substr ( $response, $p, 4 ) ); $p += 4;
-                        list(,$fval) = unpack ( "f*", pack ( "L", $uval ) ); 
+                        list(,$fval) = unpack ( "f*", pack ( "L", $uval ) );
                         $attrvals[$attr] = $fval;
                         continue;
                     }
@@ -792,7 +792,7 @@ class SphinxClient
                     "hits"=>sprintf ( "%u", $hits ) );
             }
         }
-	
+
         return $results;
     }
 

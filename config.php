@@ -3,15 +3,15 @@
 // Ricardo Galli <gallir at uib dot es> and the Jonéame Development Team (admin@joneame.net)
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 define("mnmpath", dirname(__FILE__));
 define("mnminclude", dirname(__FILE__).'/libs/');
 ini_set("include_path", '.:'.mnminclude.':'.mnmpath);
 
-$dblang			= 'es';
-$page_size		= 40;
+$dblang            = 'es';
+$page_size        = 40;
 $anonnymous_vote = true;
 $external_ads = true;
 
@@ -58,7 +58,7 @@ $globals['base_mensaje_url'] = 'postbox/';
 $globals['base_poll_comment_url'] = 'opinion/';
 
 // Memcache, set hostname if enabled
-$globals['memcache_host'] = ''; 
+$globals['memcache_host'] = '';
 $globals['memcache_port'] = ''; // optional
 
 // páginas comentarios
@@ -74,7 +74,7 @@ $globals['favicon'] = 'img/favicons/favicon-jnm.png';
 // tamaño thumbnails
 $globals['thumb_size'] = 70;
 
-// url del thumbnail 
+// url del thumbnail
 $globals['thumbnail_url'] = 'img/v2/no-avatar-80.png';
 
 // How many *global* links for last 3 minutes
@@ -189,7 +189,7 @@ $globals['pendientes_page_size'] = 40;
 //google maps API
 //$globals ['google_maps_api'] = '';
 
-// clave pública y privada de Recaptcha 
+// clave pública y privada de Recaptcha
 //$globals['recaptcha_public_key'] = '';
 //$globals['recaptcha_private_key'] = '';
 
@@ -202,35 +202,35 @@ $globals['pendientes_page_size'] = 40;
 
 /*
 $greetings = array('bienvenid@'=>'españolo y española ;-)','hola'=>'español','kaixo'=>'euskera',
-		'apa'=>'catalán','com va'=>'catalán','com vas'=>'catalán','cómo andás'=>'argentino','epa'=>'catalán',
-		'aupa'=>'euskera','ieup'=>'vasco','gñap'=>'gñapés','aiya'=>'sindarin','hello'=>'inglés',
-		'uep'=>'catalán','hey'=>'inglés','passa'=>'catalán','hi'=>'inglés','hunga hunga'=>'troglodita',
-		'salut'=>'francés','bonjour'=>'francés','hallo'=>'alemán','guten tag'=>'alemán','moin moin'=>'frisón',
-		'Dobrý de.'=>'eslovaco','helo'=>'SMTP','minjhani'=>'tsonga','kunjhani'=>'tsonga','ciao'=>'italiano',
-		'hej'=>'danés','god dag'=>'noruego','have a nice day'=>'inglés','as-salaam-aleykum'=>'Árabe',
-		'marhabah'=>'árabe','sabbah-el-khair'=>'árabe','salaam or do-rood'=>'árabe','namaste'=>'hindi',
-		'ahn nyeong ha se yo'=>'coreano','ahn nyeong'=>'coreano','goedendag'=>'neerlandés','priviet'=>'ruso',
-		'zdravstvuyte'=>'ruso','ni hao'=>'chino','nei ho'=>'chino','shalom'=>'hebreo','hei'=>'finés',
-		'oi'=>'portugués','olá'=>'portugués','hej'=>'sueco','god dag'=>'sueco','mingalarbar'=>'birmano',
-		'merhaba'=>'turco','ciao'=>'italiano','kumusta ka'=>'tagalo','saluton'=>'esperanto','vanakkam'=>'tamil',
-		'jambo'=>'swahili','mbote'=>'lingala','namaskar'=>'malayalam','dzie. dobry'=>'polaco','cze..'=>'polaco',
-		'aloha'=>'hawaiano','jo napot'=>'húngaro','szervusz'=>'húngaro','dobriy ranok'=>'ucraniano',
-		'labdien'=>'letón','sveiki'=>'letón','chau'=>'letón','hyv&auml;&auml; p&auml;iv&auml;'=>'finés','moi'=>'finés',
-		'hei'=>'finés','yia sou'=>'griego','yia sas'=>'griego','gó&eth;an dag'=>'islandés','h&aelig;'=>'islandés',
-		'ellohay'=>'pig latin','namaskkaram'=>'telugú','adaab'=>'urdu','baagunnara'=>'telugú','niltze'=>'náhuatl',
-		'hao'=>'náhuatl','bok'=>'croata','ya\'at\'eeh'=>'navajo','mer.ba'=>'maltés','mambo'=>'congo',
-		'salam aleikum'=>'senegalés','gr&uuml;zi'=>'alemán suizo','haj'=>'escandinavo','hall&aring;'=>'escandinavo',
-		'mo&iuml;en'=>'luxemburgués','talofa'=>'samoano','malo'=>'samoano','malo e lelei'=>'tongano',
-		'la orana'=>'tahitiano','kia ora'=>'maorí','buna ziua'=>'rumano','kem che'=>'guyaratí',
-		'namaskar'=>'canarés','kwe kwe'=>'tailandés','hola, oh'=>'asturiano','h&acirc;u'=>'nicolino',
-		'vary'=>'nicolino','Привет'=>'ruso','konnichiwa'=>'japonés','hello world'=>'holamundo',
-		'klaatu barada nikto'=>'el idioma de Klatu y Gort','ola'=>'gallego','boas'=>'gallego',
-		'bonos díes'=>'asturiano', 'hola karmorrero'=>'el idioma karmorrero','OLA HAMIJO'=>'HOYGAN',
-		'eres un serdo,'=>'oriolet', 'hola furcia'=>'el_fail',
-		'holaaaaaaaaaa genteeeee'=>'me_joneo_pensando_en_ti',
+        'apa'=>'catalán','com va'=>'catalán','com vas'=>'catalán','cómo andás'=>'argentino','epa'=>'catalán',
+        'aupa'=>'euskera','ieup'=>'vasco','gñap'=>'gñapés','aiya'=>'sindarin','hello'=>'inglés',
+        'uep'=>'catalán','hey'=>'inglés','passa'=>'catalán','hi'=>'inglés','hunga hunga'=>'troglodita',
+        'salut'=>'francés','bonjour'=>'francés','hallo'=>'alemán','guten tag'=>'alemán','moin moin'=>'frisón',
+        'Dobrý de.'=>'eslovaco','helo'=>'SMTP','minjhani'=>'tsonga','kunjhani'=>'tsonga','ciao'=>'italiano',
+        'hej'=>'danés','god dag'=>'noruego','have a nice day'=>'inglés','as-salaam-aleykum'=>'Árabe',
+        'marhabah'=>'árabe','sabbah-el-khair'=>'árabe','salaam or do-rood'=>'árabe','namaste'=>'hindi',
+        'ahn nyeong ha se yo'=>'coreano','ahn nyeong'=>'coreano','goedendag'=>'neerlandés','priviet'=>'ruso',
+        'zdravstvuyte'=>'ruso','ni hao'=>'chino','nei ho'=>'chino','shalom'=>'hebreo','hei'=>'finés',
+        'oi'=>'portugués','olá'=>'portugués','hej'=>'sueco','god dag'=>'sueco','mingalarbar'=>'birmano',
+        'merhaba'=>'turco','ciao'=>'italiano','kumusta ka'=>'tagalo','saluton'=>'esperanto','vanakkam'=>'tamil',
+        'jambo'=>'swahili','mbote'=>'lingala','namaskar'=>'malayalam','dzie. dobry'=>'polaco','cze..'=>'polaco',
+        'aloha'=>'hawaiano','jo napot'=>'húngaro','szervusz'=>'húngaro','dobriy ranok'=>'ucraniano',
+        'labdien'=>'letón','sveiki'=>'letón','chau'=>'letón','hyv&auml;&auml; p&auml;iv&auml;'=>'finés','moi'=>'finés',
+        'hei'=>'finés','yia sou'=>'griego','yia sas'=>'griego','gó&eth;an dag'=>'islandés','h&aelig;'=>'islandés',
+        'ellohay'=>'pig latin','namaskkaram'=>'telugú','adaab'=>'urdu','baagunnara'=>'telugú','niltze'=>'náhuatl',
+        'hao'=>'náhuatl','bok'=>'croata','ya\'at\'eeh'=>'navajo','mer.ba'=>'maltés','mambo'=>'congo',
+        'salam aleikum'=>'senegalés','gr&uuml;zi'=>'alemán suizo','haj'=>'escandinavo','hall&aring;'=>'escandinavo',
+        'mo&iuml;en'=>'luxemburgués','talofa'=>'samoano','malo'=>'samoano','malo e lelei'=>'tongano',
+        'la orana'=>'tahitiano','kia ora'=>'maorí','buna ziua'=>'rumano','kem che'=>'guyaratí',
+        'namaskar'=>'canarés','kwe kwe'=>'tailandés','hola, oh'=>'asturiano','h&acirc;u'=>'nicolino',
+        'vary'=>'nicolino','Привет'=>'ruso','konnichiwa'=>'japonés','hello world'=>'holamundo',
+        'klaatu barada nikto'=>'el idioma de Klatu y Gort','ola'=>'gallego','boas'=>'gallego',
+        'bonos díes'=>'asturiano', 'hola karmorrero'=>'el idioma karmorrero','OLA HAMIJO'=>'HOYGAN',
+        'eres un serdo,'=>'oriolet', 'hola furcia'=>'el_fail',
+        'holaaaaaaaaaa genteeeee'=>'me_joneo_pensando_en_ti',
                 'juguémos, '=>'jugador', 'viciémos, '=>'jugador',
-    
-	);
+
+    );
 */
 
 // For Facebook authentication
@@ -249,7 +249,7 @@ $site_key = 12345679;
 $globals['haanga_cache'] = 'haanga_cache/';
 
 // carisma de usuarios anónimos
-$anon_carisma	= 7;
+$anon_carisma    = 7;
 
 // Don't touch behind this
 
@@ -258,7 +258,7 @@ openlog(false, LOG_ODELAY, LOG_USER);
 
 // Set an utf-8 locale if there is no utf-8 defined
 if (!preg_match('/utf-8/i', setlocale(LC_CTYPE, 0)))  {
-	setlocale(LC_CTYPE, "en_US.UTF-8");
+    setlocale(LC_CTYPE, "en_US.UTF-8");
 }
 
 date_default_timezone_set('Europe/Madrid');
@@ -271,29 +271,29 @@ require mnminclude.'Haanga.php';
 
 /* Load template engine here */
 $hangaa_config = array('debug' => true,
-	'template_dir' => mnmpath.'/'.$globals['haanga_templates'],
-	'autoload'	 => TRUE, /* Don't use Haanga's autoloader */
-	'bootstrap'	=> 'haanga_bootstrap',
-	'compiler' => array( /* opts for the tpl compiler */
-		/* Avoid use if empty($var) */
-		'if_empty' => FALSE,
-		/* we're smart enought to know when escape :-) */
-		'autoescape' => FALSE,
-		/* let's save bandwidth */
-		'strip_whitespace' => TRUE,
-		/* call php functions from the template */
-		'allow_exec'  => TRUE,
-		/* global $global, $current_user for all templates */
-		'global' => array('globals', 'current_user'),
-	),
-	'use_hash_filename' => FALSE,
-	'cache_dir'=> mnmpath.'/'.$globals['cache_dir'].'/Haanga/'.$_SERVER['SERVER_NAME']
+    'template_dir' => mnmpath.'/'.$globals['haanga_templates'],
+    'autoload'     => TRUE, /* Don't use Haanga's autoloader */
+    'bootstrap'    => 'haanga_bootstrap',
+    'compiler' => array( /* opts for the tpl compiler */
+        /* Avoid use if empty($var) */
+        'if_empty' => FALSE,
+        /* we're smart enought to know when escape :-) */
+        'autoescape' => FALSE,
+        /* let's save bandwidth */
+        'strip_whitespace' => TRUE,
+        /* call php functions from the template */
+        'allow_exec'  => TRUE,
+        /* global $global, $current_user for all templates */
+        'global' => array('globals', 'current_user'),
+    ),
+    'use_hash_filename' => FALSE,
+    'cache_dir'=> mnmpath.'/'.$globals['cache_dir'].'/Haanga/'.$_SERVER['SERVER_NAME']
 );
 
 Haanga::configure($hangaa_config);
 
 /*function haanga_bootstrap()
 {
-	// bootstrap function, load our custom tags/filter 
-	require mnminclude.'haanga_jnm.php';
+    // bootstrap function, load our custom tags/filter
+    require mnminclude.'haanga_jnm.php';
 }*/

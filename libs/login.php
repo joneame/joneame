@@ -3,22 +3,22 @@
 // Ricardo Galli <gallir at uib dot es> and the Jonéame Development Team (admin@joneame.net)
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 class UserAuth {
-	var $user_id  = 0;
-	var $user_login = '';
-	var $user_email = '';
-	var $md5_pass = '';
-	var $authenticated = FALSE;
-	var $user_level='';
-	var $user_karma=0;
-	var $admin = false;
-	var $devel = false;
-	var $user_avatar=0;
-	var $mnm_user = False;
-	var $especial = false;
+    var $user_id  = 0;
+    var $user_login = '';
+    var $user_email = '';
+    var $md5_pass = '';
+    var $authenticated = FALSE;
+    var $user_level='';
+    var $user_karma=0;
+    var $admin = false;
+    var $devel = false;
+    var $user_avatar=0;
+    var $mnm_user = False;
+    var $especial = false;
 
 
     function UserAuth() {
@@ -52,8 +52,8 @@ class UserAuth {
                         $cookietime = 0;
                 }
 
-                if ( !$user || !$user->user_id > 0 || $key !== $userInfo[1] || 
-                    $user->user_level == 'disabled' || 
+                if ( !$user || !$user->user_id > 0 || $key !== $userInfo[1] ||
+                    $user->user_level == 'disabled' ||
                     empty($user->user_date)) {
                         $this->Logout();
                         return;
@@ -64,8 +64,8 @@ class UserAuth {
                 $this->md5_pass = $user->user_pass;
                 $this->user_level = $user->user_level;
                 if ($this->user_level == 'admin' || $this->user_level == 'god') $this->admin = true;
-		if ($this->user_level == 'admin' || $this->user_level == 'god' || $this->user_level == 'devel') $this->devel = true;
-		if ($this->user_level == 'special' || $this->user_level == 'devel') $this->especial = true;
+        if ($this->user_level == 'admin' || $this->user_level == 'god' || $this->user_level == 'devel') $this->devel = true;
+        if ($this->user_level == 'special' || $this->user_level == 'devel') $this->especial = true;
                 $this->user_karma = $user->user_karma;
                 $this->user_email = $user->user_email;
                 $this->user_avatar = $user->user_avatar;
@@ -73,7 +73,7 @@ class UserAuth {
                 $this->user_date = $user->user_date;
                 if ($this->user_id == 0) $this->thumb= 1;
                 else $this->thumb = $user->user_thumb;
-		$this->unread_messages = $this->unread_messages();
+        $this->unread_messages = $this->unread_messages();
                 $this->authenticated = TRUE;
 
                 if ($userInfo[2] != '3') { // Update the cookie to version 3
@@ -84,17 +84,17 @@ class UserAuth {
             }
         }
 
-	// Mysql variables to use en join queries
+    // Mysql variables to use en join queries
         $db->query("set @user_id = $this->user_id, @ip_int = ".$globals['user_ip_int'].
             ", @ip_int = ".$globals['user_ip_int'].
             ", @enabled_votes = date_sub(now(), interval ". intval($globals['time_enabled_votes']/3600). " hour)");
     }
 
     function unread_messages(){
-		global $db;
+        global $db;
 
-		return intval($db->get_var("SELECT count(*) FROM mezuak WHERE nori = '".$this->user_id."' AND irakurrita = '0' AND posta='recipient' "));
-	}
+        return intval($db->get_var("SELECT count(*) FROM mezuak WHERE nori = '".$this->user_id."' AND irakurrita = '0' AND posta='recipient' "));
+    }
 
     function SetIDCookie($what, $remember) {
         global $site_key, $globals;
@@ -121,8 +121,8 @@ class UserAuth {
         }
     }
 
-	function Authenticate($username, $hash, $remember=0/* Just this session */) {
-       	 global $db;
+    function Authenticate($username, $hash, $remember=0/* Just this session */) {
+            global $db;
 
         $dbusername=$db->escape($username);
         if (preg_match('/.+@.+\..+/', $username)) {
@@ -142,21 +142,21 @@ class UserAuth {
     }
 
     function Logout($url='./') {
-		$this->user_id = 0;
-		$this->user_login = "";
-		$this->authenticated = FALSE;
-		$this->SetIDCookie (0, false);
+        $this->user_id = 0;
+        $this->user_login = "";
+        $this->authenticated = FALSE;
+        $this->SetIDCookie (0, false);
 
-		//header("Pragma: no-cache");
-		header("Cache-Control: no-cache, must-revalidate");
-		header("Location: $url");
-		header("Expires: " . gmdate("r", $this->now - 3600));
-		header('ETag: "logingout' . $this->now . '"');
-		die;
+        //header("Pragma: no-cache");
+        header("Cache-Control: no-cache, must-revalidate");
+        header("Location: $url");
+        header("Expires: " . gmdate("r", $this->now - 3600));
+        header('ETag: "logingout' . $this->now . '"');
+        die;
     }
 
     function Date() {
-		return (int) $this->user_date;
+        return (int) $this->user_date;
     }
 
     function SetUserCookie($do_login) {

@@ -3,22 +3,22 @@
 // Ricardo Galli <gallir at uib dot es>.
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 if (! defined('mnmpath')) {
-	include('../config.php');
-	include(mnminclude.'html1.php');
-	include(mnminclude.'link.php');
-	require_once(mnminclude.'comment.php');
-} 
+    include('../config.php');
+    include(mnminclude.'html1.php');
+    include(mnminclude.'link.php');
+    require_once(mnminclude.'comment.php');
+}
 
 if (!empty($_REQUEST['id']) && is_numeric($_REQUEST['id'])) {
-	$id = intval($_REQUEST['id']);
-	$comment = Comment::from_db($id);
-	if (!$comment->read) die('KO:El comentario no existe');
+    $id = intval($_REQUEST['id']);
+    $comment = Comment::from_db($id);
+    if (!$comment->read) die('KO:El comentario no existe');
 } else {
-	die('KO:Error interno');
+    die('KO:Error interno');
 }
 
 $link = Link::from_db($comment->link);
@@ -26,87 +26,87 @@ $link = Link::from_db($comment->link);
 if (!$link->read) die('KO:La historia no existe');
 
 if ($_POST['process']=='editcomment') {
-	save_comment();
+    save_comment();
 } else {
-	print_edit_form();
+    print_edit_form();
 }
 
 function print_edit_form() {
-	global $link, $comment, $current_user, $site_key, $globals;
+    global $link, $comment, $current_user, $site_key, $globals;
 
-	if ($current_user->user_level != 'god' && time() - $comment->date > $globals['comment_edit_time']) die;
+    if ($current_user->user_level != 'god' && time() - $comment->date > $globals['comment_edit_time']) die;
 
-	$rows = min(40, max(substr_count($comment->content, "\n") * 2, 8));
-	echo '<div class="commentform">'."\n";
-	echo '<form action="'.htmlspecialchars($_SERVER['PHP_SELF']).'" method="post">'."\n";
-	echo '<fieldset class="fondo-caja redondo"><legend class="mini barra redondo">'._('editar comentario').'</legend>'."\n";
-	print_simpleformat_buttons('comment_'.$comment->id);
-	echo '<div style="clear: right"><textarea name="comment_content" id="comment_'.$comment->id.'" rows="'.$rows.'" cols="75">'.$comment->content.'</textarea></div>'."\n";
-	echo '<input class="button" type="button" id="submit_com_'.$comment->id.'" onClick="edit_comment('.$comment->id.');" name="submit" value="'._('editar comentario').'" />'."\n";
+    $rows = min(40, max(substr_count($comment->content, "\n") * 2, 8));
+    echo '<div class="commentform">'."\n";
+    echo '<form action="'.htmlspecialchars($_SERVER['PHP_SELF']).'" method="post">'."\n";
+    echo '<fieldset class="fondo-caja redondo"><legend class="mini barra redondo">'._('editar comentario').'</legend>'."\n";
+    print_simpleformat_buttons('comment_'.$comment->id);
+    echo '<div style="clear: right"><textarea name="comment_content" id="comment_'.$comment->id.'" rows="'.$rows.'" cols="75">'.$comment->content.'</textarea></div>'."\n";
+    echo '<input class="button" type="button" id="submit_com_'.$comment->id.'" onClick="edit_comment('.$comment->id.');" name="submit" value="'._('editar comentario').'" />'."\n";
 
-	echo '<img id="spinner_'.$comment->id.'" class="blank" src="'.$globals['base_url'].'img/estructura/pixel.gif" width="16" height="16"/>';
+    echo '<img id="spinner_'.$comment->id.'" class="blank" src="'.$globals['base_url'].'img/estructura/pixel.gif" width="16" height="16"/>';
 
-	// Allow gods to put "admin" comments which does not allow votes
-	if ($current_user->admin) {
-		$checked = 'checked="true"'; 
-		echo '<div style="float: right; margin-right: 10px;">';
-	} else {
-		echo '<div style="display: none;">';
-	}
-	if ($comment->type == 'admin') {
-		echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="type" type="checkbox" id="comentario-admin_'.$comment->id.'" '.$checked.'/>&nbsp;<label for="comentario-admin_'.$comment->id.'"><strong>'._('comentario admin').' </strong></label>'."\n";
-		echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="especial" type="checkbox" id="comentario-especial_'.$comment->id.'" '.$checked.'/>&nbsp;<label for="comentario-especial_'.$comment->id.'"><strong>'._('no mostrar mi nick').' </strong></label>'."\n";
-	} elseif ($comment->type == 'especial') {
-		echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="type" type="checkbox" id="comentario-admin_'.$comment->id.'" '.$checked.'/>&nbsp;<label for="comentario-admin_'.$comment->id.'"><strong>'._('comentario admin').' </strong></label>'."\n";
-		echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="especial" type="checkbox" id="comentario-especial_'.$comment->id.'"/>&nbsp;<label for="comentario-especial_'.$comment->id.'"><strong>'._('no mostrar mi nick').' </strong></label>'."\n";
-	} else {
-		echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="type" type="checkbox" id="comentario-admin_'.$comment->id.'"/>&nbsp;<label for="comentario-admin_'.$comment->id.'"><strong>'._('comentario admin').' </strong></label>'."\n";
-		echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="especial" type="checkbox" id="comentario-especial_'.$comment->id.'"/>&nbsp;<label for="comentario-especial_'.$comment->id.'"><strong>'._('no mostrar mi nick').' </strong></label>'."\n";
-	}
-	echo '</div>';
+    // Allow gods to put "admin" comments which does not allow votes
+    if ($current_user->admin) {
+        $checked = 'checked="true"';
+        echo '<div style="float: right; margin-right: 10px;">';
+    } else {
+        echo '<div style="display: none;">';
+    }
+    if ($comment->type == 'admin') {
+        echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="type" type="checkbox" id="comentario-admin_'.$comment->id.'" '.$checked.'/>&nbsp;<label for="comentario-admin_'.$comment->id.'"><strong>'._('comentario admin').' </strong></label>'."\n";
+        echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="especial" type="checkbox" id="comentario-especial_'.$comment->id.'" '.$checked.'/>&nbsp;<label for="comentario-especial_'.$comment->id.'"><strong>'._('no mostrar mi nick').' </strong></label>'."\n";
+    } elseif ($comment->type == 'especial') {
+        echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="type" type="checkbox" id="comentario-admin_'.$comment->id.'" '.$checked.'/>&nbsp;<label for="comentario-admin_'.$comment->id.'"><strong>'._('comentario admin').' </strong></label>'."\n";
+        echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="especial" type="checkbox" id="comentario-especial_'.$comment->id.'"/>&nbsp;<label for="comentario-especial_'.$comment->id.'"><strong>'._('no mostrar mi nick').' </strong></label>'."\n";
+    } else {
+        echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="type" type="checkbox" id="comentario-admin_'.$comment->id.'"/>&nbsp;<label for="comentario-admin_'.$comment->id.'"><strong>'._('comentario admin').' </strong></label>'."\n";
+        echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="especial" type="checkbox" id="comentario-especial_'.$comment->id.'"/>&nbsp;<label for="comentario-especial_'.$comment->id.'"><strong>'._('no mostrar mi nick').' </strong></label>'."\n";
+    }
+    echo '</div>';
 
-	echo '<br/><span id="error_com_'.$comment->id.'"></span>';
+    echo '<br/><span id="error_com_'.$comment->id.'"></span>';
 
-	echo '<input type="hidden" id="process_'.$comment->id.'" name="process_'.$comment->id.'" value="editcomment" />'."\n";
-	echo '<input type="hidden" id="key_'.$comment->id.'" name="key_'.$comment->id.'" value="'.md5($comment->randkey.$site_key).'" />'."\n";
-	echo '<input type="hidden" id="link_id_'.$comment->id.'" name="link_id_'.$comment->id.'" value="'.$link->id.'" />'."\n";
-	echo '<input type="hidden" id="user_id_'.$comment->id.'" name="user_id_'.$comment->id.'" value="'.$current_user->user_id.'" />'."\n";
-	echo '</fieldset>'."\n";
-	echo '</form>'."\n";
-	echo "</div>\n";
+    echo '<input type="hidden" id="process_'.$comment->id.'" name="process_'.$comment->id.'" value="editcomment" />'."\n";
+    echo '<input type="hidden" id="key_'.$comment->id.'" name="key_'.$comment->id.'" value="'.md5($comment->randkey.$site_key).'" />'."\n";
+    echo '<input type="hidden" id="link_id_'.$comment->id.'" name="link_id_'.$comment->id.'" value="'.$link->id.'" />'."\n";
+    echo '<input type="hidden" id="user_id_'.$comment->id.'" name="user_id_'.$comment->id.'" value="'.$current_user->user_id.'" />'."\n";
+    echo '</fieldset>'."\n";
+    echo '</form>'."\n";
+    echo "</div>\n";
 }
 
 function save_comment () {
-	global $link, $db, $comment, $current_user, $globals, $site_key;
+    global $link, $db, $comment, $current_user, $globals, $site_key;
 
-	if(intval($_POST['id']) == $comment->id && $current_user->authenticated && 
-		// Allow the author of the post
-		((intval($_POST['user_id']) == $current_user->user_id &&
-		$current_user->user_id == $comment->author &&
-		time() - $comment->date < $globals['comment_edit_time'] * 1.1) || $current_user->user_level == 'god' || $comment->type == 'admin') &&
-		$_POST['key']  == md5($comment->randkey.$site_key)  && 
-		strlen(trim($_POST['comment_content'])) > 2 ) {
-		$comment->content=clean_text($_POST['comment_content'], 0, false, 10000);
-       
-		if ($current_user->admin) {
-			if ($_POST['type'] == 'true' && $_POST['especial'] == 'true') {
-				$comment->type = 'admin';
-			} elseif ($_POST['type'] == 'true') {
-				$comment->type = 'especial';
-			} else {
-				$comment->type = 'normal';
-			}
-		}
-                
-		if (strlen($comment->content) > 0 ) {
-			$comment->store();
-			$comment->edited = true;		
-			echo 'OK:';
-			$comment->return_summary($link, 700, true);
-		}
-	} else {
-		die ('KO:'._('error actualizando, probablemente tiempo de edición excedido'));
-	}
+    if(intval($_POST['id']) == $comment->id && $current_user->authenticated &&
+        // Allow the author of the post
+        ((intval($_POST['user_id']) == $current_user->user_id &&
+        $current_user->user_id == $comment->author &&
+        time() - $comment->date < $globals['comment_edit_time'] * 1.1) || $current_user->user_level == 'god' || $comment->type == 'admin') &&
+        $_POST['key']  == md5($comment->randkey.$site_key)  &&
+        strlen(trim($_POST['comment_content'])) > 2 ) {
+        $comment->content=clean_text($_POST['comment_content'], 0, false, 10000);
+
+        if ($current_user->admin) {
+            if ($_POST['type'] == 'true' && $_POST['especial'] == 'true') {
+                $comment->type = 'admin';
+            } elseif ($_POST['type'] == 'true') {
+                $comment->type = 'especial';
+            } else {
+                $comment->type = 'normal';
+            }
+        }
+
+        if (strlen($comment->content) > 0 ) {
+            $comment->store();
+            $comment->edited = true;
+            echo 'OK:';
+            $comment->return_summary($link, 700, true);
+        }
+    } else {
+        die ('KO:'._('error actualizando, probablemente tiempo de edición excedido'));
+    }
 }
 
 ?>

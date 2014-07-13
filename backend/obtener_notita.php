@@ -4,7 +4,7 @@
 // Beldar <beldar.cat at gmail dot com>
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // You can get copies of the licenses here:
-// 		http://www.affero.org/oagpl.html
+//         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 if (! defined('mnmpath')) {
@@ -27,7 +27,7 @@ if (!empty($_GET['id'])) {
             $post_id = 0;
         }
 
-	/* Nos pide una nota, verificamos que existe */
+    /* Nos pide una nota, verificamos que existe */
         if ($post_id) {
             $id = (int) $db->get_var("select post_id from posts where post_id = $post_id order by post_date desc limit 1");
         }
@@ -36,12 +36,12 @@ if (!empty($_GET['id'])) {
         if (! $id) {
             $id = (int) $db->get_var("select post_id from posts, users where user_login = '$user' and post_user_id = user_id and post_date < FROM_UNIXTIME($date) order by post_date desc limit 1");
         }
-	
-	/* Existe usuario pero no tiene notas */
-	if ($user && $id == 0) {
-		header('Location:  http://'.get_server_name().get_user_uri($user));
-		die;
-	}
+
+    /* Existe usuario pero no tiene notas */
+    if ($user && $id == 0) {
+        header('Location:  http://'.get_server_name().get_user_uri($user));
+        die;
+    }
 
     } else {
         $id = intval($_GET['id']);
