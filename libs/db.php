@@ -10,7 +10,7 @@ include_once(mnminclude.'ez_sql.php');
 include_once(mnminclude.'ez_sql_mysql.php');
 
 global $globals;
-$db = new ezSQL_mysql($globals['db_user'], $globals['db_password'], $globals['db_name'], $globals['db_server'], $globals['db_master']);
+$db = new ezSQL_mysql($globals['db_user'], $globals['db_password'], $globals['db_name'], $globals['db_server']);
 
 // we now do "lazy connection".
 $db->persistent = $globals['mysql_persistent'];

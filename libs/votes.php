@@ -1,4 +1,4 @@
-<?
+<?php
 // The source code packaged with this file is Free Software, Copyright (C) 2005 by
 // Ricardo Galli <gallir at uib dot es>.
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
@@ -13,7 +13,7 @@ class Vote {
 	var $link;
 	var $ip='';
 	var $aleatorio = false;
-	
+
 	function Vote() {
 		return;
 	}
@@ -60,7 +60,7 @@ class Vote {
 
 		if ($this->aleatorio == true) $tipo = 'aleatorio';
 		else $tipo = 'normal';
-		
+
 		// HIGH_PRIORITY to avoid duplicates votes from people clicking very fast on purpose
 		$sql="INSERT HIGH_PRIORITY INTO votes (vote_type, vote_user_id, vote_link_id, vote_value, vote_ip_int, vote_aleatorio) VALUES ('$this->type', $this->user, $this->link, $this->value, $this->ip, '$tipo' )";
 		return $db->query($sql);

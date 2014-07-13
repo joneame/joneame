@@ -286,12 +286,8 @@
 
 		 // Reset the connection to the slave if it was using the master
 		function barrier() {
-			if ($this->dbh && $this->dbh !== $this->dbh_select) {
-				if ($this->dbh_select) {
-					$this->dbh = & $this->dbh_select;
-				} else {
-					$this->connect();
-				}
+			if ($this->dbh) {
+				$this->connect();
 			}
 		}
 

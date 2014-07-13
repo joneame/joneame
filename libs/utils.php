@@ -85,7 +85,7 @@ function clean_input_string($string) {
 }
 
 function get_hex_color($color, $prefix = '') {
-	return $prefix . substr(preg_replace('/[^a-f\d]/i', '', $color), 0, 6);	
+	return $prefix . substr(preg_replace('/[^a-f\d]/i', '', $color), 0, 6);
 }
 
 function get_negative_vote($value) {
@@ -148,9 +148,9 @@ function txt_time_diff($from, $now=0){
         $txt = '';
 
         if ($now == 0) $now = $globals['now'];
-            
+
 	if ($from > $now) $from = $now;
-            
+
         $diff=$now-$from;
         $days=intval($diff/86400);
 
@@ -172,7 +172,7 @@ function txt_time_diff($from, $now=0){
         else if ($minutes==1) $txt  .= " $minutes "._('m');
 
         if ($txt=='') $txt = " $secs ". _('segs');
-      
+
         return $txt;
 
 }
@@ -374,7 +374,7 @@ function post_get_base_url($option='') {
 }
 
 function get_avatar_url($user, $avatar, $size) {
-	global $globals, $db; 
+	global $globals, $db;
 
 	// If it does not get avatar status, check the database
 	if ($user > 0 && $avatar < 0) {
@@ -383,7 +383,7 @@ function get_avatar_url($user, $avatar, $size) {
 
 	if ($avatar > 0 && $globals['cache_dir']) {
 		$file = $globals['cache_dir'] . '/avatars/'. intval($user/$globals['avatars_files_per_dir']) . '/' . $user . "-$size.jpg";
-		// Don't check every time, but 1/10, decrease VM pressure 
+		// Don't check every time, but 1/10, decrease VM pressure
 		// Disabled for the moment, it fails just too much for size 40
 		// if (rand(0, 10) < 10) return $globals['base_url'] . $file;
 		$file_path = mnmpath.'/'.$file;
@@ -392,7 +392,7 @@ function get_avatar_url($user, $avatar, $size) {
 		} else {
 			return $globals['base_url'] . "backend/get_avatar.php?id=$user&amp;size=$size&amp;time=$avatar";
 		}
-	} 
+	}
 	return get_no_avatar_url($size);
 }
 
@@ -411,22 +411,21 @@ function get_admin_avatar($size) {
 	return $globals['base_url'].'img/v2/admin-avatar-'.$size.'.png';
 }
 
-/* neiko: desactivado. demasiado */
 function is_connected($id) {
-	return false;
-
 	global $db, $current_user;
 
+    if (!$current_user->user_id) {
+        return false;
+    }
+
 	$existe = $db->get_var("SELECT sneaker_user FROM sneakers WHERE sneaker_user=$id");
-	if ($existe && $current_user->user_id > 0)
-		return true;
-	return false;
+    return $existe ? true : false;
 }
 
 function utf8_substr($str,$start)
 {
 	preg_match_all("/./su", $str, $ar);
- 
+
 	if(func_num_args() >= 3) {
 		$end = func_get_arg(2);
 		return join("",array_slice($ar[0],$start,$end));
@@ -498,7 +497,7 @@ function guess_user_id ($str) {
 }
 
 function print_simpleformat_buttons($textarea_id, $smileys=false) {
-	
+
 	echo '<div class="barra redondo simpleformat">';
 
 	if ($smileys)
@@ -506,7 +505,7 @@ function print_simpleformat_buttons($textarea_id, $smileys=false) {
 	echo '<img onclick="applyTag(\''.$textarea_id.'\', \'-\');" src="'.get_cover_pixel().'" alt="strikethrough" class="icon strike rich-edit-key" />';
 	echo '<img onclick="applyTag(\''.$textarea_id.'\', \'_\');" src="'.get_cover_pixel().'" alt="italic" class="icon italic rich-edit-key" />';
 	echo '<img onclick="applyTag(\''.$textarea_id.'\', \'*\');" src="'.get_cover_pixel().'" alt="bold" class="icon bold rich-edit-key" />';
-	
+
 	echo '</div>';
 }
 
@@ -668,7 +667,7 @@ function meta_get_current() {
 			$globals['meta_current'] = (int) $db->get_var("select category_parent from categories where category_id = $cat and category_parent > 0");
 			$globals['meta'] = '';
 		}
-	} 	
+	}
 	if (isset($globals['meta_current']) && $globals['meta_current'] > 0) {
 		$globals['meta_categories'] = meta_get_categories_list($globals['meta_current']);
 		if (!$globals['meta_categories']) {
@@ -719,13 +718,13 @@ function stats_increment($type, $all=false) {
 
 function json_encode_single($dict) {
 	$item = '{';
-	$passed = 0; 
+	$passed = 0;
 	foreach ($dict as $key => $val) {
 		if ($passed) { $item .= ','; } // como el primer passed es cero, no mete la coma
 		$item .= $key . ':"' . $val . '"'; // agrega a $item
 		$passed = 1; // ahora le dice que meta la coma
 	}
-	 return $item . '}'; 
+	 return $item . '}';
 }
 
 // Generic function to get content from an url
@@ -747,7 +746,7 @@ function get_url($url, $referer = false, $max=200000) {
     $url = preg_replace('/ /', '%20', $url);
     curl_setopt($session, CURLOPT_URL, $url);
     curl_setopt($session, CURLOPT_USERAGENT, $globals['user_agent']);
-    if ($referer) curl_setopt($session, CURLOPT_REFERER, $referer); 
+    if ($referer) curl_setopt($session, CURLOPT_REFERER, $referer);
     curl_setopt($session, CURLOPT_CONNECTTIMEOUT, 10);
     curl_setopt($session, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($session, CURLOPT_HEADER , true);
@@ -756,7 +755,7 @@ function get_url($url, $referer = false, $max=200000) {
     curl_setopt($session, CURLOPT_TIMEOUT, 20);
     curl_setopt($session, CURLOPT_FAILONERROR, true);
     // curl_setopt($session, CURLOPT_SSL_VERIFYPEER, false);
-    // curl_setopt($session, CURLOPT_SSL_VERIFYHOST, 2); 
+    // curl_setopt($session, CURLOPT_SSL_VERIFYHOST, 2);
     curl_setopt($session, CURLOPT_COOKIESESSION, true);
     // curl_setopt($session,CURLOPT_RANGE,"0-$max"); // It gives error with some servers
     $response = @curl_exec($session);
@@ -860,7 +859,7 @@ function clear_unicode_spaces($input){
 
     "\xe3\x80\x80", // 'IDEOGRAPHIC SPACE' (U+3000)
     );
-    
+
     return str_replace($spaces, ' ', $input);
 }
 
@@ -904,7 +903,7 @@ function do_post_video($textNotita) {
 	$regExpUrls = array();
 
 	// webs, sus expresiones regulares y códigos de inserción
-	// youtube // formato http://www.youtube.com/embed/c7c_OXivqSk?rel=0 embed/watch?v= [11 caracteres alfanuméricos + guión] 
+	// youtube // formato http://www.youtube.com/embed/c7c_OXivqSk?rel=0 embed/watch?v= [11 caracteres alfanuméricos + guión]
 	$regExpUrls = "/(http\:\/\/)(www.)?(youtube)\.(com|es)\/watch\?v\=([a-zA-Z0-9\-\_]{11})([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i";
 
 	// ahora utilizo la expresión regular para comprobar que la url enviada está bien formada
@@ -916,7 +915,7 @@ function do_post_video($textNotita) {
 
         // preg_replace(expresión regular, string de reemplazo, string a reemplazar)
         $textNotita = preg_replace($regExpUrls[$j], $embedCode, $textNotita);
-	  
+
 	}
 	return $textNotita;
 }
@@ -928,7 +927,7 @@ function do_jonevision_convert($textNotita) {
 	$regExpUrls = array();
 
 	// webs, sus expresiones regulares y códigos de inserción
-	// youtube // formato url/watch?v= [11 caracteres alfanuméricos + guión] 
+	// youtube // formato url/watch?v= [11 caracteres alfanuméricos + guión]
 	$regExpUrls[0] = "/(http\:\/\/)(www.)?(youtube)\.(com|es)\/watch\?v\=([a-zA-Z0-9\-\_]{11})([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i";
 
 	// google video // formato url/videoplay?docid= [18 números]
@@ -1006,7 +1005,7 @@ function get_embed_code($urlVideo, $webCounter)
 
         switch ($webCounter)
         {
-            // youtube                                                                  
+            // youtube
             case 0: $insertionCode .= "<object width=\"{$width}\" height=\"{$height}\"><param name=\"wmode\" value=\"transparent\"/><param name=\"movie\"   value=\"{$urlVideo}\"&hl=es&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6\"></param><param name=\"allowFullScreen\" value=\"true\"></param><param name=\"allowscriptaccess\" value=\"always\"></param><embed src=\"{$urlVideo}\"&hl=es&fs=1&rel=0&color1=0x2b405b&color2=0x6b8ab6\" type=\"application/x-shockwave-flash\" allowscriptaccess=\"always\" allowfullscreen=\"true\" width=\"{$width}\" height=\"{$height}\" wmode=\"transparent\"></embed></object>";
                     break;
 
@@ -1017,11 +1016,11 @@ function get_embed_code($urlVideo, $webCounter)
             // zappinternet
             case 2: $insertionCode .= "<object type=\"application/x-shockwave-flash\" data=\"{$urlVideo}\" height=\"{$height}\" width=\"{$width}\"><param name=\"movie\" value=\"{$urlVideo}\" /><param name=\"allowFullScreen\" value=\"true\" /><param name=\"wmode\" value=\"transparent\"/></object>";
                     break;
-                    
+
             // dailymotion
             case 3: $insertionCode .= "<object width=\"{$width}\" height=\"{$height}\"><param name=\"wmode\" value=\"transparent\"/><param name=\"movie\" value=\"{$urlVideo}\" /><param name=\"allowFullScreen\" value=\"true\" /><param name=\"allowScriptAccess\" value=\"always\" /><embed src=\"{$urlVideo}\" type=\"application/x-shockwave-flash\" width=\"{$width}\" height=\"{$height}\" allowFullScreen=\"true\" allowScriptAccess=\"always\" wmode=\"transparent\"></embed></object>";
                     break;
-	
+
             // goear
 	    case 4: $insertionCode .= "<object width=\"353\" height=\"132\"><embed src=\"{$urlVideo}\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" quality=\"high\" width=\"353\" height=\"132\"></embed></object>"; break;
 
@@ -1031,7 +1030,7 @@ function get_embed_code($urlVideo, $webCounter)
 	// instant grillos
 	case 6: $insertionCode .= "<object width=\"40\" height=\"40\"><param name=\"movie\" value=\"/swf/crickets.swf\" /><param name=\"quality\" value=\"high\" /><embed src=\"/swf/crickets.swf\" width=\"40\" height=\"40\" align=\"middle\" quality=\"high\" wmode=\"transparent\"></embed></object>"; break;
 
-	// instant silencio	
+	// instant silencio
 	case 7: $insertionCode .= "<object width=\"75\" height=\"75\"><param name=\"movie\" value=\"/swf/estropajo.swf\" /><param name=\"quality\" value=\"high\" /><embed src=\"/swf/estropajo.swf\" width=\"75\" height=\"75\" align=\"middle\" quality=\"high\" wmode=\"transparent\"></embed></object>"; break;
 
         }
@@ -1057,15 +1056,15 @@ function get_polls_unvoted(){
 	foreach ($pools as $pool){
 
 	$voted = $db->get_var("SELECT count(*) FROM encuestas_votes WHERE uid = '".intval($current_user->user_id)."' AND pollid = '".$pool."'");
-		if ($voted > 0) {	
+		if ($voted > 0) {
 	 		continue;
-	
+
 		}
 		$sum ++;
 	}
 
 	$db->cache_queries = false;
-		
+
 	return $sum;
 
 }
@@ -1143,13 +1142,13 @@ function check_queue($user_id){
      $joneos = $db->get_results("select link_author from links where link_status='queued' and link_date > date_sub(now(), interval 12 hour) ORDER BY link_date DESC");
 
      foreach ($joneos as $link){
-	
+
 	$previous_user = $link->link_author;
 
      	if ($link->link_author == $user_id && $previous_user == $user_id){
 		$envios_consecutivos = $envios_consecutivos + 1;
-		
-     	} else $envios_consecutivos = 0; // reiniciar contador 
+
+     	} else $envios_consecutivos = 0; // reiniciar contador
      }
 
      if ($envios_consecutivos >= $globals['max_successive_links_in_queue']){
@@ -1163,7 +1162,7 @@ function backend_call_string($program,$type,$page,$id) {
      // It replaces the get_votes function
      // it generates the string to link to a backend program given its arguments
      global $globals;
- 
+
      return $globals['base_url']."backend/$program?id=$id&amp;p=$page&amp;type=$type";
- 
+
 }

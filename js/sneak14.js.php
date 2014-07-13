@@ -1,20 +1,20 @@
-<?
+<?php
 include('../config.php');
 include(mnminclude.'sneak.php');
 header('Content-Type: text/javascript; charset=UTF-8');
 header('Cache-Control: max-age=3600');
 
 function creo_que_es_admin() {
-global $current_user;
+	global $current_user;
 
-return (($current_user->user_level == 'god') || ($current_user->user_level == 'admin'));
+	return (($current_user->user_level == 'god') || ($current_user->user_level == 'admin'));
 }
 
 ?>
 
 
 var new_items = 0;
-var max_items = <? echo $max_items; ?>;
+var max_items = <?php echo $max_items; ?>;
 var data_timer;
 var min_update = 15000;
 var next_update = 3000;
@@ -37,9 +37,9 @@ var is_roster_being_shown = 0;
 var recent_nicks = new Array();
 var friend_nicks = new Array();
 
-<?
+<?php
 if ($current_user->user_id > 0) {
-	 echo "user_login = '$current_user->user_login';\n";
+	echo "user_login = '$current_user->user_login';\n";
 	$friends = $db->get_col("select user_login from users, friends where friend_type='manual' and friend_from = $current_user->user_id and friend_value > 0 and user_id = friend_to");
 	if ($friends) {
 		$i = 0;
@@ -85,7 +85,7 @@ function start_sneak() {
 		check_control('poll');
 	}
 	// For autocompletion
-	$('#comment-input').keydown(function(event) { 
+	$('#comment-input').keydown(function(event) {
 			if(event.keyCode == 9 ||event.which == 9) {
 				event.returnValue = false;
 				event.preventDefault();
@@ -141,7 +141,7 @@ function received_data(data) {
 	xmlhttp = undefined;
 	// Update ping time
 	var date_object = new Date();
-	if (ping_time == 0) 
+	if (ping_time == 0)
 		ping_time = date_object.getTime() - ping_start -15; // 15 ms is the smallest error in fastest machines
 	else
 		ping_time = parseInt(0.6 * ping_time + 0.4 * (date_object.getTime() - ping_start - 15)); // 15 ms also
@@ -179,7 +179,7 @@ function received_data(data) {
 	if (next_update < 3000) next_update = 3000;
 	if (next_update > min_update) next_update = min_update;
 	if (requests > max_requests) {
-		if ( !confirm('<? echo _('Mafioso: ¿desea continuar conectado?');?>') ) {
+		if ( !confirm('Mafioso: ¿desea continuar conectado?') ) {
 			mnm_banner_reload = 0;
 			return;
 		}
@@ -196,21 +196,21 @@ function send_chat(form) {
 	if(check_command(form.comment.value)) return false;
 
 	if(!is_playing()) {
-		alert("<? echo _('La cotillona está en pausa'); ?>");
+		alert("La cotillona está en pausa.");
 		return false;
 	}
 	if(global_options.show_chat == false) {
-		alert("<? echo _('La cotillona está parada'); ?>");
+		alert("La cotillona está parada.");
 		return false;
 	}
     if(!form.comment.value.match(/^!/) && form.comment.value.length < 1) {
-        alert("<? echo _('¡Debes escribir algo!'); ?>");
+        alert("¡Debes escribir algo!");
         return false;
     }
-	
+
 /*
 if( currentTime.getTime() < last_comment_sent + (comment_period*1000)) {
-		alert("<? echo _('sólo se puede enviar un mensaje cada');?> " + comment_period + " <? echo _('segundos');?>");
+		alert("Sólo se puede enviar un mensaje cada " + comment_period + " segundos.");
 		return false;
 	}
 */
@@ -307,11 +307,11 @@ function get_options_string() {
 
 function set_options_from_string(string) {
 	if (string.match(/&nochat=1/)) {
-		global_options.show_chat = false; 
+		global_options.show_chat = false;
 	}
 	set_control('chat');
 	if (string.match(/&nopost=1/)) {
-		global_options.show_post = false; 
+		global_options.show_post = false;
 	}
 	set_control('post');
 	if (string.match(/&novote=1/)) {
@@ -399,7 +399,7 @@ function do_play() {
 }
 
 function sneak_add_recent_nicks(user) {
-	
+
 	user = user.toLowerCase();
 
 	// Remove if the user is already in the list
@@ -410,7 +410,7 @@ function sneak_add_recent_nicks(user) {
 	if (recent_nicks.length > 30) {
 		removed = recent_nicks.pop();
 	}
-	
+
 }
 
 function sneak_autocomplete() {

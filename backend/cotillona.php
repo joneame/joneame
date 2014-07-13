@@ -74,7 +74,7 @@ if ($logs) {
 			case 'comment_new':
 				if (empty($_REQUEST['nocomment']))
 					get_comment($log->time, 'comment', $log->log_ref_id, $log->log_user_id);
-					
+
 				break;
 			case 'opinion_new':
 				get_poll_comment($log->time, 'poll_comment', $log->log_ref_id, $log->log_user_id);
@@ -126,7 +126,7 @@ if ($current_user->user_id > 0)
 	else $mezutxo = '<input type="submit" value="'._('enviar').'" class="button"/>';
 
 /*
-if ($current_user->user_id > 0) { 
+if ($current_user->user_id > 0) {
 
 		$eskaera = $db->get_col("SELECT sneaker_user from sneakers order by sneaker_user asc");
 		$znb = 0;
@@ -138,7 +138,7 @@ if ($current_user->user_id > 0) {
 		}
 
 		if (count($array) > 0) {
-	
+
 			foreach ($array as $idar => $fisusr) {
 
 				$banned = '';
@@ -148,9 +148,9 @@ if ($current_user->user_id > 0) {
 
 					$user = read($fisusr); // from coti2.inc.php
 
-			
+
 					$izena = '<a target="_blank" href="'.get_user_uri($user['username']).'">'.$user['username'].'</a> ';
-				
+
 
 					if ($current_user->admin) { // manejar bans
 						if (baneatuta($user['id']))
@@ -163,7 +163,7 @@ if ($current_user->user_id > 0) {
 
 					if ($user['admin'])
 						$indicador = ' class="coti-admin" title="'.$user['username'].' es admin"';
-			
+
 					if ($current_user->admin)
 						$usrs_cnn .= "<li$indicador>".$izena.$banned."</li>";
 					else
@@ -178,10 +178,10 @@ if ($current_user->user_id > 0) {
 
 
 		if (baneatuta($current_user->user_id)) $usrs_cnn = 'Estás baneado, no puedes ver la lista de usuarios.';
-		 	
+
 		echo "ts=$last_timestamp;ccnt='$ccnt';ttm='$mezutxo';uzo='$usrs_cnn';\n";
 
-} else  
+} else
 	echo "ts=$last_timestamp;ccnt='$ccnt';ttm='$mezutxo';\n";
 */
 	echo "ts=$last_timestamp;ccnt='0';ttm='$mezutxo';\n";
@@ -195,7 +195,7 @@ $counter=0;
 echo "new_data = ([";
 
 foreach ($events as $key => $val) {
-	if ($counter>0) 
+	if ($counter>0)
 		echo ",";
 	echo $val;
 	$counter++;
@@ -213,12 +213,12 @@ if(rand(0,1) == 1) update_sneakers();
 
 function check_chat() {
 	  global $db, $current_user, $now, $globals;
-			
+
 	  if(empty($_POST['chat'])) return;
 
 	  $comment = trim(preg_replace("/[\r\n\t]/", ' ', $_REQUEST['chat']));
 	  $comment = clear_whitespace($comment);
- 
+
 	  if ($current_user->user_id == 0) send_chat_warn(_('debes ser usuario registrado'));
 
 	  if (strlen($comment) < 2 && !$current_user->admin) send_chat_warn(_('mensaje demasiado corto'));
@@ -231,21 +231,21 @@ function check_chat() {
 
 
           $comment = htmlspecialchars($comment);
-			
+
 	  /* Check /me command */
           $comment = preg_replace('/(^|[\s\.,¿#@])\/me([\s\.,\?]|$)/', "$1 <i>$current_user->user_login $2</i>", $comment);
-			
+
 	  $from = $now - 1200;
 	  $db->query("delete from chats where chat_time < $from");
 	  $comment = $db->escape(trim(normalize_smileys($comment)));
-	  
+
 	  if ((!empty($_REQUEST['admin']) || strpos($comment, '#') === 0) && $current_user->admin) {
 			$room = 'admin';
 			$comment = preg_replace('/^# */', '', $comment);
 	  } elseif (!empty($_REQUEST['friends']) || strpos($comment, '@') === 0) {
 			$room = 'friends';
 			$comment = preg_replace('/^@ */', '', $comment);
-	  } elseif ((($_REQUEST['devel']) || strpos($comment, '%') === 0) && $current_user->devel) {
+	  } elseif ((!empty($_REQUEST['devel']) || strpos($comment, '%') === 0) && $current_user->devel) {
 			$room = 'devel';
 			$comment = preg_replace('/^% */', '', $comment);
           } elseif (strpos($comment, '!usuarios') === 0) {
@@ -259,8 +259,8 @@ function check_chat() {
 			$db->query("insert into chats (chat_time, chat_uid, chat_room, chat_user, chat_text) values ($now, $current_user->user_id, '$room', '$current_user->user_login', '$comment')");
                         $db->query("insert into chats_logs (chat_time, chat_uid, chat_room, chat_user, chat_text) values ($now, $current_user->user_id, '$room', '$current_user->user_login', '$comment')");
 	  }
-		
-	
+
+
 }
 
 function send_string($mess) {
@@ -303,11 +303,11 @@ function get_chat($time) {
 			// If the message is for admins check this user is also admin
 			if ($event->chat_room == 'admin') {
 				if (!$current_user->admin) continue;
-				$json['status'] = _('admin'); 
+				$json['status'] = _('admin');
 			}
 			if ($event->chat_room == 'devel') {
 				if (!$current_user->devel) continue;
-				$json['status'] = _('devel'); 
+				$json['status'] = _('devel');
 			}
 
 			// If this user is in "admin" mode, check the sender is also admin
@@ -324,8 +324,8 @@ function get_chat($time) {
 				if ($friendship < 0 && !($current_user->admin)) continue;
 				// This user is ignored by the writer
 				if (friend_exists($uid, $current_user->user_id) < 0){
-					if ($current_user->admin) $aktibia = 1; 
-					else { $aktibia = 0; 
+					if ($current_user->admin) $aktibia = 1;
+					else { $aktibia = 0;
 						continue;
 					}
 				}
@@ -334,7 +334,7 @@ function get_chat($time) {
 					if (friend_exists($uid, $current_user->user_id) <= 0) {
 						continue;
 					}
-					$json['status'] = _('cosa nostra'); 
+					$json['status'] = _('cosa nostra');
 				}
 				// Check the sender is a friend of the receiver
 				if (!empty($_REQUEST['friends']) && $friendship <= 0) {
@@ -343,7 +343,7 @@ function get_chat($time) {
 			}
 		} else {
 			if ($event->chat_room == 'friends') {
-				$json['status'] = _('cosa nostra'); 
+				$json['status'] = _('cosa nostra');
 			} elseif ($event->chat_room == 'admin') {
 				$json['status'] = _('admin');
 			} elseif ($event->chat_room == 'devel') {
@@ -360,9 +360,9 @@ function get_chat($time) {
 		$chat_text = put_smileys($event->chat_text);
 		$json['title'] = addslashes(clear_whitespace(text_to_html(preg_replace("/[\r\n]+/", ' ¬ ', preg_replace('/&&user&&/', $current_user->user_login, $chat_text)))));
 
-		if ($aktibia) { 
+		if (isset($aktibia) && $aktibia) {
 			$json['title'] = '<span style=\"color: #99CC00\">IG: '.$json['title'].'</span>';
-		        $aktibia = 0;
+		    $aktibia = 0;
 		}
 
 		if ($uid >0) $json['icon'] = get_avatar_url($uid, -1, 20);
@@ -402,7 +402,7 @@ function get_votes($dbtime) {
 				if ($user_level != 'admin' && $user_level != 'devel' && $user_level != 'god') continue;
 			}
 		}
-		 
+
 		$foo_link->id=$event->link_id;
 		$foo_link->uri=$event->link_uri;
 
@@ -417,7 +417,7 @@ function get_votes($dbtime) {
 		if ($event->vote_value >= 0 ) {
 			$type = 'vote';
 			$who = $user;
-		} else { 
+		} else {
 			$type = 'problem';
 			$who = get_negative_vote($event->vote_value);
 			// Show user_login if she voted more than N negatives in one minute
@@ -463,7 +463,7 @@ function get_story($time, $type, $linkid, $userid) {
     $json['com'] = $event->link_comments;
     $json['title'] = addslashes($event->link_title);
 
-    if ($type == 'discarded' && $event->link_status == 'abuse' && $event->link_auhtor != $userid 
+    if ($type == 'discarded' && $event->link_status == 'abuse' && $event->link_auhtor != $userid
         && ($event->user_level == 'admin' || $event->user_level == 'god')) {
         // Discarded by abuse, don't show the author
         $json['uid'] = 0;
@@ -503,7 +503,7 @@ function get_comment($time, $type, $commentid, $userid) {
 	}
 	$json['uid'] = $userid;
 	if ($userid >0) $json['icon'] = get_avatar_url($userid, -1, 20);
-	
+
 	$key = $time . ':'.$type.':'.$commentid;
 	$events[$key] = json_encode_single($json);
 	if($time > $last_timestamp) $last_timestamp = $time;
@@ -513,7 +513,7 @@ function get_poll_comment($time, $type, $commentid, $userid) {
 	global $db, $events, $last_timestamp, $max_items, $globals, $current_user;
 	$event = $db->get_row("SELECT polls_comments.id as id, user_login, autor, orden, encuestas.encuesta_id, encuesta_total_votes, comentarios, encuestas.encuesta_title as titulo FROM encuestas, polls_comments, users WHERE polls_comments.id =$commentid AND encuestas.encuesta_id = polls_comments.encuesta_id AND users.user_id = autor AND autor =$userid limit ".$max_items);
 	if (!$event && isset($event)) return;
-	
+
 	$json['link'] = get_encuesta_uri($event->encuesta_id);
 	$json['id'] = $event->id;
 	$json['status'] = _('opinión');
@@ -526,7 +526,7 @@ function get_poll_comment($time, $type, $commentid, $userid) {
 	$json['uid'] = $userid;
 
 	if ($userid >0) $json['icon'] = get_avatar_url($userid, -1, 20);
-	
+
 	$key = $time . ':'.$type.':'.$commentid;
 	$events[$key] = json_encode_single($json);
 	if($time > $last_timestamp) $last_timestamp = $time;
@@ -540,9 +540,9 @@ function get_post($time, $type, $postid, $userid) {
 	if ($event->post_type == 'encuesta') return; // para qué?
 	// Dont show her notes if the user ignored
 	if ($type == 'post' && $event->post_type != 'admin' && friend_exists($current_user->user_id, $userid) < 0) return;
-	if ( $event->post_type != 'admin') 
+	if ( $event->post_type != 'admin')
 		$json['link'] = post_get_base_url($event->user_login) . "/$postid";
-	else    
+	else
 		$json['link'] = post_get_base_url('admin')."/$postid";
 	$json['ts'] = $time;
 	$json['type'] = $type;
@@ -554,7 +554,7 @@ function get_post($time, $type, $postid, $userid) {
 	}
 	$json['status'] = _('notita');
 	$json['title'] = addslashes(put_smileys(text_to_summary(preg_replace('/(@[\S.-]+)(,\d+)/','$1',$event->post_content),130)));
-	
+
         $json['votes'] = 0;
 	$json['com'] = 0;
 	$json['uid'] = $userid;
@@ -615,12 +615,12 @@ function error($mess) {
 function update_sneakers() {
     global $db, $globals, $current_user;
     $key = $globals['user_ip'] . '-' . intval($_REQUEST['k']);
-	
+
 	if ($db->get_var("select sneaker_id from sneakers where sneaker_user = ".$current_user->user_id." and sneaker_id = '".$key."'"))
 	    $db->query("replace into sneakers (sneaker_id, sneaker_time, sneaker_user) values ('".$key."', unix_timestamp(now()), ".$current_user->user_id.")");
 	else // no existe
 		$db->query("INSERT INTO sneakers VALUES('".$key."', unix_timestamp(now()), ".$current_user->user_id.")");
-		
+
    // if($_REQUEST['r'] % 37 == 0) {
     if (rand(0,2) == 2) {
 	$from = time()-120;

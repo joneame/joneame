@@ -31,24 +31,24 @@ if (!empty($_REQUEST['ban']) || (isset($_POST['razon_ban']) && $_POST['razon_ban
 		do_footer();
 		die;
 	}
- 
+
 	/* El usuario no es admin */
-	if (!$current_user->user_id > 0 || !$current_user->admin) {	
+	if (!$current_user->user_id > 0 || !$current_user->admin) {
 		$error_text = 'El usuario no es admin.';
 		if ($current_user->user_login) $error_text .= ' '.$current_user->user_login;
 	}
-		
+
 	$user_id = intval($_POST['user_id']);
-	
+
 	/* Lee información básica del usuario (from coti2.inc.php)*/
 	$user = read($user_id);
-		
+
 	if (!$user) $error_text .=' El usuario no existe.';
-	
+
 	if ($user['level'] == 'god') $error_text .= ' Intentando banear a un god.';
 
 	if ($user['id'] == $current_user->user_id) $error_text .= ' Usuario intentando auto-banearse.';
- 
+
 	if (baneatuta($user['id'])) $error_text .= ' El usuario ya está baneado.';
 
 	if (strlen($razon) < 15) $error_text .= ' Razón demasiado corta.';
@@ -61,8 +61,8 @@ if (!empty($_REQUEST['ban']) || (isset($_POST['razon_ban']) && $_POST['razon_ban
 		cotiban_log_insert('cotiban_error', $error_text, 0, $user['id']);
 		}
 	/* Save cotiban */
-	else if ($razon) cotiban_log_insert('cotiban', $razon, 1, $user['id']);		
-	
+	else if ($razon) cotiban_log_insert('cotiban', $razon, 1, $user['id']);
+
 }
 
 /* Manage cotiunbans */
@@ -70,22 +70,22 @@ if (!empty($_REQUEST['ban']) || (isset($_POST['razon_ban']) && $_POST['razon_ban
 if (!empty($_REQUEST['unban'])) {
 
 	/* El usuario no es admin */
-	if (!$current_user->user_id > 0 || !$current_user->admin) {	
+	if (!$current_user->user_id > 0 || !$current_user->admin) {
 		$error_text = 'El usuario no es admin ';
 		if ($current_user->user_login) $error_text .= $current_user->user_login.'.';
-	}	
-	
+	}
+
 	$id = intval($_REQUEST['unban']);
 
 	/* Lee información básica del usuario (from coti2.inc.php)*/
 	$user = read($id);
-	
+
 	if (!$user) $error_text .=' El usuario no existe.';
 
 	if ($user['level'] == 'god') $error_text .= ' Intentando banear a un god.';
 
 	if ($user['id'] == $current_user->user_id) $error_text .= ' Usuario intentando auto-banearse.';
- 
+
 	if (!baneatuta($user['id'])) $error_text .= ' El usuario no está baneado.';
 
 	/* Si hay error lo guarda como error */
@@ -98,7 +98,7 @@ if (!empty($_REQUEST['unban'])) {
 		 unban($user['id']);
 		 /* Guarda el log */
 		 cotiban_log_insert('cotiunban', $razon, 0, $user['id']);
-		}	
+		}
 }
 
 
@@ -109,7 +109,7 @@ if (!empty($_REQUEST['friends'])) {
 	do_header(_('Admin | Jonéame'));
 } elseif ($current_user->user_id > 0 && !empty($_REQUEST['devel']) && ($current_user->devel)) {
 	do_header(_('Developers | Jonéame'));
-	
+
 } else {
 	do_header(_('Cotillona | Jonéame'));
 }
@@ -118,17 +118,16 @@ if (!empty($_REQUEST['friends'])) {
 
 <script type="text/javascript">
 //<![CDATA[
-var my_version = '<? echo $sneak_version; ?>';
-var ts=<? echo (time()-3600); ?>; // just due a freaking IE cache problem
-var server_name = '<? echo get_server_name(); ?>';
-var base_url = '<? echo $globals['base_url'];?>';
-var sneak_base_url = 'http://<? echo get_server_name().$globals['base_url'];?>backend/cotillona.php';
-var mykey = <? echo rand(100,999); ?>;
-var is_admin = <? if ($current_user->admin) echo 'true'; else echo 'false'; ?>;
-var is_devel = <? if ($current_user->devel) echo 'true'; else echo 'false'; ?>;
+var my_version = '<?php echo $sneak_version; ?>';
+var ts=<?php echo (time()-3600); ?>; // just due a freaking IE cache problem
+var server_name = '<?php echo get_server_name(); ?>';
+var base_url = '<?php echo $globals['base_url']; ?>';
+var sneak_base_url = '<?php echo $globals['base_url']; ?>backend/cotillona.php';
+var mykey = <?php echo rand(100,999); ?>;
+var is_admin = <?php if ($current_user->admin) echo 'true'; else echo 'false'; ?>;
+var is_devel = <?php if ($current_user->devel) echo 'true'; else echo 'false'; ?>;
 
-
-var default_gravatar =  'http://<? echo get_server_name(); ?>/img/v2/no-avatar-20.png';
+var default_gravatar = '<?php echo $globals['base_url']; ?>img/v2/no-avatar-20.png';
 var do_animation = true;
 var animating = false;
 var animation_colors = Array("#5a8cbe", "#6a97c4", "#7ba3cb", "#8baed1", "#9cbad8", "#acc5de", "#bdd1e5", "#ceddec", "#dee8f2", "#eff4f9", "transparent");
@@ -136,17 +135,11 @@ var colors_max = animation_colors.length - 1;
 var current_colors = Array();
 var animation_timer;
 
-var do_hoygan = <? if (isset($_REQUEST['hoygan']))  echo 'true'; else echo 'false'; ?>;
-var do_flip = <? if (isset($_REQUEST['flip']))  echo 'true'; else echo 'false'; ?>;
-
-
-
-// Reload the mnm banner each 5 minutes
-var mnm_banner_reload = 180000;
-
+var do_hoygan = <?php if (isset($_REQUEST['hoygan']))  echo 'true'; else echo 'false'; ?>;
+var do_flip = <?php if (isset($_REQUEST['flip']))  echo 'true'; else echo 'false'; ?>;
 
 $(function(){
-start_sneak();
+	start_sneak();
 });
 
 function play_pause() {
@@ -155,7 +148,7 @@ function play_pause() {
 		if( document.getElementById('comment-input'))
 			document.getElementById('comment-input').disabled=true;
 		do_pause();
-		
+
 	} else {
 		document.getElementById('play-pause-img').className = "icon pause";
 		if (document.getElementById('comment-input'))
@@ -163,7 +156,6 @@ function play_pause() {
 		do_play();
 	}
 	return false;
-
 }
 
 function set_initial_display(item, i) {
@@ -193,7 +185,7 @@ function animate_background() {
 		if (current_colors[i] < colors_max) {
 			current_colors[i]++;
 			items.slice(i,i+1).css('background', animation_colors[current_colors[i]]);
-		} else 
+		} else
 			new_items--;
 	}
 }
@@ -220,7 +212,7 @@ function to_html(data) {
 	switch (data.type) {
 		case 'post':
 			tooltip_ajax_call += " onmouseover=\"return tooltip.ajax_delayed(event, 'get_post_tooltip.php', '"+data.id+"', 10000);\"";
-			html += '<img src="img/estructura/pixel.gif" width="24" height="20" style="background: url(\'img/iconos/coti.png\') 0 -220px;" alt="<?echo _('notitas');?>" '+tooltip_ajax_call+'/><\/div>';
+			html += '<img src="img/estructura/pixel.gif" width="24" height="20" style="background: url(\'img/iconos/coti.png\') 0 -220px;" alt="<?php echo _('notitas');?>" '+tooltip_ajax_call+'/><\/div>';
 			html += '<div class="sneaker-votes">&nbsp;<\/div>';
 			if (check_user_ping(data.title)) {
 				text_style = 'style="font-weight: bold;"';
@@ -238,12 +230,12 @@ function to_html(data) {
 			break;
 		case 'poll':
 			tooltip_ajax_call += " onmouseover=\"return tooltip.ajax_delayed(event, 'get_encuesta.php', '"+data.id+"', 10000);\"";
-			html += '<img src="img/estructura/pixel.gif" width="24" height="20" style="background: url(\'img/iconos/coti.png\') 0 -240px;" alt="<?echo _('encuesta');?>" '+tooltip_ajax_call+'/><\/div>'; //añadir imagen
+			html += '<img src="img/estructura/pixel.gif" width="24" height="20" style="background: url(\'img/iconos/coti.png\') 0 -240px;" alt="<?php echo _('encuesta');?>" '+tooltip_ajax_call+'/><\/div>'; //añadir imagen
 			html += '<div class="sneaker-votes">&nbsp;<\/div>';
 			if (check_user_ping(data.title)) {
 				text_style = 'style="font-weight: bold;"';
 			}
-			
+
 			html += '<div class="sneaker-story" '+text_style+'><a target="_blank" href="'+data.link+'">'+data.title+'<\/a><\/div>';
 			html += '<div class="sneaker-who"  onmouseout="tooltip.clear(event);"  onclick="tooltip.clear(this);" >';
 			if (data.icon != undefined && data.icon.length > 0) {
@@ -255,15 +247,15 @@ function to_html(data) {
 			break;
 //fin encuesta
 		case 'chat':
-			html += '<img src="img/estructura/pixel.gif" width="24" height="20" style="background: url(\'img/iconos/coti.png\') 0 -180px;" alt="<?echo _('mensaje');?>" title="<?echo _('mensaje');?>" '+tooltip_ajax_call+'/><\/div>';
+			html += '<img src="img/estructura/pixel.gif" width="24" height="20" style="background: url(\'img/iconos/coti.png\') 0 -180px;" alt="<?php echo _('mensaje');?>" title="<?php echo _('mensaje');?>" '+tooltip_ajax_call+'/><\/div>';
 			html += '<div class="sneaker-votes">&nbsp;<\/div>';
 			// Change the style
 			if (global_options.show_admin || data.status == 'admin') {
 				chat_class = 'sneaker-chat-admin'
-			} else if ( global_options.show_devel || data.status == '<? echo _('devel'); ?>') {  //aqui para editar el estado<<<<<<<
-				
-				chat_class = 'sneaker-chat-devel' 
-}else if (global_options.show_friends || data.status == '<? echo _('cosa nostra'); ?>') {  //aqui para editar el estado<<<<<<<
+			} else if ( global_options.show_devel || data.status == '<?php echo _('devel'); ?>') {  //aqui para editar el estado<<<<<<<
+
+				chat_class = 'sneaker-chat-devel'
+}else if (global_options.show_friends || data.status == '<?php echo _('cosa nostra'); ?>') {  //aqui para editar el estado<<<<<<<
 				// The sender is a friend and sent the message only to friends
 				chat_class = 'sneaker-chat-friends'
 			}
@@ -276,7 +268,7 @@ function to_html(data) {
 				text_style = 'style="'+text_style+'"';
 			}
 			// Open in a new window
-			data.title = data.title.replace(/(href=")/gi, 'target="_blank" $1'); 
+			data.title = data.title.replace(/(href=")/gi, 'target="_blank" $1');
 			if (do_hoygan) data.title = to_hoygan(data.title);
 			if (do_flip) data.title = flipString(data.title);
 			html += '<div class="'+chat_class+'" '+text_style+'>'+data.title+'<\/div>';
@@ -289,38 +281,38 @@ function to_html(data) {
 			return html;
 			break;
 //editar aqui para editar el estado
-		case 'vote': 
+		case 'vote':
 			tooltip_ajax_call += " onmouseover=\"return tooltip.ajax_delayed(event, 'get_link.php', '"+data.id+"', 30000);\"";
-			if (data.status == '<? echo _('en portada');?>')
-				html += '<img src="img/estructura/pixel.gif" width="24" height="20" style="background: url(\'img/iconos/coti.png\') 0 -140px;" alt="<?echo _('voto');?>" '+tooltip_ajax_call+'/><\/div>';
+			if (data.status == '<?php echo _('en portada');?>')
+				html += '<img src="img/estructura/pixel.gif" width="24" height="20" style="background: url(\'img/iconos/coti.png\') 0 -140px;" alt="<?php echo _('voto');?>" '+tooltip_ajax_call+'/><\/div>';
 			else
-				html += '<img src="img/estructura/pixel.gif" width="24" height="20" style="background: url(\'img/iconos/coti.png\') 0 -100px;" alt="<?echo _('voto');?>"  '+tooltip_ajax_call+'/><\/div>';
+				html += '<img src="img/estructura/pixel.gif" width="24" height="20" style="background: url(\'img/iconos/coti.png\') 0 -100px;" alt="<?php echo _('voto');?>"  '+tooltip_ajax_call+'/><\/div>';
 			break;
 		case 'problem':
 			tooltip_ajax_call += " onmouseover=\"return tooltip.ajax_delayed(event, 'get_link.php', '"+data.id+"', 30000);\"";
-			html += '<img src="img/estructura/pixel.gif" width="24" height="20" style="background: url(\'img/iconos/coti.png\') 0 -200px;" alt="<?echo _('problema');?>" '+tooltip_ajax_call+'/><\/div>';
+			html += '<img src="img/estructura/pixel.gif" width="24" height="20" style="background: url(\'img/iconos/coti.png\') 0 -200px;" alt="<?php echo _('problema');?>" '+tooltip_ajax_call+'/><\/div>';
 			break;
 		case 'comment':
 			tooltip_ajax_call += " onmouseover=\"return tooltip.ajax_delayed(event, 'get_comment_tooltip.php', '"+data.id+"', 10000);\"";
-			html += '<img src="img/estructura/pixel.gif" width="24" height="20" style="background: url(\'img/iconos/coti.png\');" alt="<?echo _('comentario');?>" '+tooltip_ajax_call+'/><\/div>';
+			html += '<img src="img/estructura/pixel.gif" width="24" height="20" style="background: url(\'img/iconos/coti.png\');" alt="<?php echo _('comentario');?>" '+tooltip_ajax_call+'/><\/div>';
 			break;
 
 		case 'new':
 			tooltip_ajax_call += " onmouseover=\"return tooltip.ajax_delayed(event, 'get_link.php', '"+data.id+"', 30000);\"";
-			html += '<img src="img/estructura/pixel.gif" width="24" height="20" style="background: url(\'img/iconos/coti.png\') 0 -40px;" alt="<?echo _('nueva');?>" '+tooltip_ajax_call+'/><\/div>';
+			html += '<img src="img/estructura/pixel.gif" width="24" height="20" style="background: url(\'img/iconos/coti.png\') 0 -40px;" alt="<?php echo _('nueva');?>" '+tooltip_ajax_call+'/><\/div>';
 			break;
 		case 'published':
 			tooltip_ajax_call += " onmouseover=\"return tooltip.ajax_delayed(event, 'get_link.php', '"+data.id+"', 30000);\"";
-			html += '<img src="img/estructura/pixel.gif" width="24" height="20" style="background: url(\'img/iconos/coti.png\') 0 -120px;" alt="<?echo _('publicada');?>" '+tooltip_ajax_call+'/><\/div>';
+			html += '<img src="img/estructura/pixel.gif" width="24" height="20" style="background: url(\'img/iconos/coti.png\') 0 -120px;" alt="<?php echo _('publicada');?>" '+tooltip_ajax_call+'/><\/div>';
 			break;
 		case 'discarded':
 			tooltip_ajax_call += " onmouseover=\"return tooltip.ajax_delayed(event, 'get_link.php', '"+data.id+"', 30000);\"";
-			html += '<img src="img/estructura/pixel.gif" width="24" height="20" style="background: url(\'img/iconos/coti.png\') 0 -160px;" alt="<?echo _('descartada');?>" '+tooltip_ajax_call+'/><\/div>';
+			html += '<img src="img/estructura/pixel.gif" width="24" height="20" style="background: url(\'img/iconos/coti.png\') 0 -160px;" alt="<?php echo _('descartada');?>" '+tooltip_ajax_call+'/><\/div>';
 			break;
 
 		case 'poll_comment':
 			tooltip_ajax_call += " onmouseover=\"return tooltip.ajax_delayed(event, 'get_opinion_tooltip.php', '"+data.id+"', 10000);\"";
-			html += '<img src="img/estructura/pixel.gif" width="24" height="20" style="background: url(\'img/iconos/coti.png\');" alt="<?echo _('opinion');?>" '+tooltip_ajax_call+'/><\/div>';
+			html += '<img src="img/estructura/pixel.gif" width="24" height="20" style="background: url(\'img/iconos/coti.png\');" alt="<?php echo _('opinion');?>" '+tooltip_ajax_call+'/><\/div>';
 			html += '<div class="sneaker-votes" onmouseout="tooltip.clear(event);" onmouseover="tooltip.clear(event);">'+data.votes+'/'+data.com+'<\/div>';
 			html += '<div class="sneaker-story"><a target="_blank" href="'+data.link+'">'+data.title+'<\/a><\/div>';
 			html += '<div class="sneaker-who"  onmouseout="tooltip.clear(event);"  onclick="tooltip.clear(this);" >';
@@ -331,18 +323,18 @@ function to_html(data) {
 			html += '<div class="sneaker-status">'+data.status+'<\/div>';
 			return html;
 			break;
-		
+
 		case 'edited':
 			tooltip_ajax_call += " onmouseover=\"return tooltip.ajax_delayed(event, 'get_link.php', '"+data.id+"', 10000);\"";
-			html += '<img src="img/estructura/pixel.gif" width="24" height="20" style="background: url(\'img/iconos/coti.png\') 0 -60px;" alt="<?echo _('editada');?>" '+tooltip_ajax_call+'/><\/div>'; //sneak-edit01
+			html += '<img src="img/estructura/pixel.gif" width="24" height="20" style="background: url(\'img/iconos/coti.png\') 0 -60px;" alt="<?php echo _('editada');?>" '+tooltip_ajax_call+'/><\/div>'; //sneak-edit01
 			break;
 		case 'cedited':
 			tooltip_ajax_call += " onmouseover=\"return tooltip.ajax_delayed(event, 'get_comment_tooltip.php', '"+data.id+"', 10000);\"";
-			html += '<img src="img/estructura/pixel.gif" width="24" height="20" style="background: url(\'img/iconos/coti.png\') 0 -20px;" alt="<?echo _('comentario editado');?>" '+tooltip_ajax_call+'/><\/div>';
+			html += '<img src="img/estructura/pixel.gif" width="24" height="20" style="background: url(\'img/iconos/coti.png\') 0 -20px;" alt="<?php echo _('comentario editado');?>" '+tooltip_ajax_call+'/><\/div>';
 			break;
 		case 'geo_edited':
 			tooltip_ajax_call += " onmouseover=\"return tooltip.ajax_delayed(event, 'get_link.php', '"+data.id+"', 10000);\"";
-			html += '<img src="img/estructura/pixel.gif" width="24" height="20" style="background: url(\'img/iconos/coti.png\') 0 -80px;" alt="<?echo _('geo editado');?>" '+tooltip_ajax_call+'/><\/div>';
+			html += '<img src="img/estructura/pixel.gif" width="24" height="20" style="background: url(\'img/iconos/coti.png\') 0 -80px;" alt="<?php echo _('geo editado');?>" '+tooltip_ajax_call+'/><\/div>';
 			break;
 		default:
 			html += data.type+'<\/div>';
@@ -368,11 +360,11 @@ function to_html(data) {
 		html += '<div class="sneaker-who">&nbsp;'+data.who.substring(0,15)+'<\/div>';
 	}
 //editar aqui para editar el estado
-	if (data.status == '<? echo _('en portada');?>')
+	if (data.status == '<?php echo _('en portada');?>')
 		html += '<div class="sneaker-status"><a target="_blank" href="'+base_url+'"><span class="sneaker-published">'+data.status+'<\/span><\/a><\/div>';
-	else if (data.status == '<? echo _('descartada');?>')
+	else if (data.status == '<?php echo _('descartada');?>')
 		html += '<div class="sneaker-status"><a target="_blank" href="'+base_url+'jonealas.php?meta=_descartadas"><span class="sneaker-discarded">'+data.status+'<\/span><\/a><\/div>';
-	else 
+	else
 		html += '<div class="sneaker-status"><a target="_blank" href="'+base_url+'jonealas.php">'+data.status+'<\/a><\/div>';
 	return html;
 }
@@ -391,7 +383,7 @@ function check_admin_ping(str) {
     return str.match(re);
 }
 
-function to_hoygan(str) 
+function to_hoygan(str)
 {
 	str=str.replace(/á/gi, 'a');
 	str=str.replace(/é/gi, 'e');
@@ -466,7 +458,7 @@ function flipChar(c) {
 	case 'é':
 		return '\u01DD';
 	case 'f':
-		return '\u025F'; //Copied from pne -- 
+		return '\u025F'; //Copied from pne --
 		//LATIN SMALL LETTER DOTLESS J WITH STROKE
 	case 'g':
 		return 'b';
@@ -539,8 +531,8 @@ function flipChar(c) {
 
 //]]>
 </script>
-<script type="text/javascript" src="http://<? echo get_server_name().$globals['base_url']; ?>js/sneak14.js.php"></script>
-<?
+<script src="<?php echo $globals['base_url']; ?>js/sneak14.js.php"></script>
+<?php
 
 
 // Check the tab options and set corresponging JS variables
@@ -607,11 +599,11 @@ echo "</form>\n";
 
 if ($current_user->user_id > 0){
 	echo '<a name="chat_box"></a>';
-	echo '<form name="chat_form" action="" onsubmit="return send_chat(this);">'; 
+	echo '<form name="chat_form" action="" onsubmit="return send_chat(this);">';
 	echo '<select name="donde" id="donde">
 	      <option value="" selected="selected">Todos</option>
 	      <option value="@">Amigos</option>';
-  
+
 	if ($current_user->admin)
 		echo '<option value="#">Admin</option>';
 
@@ -657,7 +649,7 @@ do_footer();
 function print_sneak_tabs($option) {
 	global $current_user, $globals;
 	$active = array();
-	
+
 	// Avoid PHP warnings
 	for ($n=1; $n <= 9; $n++) $active[$n] = '';
 
