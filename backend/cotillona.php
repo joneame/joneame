@@ -235,7 +235,7 @@ function check_chat() {
       /* Check /me command */
           $comment = preg_replace('/(^|[\s\.,¿#@])\/me([\s\.,\?]|$)/', "$1 <i>$current_user->user_login $2</i>", $comment);
 
-      $from = $now - 1200;
+      $from = $now - (2 * 60 * 60);
       $db->query("delete from chats where chat_time < $from");
       $comment = $db->escape(trim(normalize_smileys($comment)));
 
@@ -623,7 +623,7 @@ function update_sneakers() {
 
    // if($_REQUEST['r'] % 37 == 0) {
     if (rand(0,2) == 2) {
-    $from = time()-120;
+    $from = time() - (15 * 60);
         $db->query("delete from sneakers where sneaker_time < ".$from);
     }
 }
