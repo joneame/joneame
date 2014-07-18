@@ -130,7 +130,7 @@ var is_devel = <?php if ($current_user->devel) echo 'true'; else echo 'false'; ?
 var default_gravatar = '<?php echo $globals['base_url']; ?>img/v2/no-avatar-20.png';
 var do_animation = true;
 var animating = false;
-var animation_colors = Array("#5a8cbe", "#6a97c4", "#7ba3cb", "#8baed1", "#9cbad8", "#acc5de", "#bdd1e5", "#ceddec", "#dee8f2", "#eff4f9", "transparent");
+var animation_colors = Array(0.2, 0.4, 0.6, 0.8, 1);
 var colors_max = animation_colors.length - 1;
 var current_colors = Array();
 var animation_timer;
@@ -164,7 +164,7 @@ function set_initial_display(item, i) {
         j = colors_max - 1;
     else j = i;
     current_colors[i] = j;
-    item.css('background', animation_colors[j]);
+    item.css('opacity', animation_colors[j]);
 }
 
 function clear_animation() {
@@ -184,7 +184,7 @@ function animate_background() {
     for (i=new_items-1; i>=0; i--) {
         if (current_colors[i] < colors_max) {
             current_colors[i]++;
-            items.slice(i,i+1).css('background', animation_colors[current_colors[i]]);
+            items.slice(i,i+1).css('opacity', animation_colors[current_colors[i]]);
         } else
             new_items--;
     }
