@@ -47,9 +47,9 @@ function do_master($size) {
 function do_statics() {
     global $globals;
 
-    $urls = Array('jonealas.php', 'cotillona.php', 'geovision.php', 'notitas/', 'cloud.php', 'las_mejores.php', 'mas_comentadas.php',
+    $urls = Array('jonealas.php', 'cotillona.php', 'geovision.php', 'notitas/', 'nube.php', 'las_mejores.php', 'mas_comentadas.php',
             'mas_visitadas.php', 'aleatorios.php', 'corto.php', 'ultimos_comentarios.php', 'ayuda.php', 'encuestas.php',
-            'mejores_comentarios.php', 'sitescloud.php', 'mejores_mafiosos.php', 'mapa.php', 'mejores_notitas.php', 'nube_de_webs.php');
+            'mejores_comentarios.php', 'mejores_mafiosos.php', 'mapa.php', 'mejores_notitas.php', 'nube_de_webs.php');
 
     echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'."\n";
     // The index
