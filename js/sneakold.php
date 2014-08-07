@@ -1,4 +1,4 @@
-﻿<?
+<?
 include('../config.php');
 include(mnminclude.'sneak.php');
 header('Content-Type: text/javascript; charset=UTF-8');
