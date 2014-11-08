@@ -1134,26 +1134,28 @@ function print_oauth_icons($return = false) {
     }
 }
 
-function check_queue($user_id){
-     global $db, $globals;
+function check_queue($user_id) {
+    global $db, $globals;
 
-     $envios_consecutivos = 0;
-     $previous_user = 0;
-     $joneos = $db->get_results("select link_author from links where link_status='queued' and link_date > date_sub(now(), interval 12 hour) ORDER BY link_date DESC");
+    $envios_consecutivos = 0;
+    $previous_user = 0;
+    $joneos = $db->get_results("select link_author from links where link_status='queued' and link_date > date_sub(now(), interval 12 hour) ORDER BY link_date DESC");
 
-     foreach ($joneos as $link){
+    if (!$joneos) {
+        return false;
+    }
 
-    $previous_user = $link->link_author;
+    foreach ($joneos as $link) {
+        $previous_user = $link->link_author;
 
-         if ($link->link_author == $user_id && $previous_user == $user_id){
-        $envios_consecutivos = $envios_consecutivos + 1;
+        if ($link->link_author == $user_id && $previous_user == $user_id) {
+            $envios_consecutivos++;
+        } else $envios_consecutivos = 0; // reiniciar contador
+    }
 
-         } else $envios_consecutivos = 0; // reiniciar contador
-     }
-
-     if ($envios_consecutivos >= $globals['max_successive_links_in_queue']){
-    return true;
-     }
+    if ($envios_consecutivos >= $globals['max_successive_links_in_queue']){
+        return true;
+    }
 
     return false;
 }

@@ -47,10 +47,9 @@
             $this->dbpassword = $dbpassword;
             $this->dbname = $dbname;
             $this->dbhost = $dbhost;
-                        /* neiko: 15/04/13 */
-                        if (ini_get('display_errors') === '1') {
-                            $this->trace = $this->debug_all = true;
-                        }
+            if (error_reporting() & E_NOTICE) {
+                $this->trace = $this->debug_all = true;
+            }
 
         }
 
