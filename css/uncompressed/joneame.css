@@ -385,7 +385,7 @@ margin: 0 5px;
 dl.categorylist {
 float: left;
 width: auto;
-min-width: 20%;
+min-width: 18%;
 margin-right: 5px;
 padding-bottom: 5px;
 font-size: 85%;
@@ -2282,7 +2282,7 @@ border: 1px solid #4b7db0;
 
 ul.herramientas {
 padding: 5px 14px 7px 0;
-/* float: left; */
+display: inline-block;
 }
 
 .herramientas li {
@@ -2763,10 +2763,6 @@ color: #2f6192;
 .visor-cortos .herramientas {
 position: absolute;
 right: 0px
-}
-
-.barra.redondo {
-text-align: center;
 }
 
 .info-cortos,
@@ -4059,4 +4055,26 @@ a .hglass {
 #fancybox-title-float-right {
     padding: 0 0 0 15px;
     background: url(/img/fancybox/fancybox.png) -55px -90px no-repeat;
+}
+
+.genericform.new_link {
+    width: 450px;
+    display: inline-block;
+    margin: 0 0 10px 60px;
+    vertical-align: top;
+}
+
+.genericform.new_link form,
+.genericform.new_link fieldset {
+    height: 80px;
+    background: #e4ecf5 url(/img/estructura/fondo-caja.2.png) repeat-x scroll left bottom;
+}
+
+.genericform.new_link fieldset {
+    position: relative;
+}
+
+.genericform.new_link fieldset input[type=submit] {
+    bottom: 5px;
+    position: absolute;
 }

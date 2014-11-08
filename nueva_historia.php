@@ -84,23 +84,36 @@ exit;
         global $current_user, $site_key;
 
         preload_indicators();
-        if (!empty($_GET['url'])) {
-        $url = clean_input_url($_GET['url']);
-        } else {
-        $url = 'http://';
+        if ($_GET['url']) {
+            $url = clean_input_url($_GET['url']);
         }
-        echo '<div class="genericform">';
-        echo '<h4>dirección de la historia</h4>';
-        echo '<form class="fondo-caja" action="nueva_historia.php" method="post" id="thisform" onSubmit="$(\'#working\').html(\''._('espera').'...&nbsp;<img src=\\\'\'+img_src1+\'\\\'/>\'); return true;"><fieldset>';
+        echo '<div class="genericform new_link">';
+        echo '<h4>enviar un enlace</h4>';
+        echo '<form class="fondo-caja" action="nueva_historia.php" method="post" id="thisform"><fieldset>';
         echo '<p><label for="url">'._('enlace').':</label><br />';
-        echo '<input type="text" name="url" id="url" value="'.htmlspecialchars($url).'" class="form-full" onblur="if(this.value==\'\') this.value=\'http://\';" onclick="if(this.value==\''._('http://').'\') this.value=\'\';"/></p>';
+        echo '<input type="text" name="url" id="url" value="'.htmlspecialchars($url).'" class="form-full" placeholder="http://" /></p>';
         echo '<input type="hidden" name="phase" value="1" />';
         $randkey = rand(10000,10000000);
         echo '<input type="hidden" name="key" value="'.md5($randkey.$current_user->user_id.$current_user->user_email.$site_key.get_server_name()).'" />'."\n";
         echo '<input type="hidden" name="randkey" value="'.$randkey.'" />';
         echo '<input type="hidden" name="id" value="c_1" />';
-        echo '<p><input class="button" type="submit" value="'._('continuar »').'" ';
-        echo '/>&nbsp;&nbsp;&nbsp;<span id="working">&nbsp;</span></p>';
+        echo '<input type="hidden" name="type" value="link" />';
+        echo '<p><input class="button" type="submit" value="'._('continuar »').'" /></p>';
+        echo '</fieldset></form>';
+        echo '</div>';
+
+        echo '<div class="genericform new_link">';
+        echo '<h4>contar mi vida</h4>';
+        echo '<form class="fondo-caja" action="nueva_historia.php" method="post" id="thisform"><fieldset>';
+        echo '<p>desnuda tus sentimientos sin vergüenza. cuéntanos ese pedo de anoche. explícanos cómo tu
+            adicción a la masturbación está acabando con tu carrera profesional. <strong>queremos saberlo.</strong></p>';
+        echo '<input type="hidden" name="phase" value="1" />';
+        $randkey = rand(10000,10000000);
+        echo '<input type="hidden" name="key" value="'.md5($randkey.$current_user->user_id.$current_user->user_email.$site_key.get_server_name()).'" />'."\n";
+        echo '<input type="hidden" name="randkey" value="'.$randkey.'" />';
+        echo '<input type="hidden" name="id" value="c_1" />';
+        echo '<input type="hidden" name="type" value="text" />';
+        echo '<p><input class="button" type="submit" value="'._('vamos a ello »').'" /></p>';
         echo '</fieldset></form>';
         echo '</div>';
     }
@@ -108,32 +121,36 @@ exit;
     function do_submit0() {
         echo '<h2>'._('envío de una nueva historia: paso 1 de 3').'</h2>';
         echo '<div class="faq">';
-        echo '<h3>'._('por favor, respeta estas instrucciones para mejorar la poca calidad que tenemos:').'</h3>';
-        echo '<ul class="instruction-list">';
-        echo '<li><strong>¿'._('has leído las').' <a href="condiciones.php" target="_blank">'._('condiciones de uso').'</a></strong>?</li>';
-        echo '<li><strong>'._('contenido interesante').':</strong> '._('en jonéame gusta el porno (por si no lo sabías), ¿crees que interesará tu historia?').'</li>';
-        echo '<li><strong>'._('no somos un medio serio').':</strong> '._('jonéame no es un medio serio, tómatelo todo a coña, pero no te privamos de noticias serias, si te gustan, o son de gran relevancia').'</li>';
-        echo '<li><strong>'._('busca antes').':</strong> '._('por favor, usa el buscador para así evitar historias duplicadas').'</li>';
-        echo '<li><strong>'._('respeta el voto de los demás').':</strong> '._('en jonéame tenemos el voto mafia, al loro con él, si ves que tu historia no gusta, pasa a la siguiente y no te preocupes').'</li>';
-
-        echo '</ul></div><br/>'."\n";
+        echo '<h3>¿qué quieres hacer?</h3>';
+        echo '</div><br/>'."\n";
         print_empty_submit_form();
     }
 
     function do_submit1() {
         global $db, $dblang, $current_user, $globals;
 
-        if ($_POST['url'])
+        $type = $_POST['type'];
+
+        if (!in_array($type, ['link', 'text'])) {
+            echo '<p class="error"><strong>Pues no sé qué intentas, amigo.</strong></p>';
+            echo '</div>'. "\n";
+            return;
+        }
+
+        if ($type == 'link') {
+            if ($_POST['url']) {
                 $url = clean_input_url($_POST['url']);
-        else if ($_GET['url'])
-        $url = clean_input_url($_GET['url']);
+            } else if ($_GET['url']) {
+                $url = clean_input_url($_GET['url']);
+            }
 
-                $url = preg_replace('/#[^\/]*$/', '', $url); // Remove the "#", people just abuse
-                $url = preg_replace('/^http:\/\/http:\/\//', 'http://', $url); // Some users forget to delete the http://
+            $url = preg_replace('/#[^\/]*$/', '', $url); // Remove the "#", people just abuse
+            $url = preg_replace('/^http:\/\/http:\/\//', 'http://', $url); // Some users forget to delete the http://
 
-                if (! preg_match('/^\w{3,6}:\/\//', $url)) { // http:// forgotten, add it
-                      $url = 'http://'.$url;
-                }
+            if (! preg_match('/^\w{3,6}:\/\//', $url)) { // http:// forgotten, add it
+                  $url = 'http://'.$url;
+            }
+        }
 
         echo '<div>'."\n";
 
@@ -151,7 +168,7 @@ exit;
 
         /* Control para asegurarnos que hay variedad de usuarios en la cola */
         if (check_queue($current_user->user_id)){
-             echo '<p class="error">'._('Has enviado demasiadas historias seguidas. Espera que alguien envie algo para no saturar la cola de pendientes.'). ' </p>';
+             echo '<p class="error">'._('Has enviado demasiadas historias seguidas. Espera que alguien envíe algo para no saturar la cola de pendientes.'). ' </p>';
                 syslog(LOG_NOTICE, "Jonéame, too many queued ($current_user->user_login)");
                 echo '<br style="clear: both;" />' . "\n";
                 echo '</div>'. "\n";
@@ -168,15 +185,17 @@ exit;
                 return;
         }
 
-        // check the URL is OK and that it resolves
-        $url_components = parse_url($url);
-        if (!$url_components || ! $url_components['host'] || gethostbyname($url_components['host']) == $url_components['host']) {
-                echo '<p class="error"><strong>'._('URL o nombre de servidor erróneo').'</strong></p> ';
-                echo '<p>'._('el nombre del servidor es incorrecto o éste tiene problemas para resolver el nombre'). ' </p>';
-                syslog(LOG_NOTICE, "Jonéame, hostname error ($current_user->user_login): $url");
-                print_empty_submit_form();
-                echo '</div>'. "\n";
-                return;
+        if ($type == 'link') {
+            // check the URL is OK and that it resolves
+            $url_components = parse_url($url);
+            if (!$url_components || ! $url_components['host'] || gethostbyname($url_components['host']) == $url_components['host']) {
+                    echo '<p class="error"><strong>'._('URL o nombre de servidor erróneo').'</strong></p> ';
+                    echo '<p>'._('el nombre del servidor es incorrecto o éste tiene problemas para resolver el nombre'). ' </p>';
+                    syslog(LOG_NOTICE, "Jonéame, hostname error ($current_user->user_login): $url");
+                    print_empty_submit_form();
+                    echo '</div>'. "\n";
+                    return;
+            }
         }
 
         $enqueued_last_minutes = (int) $db->get_var("select count(*) from links where link_status='queued' and link_date > date_sub(now(), interval 3 minute)");
@@ -262,41 +281,36 @@ exit;
 
         $edit = false;
 
-        if(report_dupe($url)) return;
+        if ($type == 'link') {
+            if (report_dupe($url)) return;
 
+            if (!$linkres->check_url($url, true, true) || !$linkres->get($url)) {
+                    echo '<blockquote>';
+                    echo '<p class="error"><strong>'._('URL erróneo o no permitido').'</strong>: ';
+                    if ($linkres->ban && $linkres->ban['match']) {
+                            echo $linkres->ban['match'];
+                    } else {
+                            echo $linkres->url;
+                    }
+                    echo '</p>';
+                    echo '<p><strong>'._('Razón').':</strong> '. $linkres->ban['comment'].'</p>';
+                    if ($linkres->ban['expire'] > 0) {
+                            echo '<p class="note"><strong>'._('caduca').'</strong>: '.get_date_time($linkres->ban['expire']).'</p>';
+                    }
+                    // If the domain is banned, decrease user's karma
+                    if ($linkres->banned && $current_user->user_level == 'normal') {
+                            $db->query("update users set user_karma = user_karma - 0.05 where user_id = $current_user->user_id");
+                    }
+                    echo '</blockquote><br/>';
+                    print_empty_submit_form();
+                    echo '</div>'. "\n";
+                    return;
+            }
 
-        if(!$linkres->check_url($url, true, true) || !$linkres->get($url)) {
-                echo '<blockquote>';
-                echo '<p class="error"><strong>'._('URL erróneo o no permitido').'</strong>: ';
-                if ($linkres->ban && $linkres->ban['match']) {
-                        echo $linkres->ban['match'];
-                } else {
-                        echo $linkres->url;
-                }
-                echo '</p>';
-                echo '<p><strong>'._('Razón').':</strong> '. $linkres->ban['comment'].'</p>';
-                if ($linkres->ban['expire'] > 0) {
-                        echo '<p class="note"><strong>'._('caduca').'</strong>: '.get_date_time($linkres->ban['expire']).'</p>';
-                }
-                // If the domain is banned, decrease user's karma
-                if ($linkres->banned && $current_user->user_level == 'normal') {
-                        $db->query("update users set user_karma = user_karma - 0.05 where user_id = $current_user->user_id");
-                }
-                echo '</blockquote><br/>';
-                print_empty_submit_form();
-                echo '</div>'. "\n";
-                return;
-        }
+            // If the URL has changed, check again is not dupe
+            if ($linkres->url != $url && report_dupe($linkres->url)) return;
 
-        // If the URL has changed, check again is not dupe
-        if($linkres->url != $url && report_dupe($linkres->url)) return;
-
-        if (!$_POST['randkey']) $_POST['randkey'] = $globals['link_randkey'];
-
-        $linkres->randkey = intval($_POST['randkey']);
-
-
-        if(!$linkres->valid) {
+            if (!$linkres->valid) {
                 echo '<p class="error"><strong>'._('error leyendo el url').':</strong> '.htmlspecialchars($url).'</p>';
                 // Dont allow new users with low karma to post wrong URLs
                 if ($current_user->user_karma < 8 && $current_user->user_level == 'normal') {
@@ -305,49 +319,50 @@ exit;
                         return;
                 }
                 echo '<p>'._('No es válido, está fuera de línea, o tiene mecanismos antibots. <strong>Continúa</strong>, pero asegúrate que sea correcto').'</p>';
+            }
         }
+
+        if (!$_POST['randkey']) $_POST['randkey'] = $globals['link_randkey'];
+
+        $linkres->randkey = intval($_POST['randkey']);
 
         $linkres->status='discard';
         $linkres->author=$current_user->user_id;
         $linkres->sent = 0;
 
-        if (!$linkres->trackback()) {
+        if ($type == 'link') {
+            $linkres->create_blog_entry();
+            $blog = new Blog;
+            $blog->id = $linkres->blog;
+            $blog->read();
 
-                $linkres->pingback();
-        }
-        $trackback=htmlspecialchars($linkres->trackback);
-        $linkres->create_blog_entry();
-        $blog = new Blog;
-        $blog->id = $linkres->blog;
-        $blog->read();
+            $blog_url_components = parse_url($blog->url);
+            $blog_url = $blog_url_components['host'].$blog_url_components['path'];
+            // Now we check again against the blog table
+            // it's done because there could be banned blogs like http://lacotelera.com/something
+            if(($ban = check_ban($blog->url, 'hostname', false, true))) {
+                    echo '<p class="error"><strong>'._('URL inválido').':</strong> '.htmlspecialchars($url).'</p>';
+                    echo '<p>'._('El sitio').' '.$ban['match'].' '. _('está deshabilitado'). ' ('. $ban['comment'].') </p>';
+                    if ($ban['expire'] > 0) {
+                            echo '<p class="note"><strong>'._('caduca').'</strong>: '.get_date_time($ban['expire']).'</p>';
+                    }
+                    syslog(LOG_NOTICE, "Jonéame, banned site (".$current_user->user_login."): ".$blog->url." <- ".$_POST['url']);
+                    print_empty_submit_form();
+                    echo '</div>'. "\n";
+                    return;
+            }
 
-        $blog_url_components = parse_url($blog->url);
-        $blog_url = $blog_url_components['host'].$blog_url_components['path'];
-        // Now we check again against the blog table
-        // it's done because there could be banned blogs like http://lacotelera.com/something
-        if(($ban = check_ban($blog->url, 'hostname', false, true))) {
-                echo '<p class="error"><strong>'._('URL inválido').':</strong> '.htmlspecialchars($url).'</p>';
-                echo '<p>'._('El sitio').' '.$ban['match'].' '. _('está deshabilitado'). ' ('. $ban['comment'].') </p>';
-                if ($ban['expire'] > 0) {
-                        echo '<p class="note"><strong>'._('caduca').'</strong>: '.get_date_time($ban['expire']).'</p>';
-                }
-                syslog(LOG_NOTICE, "Jonéame, banned site (".$current_user->user_login."): ".$blog->url." <- ".$_POST['url']);
-                print_empty_submit_form();
-                echo '</div>'. "\n";
-                return;
-        }
+            $same_blog = $db->get_var("select count(*) from links where link_author=$current_user->user_id and link_date > date_sub(now(), interval 60 day) and link_blog=$linkres->blog");
 
-        $same_blog = $db->get_var("select count(*) from links where link_author=$current_user->user_id and link_date > date_sub(now(), interval 60 day) and link_blog=$linkres->blog");
+            $check_history =  $sents > 3 && $same_blog > 0 && ($ratio = $same_blog/$sents) > 0.5;
 
-        $check_history =  $sents > 3 && $same_blog > 0 && ($ratio = $same_blog/$sents) > 0.5;
+            $ratio = (float) $db->get_var("select count(distinct link_blog)/count(*) from links where link_author=$current_user->user_id and link_date > date_sub(now(), interval 60 day)");
 
-        $ratio = (float) $db->get_var("select count(distinct link_blog)/count(*) from links where link_author=$current_user->user_id and link_date > date_sub(now(), interval 60 day)");
-
-        if ($check_history) {
-                // Calculate ban period according to previous karma
-                $avg_karma = (int) $db->get_var("select avg(link_karma) from links where link_blog=$blog->id and link_date > date_sub(now(), interval 30 day)");
-                // This is the case of unique/few users sending just their site and take care of choosing goog titles and text
-                if ($sents > 4 && $avg_karma < 30) {
+            if ($check_history) {
+                    // Calculate ban period according to previous karma
+                    $avg_karma = (int) $db->get_var("select avg(link_karma) from links where link_blog=$blog->id and link_date > date_sub(now(), interval 30 day)");
+                    // This is the case of unique/few users sending just their site and take care of choosing goog titles and text
+                    if ($sents > 4 && $avg_karma < 30) {
                         if ($avg_karma < -40) {
                                 $ban_period = 86400*30;
                                 $ban_period_txt = _('un mes');
@@ -361,33 +376,34 @@ exit;
                                 $ban_period = 7200;
                                 $ban_period_txt = _('dos horas');
                         }
-               syslog(LOG_NOTICE, "Jonéame, high ratio ($ratio) and low karma ($avg_karma), going to ban $blog->url ($current_user->user_login)");
-                }
+                        syslog(LOG_NOTICE, "Jonéame, high ratio ($ratio) and low karma ($avg_karma), going to ban $blog->url ($current_user->user_login)");
+                    }
 
-                if ($ban_period > 0) {
-                        echo '<p class="error"><strong>'._('ya has enviado demasiados enlaces a')." $blog->url".'</strong></p> ';
-                        echo '<p class="error-text">'._('varía tus fuentes, es para evitar abusos y enfados por votos negativos') . ', ';
-                        echo '<a href="'.$globals['base_url'].'condiciones.php">'._('normas de uso de Joneáme').'</a>, ';
-                        echo '<a href="'.$globals['base_url'].'faq.php">'._('el FAQ').'</a></p>';
+                    if ($ban_period > 0) {
+                            echo '<p class="error"><strong>'._('ya has enviado demasiados enlaces a')." $blog->url".'</strong></p> ';
+                            echo '<p class="error-text">'._('varía tus fuentes, es para evitar abusos y enfados por votos negativos') . ', ';
+                            echo '<a href="'.$globals['base_url'].'condiciones.php">'._('normas de uso de Joneáme').'</a>, ';
+                            echo '<a href="'.$globals['base_url'].'faq.php">'._('el FAQ').'</a></p>';
 
-                        if (!empty($blog_url)) {
-                                $ban = insert_ban('hostname', $blog_url, _('envíos excesivos de'). " $current_user->user_login", time() + $ban_period);
-                                $banned_host = $ban->ban_text;
-                                echo '<p class="error-text"><strong>'._('el dominio'). " '$banned_host' ". _('ha sido baneado por')." $ban_period_txt</strong></p> ";
-                                syslog(LOG_NOTICE, "Jonéame, banned '$ban_period_txt' due to high ratio ($current_user->user_login): $banned_host  <- $linkres->url");
-                        } else {
-                                syslog(LOG_NOTICE, "Jonéame, error parsing during ban: $blog->id, $blog->url ($current_user->user_login)");
-                        }
-                        echo '<br style="clear: both;" />' . "\n";
-                        echo '</div>'. "\n";
-                        return;
-                }
-        }
+                            if (!empty($blog_url)) {
+                                    $ban = insert_ban('hostname', $blog_url, _('envíos excesivos de'). " $current_user->user_login", time() + $ban_period);
+                                    $banned_host = $ban->ban_text;
+                                    echo '<p class="error-text"><strong>'._('el dominio'). " '$banned_host' ". _('ha sido baneado por')." $ban_period_txt</strong></p> ";
+                                    syslog(LOG_NOTICE, "Jonéame, banned '$ban_period_txt' due to high ratio ($current_user->user_login): $banned_host  <- $linkres->url");
+                            } else {
+                                    syslog(LOG_NOTICE, "Jonéame, error parsing during ban: $blog->id, $blog->url ($current_user->user_login)");
+                            }
+                            echo '<br style="clear: both;" />' . "\n";
+                            echo '</div>'. "\n";
+                            return;
+                    }
+            }
 
 
-        if(($ban = check_ban($linkres->url, 'punished_hostname', false, true))) {
-                echo '<p class="error"><strong>'._('Aviso').' '.$ban['match']. ':</strong> <em>'.$ban['comment'].'</em></p>';
-                echo '<p>'._('mejor enviar el enlace a la fuente original, sino será penalizado por los usuarios').'</p>';
+            if(($ban = check_ban($linkres->url, 'punished_hostname', false, true))) {
+                    echo '<p class="error"><strong>'._('Aviso').' '.$ban['match']. ':</strong> <em>'.$ban['comment'].'</em></p>';
+                    echo '<p>'._('mejor enviar el enlace a la fuente original, sino será penalizado por los usuarios').'</p>';
+            }
         }
 
 
@@ -402,72 +418,73 @@ exit;
 
         echo '<form action="nueva_historia.php" method="post" id="thisform" name="thisform">'."\n";
 
-        echo '<fieldset class="fondo-caja redondo inverso"><legend class="mini barra redondo">'._('información del enlace').'</legend>'."\n";
-        echo '<input type="hidden" name="url" id="url" value="'.htmlspecialchars($linkres->url).'" />'."\n";
-        echo '<input type="hidden" name="phase" value="2" />'."\n";
-        echo '<input type="hidden" name="randkey" value="'.intval($_POST['randkey']).'" />'."\n";
-        echo '<input type="hidden" name="key" value="'.$_POST['key'].'" />'."\n";
-        echo '<input type="hidden" name="id" value="'.$linkres->id.'" />'."\n";
-        echo '<p class="genericformtxt"><strong>';
-        echo mb_substr($linkres->url_title, 0, 200);
-        echo '</strong><br/>';
-        echo htmlspecialchars($linkres->url);
-        echo '</p> '."\n";
-        echo '</fieldset>'."\n";
+        if ($type == 'link') {
+            echo '<fieldset class="fondo-caja redondo inverso"><legend class="mini barra redondo">'._('información del enlace').'</legend>'."\n";
+            echo '<input type="hidden" name="url" id="url" value="'.htmlspecialchars($linkres->url).'" />'."\n";
+            echo '<input type="hidden" name="phase" value="2" />'."\n";
+            echo '<input type="hidden" name="randkey" value="'.intval($_POST['randkey']).'" />'."\n";
+            echo '<input type="hidden" name="key" value="'.$_POST['key'].'" />'."\n";
+            echo '<input type="hidden" name="id" value="'.$linkres->id.'" />'."\n";
+            echo '<p class="genericformtxt"><strong>';
+            echo mb_substr($linkres->url_title, 0, 200);
+            echo '</strong><br/>';
+            echo htmlspecialchars($linkres->url);
+            echo '</p> '."\n";
+            echo '</fieldset>'."\n";
 
-        echo '<br/>';
+            echo '<br/>';
+        }
 
-        echo '<h4>'._('detalles de la noticia').'</h4><div class="fondo-caja"><fieldset>'."\n";
+        if ($type == 'link') {
+            echo '<h4>'._('detalles de la noticia').'</h4><div class="fondo-caja"><fieldset>'."\n";
 
-        echo '<label for="title" accesskey="1">'._('título de la noticia').':</label>'."\n";
-        echo '<p><span class="note">'._('título de la noticia. máximo: 120 caracteres').'</span>'."\n";
-        // Is it an image or video?
-        echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-        $linkres->print_content_type_buttons();
+            echo '<label for="title" accesskey="1">'._('título de la noticia').':</label>'."\n";
+            echo '<p><span class="note">'._('título de la noticia. máximo: 200 caracteres').'</span>'."\n";
+            // Is it an image or video?
+            echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+            $linkres->print_content_type_buttons();
 
-        echo '<br/><input type="text" id="title" name="title" value="'.$link_title.'" size="80" maxlength="120" />';
+            if (!$link_title) {
+                $link_title = mb_substr($linkres->url_title, 0, 200);
+            }
+        } else if ($type == 'text') {
+            echo '<h4>'._('¿qué quieres contarnos?').'</h4><div class="fondo-caja"><fieldset>'."\n";
+
+            echo '<label for="title" accesskey="1">'._('título de mi envío').':</label>'."\n";
+            echo '<p><span class="note">'._('título de mi envío. máximo: 200 caracteres').'</span>'."\n";
+        }
+
+        echo '<br/><input type="text" id="title" name="title" value="'.$link_title.'" size="80" maxlength="200" />';
         echo '</p>'."\n";
 
         echo '<label for="tags" accesskey="2">'._('etiquetas').':</label>'."\n";
-        echo '<p><span class="note">'._('añade etiquetas para facilitar la posterior búsqueda').' Ejemplo: <em>pornografía, gatos, humor</em></span>'."\n";
-        echo '<br/><input type="text" id="tags" name="tags" value="'.$link_tags.'" size="70" maxlength="70" /></p>'."\n";
+        echo '<p><span class="note">'._('añade etiquetas para facilitar la posterior búsqueda').'</span>'."\n";
+        echo '<br/><input placeholder="pornografía, gatos, humor" type="text" id="tags" name="tags" value="'.$link_tags.'" size="70" maxlength="70" /></p>'."\n";
 
         //botones de formateo
         echo '<div style="float: right;">';
         print_simpleformat_buttons('bodytext');
         echo '</div>';
 
-        echo '<p><label for="bodytext" accesskey="3">'._('descripción de la noticia').':</label>'."\n";
-        echo '<br /><span class="note">'._('si quieres, describe el enlace con tus palabras. También vale el copypaste. Ésto es opcional');
+        if ($type == 'link') {
+            echo '<p><label for="bodytext" accesskey="3">'._('descripción de la noticia').':</label>'."\n";
+            echo '<br /><span class="note">'._('si quieres, describe el enlace con tus palabras &mdash; este campo es opcional');
+        } else if ($type == 'text') {
+            echo '<p><label for="bodytext" accesskey="3">'._('y ahora, expláyate').':</label>'."\n";
+            echo '<br /><span class="note">'._('cuéntanos todo lo que te apetezca');
+        }
         echo '</span>'."\n";
-        echo '<br/><textarea name="bodytext" rows="10" cols="60" id="bodytext" onKeyDown="textCounter(document.thisform.bodytext,document.thisform.bodycounter,550)" onKeyUp="textCounter(document.thisform.bodytext,document.thisform.bodycounter,550)">'.$link_content.'</textarea>'."\n";
-        $body_left = 550 - mb_strlen(html_entity_decode($link_content, ENT_COMPAT, 'UTF-8'), 'UTF-8');
+        echo '<br/><textarea name="bodytext" rows="10" cols="60" id="bodytext" onKeyDown="textCounter(document.thisform.bodytext,document.thisform.bodycounter,5000)" onKeyUp="textCounter(document.thisform.bodytext,document.thisform.bodycounter,5000)">'.$link_content.'</textarea>'."\n";
+        $body_left = 5000 - mb_strlen(html_entity_decode($link_content, ENT_COMPAT, 'UTF-8'), 'UTF-8');
         echo '<input readonly type="text" name="bodycounter" size="3" maxlength="3" value="'. $body_left . '" /> <span class="note">' . _('caracteres libres') . '</span>';
 
 
         echo '</p>'."\n";
         echo '<br /></p>'."\n";
 
-        //voto aleatorio
-        if ($current_user->user_karma > 7) {
-            echo '<fieldset class="redondo"><legend class="mini barra redondo">'._('voto aleatorio').'</legend>'."\n";
-            echo '<span style="font-weight: normal;">Si activas la casilla, el sistema decidirá el valor del voto inicial. Si la dejas desactivada el valor del voto será el valor de tu carisma. Si la activas y el azar decide que éste voto es negativo no hay marcha atrás, piénsalo bien. Si has caído bien a la mafia, éste será positivo ;-)</span><br/><br/>';
-            echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="aleatorio" id="aleatorio" type="checkbox" value="1"/>&nbsp;<label for="aleatorio">'._('permitir que el sistema elija el voto por mí').' </label>'."\n";
-            echo '</fieldset>'."\n";
-            echo '<br/>';
-        }
-
         print_categories_form();
-
         echo '<br/>';
-        echo '<p><label for="trackback">'._('trackback').':</label><br />'."\n";
-        if (empty($trackback)) {
-                echo '<span class="note">'._('puedes agregar o cambiar el trackback si ha sido detectado automáticamente').'</span>'."\n";
-                echo '<input type="text" name="trackback" id="trackback" value="'.$trackback.'" class="form-full" /></p>'."\n";
-        } else {
-                echo '<span class="note">'.$trackback.'</span>'."\n";
-                echo '<input type="hidden" name="trackback" id="trackback" value="'.$trackback.'"/></p>'."\n";
-        }
+
         echo '<input class="button" type="button" onclick="window.history.go(-1)" value="'._('« retroceder').'" />&nbsp;&nbsp;'."\n";
         echo '<input class="button" type="submit" value="'._('continuar »').'" />'."\n";
         echo '</fieldset></div>'."\n";

@@ -151,19 +151,19 @@ function do_edit() {
     echo '</p>'."\n";
 
     echo '<label for="tags" accesskey="3">'._('etiquetas').':</label>'."\n";
-    echo '<p><span class="note">'._('añade etiquetas para facilitar la posterior búsqueda.').' Ejemplo: <em>pornografía, gatos, humor</em></span>'."\n";
-    echo '<br/><input type="text" id="tags" name="tags" value="'.$link_tags.'" size="70" maxlength="70" /></p>'."\n";
+    echo '<p><span class="note">'._('añade etiquetas para facilitar la posterior búsqueda').'</span>'."\n";
+    echo '<br/><input placeholder="pornografía, gatos, humor" type="text" id="tags" name="tags" value="'.$link_tags.'" size="70" maxlength="70" /></p>'."\n";
 
     echo '<div style="float: right;">';
     print_simpleformat_buttons('bodytext');
     echo '</div>';
 
     echo '<p><label for="bodytext" accesskey="4">'._('descripción de la historia').':</label>'."\n";
-    echo '<br /><span class="note">'._('si quieres, describe el enlace con tus palabras. También vale el copypaste. Esto es opcional').'</span>'."\n";
+    echo '<br /><span class="note">'._('si quieres, describe el enlace con tus palabras &mdash; este campo es opcional');
 
     echo '</span>'."\n";
-    echo '<br/><textarea name="bodytext" rows="10" cols="60" id="bodytext" onKeyDown="textCounter(document.thisform.bodytext,document.thisform.bodycounter,550)" onKeyUp="textCounter(document.thisform.bodytext,document.thisform.bodycounter,550)">'.$link_content.'</textarea>'."\n";
-    $body_left = 550 - mb_strlen(html_entity_decode($link_content, ENT_COMPAT, 'UTF-8'), 'UTF-8');
+    echo '<br/><textarea name="bodytext" rows="10" cols="60" id="bodytext" onKeyDown="textCounter(document.thisform.bodytext,document.thisform.bodycounter,5000)" onKeyUp="textCounter(document.thisform.bodytext,document.thisform.bodycounter,5000)">'.$link_content.'</textarea>'."\n";
+    $body_left = 5000 - mb_strlen(html_entity_decode($link_content, ENT_COMPAT, 'UTF-8'), 'UTF-8');
     echo '<input readonly type="text" name="bodycounter" size="3" maxlength="3" value="'. $body_left . '" /> <span class="note">' . _('caracteres libres') . '</span>';
     echo '</p>'."\n";
 
@@ -188,16 +188,6 @@ function do_edit() {
   echo '<br/>';
 
   print_categories_form($linkres->category);
-
-  if ($current_user->admin) {
-    echo '<br/>';
-    echo '<p><label for="trackback">'._('enviar trackback').':</label><br />'."\n";
-    if (empty($trackback)) {
-        echo '<input type="text" name="trackback" id="trackback" value="'.$trackback.'" class="form-full" /></p>'."\n";
-    } else {
-        echo '<span class="note">'.$trackback.'</span>'."\n";
-        echo '<input type="hidden" name="trackback" id="trackback" value="'.$trackback.'"/></p>'."\n";
-    }
 
 
    if ($linkres->has_thumb()) {
