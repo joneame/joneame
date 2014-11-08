@@ -93,7 +93,7 @@
                 $this->dbpassword = $dbpassword;
                 $this->dbhost = $dbhost;
                 $return_val = true;
-                $this->query("SET NAMES 'utf8'");
+                $this->query("SET NAMES 'utf8mb4'");
             }
 
             return $return_val;
