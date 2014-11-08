@@ -521,36 +521,21 @@ function print_categories_form($selected = 0) {
     global $db;
     echo '<fieldset style="clear: both;" class="redondo"><legend class="mini barra redondo">'._('selecciona la categoría más apropiada').'</legend>';
 
-    $categories = $db->get_results("SELECT category_id, category_name FROM categories ORDER BY category_name ASC LIMIT 0,10");
+    $categories = $db->get_results("SELECT category_id, category_name FROM categories ORDER BY category_name ASC");
+    $columns = ceil(count($categories) / 5);
 
-    echo '<dl class="categorylist">'."";
-
-    foreach ($categories as $category) {
-        echo '<dd class="categorias"><input name="category" id="cat-'.$category->category_id.'" type="radio" ';
-        if ($selected == $category->category_id) echo 'checked="true" ';
-        echo 'value="'.$category->category_id.'"/> <label for="cat-'.$category->category_id.'" class="category-entry">'._($category->category_name).'</label></dd>'."";
+    while ($cur_categories = array_splice($categories, 0, $columns)) {
+        echo '<dl class="categorylist">';
+        foreach ($cur_categories as $category) {
+            echo '<dd class="categorias"><input name="category" id="cat-'.$category->category_id.'" type="radio" ';
+            if ($selected == $category->category_id) echo 'checked="true" ';
+            echo 'value="'.$category->category_id.'"/> <label for="cat-'.$category->category_id.'" class="category-entry">'._($category->category_name).'</label></dd>'."";
+        }
+        echo '</dl>';
     }
-    echo '</dl>'."";
-
-    $categories = $db->get_results("SELECT category_id, category_name FROM categories ORDER BY category_name ASC LIMIT 10,10");
-
-    echo '<dl class="categorylist">'."";
-
-    foreach ($categories as $category) {
-        echo '<dd class="categorias"><input name="category" id="cat-'.$category->category_id.'" type="radio" ';
-        if ($selected == $category->category_id) echo 'checked="true" ';
-        echo 'value="'.$category->category_id.'"/> <label for="cat-'.$category->category_id.'" class="category-entry">'._($category->category_name).'</label></dd>'."";
-    }
-        echo '</dl>'."";
-
-
     echo '<br style="clear: both;"/>';
     echo '</fieldset>';
-
-
 }
-
-
 
 function print_share_icons($full_link, $short_link = false, $title = '', $id) {
     global $globals;
