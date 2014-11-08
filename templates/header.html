@@ -20,11 +20,11 @@
 {% endif %}
 
 {% exec do_css_includes %}
-	
+
 <link rel="search" type="application/opensearchdescription+xml" title="{% trans _('Búsqueda en Jonéame') %}" href="http://{% exec get_server_name %}{{globals.base_url}}opensearch_plugin.php"/>
 
-<link rel="alternate" type="application/rss+xml" title="{% trans _('publicadas') %}" href="http://{% exec get_server_name %}{{globals.base_url}}rss2.php"/> 
-<link rel="alternate" type="application/rss+xml" title="{% trans _('pendientes') %}" href="http://{% exec get_server_name %}{{globals.base_url}}rss2.php?status=queued"/> 
+<link rel="alternate" type="application/rss+xml" title="{% trans _('publicadas') %}" href="http://{% exec get_server_name %}{{globals.base_url}}rss2.php"/>
+<link rel="alternate" type="application/rss+xml" title="{% trans _('pendientes') %}" href="http://{% exec get_server_name %}{{globals.base_url}}rss2.php?status=queued"/>
 <link rel="alternate" type="application/rss+xml" title="{% trans _('comentarios') %}" href="http://{% exec get_server_name %}{{globals.base_url}}comments_rss2.php" />
 
 <link rel="shortcut icon" href="{{ globals.base_url }}{{ globals.favicon }}" type="image/x-png"/>
@@ -37,7 +37,7 @@
 
 </head>
 
-<body id={{id}}  > 
+<body id={{id}}  >
 <div id="wrap">
 
 <div class="header">
@@ -50,9 +50,9 @@
 	<li><a href="{{ globals.base_url }}corto.php">cortos</a></li>
 {% endif %}
 {% if globals.localhost %}
-	<li><a href="{{ globals.base_url }}sneakme/">notitas</a></li>   
+	<li><a href="{{ globals.base_url }}sneakme/">notitas</a></li>
 {% else %}
-	<li><a href="{{ globals.base_url }}notitas/">notitas</a></li>  
+	<li><a href="{{ globals.base_url }}notitas/">notitas</a></li>
 {% endif %}
 <li><a href="{{ globals.base_url }}encuestas.php">encuestas</a></li>
 
@@ -66,21 +66,21 @@
 {% endif %}
 
 {% if current_user.user_id > 0 %}
-		
-	{% if cotillona == 0 %}			
+
+	{% if cotillona == 0 %}
 		{% if current_user.c_conversation > 0 %}
 			<li><a href="{% exec get_user_uri current_user.user_login %}/conversacion"><img src="{% exec get_cover_pixel %}" class="icon comment" />({{ current_user.c_conversation }})</a></li>
-		{% endif %}			
+		{% endif %}
 		{% if current_user.p_conversation > 0 %}
 			<li><a href="{% exec post_get_base_url %}_conversacion"><img src="{% exec get_cover_pixel %}" class="icon post" />({{ current_user.p_conversation }})</a></li>
 		{% endif %}
-		<li><a href=" {% exec get_mensajes_uri current_user.user_login %}"><img src="{% exec get_cover_pixel %}" class="icon message" /> ({{ current_user.unread_messages }})</a></li>			
+		<li><a href=" {% exec get_mensajes_uri current_user.user_login %}"><img src="{% exec get_cover_pixel %}" class="icon message" /> ({{ current_user.unread_messages }})</a></li>
 		{% if current_user.polls > 0 %}
 				<li><a href="{{globals.base_url}}encuestas.php?unvoted=1"><img src="{% exec get_cover_pixel %}" class="icon poll-new" />({{ current_user.polls }})</a></li>
 		{% endif %}
 	{% endif %}
 
-	<li><a href="{{ globals.base_url }}login.php?op=logout&amp;return={{globals.uri|urlencode}}">{% trans _('Cerrar sesión') %}</a></li> 
+	<li><a href="{{ globals.base_url }}login.php?op=logout&amp;return={{globals.uri|urlencode}}">{% trans _('Cerrar sesión') %}</a></li>
 
 	<li class="login"><a href="{% exec get_user_uri current_user.user_login %}"><img src="{% exec get_avatar_url current_user.user_id, current_user.user_avatar, 20 %}" /></a><a href="{% exec get_user_uri current_user.user_login %}">{{ current_user.user_login}}</a></li>
 {% else %}
@@ -101,7 +101,7 @@
 
 <div class="subheader">
 <div class="corto">
-	
+
 {% if globals.cortos_activados AND not cotillona %}
 	{% exec do_banner_top %}
 {% endif %}
@@ -114,7 +114,7 @@
 	{% if globals.q %}
 		<input type="search" name="q" value="{{globals.q|escape}}" />
 	{% else %}
-		<input name="q" type="text" placeholder="{% trans _('buscar')%}..." />
+		<input type="search" name="q" type="text" />
 	{% endif %}
 
 	<input type="submit" value="buscar">

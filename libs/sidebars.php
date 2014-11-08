@@ -96,7 +96,7 @@ function do_best_comments() {
     $output = '';
 
     $numero = 0;
-    $min_date = date("Y-m-d H:i:00", $globals['now'] - 86400*48); // about 24 hours
+    $min_date = date("Y-m-d H:i:00", $globals['now'] - 60 * 60 * 24 * 30);
     // The order is not exactly the comment_karma
     // but a time-decreasing function applied to the number of votes
     $res = $db->get_results("select comment_id, comment_order, user_id, user_login, user_avatar, link_id, link_uri, link_title, link_comments,  comment_karma*(1-(unix_timestamp(now())-unix_timestamp(comment_date))*0.7/43000) as value from comments, links, users  where comment_date > '$min_date' and comment_karma > 50 and comment_link_id = link_id and comment_user_id = user_id order by value desc limit 12");
@@ -183,81 +183,6 @@ $n = 0;
 
     }
 }
-
-//muestra historias con contenido de humor
-/*
-function do_humor_stories() {
-    global $db, $globals;
-
-    require_once(mnminclude.'link.php');
-    $foo_link = new Link();
-
-    $title = _('cachondeo');
-    $output = '<div class="sidebox"><h4><a href="'.$globals['base_url'].'search.php?q=humor">'.$title.'</a></h4><div class="fondo-caja column-list mnm-pop-container">';
-
-    $min_date = date("Y-m-d H:i:00", $globals['now'] - 172800*50); // 36 hours
-    // The order is not exactly the votes
-    // but a time-decreasing function applied to the number of votes
-     $res = $db->get_results("SELECT  * FROM `links` WHERE link_date > '$min_date' and link_status='published' and (link_title LIKE '%humor%' OR link_content LIKE '%humor%' OR link_tags LIKE '%humor%') ORDER  BY link_date DESC LIMIT 0,11");
-    if ($res) {
-$n = 0;
-        foreach ($res as $link) {
-
-        if (strstr($link->link_title , 'humor') or strstr($link->link_content , 'humor') or strstr($link->link_tags , 'humor')) {
-
-            $link->votes = $link->link_votes + $link->link_anonymous;
-            $foo_link->uri = $link->link_uri;
-            $url = $foo_link->get_relative_permalink();
-            $output .= '<div class="mnm-pop">'.$link->votes.'</div>';
-            if ($n == 0) $output .= '<h5>';
-            else $output .= '<h5>';
-            $output .= '<a href="'.$url.'" onmouseover="return tooltip.ajax_delayed(event, \'get_link.php\', '.$link->link_id.');" onmouseout="tooltip.clear(event);" />'.$link->link_title.'</a></h5>';
-            $output .= '<div class="mini-pop"></div>'."\n";
-            $n++;
-        }
-}
-        $output .= '</div></div>'."\n";
-        echo $output;
-
-    }
-
-}
-
-function do_humor_grafico_stories() {
-    global $db, $globals;
-
-    require_once(mnminclude.'link.php');
-    $foo_link = new Link();
-
-    $title = _('humor gráfico');
-    $output = '<div class="sidebox"><h4><a href="'.$globals['base_url'].'?category=13">'.$title.'</a></h4><div class="fondo-caja column-list mnm-pop-container">';
-
-    $min_date = date("Y-m-d H:i:00", $globals['now'] - 172800*50); // 36 hours
-    // The order is not exactly the votes
-    // but a time-decreasing function applied to the number of votes
-     $res = $db->get_results("SELECT  * FROM `links` WHERE link_date > '$min_date' and link_status='published' and link_category = '13' ORDER  BY link_date DESC LIMIT 0,11");
-    if ($res) {
-$n = 0;
-        foreach ($res as $link) {
-
-            $link->votes = $link->link_votes + $link->link_anonymous;
-            $foo_link->uri = $link->link_uri;
-            $url = $foo_link->get_relative_permalink();
-            $output .= '<div class="mnm-pop">'.$link->votes.'</div>';
-            if ($n == 0) $output .= '<h5>';
-            else $output .= '<h5>';
-            $output .= '<a href="'.$url.'" onmouseover="return tooltip.ajax_delayed(event, \'get_link.php\', '.$link->link_id.');" onmouseout="tooltip.clear(event);" />'.$link->link_title.'</a></h5>';
-            $output .= '<div class="mini-pop"></div>'."\n";
-            $n++;
-
-}
-        $output .= '</div></div>'."\n";
-        echo $output;
-
-    }
-}
-*/
-
 
 function do_best_story_comments($link) {
     global $db, $globals;
@@ -380,7 +305,7 @@ function do_best_posts() {
     if (isset($globals['mobile']) && $globals['mobile']) return;
 
     $output = '';
-    $min_date = date("Y-m-d H:i:00", $globals['now'] - 86400*7); // about 24*7 hours
+    $min_date = date("Y-m-d H:i:00", $globals['now'] - 60 * 60 * 24 * 30);
     $res = $db->get_results("select post_id, user_login, post_content, user_avatar, user_id from posts, users where post_date > '$min_date' and  post_user_id = user_id and post_karma > 0 order by post_karma desc limit 10");
     if ($res) {
         $output .= '<div class="sidebox"><h4><a href="'.$globals['base_url'].'mejores_notitas.php">'._('mejores notitas').'</a></h4><ul class="topcommentsli fondo-caja espaciador">'."\n";

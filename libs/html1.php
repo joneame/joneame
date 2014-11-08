@@ -696,5 +696,5 @@ function do_posts_tabs($tab_selected, $username) {
 }
 
 function anticache_key($file) {
-    return substr(md5(filemtime($file)), 0, 8);
+    return substr(md5(filemtime(__DIR__."/../".$file)), 0, 8);
 }

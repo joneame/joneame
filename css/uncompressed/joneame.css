@@ -2026,18 +2026,7 @@ div.subheader form.top_search {
 float: right;
 }
 
-/*
-div.subheader form.top_search input {
-opacity: 0.7;
-}
-
-div.subheader form.top_search input:hover,
-div.subheader form.top_search input:focus {
-opacity: 1;
-}
-*/
-
-div.subheader form.top_search input[type=text] {
+div.subheader form.top_search input[type=search] {
 padding: 1px 3px;
 margin: 4px;
 width: 150px;
@@ -2045,8 +2034,8 @@ border: 1px solid #255B85;
 color: #777;
 }
 
-div.subheader form.top_search input[type=text]:focus,
-div.subheader form.top_search input[type=text]:hover {
+div.subheader form.top_search input[type=search]:focus,
+div.subheader form.top_search input[type=search]:hover {
 color: #333;
 }
 
@@ -4055,4 +4044,20 @@ a .hglass {
 #fancybox-title-float-right {
     padding: 0 0 0 15px;
     background: url(/img/fancybox/fancybox.png) -55px -90px no-repeat;
+}
+
+.notitas-list .replies {
+    padding-left: 40px;
+    margin: -12px 0 18px 0;
+}
+
+.notitas-list .replies .notitas-list > li {
+    margin-bottom: 6px;
+}
+
+.notitas-list .replies .barra {
+}
+
+.notitas-list .replies .notitas-votes-info {
+    display: none;
 }

@@ -154,31 +154,8 @@ echo '<div id="newswrap">'."\n";
 
 echo '<div class="notes">';
 
-do_pages($rows, $page_size, false, true);
-
 $post = new Post;
 $post->print_post_teaser($rss_option);
-
-$new_status = $db->get_col("SELECT user_new_status.user_id FROM user_new_status,users WHERE users.user_id = user_new_status.user_id AND user_level!='disabled' ORDER BY
-user_new_status_date DESC LIMIT 5");
-
-if ($new_status && $tab_option == 1) {
-
-echo '<ol class="notitas-list">';
-echo '<li id="pcontainer">';
-echo '<div style="padding-bottom: 10px; clear: left;" class="redondo notita-body fondo-caja">';
-
-foreach ($new_status as $new_user_status_id){
-    $usuario = new User ($new_user_status_id);
-    if ($usuario->estado)
-    echo '<img style="margin-left: 10px; margin-top: 10px;" src="'.get_avatar_url($usuario->id, $usuario->avatar, 20).'"/><a href="'.get_user_uri($usuario->username).'"> '.$usuario->username.'</a> actualizó su estado: <i>'.put_smileys(save_text_to_html($usuario->estado)).'</i><br/>';
-
-    }
-echo '</div>';
-echo '</li>';
-echo '</ol>';
-
-}
 
 if ($option == '_geo') {
     echo '<br/><div class="topheading"><h2>notitas de las últimas 24 horas</h2></div>';
@@ -207,7 +184,7 @@ if ($option == '_geo') {
                     if ($respuestas) {
                     //TODO echo '<p align="right"><a  id="show-hide-'.$original_id.'" href="javascript:hide_answers('.$original_id.')"> Ocultar</a></p><br/>';
                     $answer = new Post;
-                    echo '<div id="respuestas-'.$original_id.'" style="padding-left: 40px;">'."\n";
+                    echo '<div id="respuestas-'.$original_id.'" class="replies">'."\n";
                     echo '<ol class="notitas-list">';
                     foreach ($respuestas as $dbanswer) {
                         $answer = Post::from_db($dbanswer);
