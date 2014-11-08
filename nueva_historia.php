@@ -86,14 +86,12 @@ exit;
         preload_indicators();
         if (!empty($_GET['url'])) {
         $url = clean_input_url($_GET['url']);
-        } else {
-        $url = 'http://';
         }
         echo '<div class="genericform">';
         echo '<h4>dirección de la historia</h4>';
         echo '<form class="fondo-caja" action="nueva_historia.php" method="post" id="thisform" onSubmit="$(\'#working\').html(\''._('espera').'...&nbsp;<img src=\\\'\'+img_src1+\'\\\'/>\'); return true;"><fieldset>';
         echo '<p><label for="url">'._('enlace').':</label><br />';
-        echo '<input type="text" name="url" id="url" value="'.htmlspecialchars($url).'" class="form-full" onblur="if(this.value==\'\') this.value=\'http://\';" onclick="if(this.value==\''._('http://').'\') this.value=\'\';"/></p>';
+        echo '<input type="text" name="url" id="url" value="'.htmlspecialchars($url).'" class="form-full" placeholder="http://" /></p>';
         echo '<input type="hidden" name="phase" value="1" />';
         $randkey = rand(10000,10000000);
         echo '<input type="hidden" name="key" value="'.md5($randkey.$current_user->user_id.$current_user->user_email.$site_key.get_server_name()).'" />'."\n";
@@ -425,12 +423,15 @@ exit;
         echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
         $linkres->print_content_type_buttons();
 
+        if (!$link_title) {
+            $link_title = mb_substr($linkres->url_title, 0, 200);
+        }
         echo '<br/><input type="text" id="title" name="title" value="'.$link_title.'" size="80" maxlength="120" />';
         echo '</p>'."\n";
 
         echo '<label for="tags" accesskey="2">'._('etiquetas').':</label>'."\n";
-        echo '<p><span class="note">'._('añade etiquetas para facilitar la posterior búsqueda').' Ejemplo: <em>pornografía, gatos, humor</em></span>'."\n";
-        echo '<br/><input type="text" id="tags" name="tags" value="'.$link_tags.'" size="70" maxlength="70" /></p>'."\n";
+        echo '<p><span class="note">'._('añade etiquetas para facilitar la posterior búsqueda').'</span>';
+        echo '<br/><input placeholder="pornografía, gatos, humor" type="text" id="tags" name="tags" value="'.$link_tags.'" size="70" maxlength="70" /></p>'."\n";
 
         //botones de formateo
         echo '<div style="float: right;">';
@@ -438,7 +439,7 @@ exit;
         echo '</div>';
 
         echo '<p><label for="bodytext" accesskey="3">'._('descripción de la noticia').':</label>'."\n";
-        echo '<br /><span class="note">'._('si quieres, describe el enlace con tus palabras. También vale el copypaste. Ésto es opcional');
+        echo '<br /><span class="note">'._('describe el enlace con tus palabras — este campo es opcional');
         echo '</span>'."\n";
         echo '<br/><textarea name="bodytext" rows="10" cols="60" id="bodytext" onKeyDown="textCounter(document.thisform.bodytext,document.thisform.bodycounter,550)" onKeyUp="textCounter(document.thisform.bodytext,document.thisform.bodycounter,550)">'.$link_content.'</textarea>'."\n";
         $body_left = 550 - mb_strlen(html_entity_decode($link_content, ENT_COMPAT, 'UTF-8'), 'UTF-8');
@@ -448,26 +449,9 @@ exit;
         echo '</p>'."\n";
         echo '<br /></p>'."\n";
 
-        //voto aleatorio
-        if ($current_user->user_karma > 7) {
-            echo '<fieldset class="redondo"><legend class="mini barra redondo">'._('voto aleatorio').'</legend>'."\n";
-            echo '<span style="font-weight: normal;">Si activas la casilla, el sistema decidirá el valor del voto inicial. Si la dejas desactivada el valor del voto será el valor de tu carisma. Si la activas y el azar decide que éste voto es negativo no hay marcha atrás, piénsalo bien. Si has caído bien a la mafia, éste será positivo ;-)</span><br/><br/>';
-            echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="aleatorio" id="aleatorio" type="checkbox" value="1"/>&nbsp;<label for="aleatorio">'._('permitir que el sistema elija el voto por mí').' </label>'."\n";
-            echo '</fieldset>'."\n";
-            echo '<br/>';
-        }
-
         print_categories_form();
 
         echo '<br/>';
-        echo '<p><label for="trackback">'._('trackback').':</label><br />'."\n";
-        if (empty($trackback)) {
-                echo '<span class="note">'._('puedes agregar o cambiar el trackback si ha sido detectado automáticamente').'</span>'."\n";
-                echo '<input type="text" name="trackback" id="trackback" value="'.$trackback.'" class="form-full" /></p>'."\n";
-        } else {
-                echo '<span class="note">'.$trackback.'</span>'."\n";
-                echo '<input type="hidden" name="trackback" id="trackback" value="'.$trackback.'"/></p>'."\n";
-        }
         echo '<input class="button" type="button" onclick="window.history.go(-1)" value="'._('« retroceder').'" />&nbsp;&nbsp;'."\n";
         echo '<input class="button" type="submit" value="'._('continuar »').'" />'."\n";
         echo '</fieldset></div>'."\n";
@@ -549,7 +533,7 @@ exit;
 
         echo '<h2>'._('envío de una nueva noticia: paso 3 de 3').'</h2>'."\n";
 
-        echo '<form action="nueva_historia.php" method="post" class="genericform" onSubmit="$(\'#working\').html(\''._('enviando trackbacks').'...&nbsp;<img src=\\\'\'+img_src1+\'\\\'/>\'); return true;">'."\n";
+        echo '<form action="nueva_historia.php" method="post" class="genericform">'."\n";
         echo '<fieldset class="redondo"><legend class="mini barra redondo"><span class="sign">'._('detalles de la noticia').'</span></legend>'."\n";
 
         echo '<div class="genericformtxt"><label>'._('ATENCIÓN: ¡esto es sólo una muestra!').'</label>&nbsp;&nbsp;<br/>'._('Ahora puedes 1) ').'<label>'._('retroceder').'</label>'._(' o 2)  ').'<label>'._('enviar a la cola y finalizar').'.</label> '._('¡Deja que la mafia decida!').'</div>';
@@ -601,18 +585,6 @@ exit;
                 // Add the new link log/event
                 require_once(mnminclude.'log.php');
                 log_conditional_insert('link_new', $linkres->id, $linkres->author);
-
-                if(!empty($_POST['trackback'])) {
-                        require_once(mnminclude.'trackback.php');
-                        $trackres = new Trackback;
-                        $trackres->url=clean_input_url($_POST['trackback']);
-                        $trackres->link_id=$linkres->id;
-                        $trackres->link=$linkres->url;
-                        $trackres->author=$linkres->author;
-
-                        $res = $trackres->send($linkres);
-                }
-                fork("backend/send_pingbacks.php?id=$linkres->id");
         }
 
         header('Location: '. $linkres->get_permalink());

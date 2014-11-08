@@ -717,14 +717,7 @@ function stats_increment($type, $all=false) {
 // Json basic functions
 
 function json_encode_single($dict) {
-    $item = '{';
-    $passed = 0;
-    foreach ($dict as $key => $val) {
-        if ($passed) { $item .= ','; } // como el primer passed es cero, no mete la coma
-        $item .= $key . ':"' . $val . '"'; // agrega a $item
-        $passed = 1; // ahora le dice que meta la coma
-    }
-     return $item . '}';
+    return json_encode($dict);
 }
 
 // Generic function to get content from an url

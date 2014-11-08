@@ -62,10 +62,6 @@ function do_edit() {
     echo '<input type="hidden" name="phase" value="1" />'."\n";
     echo '<input type="hidden" name="id" value="'.$linkres->id.'" />'."\n";
 
-    if (!$linkres->trackback()) $linkres->pingback();
-
-    $trackback=htmlspecialchars($linkres->trackback);
-
     echo "\n";
 
 
@@ -131,27 +127,12 @@ function do_edit() {
         echo '});';
         echo '</script>';
 
-
-        echo '<label for="title" accesskey="2">'._('historia duplicada').':</label>'."\n";
-        echo '<span class="note">enlace original</span>';
-
-        require_once mnminclude.'dupe.class.php';
-        $dupe = new Dupe;
-        $dupe->id = $linkres->id;
-
-        if ($dupe->get())
-        $url = $dupe->duplicate;
-        else
-        $url = 'http://joneame.net/historia/blablabla';
-
-
-        echo '<br/><input type="text" '.$disabled.' id="duplicada" name="duplicated" value="'.$url.'" size="80" maxlength="120" onblur="if(this.value==\'\') this.value=\'http://joneame.net/historia/blablabla\';" onclick="if(this.value==\''._('http://joneame.net/historia/blablabla').'\') this.value=\'\';"/>';
     }
 
     echo '</p>'."\n";
 
     echo '<label for="tags" accesskey="3">'._('etiquetas').':</label>'."\n";
-    echo '<p><span class="note">'._('añade etiquetas para facilitar la posterior búsqueda.').' Ejemplo: <em>pornografía, gatos, humor</em></span>'."\n";
+    echo '<p><span class="note">'._('añade etiquetas para facilitar la posterior búsqueda').'</span>'."\n";
     echo '<br/><input type="text" id="tags" name="tags" value="'.$link_tags.'" size="70" maxlength="70" /></p>'."\n";
 
     echo '<div style="float: right;">';
@@ -159,7 +140,7 @@ function do_edit() {
     echo '</div>';
 
     echo '<p><label for="bodytext" accesskey="4">'._('descripción de la historia').':</label>'."\n";
-    echo '<br /><span class="note">'._('si quieres, describe el enlace con tus palabras. También vale el copypaste. Esto es opcional').'</span>'."\n";
+    echo '<br /><span class="note">'._('describe el enlace con tus palabras — este campo es opcional').'</span>'."\n";
 
     echo '</span>'."\n";
     echo '<br/><textarea name="bodytext" rows="10" cols="60" id="bodytext" onKeyDown="textCounter(document.thisform.bodytext,document.thisform.bodycounter,550)" onKeyUp="textCounter(document.thisform.bodytext,document.thisform.bodycounter,550)">'.$link_content.'</textarea>'."\n";
@@ -191,14 +172,6 @@ function do_edit() {
 
   if ($current_user->admin) {
     echo '<br/>';
-    echo '<p><label for="trackback">'._('enviar trackback').':</label><br />'."\n";
-    if (empty($trackback)) {
-        echo '<input type="text" name="trackback" id="trackback" value="'.$trackback.'" class="form-full" /></p>'."\n";
-    } else {
-        echo '<span class="note">'.$trackback.'</span>'."\n";
-        echo '<input type="hidden" name="trackback" id="trackback" value="'.$trackback.'"/></p>'."\n";
-    }
-
 
    if ($linkres->has_thumb()) {
             echo '<input type="checkbox" name="thumb_delete" value="1" id="thumb_delete"/><label for="thumb_delete">'._('eliminar imagen').'</label><br/>';
@@ -345,22 +318,9 @@ function do_save() {
 
     $linkres = Link::from_db($linkres->id);
 
-    echo '<div class="formnotice">'."\n";
+    echo '<div class="news-body formnotice">'."\n";
     $linkres->print_summary('preview');
     echo '</div>'."\n";
-
-    echo '<input type="hidden" name="trackback" value="'.htmlspecialchars(trim($_POST['trackback'])).'" />'."\n";
-    if(!empty($_POST['trackback'])) {
-
-            require_once(mnminclude.'trackback.php');
-            $trackres = new Trackback;
-            $trackres->url=clean_input_url($_POST['trackback']);
-            $trackres->link_id=$linkres->id;
-            $trackres->link=$linkres->url;
-            $trackres->author=$linkres->author;
-            $res = $trackres->send($linkres);
-        }
-        fork("backend/send_pingbacks.php?id=$linkres->id");
 
     echo '<form class="note" method="GET" action="historia.php" >';
     echo '<input type="hidden" name="id" value="'.$linkres->id.'" />'."\n";

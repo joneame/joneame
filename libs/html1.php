@@ -139,37 +139,32 @@ function do_header($title, $id='home') {
 function do_css_includes() {
     global $globals;
 
-    foreach ($globals['extra_css'] as $css) {
-        echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$globals['base_url'].'css/'.$css.'" />';
-    }
-
-    echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$globals['base_url'].$globals['css_main'].'" />';
+    echo '<link rel="stylesheet" type="text/css" media="screen" href="'.$globals['base_url'].$globals['css_main'].'?key='.anticache_key($globals['css_main']).'" />';
 }
 
 function do_js_includes() {
     global $globals, $current_user;
 
-    echo '<script type="text/javascript">var base_url="'.$globals['base_url'].'";</script>'."";
-    echo '<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js" type="text/javascript"></script>';
+    echo '<script></script>'."";
+    echo '<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>';
 
     // Cache for Ajax
-    echo '<script src="'.$globals['base_url'].'js/jsoc-0.12.0.js" type="text/javascript"></script>';
-    echo '<script src="'.$globals['base_url'].'js/general.js" type="text/javascript"></script>';
+    echo '<script src="'.$globals['base_url'].'js/jsoc-0.12.0.js"></script>';
+    echo '<script src="'.$globals['base_url'].'js/general.js?key='.anticache_key('js/general.js').'"></script>';
     do_js_from_array($globals['extra_js']);
 
-    echo ' <script type="text/javascript" src="'.$globals['base_url'].'js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>';
+    echo '<script src="'.$globals['base_url'].'js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>';
 
-    echo '<script type="text/javascript">if(top.location != self.location)top.location = self.location;'."";
-
+    echo '<script>var base_url="'.$globals['base_url'].'";';
+    echo 'if(top.location != self.location)top.location = self.location;';
     echo '$(document).ready(function() {$("a.fancybox").fancybox()});';
     echo '</script>'."";
 
     if (isset($globals['extra_js_text'])) {
-         echo ' <script type="text/javascript">';
+         echo '<script>';
          echo $globals['extra_js_text']."";
          echo '</script>'."";
     }
-
 }
 
 function do_js_from_array($array) {
@@ -331,19 +326,6 @@ function csv_escape($string) {
 
     return $string;
 }
-
-/*
-function do_banner_behean() {
-    global $globals, $current_user;
-
-    echo '<div id="footwrap" align="center">'."";
-
-    echo '<iframe src="http://ads.socialmedia.com/sn/monetize.php?width=728&height=90&pubid=18dbf4624ed5b6b949fec371a102d044" border="0" width="728" height="90" name="socialmedia_ad" scrolling="no" frameborder="0"></iframe>';
-
-    echo '</div>'."";
-}
-*/
-
 
 function do_rss() {
     global $globals, $current_user;
@@ -618,47 +600,6 @@ function do_banner_right() { // side banner A
     global $globals;
 
     if (isset($globals['mobile']) && $globals['mobile']) return;
-
-/*
-    if($globals['external_ads'] && $globals['ads']) {
-        @include('ads/right.inc');
-    }
-    include('ads/darriba.inc');
-*/
-
-/*
-    echo '<a href="http://queapostar.com/index.php?s=s21&amp;utm_source=joneame&amp;utm_medium=banner&amp;utm_campaign=empezar_joneame"
-        //target="_blank"><img alt="queApostar, tu red social de apuestas. Gestiona tus apuestas y comparte tus conocimientos."
-        //src="'.$globals['base_url'].'img/v2/banner_queapostar.jpg"/></a><br/>';
-    echo '<br/>';
-*/
-
-/*
-    echo '<a href="http://catlink.eu" target="_blank"><img src="'.$globals['base_url'].'img/v2/catlinkbn.png"/></a><br/>';
-    echo '<script  language="javascript"  type="text/javascript">iw_ad_alternativo="http://joneame.net/img/v2/catlinkbn.png"; iwsrcplus="http://codenew.impresionesweb.com/r/banner_iw.php?idrotador=88879&tamano=300x250&lgid="+((new Date()).getTime() % 2147483648) + Math.random(); document.write("<scr"+"ipt language=javascript  type=text/javascript src="+iwsrcplus+"></scr"+"ipt>");</script><noscript><iframe src="http://alt.impresionesweb.com/noscript.php?tam=300x250&idp=88879&ref=88879&cod=182986" width="300" height="250" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe></noscript>';
-*/
-
-/*
-    echo '<div class="centrado"><form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-    <input type="hidden" name="cmd" value="_s-xclick">
-    <input type="hidden" name="hosted_button_id" value="G2ANDVBMK8SUG">
-    <input type="image" src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal. La forma rápida y segura de pagar en Internet.">
-    <img alt="" border="0" src="https://www.paypalobjects.com/es_ES/i/scr/pixel.gif" width="1" height="1">
-   </form></div>';
-*/
-
-/*
-    <div class="centrado">';
-    echo 'Donar <form name="_xclick" action="https://www.paypal.com/cgi-bin/webscr" method="post">';
-    echo    '<input type="hidden" name="cmd" value="_xclick">';
-    echo    '<input type="hidden" name="business" value="paypal@joneame.net">';
-    echo    '<input type="hidden" name="item_name" value="Donaciones a Joneame">';
-    echo    '<input type="hidden" name="currency_code" value="EUR">';
-    echo    '<input type="text" size="3" name="amount" value="15"> €<br/>';
-    echo    '<input type="image" src="'.$globals['base_url'].'img/v2/paypal.gif" name="submit" alt="Donaciones!">';
-    echo    '</form></div>';
-*/
-
 }
 
 function do_credits() {
@@ -752,4 +693,8 @@ function do_posts_tabs($tab_selected, $username) {
     // END STANDARD TABS
 
     echo '</ul>';
+}
+
+function anticache_key($file) {
+    return substr(md5(filemtime($file)), 0, 8);
 }

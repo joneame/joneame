@@ -1,62 +1,53 @@
-		
-<div class="news-summary">
-<div class="news-body">
-
 <div class="news-shakeit">
 
-{% if self.print_vote_box %}
-		<div class="{{ self.box_class }}">
-{% else %}
-		<div class="{{ self.box_class }}">
-{% endif %}
-
-<a id="a-votes-{{ self.id }}" href="{{ self.permalink }}">{{ self.total_votes }}</a>{% trans _('joneos') %}</div>
+<div class="{{ self.box_class }}">
+	<a id="a-votes-{{ self.id }}" href="{{ self.permalink }}">{{ self.total_votes }}</a>{% trans _('joneos') %}
+</div>
 
 {% if not globals.bot AND self.print_vote_box %}
 	<div class="menealo" id="a-va-{{ self.id }}">
-			
+
 	{% if self.voted|null  AND self.votes_enabled %}
 
 		{% if self.status == 'queued' AND current_user.user_id > 0  %}
-					
+
 			<a class="shakebox-central" href='javascript:jonea({{ current_user.user_id}}, {{self.id}}, {{self.id}},&quot;{{self.md5}}&quot;)'
  id="a-shake-{{self.id}}">{% trans _('jonéala') %} </a>
-					
+
 			{% if current_user.user_id > 0 AND globals.aleatorios_usuarios_activados %}
 				<a href='javascript:jonea({{ current_user.user_id}}, {{self.id}}, {{self.id}},&quot;{{self.md5}}&quot;)'
  id="a-shake-'{{self.id}}"> {% trans _('aleatorio') %} </a>
 			{% endif %}
 		{% else %}
 			<a href='javascript:jonea({{ current_user.user_id}}, {{self.id}}, {{self.id}},&quot;{{self.md5}}&quot;)'
- id="a-shake-{{self.id}}"> {% trans _('jonéala') %} </a> 
+ id="a-shake-{{self.id}}"> {% trans _('jonéala') %} </a>
 		{% endif %}
 
 	{% else %}
 
 		{% if self.votes_enabled %}
-				
+
 			{% if self.aleatorio_tipo == 'aleatorio' AND current_user.user_id > 0 %}
 						<span id="a-shake-{{ self.id }}">{% trans  _('valió ') %} {{ self.aleatorio_valor }}</span>
 			{% else %}
 				{% if self.voted >= 0 %}
 					<span id="a-shake-{{ self.id }}">{% trans  _('¡¡Biba!!')  %}</span>
-				{% else %} 
+				{% else %}
 					{% if self.voted < 0 %}
 						<span id="a-shake-{{ self.id }}">{% trans _(':-(')  %}</span>
 					{% endif %}
 				{% endif %}
 			{% endif %}
-					
-		{% else %} 
+
+		{% else %}
 			<span id="a-shake-{{ self.id }}">{% trans _('chapau!')  %}</span>
 		{% endif %}
-				
+
 
 	{% endif %}
 
-	</div> 
-	
+	</div>
+
 {% endif %}
 
 </div>
-

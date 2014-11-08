@@ -593,10 +593,12 @@ class Link {
         $var = compact('type');
         $var['self'] = $this;
 
-        if ($type != 'preview')
-            Haanga::Load("link_shake_box.html", $var);
+        if ($type != 'preview') {
+            $shakebox = Haanga::Load("link_shake_box.html", $var, true);
+            $var['shakebox'] = $shakebox;
+        }
 
-        Haanga::Load("link_warn.html", $var);
+        $var['warning'] = Haanga::Load("link_warn.html", $var, true);
 
         Haanga::Load("link_summary.html", $var);
 
