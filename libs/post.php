@@ -227,7 +227,7 @@ class Post {
             echo _('hace').' '.txt_time_diff($this->date);
         }
 
-        if ($current_user->user_level=='god' && $this->src == 'web') echo " ($this->ip) ";
+        if ($current_user->user_level=='god') echo " ($this->ip) ";
 
         echo '&nbsp;&nbsp;';
 
