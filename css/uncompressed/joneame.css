@@ -4054,10 +4054,3 @@ a .hglass {
 .notitas-list .replies .notitas-list > li {
     margin-bottom: 6px;
 }
-
-.notitas-list .replies .barra {
-}
-
-.notitas-list .replies .notitas-votes-info {
-    display: none;
-}
