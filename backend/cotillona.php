@@ -267,14 +267,14 @@ function send_string($mess) {
     global $current_user, $now, $globals, $events;
 
     $key = $now . ':chat:'.$id;
-    $json['who'] = addslashes($current_user->user_login);
+    $json['who'] = $current_user->user_login;
     $json['uid'] = $current_user->user_id;
     $json['ts'] = $now;
     $json['status'] =  _('chat');
     $json['type'] =  'chat';
     $json['votes'] = 0;
     $json['com'] = 0;
-    $json['title'] = addslashes(text_to_html($mess));
+    $json['title'] = text_to_html($mess);
     $events[$key] = json_encode_single($json);
 }
 
@@ -351,14 +351,14 @@ function get_chat($time) {
             }
         }
 
-        $json['who'] = addslashes($event->chat_user);
+        $json['who'] = $event->chat_user;
         $json['ts'] = $event->chat_time;
         $json['type'] = 'chat';
         $json['votes'] = 0;
         $json['com'] = 0;
         $json['link'] = 0;
         $chat_text = put_smileys($event->chat_text);
-        $json['title'] = addslashes(clear_whitespace(text_to_html(preg_replace("/[\r\n]+/", ' ¬ ', preg_replace('/&&user&&/', $current_user->user_login, $chat_text)))));
+        $json['title'] = clear_whitespace(text_to_html(preg_replace("/[\r\n]+/", ' ¬ ', preg_replace('/&&user&&/', $current_user->user_login, $chat_text))));
 
         if (isset($aktibia) && $aktibia) {
             $json['title'] = '<span style=\"color: #99CC00\">IG: '.$json['title'].'</span>';
@@ -434,8 +434,8 @@ function get_votes($dbtime) {
         $json['votes'] = $event->link_votes+$event->link_anonymous;
         $json['com'] = $event->link_comments;
         $json['link'] = $foo_link->get_relative_permalink();
-        $json['title'] = addslashes($event->link_title);
-        $json['who'] = addslashes($who);
+        $json['title'] = $event->link_title;
+        $json['who'] = $who;
         $json['uid'] = $event->vote_user_id;
         $json['id'] = $event->link_id;
         if ($event->vote_user_id >0) $json['icon'] = get_avatar_url($event->vote_user_id, -1, 20);
@@ -461,7 +461,7 @@ function get_story($time, $type, $linkid, $userid) {
     $json['type'] = $type;
     $json['votes'] = $event->link_votes+$event->link_anonymous;
     $json['com'] = $event->link_comments;
-    $json['title'] = addslashes($event->link_title);
+    $json['title'] = $event->link_title;
 
     if ($type == 'discarded' && $event->link_status == 'abuse' && $event->link_auhtor != $userid
         && ($event->user_level == 'admin' || $event->user_level == 'god')) {
@@ -469,7 +469,7 @@ function get_story($time, $type, $linkid, $userid) {
         $json['uid'] = 0;
         $json['who'] = 'admin';
     } else {
-        $json['who'] = addslashes($event->user_login);
+        $json['who'] = $event->user_login;
         $json['uid'] = $userid;
         if ($userid >0) $json['icon'] = get_avatar_url($userid, -1, 20);
     }
@@ -494,12 +494,12 @@ function get_comment($time, $type, $commentid, $userid) {
     $json['type'] = $type;
     $json['votes'] = $event->link_votes+$event->link_anonymous;
     $json['com'] = $event->link_comments;
-    $json['title'] = addslashes($event->link_title);
+    $json['title'] = $event->link_title;
     if ( $event->comment_type == 'admin') {
         $json['who'] = 'admin';
         $userid = 0;
     } else {
-        $json['who'] = addslashes($event->user_login);
+        $json['who'] = $event->user_login;
     }
     $json['uid'] = $userid;
     if ($userid >0) $json['icon'] = get_avatar_url($userid, -1, 20);
@@ -521,8 +521,8 @@ function get_poll_comment($time, $type, $commentid, $userid) {
     $json['type'] = $type;
     $json['votes'] = $event->encuesta_total_votes;
     $json['com'] = $event->comentarios;
-    $json['title'] = addslashes($event->titulo);
-    $json['who'] = addslashes($event->user_login);
+    $json['title'] = $event->titulo;
+    $json['who'] = $event->user_login;
     $json['uid'] = $userid;
 
     if ($userid >0) $json['icon'] = get_avatar_url($userid, -1, 20);
@@ -550,10 +550,10 @@ function get_post($time, $type, $postid, $userid) {
         $json['who'] = 'admin';
         $userid = 0;
     } else {
-        $json['who'] = addslashes($event->user_login);
+        $json['who'] = $event->user_login;
     }
     $json['status'] = _('notita');
-    $json['title'] = addslashes(put_smileys(text_to_summary(preg_replace('/(@[\S.-]+)(,\d+)/','$1',$event->post_content),130)));
+    $json['title'] = put_smileys(text_to_summary(preg_replace('/(@[\S.-]+)(,\d+)/','$1',$event->post_content),130));
 
         $json['votes'] = 0;
     $json['com'] = 0;
@@ -575,9 +575,9 @@ function get_poll($time, $type, $encuestaid, $userid) {
     $json['link'] = get_encuesta_uri($encuestaid);
     $json['ts'] = $time;
     $json['type'] = $type;
-    $json['who'] = addslashes($event->user_login);
+    $json['who'] = $event->user_login;
     $json['status'] = _('encuesta');
-    $json['title'] = addslashes(text_to_summary(preg_replace('/(@[\S.-]+)(,\d+)/','$1',$event->encuesta_title),130));
+    $json['title'] = text_to_summary(preg_replace('/(@[\S.-]+)(,\d+)/','$1',$event->encuesta_title),130);
     $json['votes'] = 0;
     $json['com'] = 0;
     $json['uid'] = $userid;
