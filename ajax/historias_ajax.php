@@ -262,7 +262,7 @@ function print_best_comments() {
     } else if (!$globals['bot']){
 
         echo '<div class="barra redondo">'."\n";
-        echo '<a href="'.$globals['base_url'].'login.php?return='.$_SERVER['REQUEST_URI'].'">'._('Entra con tu cuenta de usuario').'</a> '._('si deseas escribir comentarios').'. '._('O crea tu cuenta haciendo clic'). ' <a href="'.$globals['base_url'].'register.php">aquí</a>'."\n";
+        echo '<a href="'.$globals['base_url'].'login.php?return='.urlencode($link->get_permalink()).'">'._('Entra con tu cuenta de usuario').'</a> '._('si deseas escribir comentarios').'. '._('O crea tu cuenta haciendo clic'). ' <a href="'.$globals['base_url'].'register.php">aquí</a>'."\n";
         echo '</div>'."\n";
 
     }
@@ -340,7 +340,7 @@ function print_comments() {
     } else if (!$globals['bot']){
 
         echo '<div class="barra redondo">'."\n";
-        echo '<a href="'.$globals['base_url'].'login.php?return='.$_SERVER['REQUEST_URI'].'">'._('Entra con tu cuenta de usuario').'</a> '._('si deseas escribir comentarios').'. '._('O crea tu cuenta haciendo clic'). ' <a href="'.$globals['base_url'].'register.php">aquí</a>'."\n";
+        echo '<a href="'.$globals['base_url'].'login.php?return='.urlencode($link->get_permalink()).'">'._('Entra con tu cuenta de usuario').'</a> '._('si deseas escribir comentarios').'. '._('O crea tu cuenta haciendo clic'). ' <a href="'.$globals['base_url'].'register.php">aquí</a>'."\n";
         echo '</div>'."\n";
 
     }
