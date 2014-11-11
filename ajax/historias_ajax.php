@@ -550,8 +550,8 @@ function print_story_tabs($option,$id = false) {
     echo '<li'.$active[1].'><a href="'.$permalink.'" onClick="link_show('.$link->id.', 1, 2); return false;">'._('comentarios'). '</a></li>'."\n";
     echo '<li'.$active[2].'><a href="'.$permalink.'/mejores-comentarios" onClick="link_show('.$link->id.', 2, 3); return false;">'._('+ valorados'). '</a></li>'."\n";
     if ($burradas > 0)
-    echo '<li'.$active[8].'><a href="'.$permalink.'/burradas" onClick="link_show('.$link->id.', 8, 4); return false;">'._('burradas'). '</a></li>'."\n";
-    echo '<li'.$active[7].'><a href="'.$permalink.'/trackbacks" onClick="link_show('.$link->id.', 7, 5); return false;"">'._('trackbacks'). '</a></li>'."\n";
+        echo '<li'.$active[8].'><a href="'.$permalink.'/burradas" onClick="link_show('.$link->id.', 8, 4); return false;">'._('burradas'). '</a></li>'."\n";
+    // echo '<li'.$active[7].'><a href="'.$permalink.'/trackbacks" onClick="link_show('.$link->id.', 7, 5); return false;"">'._('trackbacks'). '</a></li>'."\n";
 
     if (!$globals['bot']) { // Don't show "empty" pages to bots, Google can penalize too
 
@@ -562,7 +562,7 @@ function print_story_tabs($option,$id = false) {
         echo '<li'.$active[6].'><a href="'.$permalink.'/favoritos" onClick="link_show('.$link->id.', 6, 7); return false;">&nbsp;'.FAV_YES.'&nbsp;</a></li>'."\n";
 
         if ($link->date > time() - 2592000) {
-            echo '<li'.$active[5].'><a href="'.$permalink.'/cotillona" onClick="link_show('.$link->id.', 5, 8); return false;">&micro;&nbsp;'._('cotillona'). '</a></li>'."\n";
+            // echo '<li'.$active[5].'><a href="'.$permalink.'/cotillona" onClick="link_show('.$link->id.', 5, 8); return false;">&micro;&nbsp;'._('cotillona'). '</a></li>'."\n";
             echo '<li'.$active[4].'><a href="'.$permalink.'/eventos#" onClick="link_show('.$link->id.', 4, 1); return false;">'._('eventos'). '</a></li>'."\n";
 
         }

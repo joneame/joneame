@@ -1078,10 +1078,6 @@ margin: 0px;
 
 /* comments [& incipient notes] */
 
-.comments {
-margin: 15px 5px 0 10px;
-}
-
 .notes {
 margin: 15px 5px 0 15px;
 }
@@ -1595,8 +1591,8 @@ width: 8%;
 text-align: right;
 }
 
-.voters, .mini-sneaker {
-margin: 25px 5px 0 10px;
+.voters, .mini-sneaker, .comments {
+margin: 15px 5px 0 10px;
 }
 
 .voters h2 {
@@ -4053,4 +4049,8 @@ a .hglass {
 
 .notitas-list .replies .notitas-list > li {
     margin-bottom: 6px;
+}
+
+.voters-list .noone {
+    margin: 5px;
 }
