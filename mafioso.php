@@ -766,17 +766,18 @@ function do_user_tabs($option, $user) {
 
     echo '<ul class="tabmain">'."\n";
     echo '<li'.$active[1].'><a href="'.get_user_uri($user).'">'._('perfil'). '</a></li>';
+    echo '<li'.$active[7].'><a href="'.get_user_uri($user, 'amigos').'">'._('amigos').'</a></li>';
 
-    if ($globals['cortos_activados']) echo '<li'.$active[9].'><a href="'.get_user_uri($user, 'cortos').'">'._('cortos'). '</a></li>';
+    if ($globals['cortos_activados']) echo '<li'.$active[9].'><a href="'.get_user_uri($user, 'cortos').'" class="separada">'._('cortos'). '</a></li>';
 
     if (!$globals['bot']) echo '<li'.$active[3].'><a href="'.get_user_uri($user, 'comentarios').'" class="separada">'._('comentarios'). '</a></li>';
-     echo '<li'.$active[5].'><a href="'.get_user_uri($user, 'conversacion').'">'._('conversación'). '</a></li>';
-    if (!$globals['bot']) echo '<li'.$active[8].'><a href="'.get_user_uri($user, 'comentarios_fav').'">'._('com. favoritos').'</a></li>';
-    echo '<li'.$active[7].'><a href="'.get_user_uri($user, 'amigos').'" class="separada">'._('amigos').'</a></li>';
-    if (!$globals['bot']) echo '<li'.$active[6].'><a href="'.get_user_uri($user, 'favoritos').'">'.('favoritos').'</a></li>';
-    echo '<li'.$active[2].'><a href="'.get_user_uri($user, 'enviadas').'" class="separada">'._('enviadas'). '</a></li>';
+    echo '<li'.$active[5].'><a href="'.get_user_uri($user, 'conversacion').'">'._('conversación'). '</a></li>';
+    if (!$globals['bot']) echo '<li'.$active[8].'><a href="'.get_user_uri($user, 'comentarios_fav').'">'._('favoritos').'</a></li>';
 
+
+    echo '<li'.$active[2].'><a href="'.get_user_uri($user, 'enviadas').'" class="separada">'._('enviadas'). '</a></li>';
     if (!$globals['bot']) echo '<li'.$active[4].'><a href="'.get_user_uri($user, 'votadas').'">'._('votadas'). '</a></li>';
+    if (!$globals['bot']) echo '<li'.$active[6].'><a href="'.get_user_uri($user, 'favoritos').'">'.('favoritas').'</a></li>';
 
     echo '<li><a href="'.post_get_base_url($user).'" class="separada">'._('notas'). '</a></li>';
         echo '<li><a href="'.get_user_uri($user,'encuestas').'" class="separada">'._('encuestas'). '</a></li>';
