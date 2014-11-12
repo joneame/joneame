@@ -630,7 +630,6 @@ color: #4b7db0;
 
 .news-details span {
 margin: 0;
-vertical-align: top;
 }
 
 .news-details img {
@@ -654,7 +653,7 @@ border-left-color: #4b7db0;
 }
 
 .news-details .comments {
-padding: 0 4px 0 16px;
+padding: 0 4px 0 24px;
 font-weight: bold;
 border-left: none;
 background: transparent url(/img/iconos/sprite.png) no-repeat scroll 0 -304px;

@@ -41,12 +41,15 @@ class Link {
     var $read = false;
     var $voted = false;
     var $banned = false;
-        var $thumb_status = 'unknown';
+    var $thumb_status = 'unknown';
     var $aleatorios_positivos = 0;
     var $aleatorios_negativos = 0;
     var $clicks = 0;
     var $visits = 0;
     var $broken_link = 0;
+
+    var $votes_sum = 0;
+    var $negatives_sum = 0;
 
     // sql fields to build an object from mysql
     //const SQL = " link_id as id, link_author as author, link_blog as blog, link_status as status, link_votes as votes, link_negatives as negatives, link_anonymous as anonymous, link_votes_avg as votes_avg, link_aleatorios_positivos as aleatorios_positivos, link_aleatorios_negativos as aleatorios_negativos, link_comments as comments, link_karma as karma, link_randkey as randkey, link_category as category, link_url as url, link_uri as uri, link_url_title as title, link_title as title, link_tags as tags, link_content as content, UNIX_TIMESTAMP(link_date) as date,  UNIX_TIMESTAMP(link_sent_date) as sent_date, link_sent as sent, UNIX_TIMESTAMP(link_modified) as modified, link_content_type as content_type, link_ip as ip, link_thumb_status as thumb_status, link_thumb_x as thumb_x, link_thumb_y as thumb_y, link_thumb as thumb, link_comentarios_permitidos as comentarios_permitidos, link_votos_permitidos as votos_permitidos, user_login as username, user_email as email, user_avatar as avatar, user_karma as user_karma, user_level as user_level, user_adcode, cat.category_name as category_name, cat.category_uri as category_uri, meta.category_id as meta_id, meta.category_name as meta_name, favorite_link_id as favorite, clicks.counter as clicks, visits.counter as visits FROM links LEFT JOIN favorites ON (@user_id > 0 and favorite_user_id =  @user_id and favorite_type = 'link' and favorite_link_id = links.link_id) LEFT JOIN categories as cat on (cat.category_id = links.link_category) LEFT JOIN categories as meta on (meta.category_id = cat.category_parent) LEFT JOIN link_clicks as clicks on (clicks.id = links.link_id) LEFT JOIN link_visits as visits on (visits.id = links.link_id), users ";
@@ -436,6 +439,8 @@ class Link {
             $this->title=$link->link_title;
             $this->karma=$link->karma;
             $this->aleatorios_positivos=$link->link_aleatorios_positivos;
+            $this->votes_sum = $link->votes + $link->aleatorios_positivos;
+            $this->negatives_sum = $link->negatives + $link->aleatorios_negativos;
 
             $this->read = true;
 
@@ -461,6 +466,8 @@ class Link {
         }
         if(($result = $db->get_row("SELECT".Link::SQL."WHERE $cond AND user_id=link_author"))) {
             foreach(get_object_vars($result) as $var => $value) $this->$var = $value;
+            $this->votes_sum = $this->votes + $this->aleatorios_positivos;
+            $this->negatives_sum = $this->negatives + $this->aleatorios_negativos;
             $this->read = true;
             return true;
         }

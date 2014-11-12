@@ -88,43 +88,27 @@
 
 <div class="news-details">
 
-<span class="comments">&nbsp;<a href=" {{ self.permalink }}">
-<span id="n_comentarios-{{self.id}}"> {{self.comentarios }}</span><span id="t_comentarios-{{self.id}}">{{self.comments_mess }}</span></a></span>
+<span class="comments">
+	<a href="{{ self.permalink }}">
+		<span id="n_comentarios-{{self.id}}">{{self.comentarios}}</span>
+		<span id="t_comentarios-{{self.id}}">{{self.comments_mess}}</span>
+	</a>
+</span>
 
-&nbsp;<span class="tool">{% trans _('carisma:') %}<strong><span id="a-karma-{{self.id}}"> {% exec intval self.karma %} </span></strong></span>
-(<b><span id="a-usu-{{self.id}}"><abbr title="votos">{{self.votes}}</abbr></span></b>,<b>
+<span class="tool">
+	<strong>carisma:</strong> <span id="a-karma-{{self.id}}">{% exec intval self.karma %}</span>
+</span>
+<span class="tool">
+	<strong>usuarios:</strong> <span id="a-usu-{{self.id}}">{{self.votes_sum}}</span>&nbsp;
+	<strong>anónimos:</strong> <span id="a-ano-{{self.id}}">{{self.anonymous}}</span>&nbsp;
+	{% if self.negatives > 0 %}
+		<strong>negativos:</strong> <span id="a-neg-{{self.id}}" style="color: red;">{{self.negatives_sum}}</span>
+	{% else %}
+		<strong>negativos:</strong> <span id="a-neg-{{self.id}}" style="color: #aaa;">{{self.negatives_sum}}</span>
+	{% endif %}
+</span>
 
-{% if self.anonymous != 0 %}
-	<span id="a-ano-{{self.id}}">
-{% else %}
-	<span id="a-ano-{{self.id}}" style="color: #aaa;">
-{% endif %}
 
-<abbr title="{% trans _('votos anónimos') %}"> {{ self.anonymous }}</abbr></span></b>, <b>
-
-{% if self.aleatorios_positivos != 0 %}
-	<span id="a-ale_pos-{{self.id}}">
-{% else %}
-	<span id="a-ale_pos-{{self.id}}" style="color: #aaa;">
-{% endif %}
-
-<abbr title="{% trans _('votos aleatorios positivos') %}">{{ self.aleatorios_positivos }}</abbr></span></b>, <b>
-
-{% if self.aleatorios_negativos != 0 %}
-	<span id="a-ale_neg-{{self.id}}" style="color: red;">
-{% else %}
-	<span id="a-ale_neg-{{self.id}}" style="color: #aaa;">
-{% endif %}
-
-<abbr title="{% trans _('votos aleatorios negativos') %}">{{ self.aleatorios_negativos }}</abbr></span></b>, <b>
-
-{% if self.negatives > 0 %}
-	<span id="a-neg-{{self.id}}" style="color: red;">
-	<abbr title="{% trans _('votos negativos') %}">{{ self.negatives }}</abbr></span></b>)
-{% else %}
-	<span id="a-neg-{{self.id}}" style="color: #aaa;">
-	<abbr title="{% trans _('votos negativos') %}">{{ self.negatives }}</abbr></span></b>)
-{% endif %}
 
 {% exec print_share_icons self.permalink, self.short_permalink, self.title, self.id  %}
 
@@ -153,15 +137,13 @@
 
 </div>
 
-<div class="news-details"><b> {% trans _('categoría') %}:</b>&nbsp;
+<div class="news-details"><strong> {% trans _('categoría') %}:</strong>
 
 {% if self.status == 'published'  %}
 	<a href=" {{ globals.base_url }}?category={{ self.category }}" title="{% trans _('categoría') %}"> {{self.category_name}}</a>
 {% else %}
 	<a href="{{ globals.base_url }}jonealas.php?category={{ self.category }}" title="{% trans _('categoría') %}">  {{ self.category_name }} </a>
 {% endif %}
-
-&nbsp;
 
 {% if self.show_tags AND self.tags %}
 	{% exec explode "," self.tags as tags_array %}
