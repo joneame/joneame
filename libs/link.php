@@ -70,6 +70,8 @@ class Link {
         else $selector = " link_uri = '$id' ";
 
         if(($object = $db->get_object("SELECT".Link::SQL." WHERE $selector LIMIT 1", 'Link'))) {
+            $object->votes_sum = $object->votes + $object->aleatorios_positivos;
+            $object->negatives_sum = $object->negatives + $object->aleatorios_negativos;
             $object->read = true;
             return $object;
         }
