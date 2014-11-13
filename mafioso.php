@@ -373,7 +373,7 @@ echo '<div style="text-align:center">';
                 if (!$usr->read()) $usuario = "Unknown";
                 else $usuario = $usr->username;
 
-                echo '<dd><b>'.$usuario.'</b> (<em>'.$h_item->fecha.'</em>) '.$h_item->texto.'</dd>';
+                echo '<dd><b>'.$usuario.'</b> (<em>'.$h_item->fecha.'</em>) '.htmlspecialchars($h_item->texto).'</dd>';
 
             }
     }
