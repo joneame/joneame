@@ -147,15 +147,6 @@ exit;
                 return;
         }
 
-        /* Control para asegurarnos que hay variedad de usuarios en la cola */
-        if (check_queue($current_user->user_id)){
-             echo '<p class="error">'._('Has enviado demasiadas historias seguidas. Espera que alguien envie algo para no saturar la cola de pendientes.'). ' </p>';
-                syslog(LOG_NOTICE, "Jonéame, too many queued ($current_user->user_login)");
-                echo '<br style="clear: both;" />' . "\n";
-                echo '</div>'. "\n";
-                return;
-        }
-
         $queued_24_hours = (int) $db->get_var("select count(*) from links where link_status!='published' and link_date > date_sub(now(), interval 24 hour) and link_author=$current_user->user_id");
 
         if ($globals['limit_user_24_hours'] && $queued_24_hours > $globals['limit_user_24_hours']) {
