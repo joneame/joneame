@@ -432,8 +432,8 @@ exit;
         echo '<p><label for="bodytext" accesskey="3">'._('descripción de la noticia').':</label>'."\n";
         echo '<br /><span class="note">'._('describe el enlace con tus palabras — este campo es opcional');
         echo '</span>'."\n";
-        echo '<br/><textarea name="bodytext" rows="10" cols="60" id="bodytext" onKeyDown="textCounter(document.thisform.bodytext,document.thisform.bodycounter,550)" onKeyUp="textCounter(document.thisform.bodytext,document.thisform.bodycounter,550)">'.$link_content.'</textarea>'."\n";
-        $body_left = 550 - mb_strlen(html_entity_decode($link_content, ENT_COMPAT, 'UTF-8'), 'UTF-8');
+        echo '<br/><textarea name="bodytext" rows="10" cols="60" id="bodytext" onKeyDown="textCounter(document.thisform.bodytext,document.thisform.bodycounter,5000)" onKeyUp="textCounter(document.thisform.bodytext,document.thisform.bodycounter,5000)">'.$link_content.'</textarea>'."\n";
+        $body_left = 5000 - mb_strlen(html_entity_decode($link_content, ENT_COMPAT, 'UTF-8'), 'UTF-8');
         echo '<input readonly type="text" name="bodycounter" size="3" maxlength="3" value="'. $body_left . '" /> <span class="note">' . _('caracteres libres') . '</span>';
 
 
@@ -619,7 +619,7 @@ exit;
                 print_form_submit_error(_("La historia ya está en cola").": $linkres->status");
                 $error = true;
         }
-        if((strlen(addslashes($linkres->content))) > 550) {
+        if((strlen(addslashes($linkres->content))) > 5000) {
                         print_form_submit_error(_("Has sobrepasado el límite de caracteres para la descripción"));
                 $error = true;
         }
@@ -637,7 +637,7 @@ exit;
                 print_form_submit_error(_("Demasiadas mayúsculas en el título o texto, ¡ASEGÚRATE de que es correcto!"));
                 // $error = true;
         }
-        if(mb_strlen(html_entity_decode($linkres->title, ENT_COMPAT, 'UTF-8'), 'UTF-8') > 120  || mb_strlen(html_entity_decode($linkres->content, ENT_COMPAT, 'UTF-8'), 'UTF-8') > 550 ) {
+        if(mb_strlen(html_entity_decode($linkres->title, ENT_COMPAT, 'UTF-8'), 'UTF-8') > 120  || mb_strlen(html_entity_decode($linkres->content, ENT_COMPAT, 'UTF-8'), 'UTF-8') > 5000 ) {
                 print_form_submit_error(_("Título o texto demasiado largos"));
                 $error = true;
         }
