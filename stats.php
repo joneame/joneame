@@ -13,7 +13,7 @@ include(mnminclude.'stats.php');
 do_header(_('Estadísticas | Jonéame'));
 
 echo '<strong>Fecha:</strong> '.date(" d-m-Y H:i:s T").'<br/><br/>';
-echo '<strong>Promote</strong> '.text_to_html('http://' . get_server_name().$globals['base_url']. 'promote.php').'<br/><br/>';
+echo '<strong>Promote:</strong> '.text_to_html('http://' . get_server_name().$globals['base_url']. 'promote.php').'<br/><br/>';
 echo do_stats2().'<br/><br/>';
 echo do_stats2('1').'<br/><br/>';
 echo do_stats1().'<br/><br/>';

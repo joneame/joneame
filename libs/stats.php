@@ -18,9 +18,9 @@ function do_admins() {
                         $users = array();
                         foreach ($res as $user) {
                                 if ($user->user_login == $user->user_login_register) {
-                                        $users[] = $user->user_login;
+                                        $users[] = sprintf('<a href="%s">%s</a>', get_user_uri($user->user_login), $user->user_login);
                                 } else {
-                                        $users[] = sprintf('%s (<em>%s</em>)', $user->user_login, $user->user_login_register);
+                                        $users[] = sprintf('<a href="%s">%s</a> (<em>%s</em>)', get_user_uri($user->user_login), $user->user_login, $user->user_login_register);
                                 }
                         }
                         $comment .= implode(', ', $users);
@@ -34,22 +34,30 @@ function do_last() {
         global $db, $current_user;
 
         if (! $current_user->admin) return false;
-        $list = '<strong>Últimos registrados</strong><br/>';
+        $list = '<strong>Últimos registrados:</strong><br/>';
         $res = $db->get_results("select user_id, user_login, user_avatar, user_date, user_email, user_ip from users where user_level != 'disabled' AND user_validated_date IS NOT NULL order by user_id desc limit 20");
 
         if ($res) {
-            $list .= '<table>';
-            $list .= '<tr><th>nick</th><th>registrado</th><th>correo</th><th>dirección ip</th></tr>';
-            foreach ($res as $user) {
-                $list .= sprintf('<tr><td><img src="%s" /> <a href="%s">%s</a></td><td>%s</td><td>%s</td><td>%s</td></tr>',
-                    get_avatar_url($user->user_id, $user->user_avatar, 20),
-                    get_user_uri($user->user_login),
-                    $user->user_login,
-                    $user->user_date,
-                    $user->user_email,
-                    $user->user_ip);
+            if ($current_user->user_level == 'god') {
+                $list .= '<table>';
+                $list .= '<tr><th>nick</th><th>registrado</th><th>correo</th><th>dirección ip</th></tr>';
+                foreach ($res as $user) {
+                    $list .= sprintf('<tr><td><img src="%s" /> <a href="%s">%s</a></td><td>%s</td><td>%s</td><td>%s</td></tr>',
+                        get_avatar_url($user->user_id, $user->user_avatar, 20),
+                        get_user_uri($user->user_login),
+                        $user->user_login,
+                        $user->user_date,
+                        $user->user_email,
+                        $user->user_ip);
+                }
+                $list .= '</table>';
+            } else { /* los admins rasos no pueden ver correos ni ips. */
+                $list .= '<ul style="margin-left: 20px;">';
+                foreach ($res as $user) {
+                    $list .= sprintf('<li><a href="%s">%s</a> (%s)</li>', get_user_uri($user->user_login), $user->user_login, $user->user_date);
+                }
+                $list .= '</ul>';
             }
-            $list .= '</table>';
         }
 
         return $list;
@@ -58,7 +66,7 @@ function do_last() {
 
 function do_stats1() {
     global $db;
-    $comment = '<strong>'._('Estadísticas globales'). '</strong>. ';
+    $comment = '<strong>'._('Estadísticas globales'). '</strong>: ';
     $comment .= _('usuarios activos') . ':&nbsp;' . $db->get_var("select count(*) from users where user_level != 'disabled'") . ', ';
     $votes = (int) $db->get_var('select count(*) from votes') + (int) $db->get_var('select sum(votes_count) from votes_summary');
     $comment .= _('votos') . ':&nbsp;' . $votes . ', ';
@@ -70,15 +78,13 @@ function do_stats1() {
     return $comment;
 }
 
-function do_stats2($hours) {
+function do_stats2($hours = 24) {
     global $db;
-
-    if (!$hours) $hours = 24;
 
     $comment = '<strong>'._('Estadísticas')." $hours ";
     if ($hours > 1) $comment .= _('horas');
     else $comment .= _('hora');
-    $comment .= '</strong>. ';
+    $comment .= '</strong>: ';
 
     $comment .= _('votos') . ':&nbsp;' . $db->get_var("select count(*) from votes where vote_type='links' and vote_date > date_sub(now(), interval $hours hour)") . ', ';
     $comment .= _('votos comentarios') . ':&nbsp;' . $db->get_var("select count(*) from votes where vote_type='comments' and vote_date > date_sub(now(), interval $hours hour)") . ', ';

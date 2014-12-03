@@ -31,15 +31,27 @@ foreach ($links as $month) {
     $links_formatted .= sprintf("['%s', %d, %d],", $month->month, $month->count, $month->count2);
 }
 
-$comments = $db->get_results("
-    select date_format(comment_date, '%m/%Y') as month, count(*) as count, sum(comment_votes > 1) as count2, sum(comment_votes > 3) as count3
+$comments = $db->get_results(sprintf("
+    select date_format(comment_date, '%%m/%%Y') as month, count(*) as count, sum(comment_votes > 1) as count2, sum(comment_votes > 3) as count3,
+    sum(comment_karma > %d) as count4
     from comments group by year(comment_date), month(comment_date);
-");
+", $globals['resaltar_comentarios']));
 $comments_formatted = "";
 foreach ($comments as $month) {
-    $comments_formatted .= sprintf("['%s', %d, %d, %d],", $month->month, $month->count, $month->count2, $month->count3);
+    $comments_formatted .= sprintf("['%s', %d, %d, %d, %d],", $month->month, $month->count, $month->count2, $month->count3, $month->count4);
+}
+
+$posts = $db->get_results(sprintf("
+    select date_format(post_date, '%%m/%%Y') as month, count(*) as count, sum(post_votes > 1) as count2, sum(post_votes > 3) as count3,
+    sum(post_karma > %d) as count4
+    from posts group by year(post_date), month(post_date);
+", $globals['resaltar_notas']));
+$posts_formatted = "";
+foreach ($posts as $month) {
+    $posts_formatted .= sprintf("['%s', %d, %d, %d, %d],", $month->month, $month->count, $month->count2, $month->count3, $month->count4);
 }
 ?>
+
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
       google.load("visualization", "1", {packages:["corechart"]});
@@ -52,7 +64,10 @@ foreach ($comments as $month) {
           ['Mes', 'Enviadas', 'Publicadas'], <?php echo $links_formatted; ?>
         ]);
         var comments = google.visualization.arrayToDataTable([
-          ['Mes', 'Escritos', 'Con al menos 1 voto', 'Con al menos 3 votos'], <?php echo $comments_formatted; ?>
+          ['Mes', 'Escritos', 'Con al menos 1 voto', 'Con al menos 3 votos', 'Resaltados'], <?php echo $comments_formatted; ?>
+        ]);
+        var posts = google.visualization.arrayToDataTable([
+          ['Mes', 'Escritas', 'Con al menos 1 voto', 'Con al menos 3 votos', 'Resaltadas'], <?php echo $posts_formatted; ?>
         ]);
 
         var users_chart = new google.visualization.LineChart(document.getElementById('users_chart_div'));
@@ -61,6 +76,8 @@ foreach ($comments as $month) {
         links_chart.draw(links);
         var comments_chart = new google.visualization.LineChart(document.getElementById('comments_chart_div'));
         comments_chart.draw(comments);
+        var posts_chart = new google.visualization.LineChart(document.getElementById('posts_chart_div'));
+        posts_chart.draw(posts);
       }
     </script>
 
@@ -73,6 +90,8 @@ foreach ($comments as $month) {
 <h3>Comentarios</h3>
     <div id="comments_chart_div" style="width: 1200px; height: 500px;"></div>
 
+<h3>Notitas</h3>
+    <div id="posts_chart_div" style="width: 1200px; height: 500px;"></div>
 
 <?php
 do_footer();
