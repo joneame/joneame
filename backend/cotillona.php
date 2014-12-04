@@ -248,8 +248,24 @@ function check_chat() {
       } elseif ((!empty($_REQUEST['devel']) || strpos($comment, '%') === 0) && $current_user->devel) {
             $room = 'devel';
             $comment = preg_replace('/^% */', '', $comment);
-          } elseif (strpos($comment, '!usuarios') === 0) {
-            send_string(userlist());
+      } elseif (strpos($comment, '!') === 0) {
+            $pre = '<strong>Información:</strong> ';
+            switch (trim($comment)) {
+                case '!usuarios':
+                    send_string($pre.userlist());
+                    break;
+                case '!nuevos':
+                case '!stats':
+                    if ($current_user->admin) {
+                        send_string($pre.'Las estadísticas de la web y la lista de últimos usuarios registrados están <a href="'.$globals['base_url'].'stats.php">aquí</a>.
+                            También hay unas gráficas <a href="'.$globals['base_url'].'stats2.php">aquí</a>.');
+                    } else {
+                        send_string($pre.'Las estadísticas de la web están <a href="'.$globals['base_url'].'stats.php">aquí</a>.');
+                    }
+                    break;
+                default:
+                    send_string($pre.'Comando no reconocido. Prueba: <strong>!usuarios</strong> <strong>!stats</strong>');
+            }
             return;
       } else {
             $room = 'all';
