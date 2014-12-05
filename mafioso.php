@@ -76,7 +76,7 @@ if (!$user->disabled && $view == 'profile' && $globals['google_maps_api'] && $gl
 $globals['noindex'] = true;
 
 
-if (!empty($user->names)) {
+if (!empty($user->names) && $login != $user->names) {
     do_header("$login ($user->names)");
 } else{
         do_header($login);
@@ -345,11 +345,6 @@ function do_profile() {
     echo '<dt>'._('número de joneos').':</dt><dd>'.$user->total_votes.'</dd>';
     if ($globals['cortos_activados']) echo '<dt>'._('cortos enviados').':</dt><dd>'.$user->cortos_totales.'</dd>';
         echo '<dt>'._('encuestas realizadas').':</dt><dd>'.$user->encuestas_totales.'</dd>';
-if ($current_user->user_id == $user->id){
-echo '<div style="text-align:center">';
-        print_oauth_icons($_REQUEST['return']);
-        echo '</div>'."\n";
-}
 
     // historial del usuario
     if ($current_user->admin) {
