@@ -28,6 +28,9 @@ var comment = '';
 var last_comment_sent=0;
 var comment_period = 1; //seconds
 var ccnt = 0;     // Connected counter
+var ccntu = 0;     // Connected counter
+var ccntj = 0;     // Connected counter
+var ccnta = 0;     // Connected counter
 var ttm = 0;
 var uzo = 0;
 var user_login = '';
@@ -151,8 +154,11 @@ function received_data(data) {
     var new_data = Array();
     eval (data);
     $('#ccnt').html(ccnt);
+    $('#ccntu').html(ccntu);
+    $('#ccntj').html(ccntj);
+    $('#ccnta').html(ccnta);
     $('#ttm').html(ttm);
-       $('#uzo').html(uzo);
+    $('#uzo').html(uzo);
     new_items= new_data.length;
     if(new_items > 0) {
         if (do_animation) clear_animation();

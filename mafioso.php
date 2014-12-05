@@ -384,7 +384,7 @@ function do_profile() {
         echo '</div>';
     }
 
-    if (($current_user->user_level == 'god') && ($current_user->user_id != $user->id) ) {
+    if ($current_user->user_level == 'god') {
         $clone_counter = 0;
         echo '<br/><fieldset class="fondo-caja redondo"><legend class="mini barra redondo">'._('verificar clones').'</legend>';
         echo '<p><strong><a class="fancybox" href="'.$globals['base_url'].'backend/cookie_clones.php?id='.$user->id.'">'._('verificar clones por cookie').'</a></strong></p>';
@@ -392,12 +392,9 @@ function do_profile() {
         echo '</fieldset>';
     }
 
-
-
-
     // Show first numbers of the address if the user has god privileges
-    if ($current_user->user_level == 'god' &&  ! $user->admin ) { // tops and admins know each other for sure, keep privacy
-    echo '<br/><fieldset class="fondo-caja redondo"><legend class="mini barra redondo">'._('últimas direcciones ip').'</legend>';
+    if ($current_user->user_level == 'god') {
+        echo '<br/><fieldset class="fondo-caja redondo"><legend class="mini barra redondo">'._('últimas direcciones ip').'</legend>';
 
         $addresses = $db->get_results("select INET_NTOA(vote_ip_int) as ip from votes where vote_type='links' and vote_user_id = $user->id order by vote_date desc limit 30");
 
@@ -419,8 +416,8 @@ function do_profile() {
         $prev_address = '';
         foreach ($addresses as $dbaddress) {
            $ip_pattern = preg_replace('/\.[0-9]+$/', '', $dbaddress->ip);
-            if($ip_pattern != $prev_address) {
-        echo $dbaddress->ip. '<br/>';
+            if ($ip_pattern != $prev_address) {
+                echo $dbaddress->ip. '<br/>';
                 $clone_counter++;
                 $prev_address = $ip_pattern;
                 if ($clone_counter >= 30) break;

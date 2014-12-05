@@ -56,9 +56,9 @@ if ($_REQUEST['id'] == 'faq') {
     echo '<h3>¿Qué es la cotillona?</h3>';
     echo '<p>La cotillona muestra lo que sucede en Jonéame en tiempo real. Si eres usuario registrado también puedes usarla para chatear o ponerte en contacto con los administradores.</p>';
     echo '<a name="jabber"></a>';
-    echo '<h3>¿Cómo escribo en la cotillona o envío notitas desde Jabber/GTalk?</h3>';
-    echo '<p>Para escribir desde Jabber, asegúrate de haber establecido correctamente el campo <b>jabber/gtalk para la coti</b> en <a href="'.$globals['base_url'].'profile.php">la configuración de tu perfil</a>. Una vez hecho esto, debes añadir los siguientes contactos a tu lista:</p>';
-    echo '<ul><li><b>cotillona@joneame.net</b> para poder usar la cotillona.</li><li><b>notitas@joneame.net</b> para poder enviar y recibir notitas.</li></ul>';
+    echo '<h3>¿Cómo escribo en la cotillona desde Jabber/GTalk?</h3>';
+    echo '<p>Para escribir desde Jabber, asegúrate de haber establecido correctamente el campo <b>jabber/gtalk para la coti</b> en <a href="'.$globals['base_url'].'profile.php">la configuración de tu perfil</a>. Una vez hecho esto, debes añadir el siguiente contacto a tu lista:</p>';
+    echo '<ul><li><b>cotillona@joneame.net</b></li></ul>';
     echo '<h3>¿Dónde notifico errores, problemas o sugerencias?</h3>';
     echo '<p>Puedes notificarnos en una notita o mediante un mail a ad<em></em>min&#64;jon<strong></strong>eame&#46;ne<strong></strong>t. Si es un problema de seguridad, te rogamos que uses el mail.</p>';
 } elseif ($_REQUEST['id'] == 'emoticonos') {

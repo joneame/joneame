@@ -136,12 +136,6 @@ function do_login() {
     }
     echo '<p><input type="submit" value="iniciar sesión" class="button" tabindex="4" />'."\n";
 
-    /*
-    echo '<br/><br/><div style="text-align:center">';
-        print_oauth_icons($_REQUEST['return']);
-        echo '<br/>Ayuda: <a href="ayuda.php?id=login">¿Qué es esto?</a></div>'."\n";
-    */
-
     echo '<input type="hidden" name="processlogin" value="1"/></p>'."\n";
     echo '<input type="hidden" name="return" value="'.htmlspecialchars($_REQUEST['return']).'"/>'."\n";
     echo '</fieldset>'. "\n";

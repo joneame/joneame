@@ -63,7 +63,7 @@ function show_profile() {
     echo '<fieldset>';
     echo '<div class="profile-sidebar">';
     echo '<img class="espaciador" style="padding: 0;" src="'.get_avatar_url($user->id, $user->avatar, 80).'" width="80" height="80" alt="'.$user->username.'" title="avatar" /><br/>';
-    echo '<div class="help-topic">'._('Puedes poner tu dirección de <b>Jabber</b> o <b>Google Talk</b> si quieres conectarte a la cotillona o mandar notitas desde allí. Los contactos que debes agregar son:<br/><b>cotillona@joneame.net</b><br/><b>notitas@joneame.net</b>').'</div>';
+    echo '<div class="help-topic">'._('Puedes poner tu dirección de <b>Jabber</b> o <b>Google Talk</b> si quieres conectarte a la cotillona. Tendrás que añadir el siguiente contacto a tu lista:<br><b>cotillona@joneame.net</b>').'</div>';
 
     include_once(mnminclude.'avatars.php');
         if (is_avatars_enabled()) echo '<div class="help-topic">'._('Los avatares no deben ser mayores de 100KB.').'</div>';

@@ -111,15 +111,10 @@ $db->barrier();
 
 if($last_timestamp == 0) $last_timestamp = $now;
 
-/* neiko: quitado */
-
-/*
 $ccntu = $db->get_var("select count(*) from sneakers where sneaker_user > 0 and sneaker_id not like 'jabber/%'");;
 $ccntj = $db->get_var("select count(*) from sneakers where sneaker_user > 0 and sneaker_id like 'jabber/%'");
-$ccnta = 0; // $db->get_var("select count(*) from sneakers where sneaker_user = 0");
+$ccnta = $db->get_var("select count(*) from sneakers where sneaker_user = 0");
 $ccnt = $ccntu+$ccnta+$ccntj;
-// Banak irakurri
-*/
 
 if ($current_user->user_id > 0)
     if (baneatuta($current_user->user_id)) $mezutxo = '<input type="submit" value="'._('baneado').'" disabled="disabled" class="button"/>';
@@ -184,7 +179,7 @@ if ($current_user->user_id > 0) {
 } else
     echo "ts=$last_timestamp;ccnt='$ccnt';ttm='$mezutxo';\n";
 */
-    echo "ts=$last_timestamp;ccnt='0';ttm='$mezutxo';\n";
+    echo "ts=$last_timestamp;ccntu='$ccntu';ccntj='$ccntj';ccnta='$ccnta';ccnt='$ccnt';ttm='$mezutxo';\n";
 
 if(count($events) < 1) exit;
 
@@ -637,24 +632,35 @@ function update_sneakers() {
     else // no existe
         $db->query("INSERT INTO sneakers VALUES('".$key."', unix_timestamp(now()), ".$current_user->user_id.")");
 
-   // if($_REQUEST['r'] % 37 == 0) {
-    if (rand(0,2) == 2) {
     $from = time() - (15 * 60);
-        $db->query("delete from sneakers where sneaker_time < ".$from);
-    }
+    $db->query("delete from sneakers where sneaker_time < ".$from);
 }
 
 function userlist() {
-        global $db, $globals, $current_user;
+    global $db, $globals, $current_user;
 
-        $users = $db->get_results('SELECT DISTINCT(sneaker_user) AS user_id, users.user_login AS user_login, users.user_level AS user_level
-        FROM sneakers
-                INNER JOIN users ON users.user_id = sneakers.sneaker_user
-                ORDER BY sneaker_user ASC');
+    $users = $db->get_results('
+        SELECT s1.sneaker_id AS sneaker_id, s1.sneaker_user AS sneaker_user,
+            user_login, user_level
+        FROM sneakers AS s1
+        JOIN sneakers AS s2
+            ON s1.sneaker_user = s2.sneaker_user
+        JOIN users
+            ON users.user_id = s1.sneaker_user
+        GROUP BY s1.sneaker_id, s1.sneaker_user
+        HAVING s1.sneaker_id = MIN(s2.sneaker_id)
+    ');
 
     foreach ($users as $user) {
         $nick = '<a href="/mafioso/'.$user->user_login.'" target="_blank">'.$user->user_login.'</a>';
-        if ($user->user_level == 'god' || $user->user_level == 'admin') {
+        $jabber = (strpos($user->sneaker_id, 'jabber') === 0);
+        $admin = ($user->user_level == 'god' || $user->user_level == 'admin');
+
+        if ($jabber && $admin) {
+            $nick .= ' (jabber, admin)';
+        } elseif ($jabber) {
+            $nick .= ' (jabber)';
+        } elseif ($admin) {
             $nick .= ' (admin)';
         }
         $nicks[] = $nick;

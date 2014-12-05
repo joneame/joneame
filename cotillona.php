@@ -531,7 +531,7 @@ function flipChar(c) {
 
 //]]>
 </script>
-<script src="<?php echo $globals['base_url']; ?>js/sneak14.js.php"></script>
+<script src="<?php echo $globals['base_url']; ?>js/sneak14.js.php?1"></script>
 <?php
 
 
@@ -590,7 +590,10 @@ echo '<input type="checkbox" checked="checked" name="sneak-post" id="post-status
 echo '<input type="checkbox" checked="checked" name="sneak-encuesta" id="encuesta-status" onclick="toggle_control(\'encuesta\')" /><img src="img/estructura/pixel.gif" class="icon sneak-icon poll-new" alt="'._('encuesta').'" title="'._('encuestas').'"/>';
 
 /* neiko: */
-/* echo _('cotillas').  ': <strong><span style="font-size: 120%;" id="ccnt">0</span></strong>&nbsp;&nbsp;'; */
+echo _('cotillas').  ': <strong><span style="font-size: 120%;" id="ccnt">0</span></strong> ';
+echo '(<strong><span id="ccntu" title="cotillas registrados">0</span></strong>+';
+echo '<strong><span id="ccntj" title="cotillas por jabber">0</span></strong>+';
+echo '<strong><span id="ccnta" title="cotillas anónimos">0</span></strong>)';
 echo '&nbsp;&nbsp;<abbr title="'._('tiempo en milisegundos para procesar cada petición a nuestro pobre microondas').'">ping-pong</abbr>: <strong><span style="font-size: 120%;" id="ping">∞</span></strong>';
 echo '</div>';
 echo "</form>\n";
