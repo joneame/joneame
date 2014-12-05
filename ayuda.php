@@ -56,11 +56,9 @@ if ($_REQUEST['id'] == 'faq') {
     echo '<h3>¿Qué es la cotillona?</h3>';
     echo '<p>La cotillona muestra lo que sucede en Jonéame en tiempo real. Si eres usuario registrado también puedes usarla para chatear o ponerte en contacto con los administradores.</p>';
     echo '<a name="jabber"></a>';
-/*
     echo '<h3>¿Cómo escribo en la cotillona o envío notitas desde Jabber/GTalk?</h3>';
     echo '<p>Para escribir desde Jabber, asegúrate de haber establecido correctamente el campo <b>jabber/gtalk para la coti</b> en <a href="'.$globals['base_url'].'profile.php">la configuración de tu perfil</a>. Una vez hecho esto, debes añadir los siguientes contactos a tu lista:</p>';
     echo '<ul><li><b>cotillona@joneame.net</b> para poder usar la cotillona.</li><li><b>notitas@joneame.net</b> para poder enviar y recibir notitas.</li></ul>';
-*/
     echo '<h3>¿Dónde notifico errores, problemas o sugerencias?</h3>';
     echo '<p>Puedes notificarnos en una notita o mediante un mail a ad<em></em>min&#64;jon<strong></strong>eame&#46;ne<strong></strong>t. Si es un problema de seguridad, te rogamos que uses el mail.</p>';
 } elseif ($_REQUEST['id'] == 'emoticonos') {
@@ -140,10 +138,8 @@ if ($_REQUEST['id'] == 'faq') {
     echo '<p>Escribe <em>!usuarios</em> y pulsa <em>Enviar</em>. Pero eso no indica que dicho usuario esté atento, sólo que está conectado. Es posible que esté lurkeando.</p>';
     echo '<h3>¿Qué es lurkear?</h3>';
     echo '<p>Lurkear es lo que hacen los lurkers. Los lurkers son esas personas que están leyendo la cotillona pero no participan en la conversación.</p>';
-/*
     echo '<h3>¿Cómo recibo lo que se dice en la cotillona por Jabber/Gtalk?</h3>';
     echo '<p>Para ello, ve a la edición de tu perfil y indicanos cuál es tu email (nunca será visible a los demás). Después agrega como contacto a cotillona@joneame.net y podrás escribir desde ahí sin necesidad de tener que entrar por web. Escribe !off cuando no quieras saber nada de la cotillona.</p>';
-*/
 }  else if ($_REQUEST['id'] == 'privados') {
     echo '<h2>Mensajería privada</h2>';
     echo '<h3>¿Qué son los mensajes privados?</h3>';

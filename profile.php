@@ -66,7 +66,7 @@ function show_profile() {
     // echo '<div class="help-topic">'._('Puedes poner tu dirección de <b>Jabber</b> o <b>Google Talk</b> si quieres conectarte a la cotillona o mandar notitas desde allí. Los contactos que debes agregar son:<br/><b>cotillona@joneame.net</b><br/><b>notitas@joneame.net</b>').'</div>';
 
     include_once(mnminclude.'avatars.php');
-        if (is_avatars_enabled()) echo '<div class="help-topic">'._('Los avatares no deben ser mayores de 100KB, y sólo se aceptan formatos jpg, gif o png, sin transparencias.').'</div>';
+        if (is_avatars_enabled()) echo '<div class="help-topic">'._('Los avatares no deben ser mayores de 100KB.').'</div>';
     echo '</div>';
     echo '<input type="hidden" name="process" value="1" />';
     echo '<input type="hidden" name="user_id" value="'.$user->id.'" />';
@@ -108,12 +108,10 @@ function show_profile() {
     echo '<dd><input type="text" autocomplete="off" name="url" id="url" value="'.$user->url.'" /></dd>';
     echo '</li>';
 
-/*
     echo '<li>';
     echo '<dt>'._('jabber/gtalk para la coti').'</dt>';
     echo '<dd><input type="text" autocomplete="off" name="public_info" id="public_info" value="'.$user->public_info.'" /></dd>';
     echo '</li>';
-*/
 
     if (is_avatars_enabled()) {
         echo '<li>';
