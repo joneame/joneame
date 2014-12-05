@@ -13,9 +13,9 @@ $user_id = intval($_GET['user_id']);
 $option = $_GET['option'];
 
 switch ($option) {
-    case 'votadas':
+    case 'joneadas':
         $sql = "SELECT link_id FROM links, votes WHERE vote_type='links' and vote_user_id=$user_id AND vote_link_id=link_id  and vote_value > 0 ORDER BY link_id DESC LIMIT 1000";
-        do_header(_('votadas'));
+        do_header(_('joneadas'));
         do_link_item($sql);
         do_footer();
         break;
@@ -25,9 +25,9 @@ switch ($option) {
         do_link_item($sql);
         do_footer();
         break;
-    case 'comentadas':
+    case 'chorradas':
         $sql = "SELECT distinct(link_id) FROM links, comments WHERE comment_user_id=$user_id and link_id=comment_link_id and comment_type != 'admin' ORDER BY link_id DESC LIMIT 1000";
-        do_header(_('comentadas'));
+        do_header(_('chorradas'));
         do_link_item($sql);
         do_footer();
         break;
