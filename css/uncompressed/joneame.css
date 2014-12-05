@@ -1529,7 +1529,7 @@ margin: 0;
 width: 100%;
 clear: both;
 border-bottom: 1px solid;
-padding: 7px 0 3px;
+padding: 5px;
 text-align: center;
 overflow: hidden;
 }
@@ -1537,6 +1537,7 @@ overflow: hidden;
 .sneaker-ts, .sneaker-type, .sneaker-votes, .sneaker-story, .sneaker-chat, .sneaker-who, .sneaker-status, .sneaker-chat-friends,.sneaker-chat-devel, .sneaker-chat-admin {
 float: left;
 display: block;
+line-height: 20px;
 }
 
 .sneaker-ts {
@@ -1553,7 +1554,6 @@ border: none;
 margin: 0;
 vertical-align: middle;
 position: relative;
-top: -2px;
 }
 
 .sneaker-votes {
