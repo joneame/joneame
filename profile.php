@@ -63,7 +63,7 @@ function show_profile() {
     echo '<fieldset>';
     echo '<div class="profile-sidebar">';
     echo '<img class="espaciador" style="padding: 0;" src="'.get_avatar_url($user->id, $user->avatar, 80).'" width="80" height="80" alt="'.$user->username.'" title="avatar" /><br/>';
-    // echo '<div class="help-topic">'._('Puedes poner tu dirección de <b>Jabber</b> o <b>Google Talk</b> si quieres conectarte a la cotillona o mandar notitas desde allí. Los contactos que debes agregar son:<br/><b>cotillona@joneame.net</b><br/><b>notitas@joneame.net</b>').'</div>';
+    echo '<div class="help-topic">'._('Puedes poner tu dirección de <b>Jabber</b> o <b>Google Talk</b> si quieres conectarte a la cotillona o mandar notitas desde allí. Los contactos que debes agregar son:<br/><b>cotillona@joneame.net</b><br/><b>notitas@joneame.net</b>').'</div>';
 
     include_once(mnminclude.'avatars.php');
         if (is_avatars_enabled()) echo '<div class="help-topic">'._('Los avatares no deben ser mayores de 100KB.').'</div>';
@@ -80,9 +80,7 @@ function show_profile() {
     echo '&nbsp;&nbsp;<span id="checkit"><input type="button" class="button" id="checkbutton1" disabled="disabled" value="'._('verificar').'" onclick="checkfield(\'username\', this.form, this.form.username)"/></span>';
     echo '&nbsp;<span id="usernamecheckitvalue"></span>';
     echo '</dd>';
-        echo '</li>';
-    if($current_user->user_level == 'god')
-        echo '<span class="note">'._('eres god. esto te da derecho a ponerte o poner a alguien un nombre de menos de 3 caracteres, o con caracteres especiales. ten en cuenta que dando mal uso a esto último, podrías conseguir que la persona a la que editas el perfil no pueda volver a iniciar sesión o cosas mucho peores, ').'<span style="color: red;">'._('¡ten muchísimo cuidado: la puedes cagar pero bien!').'</span></span><br/>';
+    echo '</li>';
 
     echo '<li>';
     echo '<dt>'._('nombre real').'</dt>';
