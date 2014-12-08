@@ -96,7 +96,7 @@ function do_best_comments() {
     $output = '';
 
     $numero = 0;
-    $min_date = date("Y-m-d H:i:00", $globals['now'] - 60 * 60 * 24 * 30);
+    $min_date = date("Y-m-d H:i:00", $globals['now'] - 60 * 60 * 24 * 7);
     // The order is not exactly the comment_karma
     // but a time-decreasing function applied to the number of votes
     $res = $db->get_results("select comment_id, comment_order, user_id, user_login, user_avatar, link_id, link_uri, link_title, link_comments,  comment_karma*(1-(unix_timestamp(now())-unix_timestamp(comment_date))*0.7/43000) as value from comments, links, users  where comment_date > '$min_date' and comment_karma > 50 and comment_link_id = link_id and comment_user_id = user_id order by value desc limit 12");
@@ -305,7 +305,7 @@ function do_best_posts() {
     if (isset($globals['mobile']) && $globals['mobile']) return;
 
     $output = '';
-    $min_date = date("Y-m-d H:i:00", $globals['now'] - 60 * 60 * 24 * 30);
+    $min_date = date("Y-m-d H:i:00", $globals['now'] - 60 * 60 * 24 * 7);
     $res = $db->get_results("select post_id, user_login, post_content, user_avatar, user_id from posts, users where post_date > '$min_date' and  post_user_id = user_id and post_karma > 0 order by post_karma desc limit 10");
     if ($res) {
         $output .= '<div class="sidebox"><h4><a href="'.$globals['base_url'].'mejores_notitas.php">'._('mejores notitas').'</a></h4><ul class="topcommentsli fondo-caja espaciador">'."\n";
