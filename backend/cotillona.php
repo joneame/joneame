@@ -431,13 +431,6 @@ function get_votes($dbtime) {
         } else {
             $type = 'problem';
             $who = get_negative_vote($event->vote_value);
-            // Show user_login if she voted more than N negatives in one minute
-            if($current_user->user_id > 0 && ($current_user->admin)) {
-                $negatives_last_minute = $db->get_var("select count(*) from votes where vote_type='links' and vote_user_id=$event->vote_user_id and vote_date > date_sub(now(), interval 30 second) and vote_value < 0");
-                if($negatives_last_minute > 2 ) {
-                    $who .= "<br>($user)";
-                }
-            }
         }
         $json['status'] = get_status($event->link_status);
         $json['type'] = $type;
