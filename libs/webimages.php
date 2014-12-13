@@ -106,7 +106,7 @@ class WebThumb extends BasicThumb {
 
         if (!preg_match('/src *=["\'](.+?)["\']/i', $this->tag, $matches)
             && !preg_match('/src *=([^ ]+)/i', $this->tag, $matches)) { // Some sites don't use quotes
-            if (!preg_match('/["\']((http:){0,1}[\.\d\w\-\/]+\.jpg)["\']/i', $this->tag, $matches)) {
+            if (!preg_match('/["\']((https?:){0,1}[\.\d\w\-\/]+\.jpg)["\']/i', $this->tag, $matches)) {
                 return;
             }
         } else {
@@ -305,10 +305,10 @@ class HtmlImages {
         preg_match_all('/(<img\s.+?>)/is', $html, $matches);
         $tags = array_merge($tags, $matches[1]);
         // Try with plain links in javascripts (RTVE uses it...)
-        preg_match_all('/["\']image["\'][, ]+(["\'](http:){0,1}[\.\d\w\-\/]+\.jpg["\'])/is', $html, $matches);
+        preg_match_all('/["\']image["\'][, ]+(["\'](https?:){0,1}[\.\d\w\-\/]+\.jpg["\'])/is', $html, $matches);
         $tags = array_merge($tags, $matches[1]);
         // Now try with images in JS arrays (Clarin uses it...)
-        preg_match_all('/\( *(["\'](http:){0,1}[\.\d\w\-\/]+\.jpg["\']) *[\),]/is', $html, $matches);
+        preg_match_all('/\( *(["\'](https?:){0,1}[\.\d\w\-\/]+\.jpg["\']) *[\),]/is', $html, $matches);
         $tags = array_merge($tags, $matches[1]);
         if (! count($tags)) return false;
         $this->images_count =  count($tags);
@@ -515,7 +515,7 @@ class HtmlImages {
 
     // Google Video detection
     function check_google_video() {
-        if (preg_match('/=["\']http:\/\/video\.google\.[a-z]{2,5}\/.+?\?docid=(.+?)&/i', $this->html, $match) &&
+        if (preg_match('/=["\']https?:\/\/video\.google\.[a-z]{2,5}\/.+?\?docid=(.+?)&/i', $this->html, $match) &&
                 (preg_match('/video\.google/', $this->parsed_url['host']) || ! $this->check_in_other($match[1]))) {
             $video_id = $match[1];
             if ($this->debug)
@@ -551,7 +551,7 @@ class HtmlImages {
 
     // Youtube detection
     function check_youtube() {
-        if (preg_match('/http:\/\/www\.youtube\.com\/v\/(.+?)[\"\'&]/i', $this->html, $match) &&
+        if (preg_match('/https?:\/\/www\.youtube\.com\/v\/(.+?)[\"\'&]/i', $this->html, $match) &&
             (preg_match('/youtube\.com/', $this->parsed_url['host']) || ! $this->check_in_other($match[1]))) {
             $video_id = $match[1];
             if ($this->debug)
@@ -751,8 +751,8 @@ class HtmlImages {
 function build_full_url($url, $referer) {
     $parsed_referer = @parse_url($referer);
 
-    if (preg_match('/^\/\//', $url)) { // it's an absolute url wihout http:
-            return $parsed_referer['scheme']."$url";
+    if (preg_match('#^//#', $url)) { // it's an absolute url wihout http:
+            return $parsed_referer['scheme'].":$url";
     }
 
     $parsed_url = @parse_url($url);
