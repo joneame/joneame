@@ -347,7 +347,6 @@ class HtmlImages {
             }
         } elseif (preg_match('/text\/html/i', $res['content_type'])) {
             $this->html = $res['content'];
-            echo json_encode($res);
             $this->title = get_html_title($this->html);
             if ($this->debug) echo "<!-- HTML $this->title -->\n";
 
