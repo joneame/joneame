@@ -751,6 +751,13 @@ function get_url($url, $referer = false, $max=200000) {
     // curl_setopt($session, CURLOPT_SSL_VERIFYHOST, 2);
     curl_setopt($session, CURLOPT_COOKIESESSION, true);
     // curl_setopt($session,CURLOPT_RANGE,"0-$max"); // It gives error with some servers
+
+    /* fake the http referrer field, very useful to avoid anti-hotlinking mechanisms */
+    $parsed_url = parse_url($url);
+    if ($parsed_url !== false) {
+        curl_setopt($session, CURLOPT_REFERER, "{$parsed_url['scheme']}://{$parsed_url['host']}/");
+    }
+
     $response = @curl_exec($session);
     if (!$response) {
             echo "<!-- CURL error " . curl_getinfo($session,CURLINFO_EFFECTIVE_URL) . ": " .curl_error($session) . " -->\n";
