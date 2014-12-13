@@ -944,8 +944,8 @@ class HtmlImages {
 function build_full_url($url, $referer) {
     $parsed_referer = @parse_url($referer);
 
-    if (preg_match('/^\/\//', $url)) { // it's an absolute url wihout http:
-            return $parsed_referer['scheme']."$url";
+    if (preg_match('#^//#', $url)) { // it's an absolute url wihout http:
+            return $parsed_referer['scheme'].":$url";
     }
 
     $parsed_url = @parse_url($url);
