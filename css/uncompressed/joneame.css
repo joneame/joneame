@@ -410,8 +410,13 @@ border: 1px solid;
 overflow: hidden;
 float: right;
 border-color: #adcee9;
-max-height: 100px;
-max-width: 150px;
+max-height: 75px;
+max-width: 100px;
+}
+
+.sidebox .thumbnail {
+    max-height: 40px;
+    max-width: 60px;
 }
 
 .news-submitted img {
