@@ -64,7 +64,7 @@ class BasicThumb {
 
     function save($filename) {
         if (!$this->image) return false;
-        return imagejpeg($this->image, $filename);
+        return imagejpeg($this->image, $filename, 95);
     }
 
     function get() {
