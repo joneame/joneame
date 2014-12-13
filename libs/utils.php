@@ -747,7 +747,7 @@ function get_url($url, $referer = false, $max=200000) {
     curl_setopt($session, CURLOPT_MAXREDIRS, 20);
     curl_setopt($session, CURLOPT_TIMEOUT, 20);
     curl_setopt($session, CURLOPT_FAILONERROR, true);
-    // curl_setopt($session, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($session, CURLOPT_SSL_VERIFYPEER, false);
     // curl_setopt($session, CURLOPT_SSL_VERIFYHOST, 2);
     curl_setopt($session, CURLOPT_COOKIESESSION, true);
     // curl_setopt($session,CURLOPT_RANGE,"0-$max"); // It gives error with some servers
