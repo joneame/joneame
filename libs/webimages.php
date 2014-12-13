@@ -48,7 +48,7 @@ class BasicThumb {
         }
         if (!$this->image) return false;
 
-// New code to get rectangular images
+        // New code to get rectangular images
         require_once(mnminclude."simpleimage.php");
         $thumb = new SimpleImage();
         $thumb->image = $this->image;

@@ -1012,7 +1012,10 @@ class Link {
             chmod($filepath, 0777);
             $filepath .= "/$this->id.jpg";
             if ($img->type == 'local') {
-                $img->scale($globals['thumb_size']);
+                $scaled_img = $img->scale($globals['thumb_size']);
+                if ($scaled_img) {
+                    $img->image = $scaled_img->image;
+                }
                 if ($img->save($filepath)) {
                     chmod($filepath, 0777);
 
