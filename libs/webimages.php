@@ -551,8 +551,8 @@ class HtmlImages {
 
     // Youtube detection
     function check_youtube() {
-        if (preg_match('/https?:\/\/www\.youtube\.com\/v\/(.+?)[\"\'&]/i', $this->html, $match) &&
-            (preg_match('/youtube\.com/', $this->parsed_url['host']) || ! $this->check_in_other($match[1]))) {
+        if ((preg_match('/youtube\.com/', $this->parsed_url['host']) && preg_match('/v=([\w_\-]+)/i', $this->url, $match)) ||
+            (preg_match('/\/\/www\.youtube\.com\/(?:v|embed)\/([\w_\-]+?)[\?\"\'&]/i', $this->html, $match) && ! $this->check_in_other($match[1], 2))) {
             $video_id = $match[1];
             if ($this->debug)
                 echo "<!-- Detect Youtube, id: $video_id -->\n";
@@ -576,7 +576,7 @@ class HtmlImages {
 
     function get_youtube_thumb($videoid) {
         $thumbnail = false;
-        if(($res = get_url("http://gdata.youtube.com/feeds/api/videos/$videoid"))) {
+        if(($res = get_url("https://gdata.youtube.com/feeds/api/videos/$videoid"))) {
             $vrss = $res['content'];
             $previous = 0;
             if($vrss &&
