@@ -325,9 +325,9 @@ class HtmlImages {
             }
         }
 
-        $res = get_url($this->url, $this->referer, null, false);
+        $res = get_url($this->url, $this->referer);
         if (!$res) {
-            if ($this->debug) echo "<!-- Error getting " . __($this->url) . "-->\n";
+            if ($this->debug) echo "<!-- Error getting " . htmlentities($this->url) . "-->\n";
             return;
         }
         if ($this->debug) echo "<!-- Got $this->url (". strlen($res['content']) .") -->\n";
@@ -347,6 +347,7 @@ class HtmlImages {
             }
         } elseif (preg_match('/text\/html/i', $res['content_type'])) {
             $this->html = $res['content'];
+            echo json_encode($res);
             $this->title = get_html_title($this->html);
             if ($this->debug) echo "<!-- HTML $this->title -->\n";
 
@@ -451,17 +452,17 @@ class HtmlImages {
             $img = new WebThumb($match, $this->base);
             if ($this->seen($img->url) || ($img->surface() < 120000 && $this->check_in_other($match))) continue;
             if ($this->debug)
-                echo "<!-- PRE CANDIDATE: ". __($match) ." -->\n";
+                echo "<!-- PRE CANDIDATE: ". htmlentities($match) ." -->\n";
             if ($img->candidate && $img->good($other_html == false)) {
                 $goods++;
                 $img->coef = intval($img->surface()/(($img->html_x+$img->html_y)/2) * $img->weight);
                 if ($this->debug)
-                    echo "<!-- CANDIDATE: ". __($img->url)." X: $img->html_x Y: $img->html_y Surface: ".$img->surface()." Coef1: $img->coef Coef2: ".intval($img->coef/1.5)." -->\n";
+                    echo "<!-- CANDIDATE: ". htmlentities($img->url)." X: $img->html_x Y: $img->html_y Surface: ".$img->surface()." Coef1: $img->coef Coef2: ".intval($img->coef/1.5)." -->\n";
                 if (!$this->selected || ($this->selected->coef < $img->coef/1.5)) {
                     $this->selected = $img;
                     $n++;
                     if ($this->debug)
-                        echo "<!-- SELECTED: ". __($img->url)." X: $img->html_x Y: $img->html_y -->\n";
+                        echo "<!-- SELECTED: ". htmlentities($img->url)." X: $img->html_x Y: $img->html_y -->\n";
                 }
             }
             if ($goods > 5 && $n > 0) break;
@@ -671,7 +672,7 @@ class HtmlImages {
                 $n++;
                 if ($n >= $times) {
                     if ($this->debug)
-                        echo "<!-- Skip ($times): " . __($str). "-->\n";
+                        echo "<!-- Skip ($times): " . htmlentities($str). "-->\n";
                     return true;
                 }
         }
