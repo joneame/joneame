@@ -25,7 +25,7 @@
 </h1>
 
 {% if not self.is_nsfw AND self.has_thumb AND (current_user.thumb == 1 OR current_user.user_id == 0)  %}
-	 <img src='{{ self.thumb }}' width='{{ self.thumb_x }}' height='{{ self.thumb_y }}' alt='' class='thumbnail'/>
+	 <img src='{{ self.thumb }}' alt='' class='thumbnail'/>
 {% endif %}
 
 {% if not globals.bot %}
