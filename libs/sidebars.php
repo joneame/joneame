@@ -243,9 +243,7 @@ function do_best_stories() {
             else  $output .= '<h5>';
 
         if (!$link->is_nsfw() &&$link->has_thumb() && ($current_user->thumb == 1 || $current_user->user_id == 0) ) {
-                $link->thumb_x = round($link->thumb_x / 2);
-                $link->thumb_y = round($link->thumb_y / 2);
-                $output .= "<img src='"."$link->thumb' width='$link->thumb_x' height='$link->thumb_y' alt='' class='thumbnail'/>";
+                $output .= "<img src='"."$link->thumb' alt='' class='thumbnail'/>";
             }
 
             $output .= '<a href="'.$url.'" onmouseover="return tooltip.ajax_delayed(event, \'get_link.php\', '.$l->link_id.');" onmouseout="tooltip.clear(event);">'.$link->title.'</a></h5>';
@@ -286,9 +284,7 @@ function do_best_queued() {
             $url = $link->get_relative_permalink();
             $output .= '<div class="mnm-pop queued">'.($link->votes+$link->anonymous).'</div>';
            if ( !$link->is_nsfw() && $link->has_thumb()  && ($current_user->thumb == 1 || $current_user->user_id == 0)  ) {
-                $link->thumb_x = (int) $link->thumb_x / 2;
-                $link->thumb_y = (int) $link->thumb_y / 2;
-                $output .= "<img src='"."$link->thumb' width='$link->thumb_x' height='$link->thumb_y' alt='' class='thumbnail'/>";
+                $output .= "<img src='"."$link->thumb' alt='' class='thumbnail'/>";
             }
             $output .= '<h5><a href="'.$url.'" onmouseover="return tooltip.ajax_delayed(event, \'get_link.php\', '.$l->link_id.');" onmouseout="tooltip.clear(event);" >'.$link->title.'</a></h5>';
             $output .= '<div class="mini-pop"></div>'."\n";
