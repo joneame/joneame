@@ -12,7 +12,7 @@
     include '../config.php';
     include mnminclude.'html1.php';
 
-    if (!$current_user->admin) do_error('no tienes permisos para entrar aquí', '405');
+    if (!$current_user->admin) do_error('no tienes permisos para entrar aquí', '403');
 
 
     /* Necesitamos las variables posteriormente */
@@ -23,13 +23,8 @@
         $dia_peticion = intval($peticion['0']);
         $mes_peticion = intval($peticion['1']);
 
-        if ($mes_peticion == 12) {
-            $dia_anterior = mktime(0, 0, 0, $mes_peticion, $dia_peticion, 2011 );
-            $dia_siguiente =  mktime(23, 59, 0, $mes_peticion, $dia_peticion, 2011);
-        }else {
-            $dia_anterior = mktime(0, 0, 0, $mes_peticion, $dia_peticion );
-            $dia_siguiente =  mktime(23, 59, 0, $mes_peticion, $dia_peticion);
-        }
+        $dia_anterior = mktime(0, 0, 0, $mes_peticion, $dia_peticion );
+        $dia_siguiente =  mktime(23, 59, 0, $mes_peticion, $dia_peticion);
     }
 
     if (has_day() && !usa_buscador()) {
@@ -315,11 +310,11 @@ function admin_chat() {
 
 function usa_buscador() {
 
-    if (isset($_REQUEST['s']))
-    return clean_input_string($_REQUEST['s']) ;
+    if (isset($_REQUEST['s'])) {
+        return clean_input_string($_REQUEST['s']);
     }
     return false;
-
+}
 function log_cotillona() {
 
     return intval($_REQUEST['log']) == 1;
