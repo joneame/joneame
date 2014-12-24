@@ -45,17 +45,18 @@
 <a href="{{ globals.base_url }}" class="logo">Jonéame</a>
 
 <ul class="sections">
-<li><a href="{{ globals.base_url }}nueva_historia.php">nueva</a></li><li><a href="{{ globals.base_url }}jonealas.php">pendientes</a></li><li><a href="{{ globals.base_url }}cotillona.php">cotillona</a></li>
-{% if globals.cortos_activados %}
-	<li><a href="{{ globals.base_url }}corto.php">cortos</a></li>
-{% endif %}
-{% if globals.localhost %}
-	<li><a href="{{ globals.base_url }}sneakme/">notitas</a></li>
-{% else %}
-	<li><a href="{{ globals.base_url }}notitas/">notitas</a></li>
-{% endif %}
-<li><a href="{{ globals.base_url }}encuestas.php">encuestas</a></li>
-
+	<li><a href="{{ globals.base_url }}nueva_historia.php">nueva</a>
+	<li><a href="{{ globals.base_url }}jonealas.php">pendientes</a>
+	<li><a href="{{ globals.base_url }}cotillona.php">cotillona</a>
+	{% if globals.cortos_activados %}
+		<li><a href="{{ globals.base_url }}corto.php">cortos</a>
+	{% endif %}
+	{% if globals.localhost %}
+		<li><a href="{{ globals.base_url }}sneakme/">notitas</a>
+	{% else %}
+		<li><a href="{{ globals.base_url }}notitas/">notitas</a>
+	{% endif %}
+	<li><a href="{{ globals.base_url }}encuestas.php">encuestas</a>
 </ul>
 
 <ul class="user">
