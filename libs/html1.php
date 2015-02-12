@@ -651,6 +651,7 @@ function do_posts_tabs($tab_selected, $username) {
 
     // Last
     echo '<li><a href="'.$globals['base_url'].'ultimas_notitas.php" title="'._('escritas las últimas 24 horas').'">'._('últimas').'</a></li>';
+    echo '<li><a href="'.$globals['base_url'].'sneakme_rss2.php'.$rss_option.'">RSS</a></li>';
 
     // Best
     echo '<li><a href="'.$globals['base_url'].'mejores_notitas.php" title="'._('más votadas en 24 horas').'">'._('mejores').'</a></li>';

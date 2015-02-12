@@ -416,23 +416,19 @@ class Post {
    function print_post_teaser($rss_option) {
         global $globals, $current_user;
 
-
-        echo '<div id="addpost">';
-        // Print "new note" is the user is authenticated
-    echo '<ul class="barra redondo herramientas">';
-
         if ($current_user->user_id > 0) {
+            echo '<div id="addpost">';
+            // Print "new note" is the user is authenticated
+            echo '<ul class="barra redondo herramientas">';
+
             if ((!$this->read_last($current_user->user_id) || time() - $this->date > $globals['tiempo_entre_notitas']) || $current_user->admin) {
-        echo '<li><a href="javascript:nueva()" class="icon post-new">escribir nueva notita</a></li>';
+                echo '<li><a href="javascript:nueva()" class="icon post-new">escribir notita</a></li>';
             } else {
-        echo '<li><a href="javascript:;" class="icon hglass">espera un poco...</a></li>';
+                echo '<li><a href="javascript:;" class="icon hglass">espera un poco...</a></li>';
             }
-        }
-    echo '<li><a href="'.$globals['base_url'].'sneakme_rss2.php'.$rss_option.'" class="icon rss">notitas en RSS</a></li>';
-    echo '<li><a href="'.$globals['base_url'].'ayuda.php?id=faq#jabber" class="icon jabber">jabber/gtalk para las notitas</a></li>';
-    echo '</ul><br/><br/><br/>';
-        echo '</div>'."\n";
-        if ($current_user->user_id > 0) {
+
+            echo '</ul><br/><br/><br/>';
+            echo '</div>'."\n";
             echo '<ol class="notitas-list" id="newpost"></ol>'."\n";
         }
     }
