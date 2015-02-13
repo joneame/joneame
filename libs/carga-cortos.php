@@ -22,12 +22,8 @@ if ($corto->aux->status) {
 
 $info =  _('v').': <span id="vc-'.$corto->id.'">'.$corto->votos.'</span>, '._('c').': <span id="vk-'.$corto->id.'">'.$corto->carisma.'</span>';
 
-if ($current_user->user_id > 0 && $corto->id_autor != $current_user->user_id) {
-    $corto->iconos_votos();
-}
-
 echo ' <a href="'.get_corto_uri($corto->id).'" class="moar">';
-echo '#';
+echo '<img src="'.get_cover_pixel().'" class="icon permalink-mini">';
 echo '</a> ';
 
 $texto = clean_text($corto->texto);
@@ -37,6 +33,10 @@ echo $izena.': '.$cortado;
 
 if (strlen($cortado) < strlen($texto)) {
     echo ' <a href="'.get_corto_uri($corto->id).'" class="moar">[Más]</a>';
+}
+
+if ($current_user->user_id > 0 && $corto->id_autor != $current_user->user_id) {
+    $corto->iconos_votos();
 }
 
 if ($corto->votos > 0) {
