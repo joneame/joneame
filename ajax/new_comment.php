@@ -66,7 +66,7 @@ function insert_comment () {
         $comment->randkey=intval($_POST['randkey']);
         $comment->author=intval($_POST['user_id']);
         $comment->karma=round($current_user->user_karma);
-        $comment->content=clean_text($_POST['comment_content'], 0, false, 10000);
+        $comment->content=clean_text($_POST['comment_content'], 0, false, 25000);
         // Check if is an admin comment
         if ($current_user->admin && $_POST['type'] == 'true' && $_POST['especial'] == 'false' ) { //mostrar nombre
             $comment->karma = 20;
