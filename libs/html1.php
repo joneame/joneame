@@ -146,7 +146,7 @@ function do_js_includes() {
     global $globals, $current_user;
 
     echo '<script></script>'."";
-    echo '<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>';
+    echo '<script src="//ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>';
 
     // Cache for Ajax
     echo '<script src="'.$globals['base_url'].'js/jsoc-0.12.0.js"></script>';
