@@ -86,7 +86,7 @@ function save_comment () {
         time() - $comment->date < $globals['comment_edit_time'] * 1.1) || $current_user->user_level == 'god' || $comment->type == 'admin') &&
         $_POST['key']  == md5($comment->randkey.$site_key)  &&
         strlen(trim($_POST['comment_content'])) > 2 ) {
-        $comment->content=clean_text($_POST['comment_content'], 0, false, 10000);
+        $comment->content=clean_text($_POST['comment_content'], 0, false, 50000);
 
         if ($current_user->admin) {
             if ($_POST['type'] == 'true' && $_POST['especial'] == 'true') {
