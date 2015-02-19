@@ -35,8 +35,8 @@
 /**
  * The reCAPTCHA server URL's
  */
-$recaptcha_api_server = 'https://www.google.com/recaptcha';
-$recaptcha_api_secure_server = 'https://www.google.com/recaptcha';
+$recaptcha_api_server = 'https://www.google.com/recaptcha/api';
+$recaptcha_api_secure_server = 'https://www.google.com/recaptcha/api';
 $recaptcha_verify_server = 'api-verify.recaptcha.net';
 
 
