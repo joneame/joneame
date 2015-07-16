@@ -789,12 +789,12 @@ class Link {
             $iddqd = ' iddqd';
 
         $editable_teaser = '<span class="n-edit'.$iddqd.'">';
-        if ($this->author == $current_user->user_id)
+        if ($current_user->admin)
+            $editable_teaser .= 'admin';
+        elseif ($this->author == $current_user->user_id)
             $editable_teaser .= calc_remaining_edit_time($this->sent_date, $globals['edicion_historias_usuario']);
         elseif ($this->author != $current_user->user_id && $current_user->especial)
             $editable_teaser .= 'special';
-        elseif ($current_user->admin)
-            $editable_teaser .= 'admin';
         $editable_teaser .= '</span>';
 
         return $editable_teaser;
@@ -807,12 +807,12 @@ class Link {
             $iddqd = ' iddqd';
 
         $editable_teaser = '<span class="geo-edit'.$iddqd.'">';
-        if ($this->author == $current_user->user_id)
+        if ($current_user->admin)
+            $editable_teaser .= 'admin';
+        elseif ($this->author == $current_user->user_id)
             $editable_teaser .= calc_remaining_edit_time($this->sent_date, 9800, true); // !!FIXME hardcoded!
         elseif ($this->author != $current_user->user_id && $current_user->especial)
             $editable_teaser .= 'special';
-        elseif ($current_user->admin)
-            $editable_teaser .= 'admin';
         $editable_teaser .= '</span>';
 
         return $editable_teaser;
