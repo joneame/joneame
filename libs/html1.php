@@ -616,7 +616,7 @@ function do_credits() {
         echo '<li><a href="'.$globals['base_url'].'ayuda.php?id=legal">'._('condiciones legales').'</a> ';
         echo '<a href="'.$globals['base_url'].'ayuda.php?id=uso">'._('y de uso').'</a></li>';
         echo '<li> - </li>';
-        echo '<li><a href="http://joneame.net/COPYING">'._('licencia').'</a>, <a href="https://github.com/joneame/joneame">'._('descargar').'</a></li>';
+        echo '<li><a href="https://raw.githubusercontent.com/joneame/joneame/master/COPYING">'._('licencia').'</a>, <a href="https://github.com/joneame/joneame">'._('código fuente').'</a></li>';
         echo '<li> - </li>';
         echo '<li><a href="http://www.famfamfam.com/lab/icons/silk/">'._('iconos silk').'</a></li>';
         echo '<li> - </li>';
