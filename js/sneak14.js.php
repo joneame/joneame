@@ -185,7 +185,7 @@ function received_data(data) {
     if (next_update < 3000) next_update = 3000;
     if (next_update > min_update) next_update = min_update;
     if (requests > max_requests) {
-        if ( !confirm('Mafioso: ¿desea continuar conectado?') ) {
+        if ( 0 && !confirm('Mafioso: ¿desea continuar conectado?') ) {
             mnm_banner_reload = 0;
             return;
         }
