@@ -31,14 +31,14 @@ function do_master($size) {
     echo '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
 
     echo '<sitemap>'."\n";
-    echo '<loc>http://'.get_server_name().$globals['base_url'].'sitemap.php?statics</loc>'."\n";
+    echo '<loc>https://'.get_server_name().$globals['base_url'].'sitemap.php?statics</loc>'."\n";
     echo '</sitemap>'."\n";
 
     $count = (int) $db->get_var("select count(*) from links where link_status = 'published'");
     $indexes = ceil($count/$size);
     for ($i = 0; $i < $indexes; $i++) {
         echo '<sitemap>'."\n";
-        echo '<loc>http://'.get_server_name().$globals['base_url'].'sitemap.php?page='.$i.'</loc>'."\n";
+        echo '<loc>https://'.get_server_name().$globals['base_url'].'sitemap.php?page='.$i.'</loc>'."\n";
         echo '</sitemap>'."\n";
     }
     echo '</sitemapindex>'."\n";
@@ -54,13 +54,13 @@ function do_statics() {
     echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'."\n";
     // The index
        echo '<url>'."\n";
-    echo '<loc>http://'.get_server_name().$globals['base_url'].'</loc>'."\n";
+    echo '<loc>https://'.get_server_name().$globals['base_url'].'</loc>'."\n";
     echo '<priority>1.0</priority>'."\n";
     echo '</url>'."\n";
     // Secondary pages
     foreach ($urls as $url) {
         echo '<url>'."\n";
-        echo '<loc>http://'.get_server_name().$globals['base_url'].$url.'</loc>'."\n";
+        echo '<loc>https://'.get_server_name().$globals['base_url'].$url.'</loc>'."\n";
         echo '<priority>0.8</priority>'."\n";
         echo '</url>'."\n";
     }
@@ -79,7 +79,7 @@ function do_published($page) {
     echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'."\n";
     while ($res = mysql_fetch_object($result)) {
         echo '<url>'."\n";
-        echo '<loc>http://'.get_server_name().$globals['base_url'].$globals['base_story_url'].$res->link_uri.'</loc>'."\n";
+        echo '<loc>https://'.get_server_name().$globals['base_url'].$globals['base_story_url'].$res->link_uri.'</loc>'."\n";
         echo '</url>'."\n";
     }
     echo '</urlset>'."\n";

@@ -14,4 +14,4 @@ Disallow: /comments_rss2.php
 Disallow: /link_bookmark.php
 Disallow: /search.php
 Disallow: /ajax/
-Sitemap: http://joneame.net/sitemap.php
+Sitemap: https://joneame.net/sitemap.php
