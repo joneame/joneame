@@ -14,4 +14,5 @@ Disallow: /comments_rss2.php
 Disallow: /link_bookmark.php
 Disallow: /search.php
 Disallow: /ajax/
+Allow: /ajax/historias_ajax.php
 Sitemap: https://joneame.net/sitemap.php
