@@ -119,7 +119,7 @@ function to_html(data) {
 //]]>
 </script>
 <script type="text/javascript" src="//<? echo get_server_name().$globals['base_url']; ?>js/sneak14.js.php"></script>
-<?
+<?php
 
 echo '<div class="sneaker">';
 echo '<div class="sneaker-legend">';

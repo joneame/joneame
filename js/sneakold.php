@@ -1,4 +1,4 @@
-<?
+<?php
 include('../config.php');
 include(mnminclude.'sneak.php');
 header('Content-Type: text/javascript; charset=UTF-8');
@@ -30,7 +30,7 @@ var play = true;
 var recent_nicks = new Array();
 var friend_nicks = new Array();
 
-<?
+<?php
 if ($current_user->user_id > 0) {
      echo "user_login = '$current_user->user_login';\n";
     $friends = $db->get_col("select user_login from users, friends where friend_type='manual' and friend_from = $current_user->user_id and friend_value > 0 and user_id = friend_to");
