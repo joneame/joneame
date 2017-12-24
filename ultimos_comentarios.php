@@ -11,13 +11,11 @@ include(mnminclude.'html1.php');
 
 do_header('Últimos comentarios | Jonéame');
 
-$min_date = date("Y-m-d H:00:00", time() - 86000);
-
-$comments = $db->get_results("SELECT comment_id, link_id FROM comments,links WHERE comment_date > '$min_date' and link_id=comment_link_id ORDER BY comment_date DESC");
+$comments = $db->get_results("SELECT comment_id, link_id FROM comments,links WHERE link_id=comment_link_id ORDER BY comment_date DESC");
 
     if ($comments) {
 
-        echo '<h2> Comentarios escritos las últimas 24 horas </h2><br/>';
+        echo '<h2>Últimos comentarios</h2><br/>';
         echo '<ol class="comments-list">';
         require_once(mnminclude.'comment.php');
         require_once(mnminclude.'link.php');
