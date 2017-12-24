@@ -11,7 +11,9 @@ include(mnminclude.'html1.php');
 
 do_header('Últimos comentarios | Jonéame');
 
-$comments = $db->get_results("SELECT comment_id, link_id FROM comments,links WHERE link_id=comment_link_id ORDER BY comment_date DESC");
+$page_size = (int)$globals['comments_page_size'];
+
+$comments = $db->get_results("SELECT comment_id, link_id FROM comments,links WHERE link_id=comment_link_id ORDER BY comment_date DESC LIMIT $page_size");
 
     if ($comments) {
 
