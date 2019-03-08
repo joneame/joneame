@@ -4218,4 +4218,12 @@ a .hglass {
         font-size: 14pt;
         word-break: break-word;
     }
+    .login-form {
+        float: none !important;
+        width: auto !important;
+        margin-top: 20px !important;
+    }
+    .login-faq {
+        display: none;
+    }
 }

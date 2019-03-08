@@ -54,7 +54,7 @@ function do_login() {
     global $current_user, $globals;
     $previous_login_failed =  log_get_date('login_failed', $globals['original_user_ip_int'], 0, 90);
     if($previous_login_failed < 3 && empty($_POST["processlogin"])) {
-        echo '<div class="faq" style="float:left; width:65%; margin-top: 10px;">'."\n";
+        echo '<div class="faq login-faq" style="float:left; width:65%; margin-top: 10px;">'."\n";
         // Only prints if the user was redirected from submit.php
         if (!empty($_REQUEST['return']) && preg_match('/nueva_historia\.php/', $_REQUEST['return'])) {
             echo '<p style="border:1px solid #adcee9; font-size:1.3em; background:#FEFBEA; font-weight:bold; padding:0.5em 1em;">Para enviar una historia debes ser un usuario registrado</p>'."\n";
@@ -95,9 +95,9 @@ function do_login() {
         echo '</ul>'."\n";
         echo '<center><h3 class="boton" style="width: 150px; padding: 3px 10px 10px;"><a href="register.php">Regístrate ahora</a></h3></center>'."\n";
         echo '</div>'."\n";
-        echo '<div class="genericform" style="float:right; width:30%; margin: 0"><h4>login</h4>'."\n";
+        echo '<div class="genericform login-form" style="float:right; width:30%; margin: 0"><h4>login</h4>'."\n";
     } else {
-        echo '<div class="genericform" style="float:auto;"><h4>login</h4>'."\n";
+        echo '<div class="genericform login-form" style="float:auto;"><h4>login</h4>'."\n";
     }
     echo '<form action="login.php" id="thisform" method="post" class="fondo-caja">'."\n";
     echo '<fieldset>'."\n";
