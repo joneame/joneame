@@ -136,7 +136,7 @@
 
         if ($dia_anterior != $numero && $cantidad <= $dias) {
 
-            echo get_enlace($numero, $mes, $dia_letra, $numero, $mes_letra);
+            echo get_enlace($numero, $mes, $dia_letra, $mes_letra);
         }
 
 
@@ -165,7 +165,7 @@
 
         else if ($enlaces != 1 || $dia_anterior != $numero) { //si son más viejos, ponemos un enlace para verlos
 
-            echo get_enlace($numero, $mes, $dia_letra, $numero, $mes_letra);
+            echo get_enlace($numero, $mes, $dia_letra, $mes_letra);
 
             $enlaces =1; //para que solo ponga 1 enlace, y no $n veces, donde $n es la cantidad de lineas de chat
         }
@@ -321,7 +321,7 @@ function log_cotillona() {
 
     }
 
-function get_enlace($numero, $mes, $dia_letra, $numero, $mes_letra) {
+function get_enlace($numero, $mes, $dia_letra, $mes_letra) {
 
     $enlace = '<a href="/admin/cotillona.php?dia='.$numero.','.$mes;
     /* Completa el enlace */

@@ -182,17 +182,17 @@ if ($option == '_geo') {
                     $respuestas = $db->get_col($sql);
 
                     if ($respuestas) {
-                    //TODO echo '<p align="right"><a  id="show-hide-'.$original_id.'" href="javascript:hide_answers('.$original_id.')"> Ocultar</a></p><br/>';
-                    $answer = new Post;
-                    echo '<div id="respuestas-'.$original_id.'" class="replies">'."\n";
-                    echo '<ol class="notitas-list">';
-                    foreach ($respuestas as $dbanswer) {
-                        $answer = Post::from_db($dbanswer);
-                        if ($tab_option == 1 || $js_ans_link == true) $answer->can_answer = true;
-                        $answer->print_summary();
-                    }
-                    echo "</ol>\n";
-                    echo '</div>'."\n";
+                        //TODO echo '<p align="right"><a  id="show-hide-'.$original_id.'" href="javascript:hide_answers('.$original_id.')"> Ocultar</a></p><br/>';
+                        $answer = new Post;
+                        echo '<div id="respuestas-'.$original_id.'" class="replies">'."\n";
+                        echo '<ol class="notitas-list">';
+                        foreach ($respuestas as $dbanswer) {
+                            $answer = Post::from_db($dbanswer);
+                            if ($tab_option == 1 || $js_ans_link == true) $answer->can_answer = true;
+                            $answer->print_summary();
+                        }
+                        echo "</ol>\n";
+                        echo '</div>'."\n";
                     }
                 }
 

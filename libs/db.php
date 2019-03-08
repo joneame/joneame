@@ -6,11 +6,10 @@
 //         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
-include_once(mnminclude.'ez_sql.php');
-include_once(mnminclude.'ez_sql_mysql.php');
+include_once(mnminclude.'rgdb.php');
 
 global $globals;
-$db = new ezSQL_mysql($globals['db_user'], $globals['db_password'], $globals['db_name'], $globals['db_server']);
+$db = new RGDB($globals['db_user'], $globals['db_password'], $globals['db_name'], $globals['db_server']);
 
 // we now do "lazy connection".
 $db->persistent = $globals['mysql_persistent'];

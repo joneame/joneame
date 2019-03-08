@@ -129,14 +129,19 @@ function do_last_comments() {
 
     // The order is not exactly the comment_karma
     // but a time-decreasing function applied to the number of votes
-    $res = $db->get_results("SELECT comment_id, comment_order, user_login, link_id, link_uri, link_title, link_comments FROM comments, users, links WHERE comment_user_id = user_id  AND comment_link_id = link_id ORDER BY comment_date DESC LIMIT 12");
+    $res = $db->get_results("SELECT comment_id, comment_order, comment_type, user_login, link_id, link_uri, link_title, link_comments FROM comments, users, links WHERE comment_user_id = user_id  AND comment_link_id = link_id ORDER BY comment_date DESC LIMIT 12");
     if ($res) {
         $output .= '<div class="sidebox"><h4><a href="'.$globals['base_url'].'ultimos_comentarios.php">'._('últimos comentarios').'</a></h4><ul class="topcommentsli fondo-caja espaciador">'."\n";
         foreach ($res as $comment) {
             $numero = $numero + 1;
             $foo_link->uri = $comment->link_uri;
+            if ($comment->comment_type == 'normal') {
+                $user_login = $comment->user_login;
+            } else {
+                $user_login = 'admin';
+            }
             $link = $foo_link->get_relative_permalink().get_comment_page_suffix($globals['comments_page_size'], $comment->comment_order, $comment->link_comments).'#comment-'.$comment->comment_order;
-            $output .='<li><strong>'.'#'.$numero. ' '. _($comment->user_login).'</strong>'._(' en ').' <a onmouseout="tooltip.clear(event);"  onclick="tooltip.clear(this);" onmouseover="return tooltip.ajax_delayed(event, \'get_comment_tooltip.php\', \''.$comment->comment_id.'\', 10000);" href="'.$link.'">'.$comment->link_title.'</a></li>'."\n";
+            $output .='<li><strong>'.'#'.$numero. ' '. $user_login .'</strong>'._(' en ').' <a onmouseout="tooltip.clear(event);"  onclick="tooltip.clear(this);" onmouseover="return tooltip.ajax_delayed(event, \'get_comment_tooltip.php\', \''.$comment->comment_id.'\', 10000);" href="'.$link.'">'.$comment->link_title.'</a></li>'."\n";
         }
         $output .= '</ul></div>';
         echo $output;

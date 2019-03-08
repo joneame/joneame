@@ -152,7 +152,7 @@ class Mezu {
      {
         global $globals;
 
-        $db_securekey = new ezSQL_mysql($globals['db_user_secure'], $globals['db_password_secure'], $globals['db_name_secure'], $globals['db_server_secure'], $globals['db_master']);
+        $db_securekey = new RGDB($globals['db_user_secure'], $globals['db_password_secure'], $globals['db_name_secure'], $globals['db_server_secure'], $globals['db_master']);
 
         $bera = $db_securekey->get_row("SELECT * FROM api_msg WHERE uid='".$db_securekey->escape($id)."'");
 
@@ -164,7 +164,7 @@ class Mezu {
             if ($this->getKey($user->id)) return 0; // si el id ya existe.. hay un error
 
             // conexion al servidor
-            $db_securekey = new ezSQL_mysql($globals['db_user_secure'], $globals['db_password_secure'], $globals['db_name_secure'], $globals['db_server_secure'], $globals['db_master_secure']);
+            $db_securekey = new RGDB($globals['db_user_secure'], $globals['db_password_secure'], $globals['db_name_secure'], $globals['db_server_secure'], $globals['db_master_secure']);
 
 
             $api =substr(md5($user->id.time().$user->ip.rand(1, 9999)), 0, 10);

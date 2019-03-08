@@ -32,7 +32,6 @@ if ($current_user->user_id == 0)  do_error(_('debes ser usuario registrado para 
 $login = $db->escape($_REQUEST['login']);
 
 if(empty($login)){
-
         header('Location: http://'.get_server_name().$globals['base_url']);
         die;
 

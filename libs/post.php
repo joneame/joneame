@@ -19,6 +19,9 @@ class Post {
     var $src = 'web';
     var $read = false;
     var $can_answer = false;
+    var $tipo = 'normal';
+
+    var $username = '';
 
     const SQL = " post_id as id, post_user_id as author, post_is_answer as is_answer, user_login as username, user_karma, user_level as user_level, user_level as level, post_randkey as randkey, post_votes as votes, post_karma as karma, post_src as src, inet_ntoa(post_ip_int) as ip, post_type as tipo, user_avatar as avatar, post_content as content, UNIX_TIMESTAMP(posts.post_date) as date, favorite_link_id as favorite, vote_value as voted FROM posts
     LEFT JOIN users on (user_id = post_user_id)
@@ -90,15 +93,15 @@ class Post {
             $this->ip = $globals['user_ip_int'];
             $db->query("INSERT INTO posts (post_user_id, post_karma, post_ip_int, post_date, post_randkey, post_src, post_content, post_type, post_is_answer, post_last_answer) VALUES ($post_author, $post_karma, $this->ip, FROM_UNIXTIME($post_date), $post_randkey, '$post_src', '$post_content', '$tipo', $is_answer, now())");
 
-            /* Si es una respuesta sube su notita 'padre' al primer puesto */
-            if ($is_answer){
-                $db->query("UPDATE posts set post_last_answer=now() WHERE post_id=$this->answer_from");
-            }
-
             $this->id = $db->insert_id;
 
             // Insert post_new event into logs
             log_insert('post_new', $this->id, $post_author);
+
+            /* Si es una respuesta sube su notita 'padre' al primer puesto */
+            if ($is_answer){
+                $db->query("UPDATE posts set post_last_answer=now() WHERE post_id=$this->answer_from");
+            }
         } else {
             $db->query("UPDATE posts set post_user_id=$post_author, post_type='$tipo', post_karma=$post_karma, post_date=FROM_UNIXTIME($post_date), post_randkey=$post_randkey, post_content='$post_content', post_is_answer=$is_answer WHERE post_id=$this->id");
             // Insert post_edit event into logs
@@ -174,7 +177,7 @@ class Post {
 
         echo '<li id="pcontainer-'.$this->id.'">';
 
-        $this->hidden = $this->karma < -50 || $this->level == 'disabled';
+        $this->hidden = $this->karma < -50;
         /* $this->ignored = $current_user->user_id > 0 && friend_exists($current_user->user_id, $this->author) < 0; */
         $this->ignored = false;
 
@@ -195,7 +198,7 @@ class Post {
 
         $post_meta_class = 'barra';
 
-        if (($this->hidden || $this->ignored || $this->level == 'disabled') && $this->tipo != 'admin') {
+        if (($this->hidden || $this->ignored) && $this->tipo != 'admin') {
             $post_class .= ' blanqueado';
             $post_meta_class .= ' blanqueado';
             $post_meta_class_link .= ' blanqueado';

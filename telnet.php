@@ -32,11 +32,11 @@ echo "<body>\n";
 ?>
 <script type="text/javascript">
 //<![CDATA[
-var my_version = '<? echo $sneak_version; ?>';
-var ts=<? echo (time()-3600); ?>; // just due a freaking IE cache problem
-var server_name = '<? echo get_server_name(); ?>';
-var sneak_base_url = '//'+'<? echo get_server_name().$globals['base_url'];?>'+'backend/cotillona.php';
-var mykey = <? echo rand(100,999); ?>;
+var my_version = '<?php echo $sneak_version; ?>';
+var ts=<?php echo (time()-3600); ?>; // just due a freaking IE cache problem
+var server_name = '<?php echo get_server_name(); ?>';
+var sneak_base_url = '//'+'<?php echo get_server_name().$globals['base_url'];?>'+'backend/cotillona.php';
+var mykey = <?php echo rand(100,999); ?>;
 
 var do_animation = false;
 
@@ -106,9 +106,9 @@ function to_html(data) {
         html += '<a target="_blank" href="mafioso.php?login='+data.who+'">'+data.who.substring(0,15)+'</a></div>';
     } else
         html += '<div class="sneaker-who">'+data.who.substring(0,15)+'</div>';
-    if (data.status == '<? echo _('en portada');?>')
+    if (data.status == '<?php echo _('en portada');?>')
         html += '<div class="sneaker-status"><a target="_blank" href="./"><span class="sneaker-published">'+data.status+'</span></a></div>';
-    else if (data.status == '<? echo _('descartada');?>')
+    else if (data.status == '<?php echo _('descartada');?>')
         html += '<div class="sneaker-status"><a target="_blank" href="jonealas.php?meta=_descartadas"><span class="sneaker-discarded">'+data.status+'</span></a></div>';
     else
         html += '<div class="sneaker-status"><a target="_blank" href="jonealas.php">'+data.status+'</a></div>';
@@ -118,7 +118,7 @@ function to_html(data) {
 
 //]]>
 </script>
-<script type="text/javascript" src="//<? echo get_server_name().$globals['base_url']; ?>js/sneak14.js.php"></script>
+<script type="text/javascript" src="//<?php echo get_server_name().$globals['base_url']; ?>js/sneak14.js.php"></script>
 <?php
 
 echo '<div class="sneaker">';

@@ -20,7 +20,7 @@ function isIPIn($ip,$net,$mask) {
 function isPrivateIP($ip) {
         $privates = array ("127.0.0.0/24", "10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16");
         foreach ( $privates as $k ) {
-                list($net,$mask)=split("/",$k);
+                list($net,$mask)=preg_split("/",$k);
                 if (isIPIn($ip,$net,$mask)) {
                         return true;
                 }
@@ -33,7 +33,7 @@ function check_ip_behind_proxy() {
 
     // Temporalely disabled, not useful
     // return $_SERVER["REMOTE_ADDR"];
-    
+
     if(!empty($last_seen) ) return $last_seen;
 
     if (!empty($_SERVER["HTTP_X_FORWARDED_FOR"])) {

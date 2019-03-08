@@ -29,7 +29,7 @@ echo '<div style="text-align: left">';
 if ($annotation->read()) {
     echo '<strong>' . _('última modificación') . ':</strong> ' . get_date_time($annotation->time);
     echo '<ul>';
-    foreach (split("\n", $annotation->text) as $line) {
+    foreach (preg_split("\n", $annotation->text) as $line) {
         $line = trim($line);
         if($line) echo "<li>$line</li>\n";
     }

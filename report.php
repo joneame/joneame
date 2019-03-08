@@ -60,8 +60,8 @@ input[type=submit] { margin: 0 auto; display: block; }
 <div id="singlewrap"><div class="genericform"><div class="genericform">
 <h4>Reportar notita</h4>
 <fieldset class="fondo-caja espaciador borde">
-<b>- REPORTE ENVIADO POR: <a href="<? echo get_user_uri($you); ?>"><? echo $you; ?></a></b><br/>
-- NOTITA <a href="<? echo post_get_base_url($reportee).'/'.$reported_id; ?>">#<? echo $reported_id; ?></a> | USUARIO: <a href="<? echo get_user_uri($reportee); ?>"><? echo $reportee; ?></a><br/><br/>
+<b>- REPORTE ENVIADO POR: <a href="<?php echo get_user_uri($you); ?>"><?php echo $you; ?></a></b><br/>
+- NOTITA <a href="<?php echo post_get_base_url($reportee).'/'.$reported_id; ?>">#<?php echo $reported_id; ?></a> | USUARIO: <a href="<?php echo get_user_uri($reportee); ?>"><?php echo $reportee; ?></a><br/><br/>
 
 <form action="report.php" method="POST">
 
@@ -88,7 +88,7 @@ Información sobre reportes/avisos: <b>El aviso será revisado próximamente.</b
 
 <span style="color: red;">
 <b>Nota:</b> Usos inadecuados (reportes sin justificación, reportes desde cuentas clon, organizados, etc)
-podrán afectar negativamente a la cuenta emisora del reporte [ <a href="<? echo get_user_uri($you); ?>"><? echo $you; ?></a> | ID: <b><? echo $your_id; ?></b> ] y provocaran que durante
+podrán afectar negativamente a la cuenta emisora del reporte [ <a href="<?php echo get_user_uri($you); ?>"><?php echo $you; ?></a> | ID: <b><?php echo $your_id; ?></b> ] y provocaran que durante
 90 dias (n1) o indefinidamente (n2) los nuevos avisos desde esta cuenta sean ignorados por el sistema de
 control automático.
 </span>

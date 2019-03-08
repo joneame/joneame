@@ -155,7 +155,7 @@ class Link {
                 foreach($meta_data['wrapper_data'] as $response) {
                     // Check if it has pingbacks
                     if (preg_match('/^X-Pingback: /i', $response)) {
-                        $answer = split(' ', $response);
+                        $answer = preg_split(' ', $response);
                         if (!empty($answer[1])) {
                             $this->pingback = 'ping:'.trim($answer[1]);
                         }
@@ -163,11 +163,11 @@ class Link {
                     /* Were we redirected? */
                     if (preg_match('/^location: /i', $response)) {
                         /* update $url with where we were redirected to */
-                        $answer = split(' ', $response);
+                        $answer = preg_split(' ', $response);
                         $new_url = clean_input_url($answer[1]);
                     }
                     if (preg_match('/^content-type: /i', $response)) {
-                        $answer = split(' ', $response);
+                        $answer = preg_split(' ', $response);
                         $this->content_type = preg_replace('/\/.*$/', '', $answer[1]);
                     }
                 }
@@ -864,9 +864,9 @@ class Link {
     function get_short_permalink() {
         global $globals;
         if ($globals['base_story_url']) {
-            return 'http://'.get_server_name().$globals['base_url'].$globals['base_story_url'].'0'.$this->id;
+            return $globals['base_url'].$globals['base_story_url'].'0'.$this->id;
         } else {
-            return 'http://'.get_server_name().$this->get_relative_permalink();
+            return $this->get_relative_permalink();
         }
     }
 
@@ -880,7 +880,7 @@ class Link {
     }
 
     function get_permalink() {
-        return 'http://'.get_server_name().$this->get_relative_permalink();
+        return $this->get_relative_permalink();
     }
 
     function get_trackback() {

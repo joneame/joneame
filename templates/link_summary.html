@@ -119,8 +119,8 @@
 
 	<option value="0" selected="selected"> {% trans _('sensurar') %} </option>
 	{% for pkey, pvalue in globals.negative_votes_values %}
-	          <option value="{{pkey}}">{{ pvalue }}</option>
-        {% endfor %}
+      <option value="{{pkey}}">{{ pvalue }}</option>
+  {% endfor %}
 	</select>
 	</form>
 
@@ -145,13 +145,12 @@
 	<a href="{{ globals.base_url }}jonealas.php?category={{ self.category }}" title="{% trans _('categoría') %}">  {{ self.category_name }} </a>
 {% endif %}
 
-{% if self.show_tags AND self.tags %}
+{% if self.show_tags AND self.tags AND globals.buscador_activado %}
 	{% exec explode "," self.tags as tags_array %}
 
 	<span class="tool"><b>{% trans _('etiquetas') %}:</b>
 	{% for id, tag in tags_array %}
-		{% if id > 0 %},{% endif %}{% if globals.buscador_activado %}<a href="{{ globals.base_url }}search.php?p=tag&amp;q={{ tag|urlencode }}">{{ tag }}</a>{% endif %}
-	 {% endfor %}
+		{% if id > 0 %}, {% endif %}<a href="{{ globals.base_url }}search.php?p=tag&amp;q={{ tag|urlencode }}">{{ tag }}</a>{% endfor %}
 	</span>
 {% endif %}
 

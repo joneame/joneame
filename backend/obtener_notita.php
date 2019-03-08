@@ -52,7 +52,7 @@ if (!empty($_GET['id'])) {
 }
 
 /* Buscamos el login */
-$login = $db->get_col("SELECT user_login from users,posts where post_id=$id and post_user_id=user_id");
+$login = $db->get_var("SELECT user_login from users,posts where post_id=$id and post_user_id=user_id");
 
 /* No hay ni nota ni usuario */
 if(!$login && $id ==0 ) {
@@ -60,4 +60,4 @@ if(!$login && $id ==0 ) {
     die;
 }
 
-header('Location:  http://'.get_server_name().post_get_base_url($login) . "/$id");
+header('Location: ' . post_get_base_url($login) . "/$id");

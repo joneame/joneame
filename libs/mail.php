@@ -6,21 +6,10 @@
 //         http://www.affero.org/oagpl.html
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
+require 'mailgun.php';
+
 function send_mail($to, $subject, $message) {
-    global $globals;
-
-    $domain = get_server_name();
-
-    $subject = mb_encode_mimeheader("$subject","UTF-8", "B", "\n");
-    $message = wordwrap($message, 70);
-
-    $headers = 'Content-Type: text/plain; charset="utf-8"'."\n" .
-            'From: '._('mensaje privado en').' '.$domain.' <'._('no_contestar')."@$domain>\n".
-            'Reply-To: '._('no_contestar')."@$domain\n".
-            'X-Mailer: joneame.net' . "\n";
-    $headers .= 'MIME-Version: 1.0' . "\n";
-
-    mail($to, $subject, $message, $headers);
+    mg_send_mail($to, $subject, $message);
 }
 
 function send_recover_mail ($user) {
@@ -39,10 +28,8 @@ function send_recover_mail ($user) {
     $message .= _('Una vez en tu perfil, puedes cambiar la clave de acceso.') . "\n";
     $message .= "\n\n". _('Este mensaje ha sido enviado a solicitud de la dirección: ') . $globals['user_ip'] . "\n\n";
     $message .= "-- " . _('la administración de joneame.net');
-    $message = wordwrap($message, 70);
-    $headers = 'Content-Type: text/plain; charset="utf-8"'."\n" . 'X-Mailer: joneame/PHP/' . phpversion(). "\n". 'From: admin@joneame.net <web@'.get_server_name().">\n";
 
-    mb_send_mail($to, $subject, $message, $headers);
+    mg_send_mail($to, $subject, $message);
     echo '<p><strong>' ._ ('Correo enviado, mira tu buzón, allí están las instrucciones. Mira también en la carpeta de spam.') . '</strong></p>';
     return true;
 }

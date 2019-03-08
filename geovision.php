@@ -75,7 +75,7 @@ function get_json() {
                 });
         counter++;
         if (counter > 700) {
-                if ( !confirm('<? echo _('¿desea continuar conectado?');?>') ) {
+                if ( !confirm('<?php echo _('¿desea continuar conectado?');?>') ) {
                         return;
                 }
                 counter = 0;

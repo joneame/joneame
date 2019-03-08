@@ -42,17 +42,17 @@ foreach ($matches[2] as $match) {
         $tmp = new Link;
         if(!$tmp->get($match, 2000, false)) {
             echo "couldn't get $match\n";
-            next;
+            continue;
         }
         if(!$tmp->pingback()) {
             echo "couldn't get pingback $match\n";
-            next;
+            continue;
         }
         $tb->link = clean_input_url($match);
         $tb->url = clean_input_url($tmp->trackback);
         $tb->send($link);
         sleep (1);
     } else {
-        next;
+        continue;
     }
 }

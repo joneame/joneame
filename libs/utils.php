@@ -281,12 +281,10 @@ function get_date_time($epoch) {
 }
 
 function get_server_name() {
-    global $server_name;
+    global $globals;
+    if ($globals['domain']) return $globals['domain'];
     if($_SERVER['SERVER_NAME']) return $_SERVER['SERVER_NAME'];
-    else {
-        if ($server_name) return $server_name;
-        else return 'joneame.net'; // Warn: did you put the right server name?
-    }
+    return 'joneame.net'; // Warn: did you put the right server name?
 }
 
 function get_user_uri($user, $view='') {
@@ -865,7 +863,7 @@ function clear_unicode_spaces($input){
 
 function clear_whitespace($input){
     $input = clear_unicode_spaces(clear_invisible_unicode($input));
-    return ereg_replace('/  +/', ' ', $input);
+    return preg_replace('/  +/', ' ', $input);
 }
 
 // From http://php.net/manual/en/function.get-browser.php

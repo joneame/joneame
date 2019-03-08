@@ -367,7 +367,6 @@ function laguna_da($prefered_id) {
     $prefered_id = $db->escape($prefered_id);
     $prefered_total= $db->get_var("SELECT count(*) FROM friends WHERE friend_type='manual' AND friend_from=$prefered_id $friend_value");
     $dbusers = $db->get_results("SELECT friend_to as who FROM friends, users WHERE friend_type='manual' AND friend_from=$prefered_id and user_id = friend_to $friend_value order by user_login asc LIMIT $prefered_offset,$prefered_page_size");
-    break;
 
     if ($dbusers) {
         $friend = new User;

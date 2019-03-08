@@ -22,6 +22,9 @@ $globals['external_user_ads'] = false;
 // Specify you base url, "/" if is the root document
 $globals['base_url'] = '/';
 
+// Base domain
+$globals['domain'] = 'joneame.net';
+
 // lounge
 //$globals['lounge_mezua'] = 'Estamos de mantenimiento.';
 //$globals['lounge_general'] = 'lounge.php';
@@ -196,6 +199,10 @@ $globals['pendientes_page_size'] = 40;
 //buscador
 //$globals['sphinx_server'] = '';
 //$globals['sphinx_port'] = '';
+
+// Mailgun stuff
+$globals['mailgun_domain'] = '';
+$globals['mailgun_key'] = '';
 
 // Greeting in several languages
 // Unfortunately, array constructor does not work properly with GNU _()

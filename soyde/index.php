@@ -88,7 +88,7 @@ a:hover {
     <!-- <h2>liada parda</h2> -->
 
     <div class="foot">
-      <? echo $soy_joneante; ?>.<br/><strong>Soy Joneante.</strong><br/><br/>
+      <?php echo $soy_joneante; ?>.<br/><strong>Soy Joneante.</strong><br/><br/>
 
       <div class="contacto">
     <a href="javascript:location.reload();">Recargar</a>

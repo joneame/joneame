@@ -280,51 +280,16 @@ function do_footer($credits = true) {
         $analytics = str_replace(array("\n", "\r", "\t", "  "), ' ', $analytics);
 
         echo $analytics;
-
-        //estadisticas de woopra.com
-        // echo "<script type=\"text/javascript\" src='http://static.woopra.com/js/woopra.js'></script>";
     }
 
     if ($globals['link_id'])
         echo '<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>';
 
     $gen_time = microtime(true) - $globals['start_time'];
-    $qu = $db->num_queries;
 
-    printf("\n<!-- Generado en %.3f segundos con %d peticiones -->", $gen_time, $qu);
-
-    /*
-    if ($current_user->user_id > 0) {
-        store_hit($gen_time, $qu, __DIR__.'/../generation-reg.txt');
-    } else {
-        store_hit($gen_time, $qu, __DIR__.'/../generation-unreg.txt');
-    }
-    */
+    printf("\n<!-- Generado en %.3f segundos con %d peticiones -->", $gen_time, $db->num_queries);
 
     echo "</body></html>";
-}
-
-function store_hit($gen_time, $qu, $file) {
-    $hit[] = csv_escape(time());
-    $hit[] = csv_escape($_SERVER['REQUEST_URI']);
-    $hit[] = csv_escape($gen_time);
-    $hit[] = csv_escape($qu);
-    $hit[] = csv_escape(date(DATE_RSS));
-    $hit[] = csv_escape($_SERVER['REMOTE_ADDR']);
-    $hit[] = isset($_SERVER['HTTP_REFERER']) ? csv_escape($_SERVER['HTTP_REFERER']) : csv_escape('(null)');
-    $hit[] = isset($_SERVER['HTTP_USER_AGENT']) ? csv_escape($_SERVER['HTTP_USER_AGENT']) : csv_escape('(null)');
-
-    $line = implode(',', $hit);
-    $line = "{$line}\n";
-
-    file_put_contents($file, $line, FILE_APPEND);
-}
-
-function csv_escape($string) {
-    $string = str_replace('"', '""', $string);
-    $string = sprintf('"%s"', $string);
-
-    return $string;
 }
 
 function do_rss() {

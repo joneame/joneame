@@ -139,5 +139,3 @@ function save_post ($post_id) {
         echo '<div id="respuesta-'.$post->id.'"></div>';
     }
 }
-
-?>

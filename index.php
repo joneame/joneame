@@ -68,11 +68,6 @@ echo '<div id="newswrap">'."\n";
 
 /* teaser */
 ?>
-<div class="fondo-caja" style="border: 1px solid #4b7db0; border-radius: 3px; padding: 10px; display: inline-block;">
-    <p style="margin-bottom: 8px;">Síguenos en Twitter para enterarte de todo lo que publiquemos.
-        <strong>¡Fotos, GIFs, humor y mucho más!</strong></p>
-    <a href="https://twitter.com/joneame" class="twitter-follow-button" data-show-count="false" data-lang="es">Seguir a @joneame</a>
-</div>
 <?php
 if($cat) {
     $from_where .= " AND link_category=$cat ";
