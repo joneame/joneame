@@ -4226,4 +4226,7 @@ a .hglass {
     .login-faq {
         display: none;
     }
+    .comments-list {
+        clear: both;
+    }
 }
