@@ -719,7 +719,7 @@ function json_encode_single($dict) {
 }
 
 // Generic function to get content from an url
-function get_url($url, $referer = false, $max=200000) {
+function get_url($url, $referer = false, $max=1024*1024*10) {
     global $globals;
     static $session = false;
     static $previous_host = false;
