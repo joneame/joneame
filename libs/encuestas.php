@@ -124,7 +124,7 @@ class Encuesta {
 
         echo '<h4><a href="'.get_encuesta_uri($this->id).'"><img class="icon permalink img-flotante" src="'.get_cover_pixel().'"/></a>&nbsp;&nbsp;'.$this->titulo.'</h4>';
         echo '<fieldset class="encuesta" id="encuesta'.$this->id.'">';
-        echo '<div class="news-submitted" style="float: right; width: 210px;">';
+        echo '<div class="news-submitted encuesta-userinfo">';
         echo '<a href="'.get_user_uri($this->nick).'"><span><img onmouseover="return tooltip.ajax_delayed(event, \'get_user_info.php\', '.$this->user_id.');" onmouseout="tooltip.clear(event);" class="avatar" src="'.get_avatar_url($this->autor, $this->avatar, 80).'" width="40" height="40" alt="'.$this->nick.'"/></span></a>';
         echo 'por <strong><a href="'.get_user_uri($this->nick).'">'.$this->nick.'</a></strong><br/>';
         echo 'empezó el <strong>'.$this->comienzo.'</strong><br/>';

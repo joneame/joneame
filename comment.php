@@ -116,7 +116,6 @@ function print_comment_form() {
     echo '<h4>'._('escribe un comentario').'</h4><fieldset class="fondo-caja">'."\n";
     echo '<div style="float: right;">'."\n";
     print_simpleformat_buttons('comment');
-    echo '</div><span class="note"><strong>'._('¡eh tío!').':</strong> '._('comentarios serios, constructivos, xenófobos, racistas o difamatorios causarán el baneo de la cuenta de usuario y expulsión de la mafia').'</span></label>'."\n";
     echo '<div style="margin-top: 10px;"><textarea name="comment_content" id="comment" cols="75" rows="12"></textarea></div>'."\n";
     echo '<input class="button" type="submit" name="submit" value="'._('enviar comentario').'" />'."\n";
 

@@ -136,7 +136,7 @@ do_footer();
 function print_shakeit_tabs($option=-1) {
     global $globals, $current_user, $db, $cat;
 
-echo '<ul class="barra redondo herramientas" style="margin: 0 0 5px 25px;">';
+echo '<ul class="barra redondo herramientas">';
 
 // Do metas' list
 $metas = $db->get_results("SELECT category_id, category_name, category_uri FROM categories WHERE category_parent = 0 ORDER BY category_id ASC");

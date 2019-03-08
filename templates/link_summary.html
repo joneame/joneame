@@ -39,9 +39,8 @@
 	{% trans  _('por') %} <a href=" {% exec get_user_uri self.username, 'enviadas'  %}"> {{ self.username }} </a>
 
 	{% if globals.now  - self.date > 604800  %}
-		{% trans _('el') %} {% exec get_date_time self.sent_date %}
-		{% if self.status == 'published' %}
-			,  {% trans  _('publicada el') %} {% exec get_date_time self.sent_date %}
+
+		{% trans _('el') %} {% exec get_date_time self.sent_date %}{% if self.status == 'published' %}, {% trans  _('publicada el') %} {% exec get_date_time self.sent_date %}
 		{% endif %}
 	{% else %}
 		{% trans  _('hace')  %} {% exec txt_time_diff self.sent_date %}
@@ -137,13 +136,15 @@
 
 </div>
 
-<div class="news-details"><strong> {% trans _('categoría') %}:</strong>
+<div class="news-details">
 
-{% if self.status == 'published'  %}
-	<a href=" {{ globals.base_url }}?category={{ self.category }}" title="{% trans _('categoría') %}"> {{self.category_name}}</a>
-{% else %}
-	<a href="{{ globals.base_url }}jonealas.php?category={{ self.category }}" title="{% trans _('categoría') %}">  {{ self.category_name }} </a>
-{% endif %}
+<span class="tool"><strong> {% trans _('categoría') %}:</strong>
+  {% if self.status == 'published'  %}
+  	<a href=" {{ globals.base_url }}?category={{ self.category }}" title="{% trans _('categoría') %}"> {{self.category_name}}</a>
+  {% else %}
+  	<a href="{{ globals.base_url }}jonealas.php?category={{ self.category }}" title="{% trans _('categoría') %}">  {{ self.category_name }} </a>
+  {% endif %}
+</span>
 
 {% if self.show_tags AND self.tags AND globals.buscador_activado %}
 	{% exec explode "," self.tags as tags_array %}

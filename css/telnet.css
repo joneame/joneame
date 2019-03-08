@@ -1,1 +1,162 @@
-body{color:#adcee9;margin:0;padding:0;background:#000;font-family:bitstream mono,courier,courier new,mono}abbr{cursor:help}a{color:#adcee9;text-decoration:none;outline:0}a:hover,a:focus{color:#adcee9;text-decoration:underline}a:active{color:#adcee9}form,input{font-family:bitstream mono,courier,courier new,mono;color:#adcee9;background:#000}.sneaker{margin:10px 10px 10px 10px}.sneaker strong{font-size:95%;color:#adcee9}.sneaker-legend{color:#006;text-align:center;padding:0 0 5px 0;margin:0;background:#000;border-bottom:1px solid #adcee9;font-size:10pt}.sneaker-legend img{padding:0 20px 0 5px;margin:0 0 -4px 0}.sneaker-control{margin:0}.sneaker-item{width:100%;clear:both;border-bottom:1px solid #000;padding:5px 0 5px 0;text-align:center;overflow:hidden}.sneaker-ts,.sneaker-type,.sneaker-votes,.sneaker-story,.sneaker-chat,.sneaker-who,.sneaker-status{float:left;display:block;overflow:hidden}.sneaker-ts{width:7%;text-align:left}.sneaker-type{width:7%}.sneaker-type img{border:0;margin:0;vertical-align:middle}.sneaker-votes{width:8%}.sneaker-story{width:56%;text-align:left}.sneaker-chat{color:#adcee9;width:56%;text-align:left;overflow:hidden}.sneaker-chat a{color:#adcee9}.sneaker-friends{color:#adcee9;width:56%;text-align:left;overflow:hidden}.sneaker-friends a{color:#adcee9}.sneaker-who{width:13%;text-align:left}.sneaker-status{width:8%;text-align:right}.sneaker input{background:#000;margin:7px 0 2px 0;border:1px solid #adcee9;color:#adcee9;font-size:90%}.sneaker input.sendmessage{border:1px dotted #adcee9;font-size:90%}
+body {
+    color: #adcee9;
+    margin: 0;
+    padding: 0;
+    background: #000;
+    font-family: bitstream mono, courier, courier new, mono;
+}
+
+/* elements */
+
+abbr { cursor: help; }
+
+a {
+    color: #adcee9;
+    text-decoration: none;
+    outline: none;
+}
+
+a:hover, a:focus {
+    color: #adcee9;
+    text-decoration: underline;
+}
+
+a:active {
+    color: #adcee9;
+}
+
+form, input {
+    font-family: bitstream mono, courier, courier new, mono;
+    color: #adcee9;
+    background: #000;
+}
+
+
+/* sneaker */
+
+.sneaker {
+    margin: 10px 10px 10px 10px;
+}
+
+.sneaker strong {
+    font-size: 95%;
+    color: #adcee9;
+}
+
+.sneaker-legend {
+    color: #000066;
+    text-align: center;
+    padding: 0 0 5px 0;
+    margin: 0px;
+    background: #000;
+    border-bottom: 1px solid #adcee9;
+    font-size: 10pt;
+}
+
+.sneaker-legend img {
+    padding: 0 20px 0 5px;
+    margin: 0 0 -4px 0;
+}
+
+.sneaker-control {
+    margin: 0 0 0 0;
+}
+
+.sneaker-item {
+    width: 100%;
+    clear: both;
+    border-bottom: 1px solid #000000;
+    padding: 5px 0 5px 0;
+    text-align: center;
+    overflow: hidden;
+}
+
+/*
+.sneaker-item:hover {
+    background-color: #FFE2C5;
+}
+*/
+
+.sneaker-ts, .sneaker-type, .sneaker-votes, .sneaker-story, .sneaker-chat, .sneaker-who, .sneaker-status {
+    float: left;
+    display: block;
+    overflow: hidden;
+}
+
+.sneaker-ts {
+    width: 7%;
+    text-align: left;
+}
+
+.sneaker-type {
+    width: 7%;
+}
+
+.sneaker-type img {
+    border: none;
+    margin: 0 0 0 0;
+    vertical-align: middle;
+}
+
+.sneaker-votes {
+    width: 8%;
+}
+
+.sneaker-story {
+    width: 56%;
+    text-align: left;
+}
+
+.sneaker-chat {
+    color: #adcee9;
+    width: 56%;
+    text-align: left;
+    overflow: hidden;
+}
+
+.sneaker-chat a {
+    color: #adcee9;
+}
+.sneaker-friends {
+    color: #adcee9;
+    width: 56%;
+    text-align: left;
+    overflow: hidden;
+}
+
+.sneaker-friends a {
+    color: #adcee9;
+}
+
+.sneaker-who {
+    width: 13%;
+    text-align: left;
+}
+
+
+.sneaker-problem {
+}
+
+.sneaker-status {
+    width: 8%;
+    text-align: right;
+}
+
+.sneaker-published {
+}
+
+.sneaker-discarded {
+}
+
+.sneaker input {
+    background: #000;
+    margin: 7px 0 2px 0;
+    border: 1px solid #adcee9;
+    color: #adcee9;
+    font-size: 90%;
+}
+
+.sneaker input.sendmessage {
+    border: 1px dotted #adcee9;
+    font-size: 90%;
+}

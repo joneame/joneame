@@ -90,6 +90,4 @@ do_pages($rows, $page_size);
 
 echo '</div>'."\n";
 
-echo '<script src="//platform.twitter.com/widgets.js" type="text/javascript"></script>';
-
 do_footer();

@@ -282,9 +282,6 @@ function do_footer($credits = true) {
         echo $analytics;
     }
 
-    if ($globals['link_id'])
-        echo '<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>';
-
     $gen_time = microtime(true) - $globals['start_time'];
 
     printf("\n<!-- Generado en %.3f segundos con %d peticiones -->", $gen_time, $db->num_queries);
