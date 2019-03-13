@@ -25,12 +25,12 @@ class UserAuth {
         global $db, $site_key, $globals;
 
         $this->now = $globals['now'];
-        if(!empty($_COOKIE['joneame'])) {
-            $this->mnm_user=explode(":", $_COOKIE['joneame']);
+        if(!empty($_COOKIE['joneame_2'])) {
+            $this->mnm_user=explode(":", $_COOKIE['joneame_2']);
         }
 
-        if($this->mnm_user[0] && !empty($_COOKIE['joneame_key'])) {
-            $userInfo=explode(":", base64_decode($_COOKIE['joneame_key']));
+        if($this->mnm_user[0] && !empty($_COOKIE['joneame_key_2'])) {
+            $userInfo=explode(":", base64_decode($_COOKIE['joneame_key_2']));
             if($this->mnm_user[0] === $userInfo[0]) {
                 $cookietime = (int) $userInfo[3];
                 $dbusername = $db->escape($this->mnm_user[0]);
@@ -100,7 +100,7 @@ class UserAuth {
         global $site_key, $globals;
         switch ($what) {
             case 0:    // Borra cookie, logout
-                setcookie ("joneame_key", '', $this->now - 3600, $globals['base_url']); // Expiramos el cookie
+                setcookie ('joneame_key_2', '', $this->now - 3600, $globals['base_url'], get_server_name()); // Expiramos el cookie
                 $this->SetUserCookie(false);
                 break;
             case 1: // Usuario logeado, actualiza el cookie
@@ -116,7 +116,7 @@ class UserAuth {
                         .'3'.':' // Version number
                         .$this->now.':'
                         .$time);
-                setcookie("joneame_key", $strCookie, $time, $globals['base_url'].'; HttpOnly');
+                setcookie('joneame_key_2', $strCookie, $time, $globals['base_url'], get_server_name(), true, true);
                 break;
         }
     }
@@ -162,9 +162,9 @@ class UserAuth {
     function SetUserCookie($do_login) {
         global $globals;
         if ($do_login) {
-            setcookie("joneame", $this->user_login.':'.$this->mnm_user[1], $this->now + 3600000, $globals['base_url']);
+            setcookie('joneame_2', $this->user_login.':'.$this->mnm_user[1], $this->now + 3600000, $globals['base_url'], get_server_name(), true, true);
         } else {
-            setcookie("joneame", '_:'.$this->mnm_user[1], $this->now + 360000, $globals['base_url']);
+            setcookie('joneame_2', '_:'.$this->mnm_user[1], $this->now + 360000, $globals['base_url'], get_server_name(), true, true);
         }
     }
 
