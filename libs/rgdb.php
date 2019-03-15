@@ -24,6 +24,7 @@ class RGDB extends mysqli
     public $ban_checked;
     public $max_rows;
     public $num_queries;
+    public $num_rows;
 
     public function __construct($dbuser = '', $dbpassword = '', $dbname = '', $dbhost = 'localhost', $check_ban = false)
     {
@@ -267,6 +268,8 @@ class RGDB extends mysqli
         }
 
         @$result->close();
+
+        $this->num_rows = $num_rows;
 
         return $num_rows;
     }
