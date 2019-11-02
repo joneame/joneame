@@ -26,20 +26,19 @@
 
 	<span id="cid-{{ self.id }}"> 
 
-        {% if self.hidden OR self.ignored AND current_user.user_comment_pref == 0 %}
+	{% if self.hidden OR self.ignored AND current_user.user_comment_pref == 0 %}
 		{% if self.ignored %}
 			{% trans _('comentario <b>ignorado</b>') %}
 		{% else %}
-			{% if self.hidden %}
-				{% trans _('comentario <b>sensurado</b>')%} , {{ self.karma }} {% trans _('de carisma') %}
+			{% if self.user_level == 'disabled' %}
+				{% trans _('usuario <b>baneado o dado de baja</b>') %} 
 			{% else %}
-				{% if self.user_level == 'disabled' %} 
-					{% trans _('usuario <b>baneado o dado de baja</b>') %} 
+				{% if self.hidden %}
+					{% trans _('comentario <b>sensurado</b>')%}, {{ self.karma }} {% trans _('de carisma') %}
 				{% endif %}
 			{% endif %}
 		{% endif %}
-
-		 <br/><a href="javascript:obtener('mostrar_comentario.php','comment','cid-{{self.id}}',0,{{ self.id }})" title=" {% trans _('ver comentario')%} ">» {% trans _('clic aquí para verlo') %}</a> 
+		 <br/><a href="javascript:obtener('mostrar_comentario.php','comment','cid-{{self.id}}',0,{{ self.id }})" title=" {% trans _('ver comentario')%} ">» {% trans _('clic aquí para ver el comentario') %}</a> 
 	{% else %}
 		{% exec self.return_text length, single_link %}
 	{% endif %}

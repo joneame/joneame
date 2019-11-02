@@ -129,7 +129,7 @@ function do_last_comments() {
 
     // The order is not exactly the comment_karma
     // but a time-decreasing function applied to the number of votes
-    $res = $db->get_results("SELECT comment_id, comment_order, comment_type, user_login, link_id, link_uri, link_title, link_comments FROM comments, users, links WHERE comment_user_id = user_id  AND comment_link_id = link_id ORDER BY comment_date DESC LIMIT 12");
+    $res = $db->get_results("SELECT comment_id, comment_order, comment_type, user_login, user_level, link_id, link_uri, link_title, link_comments FROM comments, users, links WHERE comment_user_id = user_id  AND comment_link_id = link_id AND user_level != 'disabled' ORDER BY comment_date DESC LIMIT 12");
     if ($res) {
         $output .= '<div class="sidebox"><h4><a href="'.$globals['base_url'].'ultimos_comentarios.php">'._('últimos comentarios').'</a></h4><ul class="topcommentsli fondo-caja espaciador">'."\n";
         foreach ($res as $comment) {
