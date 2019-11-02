@@ -56,7 +56,7 @@ exit;
     function preload_indicators() {
         global $globals;
 
-        echo '<SCRIPT type="text/javascript">'."\n";
+        echo '<script>'."\n";
         echo '<!--'."\n";
         echo 'var img_src1=\''.$globals['base_url'].'img/estructura/cargando.gif\''."\n";;
         echo 'var img1= new Image(); '."\n";

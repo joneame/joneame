@@ -38,7 +38,7 @@ function do_contained_pages($id, $total, $current, $page_size, $program, $type, 
     }
     echo "</div>\n";
     if (! $container) {
-        echo '<script type="text/javascript">';
+        echo '<script>';
         echo '$(document).ready(function() {$("a.fancybox").fancybox({transitionIn: "none", transitionOut: "none"})});';
         echo '</script>';
     }

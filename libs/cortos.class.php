@@ -254,7 +254,7 @@ var $avatar;
         global $globals, $current_user, $site_key;
 
         $key = md5($globals['user_ip'].$current_user->user_id.$site_key);
-        echo ' <a href="'.get_corto_uri($this->id).'"><img src="'.get_cover_pixel().'" class="icon permalink-mini" title="'._('permalink').'"/></a> ';
+        echo ' <a href="'.get_corto_uri($this->id).'"><img src="'.get_cover_pixel().'" class="icon permalink-mini" alt="permalink" title="'._('permalink').'"/></a> ';
 
         if ($this->activado){
             echo '</dt>';

@@ -138,10 +138,10 @@ function do_css_includes() {
 function do_js_includes() {
     global $globals;
 
-    echo '<script type="text/javascript">var base_url="'.$globals['base_url'].'";mobile_version = true;</script>'."\n";
-    echo '<script src="'.$globals['base_url'].'js/mobile02.js" type="text/javascript"></script>' . "\n";
+    echo '<script>var base_url="'.$globals['base_url'].'";mobile_version = true;</script>'."\n";
+    echo '<script src="'.$globals['base_url'].'js/mobile02.js"></script>' . "\n";
     do_js_from_array($globals['extra_js']);
-    echo '<script type="text/javascript">if(top.location != self.location)top.location = self.location;'."\n";
+    echo '<script>if(top.location != self.location)top.location = self.location;'."\n";
     if ($globals['extra_js_text']) {
          echo $globals['extra_js_text']."\n";
     }
@@ -153,9 +153,9 @@ function do_js_from_array($array) {
 
     foreach ($array as $js) {
         if (preg_match('/^http|^\//', $js)) {
-            echo '<script src="'.$js.'" type="text/javascript"></script>' . "\n";
+            echo '<script src="'.$js.'"></script>' . "\n";
         } else {
-            echo '<script src="'.$globals['base_url'].'js/'.$js.'" type="text/javascript"></script>' . "\n";
+            echo '<script src="'.$globals['base_url'].'js/'.$js.'"></script>' . "\n";
         }
     }
 }

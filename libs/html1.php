@@ -131,7 +131,7 @@ function do_header($title, $id='home') {
 
     $vars = compact('cotillona', 'title', 'id', 'madera', 'putijoneame');
 
-    header('X-UA-Compatible: IE=edge,chrome=1');
+    header('X-UA-Compatible: IE=edge');
     Haanga::Load('header.html', $vars);
 }
 
@@ -172,9 +172,9 @@ function do_js_from_array($array) {
 
     foreach ($array as $js) {
         if (preg_match('/^http|^\//', $js)) {
-            echo '<script src="'.$js.'" type="text/javascript"></script>';
+            echo '<script src="'.$js.'"></script>';
         } else {
-            echo '<script src="'.$globals['base_url'].'js/'.$js.'" type="text/javascript"></script>';
+            echo '<script src="'.$globals['base_url'].'js/'.$js.'"></script>';
         }
     }
 }
@@ -262,7 +262,7 @@ function do_footer($credits = true) {
         else                $tipovisita = 'Anonimo';
 
         $analytics = "
-            <script type=\"text/javascript\">
+            <script>
 
             var _gaq = _gaq || [];
             _gaq.push(['_setAccount', 'UA-6807553-1']);
@@ -506,7 +506,7 @@ function print_share_icons($full_link, $short_link = false, $title = '', $id) {
     // Share it in Facebook
     echo '&nbsp;&nbsp;<a href="http://www.facebook.com/share.php?u='.$full_link.'" target="_blank"><img class="icon favicon-facebook img-flotante" src="'.get_cover_pixel().'" alt="facebook" title="'._('compartir en facebook').'"/></a> ';
     //Share it in Google +
-    // echo '&nbsp;<span id="plusone-span-'.$id.'"></span> <script type="text/javascript"> $(function () {gapi.plusone.render("plusone-span", {"size": "small", "count": false})});</script>';
+    // echo '&nbsp;<span id="plusone-span-'.$id.'"></span> <script> $(function () {gapi.plusone.render("plusone-span", {"size": "small", "count": false})});</script>';
 
     // Jonéame link
     // echo '</span><span class="tool"><a href="'.$joneame_link.'"><img src="'.$globals['base_url'].$globals['favicon'].'" alt="jonéame" title="'._('enlace corto jonéame').'" width="16" height="16"/></a></span>';

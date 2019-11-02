@@ -237,7 +237,7 @@ class Post {
         if ($this->tipo == 'admin') $this->username = 'admin';
 
         if ($this->tipo != 'encuesta')
-        echo '<a href="'.post_get_base_url($this->username).'/'.$this->id.'" title="permalink" class="'.$post_meta_class_link.'"><img class="icon permalink img-flotante" src="'.get_cover_pixel().'"/></a>&nbsp;';
+        echo '<a href="'.post_get_base_url($this->username).'/'.$this->id.'" title="permalink" class="'.$post_meta_class_link.'"><img class="icon permalink img-flotante" alt="permalink" src="'.get_cover_pixel().'"/></a>&nbsp;';
 
         if ($current_user->user_id > 0 && $this->tipo != 'encuesta')
             echo '&nbsp;&nbsp;<a id="fav-'.$this->id.'" href="javascript:obtener(\'notita_favorito.php\',\''.$current_user->user_id.'\',\'fav-'.$this->id.'\',0,\''.$this->id.'\')">'.favorite_icon($this->favorite, 'post').'</a>';
@@ -393,7 +393,7 @@ class Post {
         echo '</fieldset>'."\n";
         echo '</div><br/>'."\n";
 
-        echo'<script type="text/javascript">'."\n";
+        echo'<script>'."\n";
 
         // prepare Options Object
         if ($this->id == 0) {

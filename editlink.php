@@ -117,7 +117,7 @@ function do_edit() {
         if ($linkres->status != 'duplicated') $disabled = 'disabled="true"';
         else $disabled = '';
 
-        echo '<br/><script type="text/javascript">';
+        echo '<br/><script>';
         echo '$(document).ready(function() {';
         echo '    $("#status").change(function() {';
         echo '        status = $("#status").val();';

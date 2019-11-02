@@ -30,7 +30,7 @@ echo '</head>' . "\n";
 echo "<body>\n";
 
 ?>
-<script type="text/javascript">
+<script>
 //<![CDATA[
 var my_version = '<?php echo $sneak_version; ?>';
 var ts=<?php echo (time()-3600); ?>; // just due a freaking IE cache problem
@@ -118,7 +118,7 @@ function to_html(data) {
 
 //]]>
 </script>
-<script type="text/javascript" src="//<?php echo get_server_name().$globals['base_url']; ?>js/sneak14.js.php"></script>
+<script src="//<?php echo get_server_name().$globals['base_url']; ?>js/sneak14.js.php"></script>
 <?php
 
 echo '<div class="sneaker">';

@@ -86,7 +86,7 @@
 		<a id="fav-{{self.id}}" href="javascript:obtener('comentario_favorito.php',{{ current_user.user_id }},'fav-{{self.id}}',0,{{self.id}})">{% exec favorite_icon self.favorite, 'comment'%}</a> 
 	{% endif %}
 
-         <a href="{% exec self.get_relative_individual_permalink %}" title="permalink"><img class="icon permalink img-flotante" src="{% exec get_cover_pixel %}"/></a> 
+         <a href="{% exec self.get_relative_individual_permalink %}" title="permalink"><img class="icon permalink img-flotante" alt="permalink" src="{% exec get_cover_pixel %}"/></a> 
 
 	{% if current_user.user_id > 0 AND current_user.user_karma > globals.min_karma_for_comments %}
 		 <a href="javascript:comment_reply({{self.order}})"><img src="{% exec get_cover_pixel %}" class="icon comment-reply" style="margin-top: -2px;" alt="{% trans _('responder') %}" title="{% trans _('responder') %}"/></a> 

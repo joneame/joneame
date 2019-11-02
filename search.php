@@ -231,7 +231,7 @@ function print_search_form() {
     echo '</select>';
     echo '</form>';
 
-    echo '<script type="text/javascript">';
+    echo '<script>';
     echo '$(document).ready(function() {';
     echo '    $("#w").change(function() {';
     echo '        type = $("#w").val();';

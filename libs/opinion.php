@@ -134,7 +134,7 @@ class Opinion {
             $summaryresponse .= '</a>';
         }
 
-           $summaryresponse .= '&nbsp;&nbsp;<a href="'.$this->get_relative_individual_permalink().'" title="permalink"><img class="icon permalink img-flotante" src="'.get_cover_pixel().'"/></a>';
+           $summaryresponse .= '&nbsp;&nbsp;<a href="'.$this->get_relative_individual_permalink().'" title="permalink"><img class="icon permalink img-flotante" alt="permalink" src="'.get_cover_pixel().'"/></a>';
 
         $summaryresponse .= '</div>';
 

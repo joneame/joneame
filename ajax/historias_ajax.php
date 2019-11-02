@@ -152,7 +152,7 @@ function print_sneaker(){
     echo '</fieldset>';
     echo '</div>';
 
-    echo '<script type="text/javascript">$(function(){start_link_sneak()});</script>' . "\n";
+    echo '<script>$(function(){start_link_sneak()});</script>' . "\n";
 
 }
 

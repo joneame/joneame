@@ -122,7 +122,7 @@ class Encuesta {
     function print_encuesta() {
         global $current_user, $page, $globals;
 
-        echo '<h4><a href="'.get_encuesta_uri($this->id).'"><img class="icon permalink img-flotante" src="'.get_cover_pixel().'"/></a>&nbsp;&nbsp;'.$this->titulo.'</h4>';
+        echo '<h4><a href="'.get_encuesta_uri($this->id).'"><img class="icon permalink img-flotante" alt="permalink" src="'.get_cover_pixel().'"/></a>&nbsp;&nbsp;'.$this->titulo.'</h4>';
         echo '<fieldset class="encuesta" id="encuesta'.$this->id.'">';
         echo '<div class="news-submitted encuesta-userinfo">';
         echo '<a href="'.get_user_uri($this->nick).'"><span><img onmouseover="return tooltip.ajax_delayed(event, \'get_user_info.php\', '.$this->user_id.');" onmouseout="tooltip.clear(event);" class="avatar" src="'.get_avatar_url($this->autor, $this->avatar, 80).'" width="40" height="40" alt="'.$this->nick.'"/></span></a>';

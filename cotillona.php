@@ -116,7 +116,7 @@ if (!empty($_REQUEST['friends'])) {
 
 ?>
 
-<script type="text/javascript">
+<script>
 //<![CDATA[
 var my_version = '<?php echo $sneak_version; ?>';
 var ts=<?php echo (time()-3600); ?>; // just due a freaking IE cache problem
@@ -539,13 +539,13 @@ function flipChar(c) {
 if ($current_user->user_id > 0) {
     if (!empty($_REQUEST['friends'])) {
         $taboption = 2;
-        echo '<script type="text/javascript">global_options.show_friends = true;</script>';
+        echo '<script>global_options.show_friends = true;</script>';
     } elseif (!empty($_REQUEST['admin']) && $current_user->user_id > 0 && ($current_user->admin)) {
         $taboption = 3;
-        echo '<script type="text/javascript">global_options.show_admin = true;</script>';
+        echo '<script>global_options.show_admin = true;</script>';
     }elseif (!empty($_REQUEST['devel']) && $current_user->user_id > 0 && ($current_user->devel)) {
         $taboption = 4;
-        echo '<script type="text/javascript">global_options.show_devel = true;</script>';
+        echo '<script>global_options.show_devel = true;</script>';
     } else {
         $taboption = 1;
     }

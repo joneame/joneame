@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<script>
 //<![CDATA[
 var link_id = <?php echo $globals['link_id'] ?>;
 var link_votes_0 = <?php echo $globals['link']->votes; ?>;
@@ -10,7 +10,7 @@ var link_karma = 0;
 var a;
 //]]>
 </script>
-<script type="text/javascript" src="http://<?php echo get_server_name().$globals['base_url']; ?>js/link_sneak02.js.php"></script>
+<script src="http://<?php echo get_server_name().$globals['base_url']; ?>js/link_sneak02.js.php"></script>
 <?php
 echo '<div class="mini-sneaker-item">';
 echo '<div class="mini-sneaker-title">';

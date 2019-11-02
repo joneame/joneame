@@ -98,7 +98,7 @@ function geo_coder_print_form($type, $id, $latlng, $label, $icontype = 'queued')
     echo '<br/>'._('también acepta coordenadas "lat, long", i.e. "1.234, -54.321"')."</span>\n";
     echo '</form>'."\n";
 ?>
-    <script type="text/javascript">
+    <script>
     //<![CDATA[
         // Check if there is a map container, otherwise it creates a container
         if ($('#map').length == 0 ) {

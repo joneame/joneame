@@ -88,7 +88,7 @@ function print_comment_form() {
     global $encuesta, $current_user, $globals;
 
     // esto debería estar en do_header pero me parece que paso. además así sólo se carga cuando sea necesario
-    echo '<script type="text/javascript" src="'.$globals['base_url'].'js/poll_com.js"></script>';
+    echo '<script src="'.$globals['base_url'].'js/poll_com.js"></script>';
 
     echo '<div class="commentform">'."\n";
     echo '<form action="" method="post">'."\n";

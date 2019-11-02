@@ -89,7 +89,7 @@ class FacebookRestClient {
     if (!empty($GLOBALS['facebook_config']['debug'])) {
       $this->cur_id = 0;
       ?>
-<script type="text/javascript">
+<script>
 var types = ['params', 'xml', 'php', 'sxml'];
 function getStyle(elem, style) {
   if (elem.getStyle) {

@@ -122,7 +122,7 @@ function recaptcha_get_html ($pubkey, $error = null, $use_ssl = false)
            $errorpart = "&amp;error=" . $error;
         }
         return '<script>var RecaptchaOptions = {lang: "'.$dblang.'"};</script>
-    <script type="text/javascript" src="'. $server . '/challenge?k=' . $pubkey . $errorpart . '"></script>
+    <script src="'. $server . '/challenge?k=' . $pubkey . $errorpart . '"></script>
 
     <noscript>
           <iframe src="'. $server . '/noscript?k=' . $pubkey . $errorpart . '" height="300" width="500" frameborder="0"></iframe><br/>

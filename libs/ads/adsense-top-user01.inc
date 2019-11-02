@@ -7,7 +7,7 @@
 // AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
 
 // This is an example for preparing the scripts for users' ads
-echo '<script type="text/javascript"><!--' . "\n";
+echo '<script><!--' . "\n";
 echo 'google_ad_client = "'.$globals['user_adcode'].'";' . "\n";
 echo 'google_ad_width = 728;' . "\n";
 echo 'google_ad_height = 90;' . "\n";

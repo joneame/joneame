@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<script>
 <!--
 var mnm_banner_font_pt = 8;
 var mnm_banner_width = 425;

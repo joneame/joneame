@@ -23,7 +23,7 @@ if ($corto->aux->status) {
 $info =  _('v').': <span id="vc-'.$corto->id.'">'.$corto->votos.'</span>, '._('c').': <span id="vk-'.$corto->id.'">'.$corto->carisma.'</span>';
 
 echo ' <a href="'.get_corto_uri($corto->id).'" class="moar">';
-echo '<img src="'.get_cover_pixel().'" class="icon permalink-mini">';
+echo '<img src="'.get_cover_pixel().'" class="icon permalink-mini" alt="permalink">';
 echo '</a> ';
 
 $texto = clean_text($corto->texto);
