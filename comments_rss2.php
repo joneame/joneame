@@ -184,7 +184,7 @@ function do_header($title) {
     echo '     xmlns:content="http://purl.org/rss/1.0/modules/content/"'."\n";
     echo '     xmlns:wfw="http://wellformedweb.org/CommentAPI/"'."\n";
     echo '     xmlns:dc="http://purl.org/dc/elements/1.1/"'."\n";
-
+    echo '     xmlns:joneame="http://joneame.net/faq-es.php"'."\n";
     echo ' >'. "\n";
     echo '<channel>'."\n";
     echo'   <title>'.$title.'</title>'."\n";
