@@ -56,7 +56,7 @@ function do_master($size) {
         echo '</sitemap>'."\n";
     }
 
-    $count = (int) $db->get_var("select count(*) from posts join users on users.user_id = posts.post_user_id and users.user_level != 'disabled'");
+    $count = (int) $db->get_var("select count(*) from posts join users on users.user_id = posts.post_user_id and users.user_level != 'disabled' where post_type = 'normal'");
     $indexes = ceil($count/$size);
     for ($i = 0; $i < $indexes; $i++) {
         echo '<sitemap>'."\n";
@@ -148,6 +148,7 @@ function do_posts($page) {
     $start = $page * $index_size;
 
     $posts = $db->get_results("SELECT SQL_NO_CACHE users.user_login as user_login, posts.post_id as post_id from posts join users on users.user_id = posts.post_user_id and users.user_level != 'disabled'
+                               where post_type = 'normal'
                                order by posts.post_id asc limit $start, $index_size");
     echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'."\n";
     foreach ($posts as $post) {
