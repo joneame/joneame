@@ -21,7 +21,15 @@ if (empty($_SERVER['QUERY_STRING'])) {
         do_statics();
     } else {
         $page = (int) $_REQUEST['page'];
-        do_published($page);
+        if ($_REQUEST['type'] == 'links') {
+            do_published($page);
+        } elseif ($_REQUEST['type'] == 'posts') {
+            do_posts($page);
+        } elseif ($_REQUEST['type'] == 'comments') {
+            do_comments($page);
+        } elseif ($_REQUEST['type'] == 'quotes') {
+            do_quotes($page);
+        }
     }
 }
 
@@ -38,7 +46,31 @@ function do_master($size) {
     $indexes = ceil($count/$size);
     for ($i = 0; $i < $indexes; $i++) {
         echo '<sitemap>'."\n";
-        echo '<loc>https://'.get_server_name().$globals['base_url'].'sitemap.php?page='.$i.'</loc>'."\n";
+        echo '<loc>https://'.get_server_name().$globals['base_url'].'sitemap.php?type=links&amp;page='.$i.'</loc>'."\n";
+        echo '</sitemap>'."\n";
+    }
+
+    $count = (int) $db->get_var("select count(*) from posts join users on users.user_id = posts.post_user_id and users.user_level != 'disabled'");
+    $indexes = ceil($count/$size);
+    for ($i = 0; $i < $indexes; $i++) {
+        echo '<sitemap>'."\n";
+        echo '<loc>https://'.get_server_name().$globals['base_url'].'sitemap.php?type=posts&amp;page='.$i.'</loc>'."\n";
+        echo '</sitemap>'."\n";
+    }
+
+    $count = (int) $db->get_var("select count(*) from comments join users on users.user_id = comments.comment_user_id and users.user_level != 'disabled'");
+    $indexes = ceil($count/$size);
+    for ($i = 0; $i < $indexes; $i++) {
+        echo '<sitemap>'."\n";
+        echo '<loc>https://'.get_server_name().$globals['base_url'].'sitemap.php?type=comments&amp;page='.$i.'</loc>'."\n";
+        echo '</sitemap>'."\n";
+    }
+
+    $count = (int) $db->get_var("select count(*) from cortos where activado = 1");
+    $indexes = ceil($count/$size);
+    for ($i = 0; $i < $indexes; $i++) {
+        echo '<sitemap>'."\n";
+        echo '<loc>https://'.get_server_name().$globals['base_url'].'sitemap.php?type=quotes&amp;page='.$i.'</loc>'."\n";
         echo '</sitemap>'."\n";
     }
     echo '</sitemapindex>'."\n";
@@ -71,15 +103,55 @@ function do_published($page) {
     global $globals, $index_size, $db;
     $start = 1 + $page * $index_size;
 
-    // Force to open DB connection
-    $db->get_var("select count(*) from users");
-
-    $sql = "SELECT SQL_NO_CACHE link_uri from links where link_status='published' order by link_date asc limit $start, $index_size";
-    $result = mysql_query($sql,  $db->dbh) or die('Query failed: ' . mysql_error());
+    $urls = $db->get_col("SELECT SQL_NO_CACHE link_uri from links where link_status='published' order by link_date asc limit $start, $index_size");
     echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'."\n";
-    while ($res = mysql_fetch_object($result)) {
+    foreach ($urls as $url) {
         echo '<url>'."\n";
-        echo '<loc>https://'.get_server_name().$globals['base_url'].$globals['base_story_url'].$res->link_uri.'</loc>'."\n";
+        echo '<loc>https://'.get_server_name().$globals['base_url'].$globals['base_story_url'].$url.'</loc>'."\n";
+        echo '</url>'."\n";
+    }
+    echo '</urlset>'."\n";
+}
+
+function do_posts($page) {
+    global $globals, $index_size, $db;
+    $start = 1 + $page * $index_size;
+
+    $posts = $db->get_results("SELECT SQL_NO_CACHE users.user_login as user_login, posts.post_id as post_id from posts join users on users.user_id = posts.post_user_id and users.user_level != 'disabled'
+                               order by posts.post_id asc limit $start, $index_size");
+    echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'."\n";
+    foreach ($posts as $post) {
+        echo '<url>'."\n";
+        echo '<loc>https://'.get_server_name().$globals['base_url'].$globals['base_sneakme_url'].$post->user_login.'/'.$post->post_id.'</loc>'."\n";
+        echo '</url>'."\n";
+    }
+    echo '</urlset>'."\n";
+}
+
+function do_comments($page) {
+    global $globals, $index_size, $db;
+    $start = 1 + $page * $index_size;
+
+    $comments = $db->get_col("SELECT SQL_NO_CACHE comment_id from comments join users on users.user_id = comments.comment_user_id and users.user_level != 'disabled'
+                              order by comments.comment_id asc limit $start, $index_size");
+    echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'."\n";
+    foreach ($comments as $comment_id) {
+        echo '<url>'."\n";
+        echo '<loc>https://'.get_server_name().$globals['base_url'].$globals['base_comment_url'].$comment_id.'</loc>'."\n";
+        echo '</url>'."\n";
+    }
+    echo '</urlset>'."\n";
+}
+
+function do_quotes($page) {
+    global $globals, $index_size, $db;
+    $start = 1 + $page * $index_size;
+
+    $quotes = $db->get_col("SELECT SQL_NO_CACHE id from cortos where activado = 1 order by id asc limit $start, $index_size");
+    echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'."\n";
+    foreach ($quotes as $quote_id) {
+        echo '<url>'."\n";
+        echo '<loc>https://'.get_server_name().$globals['base_url'].$globals['base_corto_url'].$quote_id.'</loc>'."\n";
         echo '</url>'."\n";
     }
     echo '</urlset>'."\n";
