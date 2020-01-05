@@ -60,16 +60,12 @@
                 <h1>Jonéame</h1>
                 <h2>liada parda</h2>
                 <div class="foot">
-                    <?php echo 'Parece que tenemos un problema con la BBDD, volvemos en unos segundos... si no es que Jon la ha liado, que es lo más probable:' ?>
+                    Parece que tenemos un problema con la BBDD, volvemos en unos segundos...
                     <br/>
                     <br/>
-                    <?php echo '<strong>'.mysql_error(). '</strong>' ?>
-                    <br/>
-                    <br/>
-                    <div class="contacto">Administración de Jonéame
-                        <br/>    <strong>Contacto</strong>: admin <em>arroba</em> joneame <em>puntito</em> net
-                        <br/>    <strong>Blog</strong>: <a href="http://blog.joneame.net/" target="_blank">http://blog.joneame.net/</a>
-                        <br/>
+                    <div class="contacto">
+                        Administración de Jonéame<br/>
+                        <strong>Contacto</strong>: admin <em>arroba</em> joneame <em>puntito</em> net
                     </div>
                 </div>
             </div>

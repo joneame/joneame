@@ -55,25 +55,20 @@
 
     </style>
     <body>
-            <div class="contenedor-outer">
-                <div class="contenedor-inner">
-                        <h1>Jonéame</h1>
-                        <h2>liada parda</h2>
-                    <div class="foot">
-                        <?php echo $globals[ 'lounge_mezua']; ?>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <div class="contacto">Administración de Jonéame
-                            <br/>    <strong>Contacto</strong>: admin <em>arroba</em> joneame <em>puntito</em> net
-                            <br/>    <strong>Blog</strong>: <a href="http://blog.joneame.net/" target="_blank">http://blog.joneame.net/</a>
-                            <br/>
-                        </div>
+        <div class="contenedor-outer">
+            <div class="contenedor-inner">
+                <h1>Jonéame</h1>
+                <h2>liada parda</h2>
+                <div class="foot">
+                    <?php echo $globals[ 'lounge_mezua']; ?>
+                    <br/>
+                    <br/>
+                    <div class="contacto">
+                        Administración de Jonéame<br/>
+                        <strong>Contacto</strong>: admin <em>arroba</em> joneame <em>puntito</em> net
                     </div>
                 </div>
             </div>
-
+        </div>
     </body>
 </html>
