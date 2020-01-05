@@ -29,7 +29,7 @@ class UserAuth {
             $this->mnm_user=explode(":", $_COOKIE['joneame_2']);
         }
 
-        if($this->mnm_user[0] && !empty($_COOKIE['joneame_key_2'])) {
+        if($this->mnm_user && $this->mnm_user[0] && !empty($_COOKIE['joneame_key_2'])) {
             $userInfo=explode(":", base64_decode($_COOKIE['joneame_key_2']));
             if($this->mnm_user[0] === $userInfo[0]) {
                 $cookietime = (int) $userInfo[3];
