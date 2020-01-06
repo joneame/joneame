@@ -67,6 +67,7 @@ if ($poll_comment) {
 
     }
     echo "</ol>\n";
+    echo '</div>';
 
 }
 
@@ -81,9 +82,6 @@ if ( $current_user->user_id > 0 ){
         echo '</div>'."\n";
 }
 
-
-
-echo '</div>';
 
 echo '</div></div>'; //newswrap notes
 
