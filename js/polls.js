@@ -1,18 +1,355 @@
-function update_votes_counter(a){var b=$("#votos-e-"+a).html(),d=$("#usuarios-totales-"+a).html();b++;d++;$("#votos-e-"+a).html(b);$("#usuarios-totales-"+a).html(d)}function update_comments_counter(a){var b=$("#opiniones-"+a).html();b++;$("#opiniones-"+a).html(b)}
-function ajax_poll_vote(a){var b=new XMLHttpRequest,d=document.getElementById("cuenta_"+a).value,e=[],c=[];for(i=0;i<d;i++)e[i]=document.getElementById("opcion_"+a+"["+i+"]").checked;for(i=0;i<d;i++)c[i]=!0==e[i]?document.getElementById("opcion_"+a+"["+i+"]").value:0;b&&(b.onreadystatechange=function(){if(4==b.readyState){var c=b.responseText;document.getElementById("pollvotes"+a).innerHTML=String(c);update_votes_counter(a);return!0}},b.open("POST","/ajax/poll_vote.php",!0),b.setRequestHeader("Content-Type",
-"application/x-www-form-urlencoded"),b.send("poll_id="+a+"&opciones="+c))}function setOpacity(a){obj=document.getElementById("ajaxcomments");container=document.getElementById("ajaxcontainer");obj.style.filter="alpha(opacity:"+a+")";obj.style.KHTMLOpacity=a/100;obj.style.MozOpacity=a/100;obj.style.opacity=a/100;container.style.height=a*obj.offsetHeight/100+10+"px"}function fadeIn(a){100>=a&&(setOpacity(a),window.setTimeout("fadeIn("+(a+50)+")",25))}
-function startFade(){setOpacity(document.getElementById("ajaxcomments"),0);document.getElementById("ajaxcomments").style.visibility="visible";fadeIn(0)}
-function submit_comment(){if(""==document.getElementById("poll_content").value)return document.getElementById("error_com").innerHTML="Comentario vac\u00edo",document.getElementById("spinner").className="ko",document.getElementById("poll_content").focus(),!1;var a=document.getElementById("poll_content").value,b=document.getElementById("process").value,d=document.getElementById("poll_id").value,e=document.getElementById("user_id").value,c=new XMLHttpRequest;c&&(document.getElementById("submit_com").disabled=
-!0,document.getElementById("poll_content").disabled=!0,document.getElementById("spinner").className="loading",c.onreadystatechange=function(){if(4==c.readyState){var a=c.responseText;if("OK:"==String(a).substring(0,3))return document.getElementById("spinner").className="ok",document.getElementById("poll_content").value="",document.getElementById("ajaxcomments").innerHTML=String(a).substring(3),startFade(),update_comments_counter(id),!0;document.getElementById("spinner").className="ko";document.getElementById("submit_com").disabled=
-!1;document.getElementById("plol_content").disabled=!1;document.getElementById("error_com").innerHTML=String(a).substring(3);return!1}},c.open("POST","/ajax/poll_com.php",!0),c.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),c.send("poll_content="+encodeURIComponent(a)+"&process="+b+"&poll_id="+d+"&user_id="+e))}
-function edit_comment(a){if(""==document.getElementById("comment_"+a).value)return document.getElementById("error_com_"+a).innerHTML="Comentario vac\u00edo",document.getElementById("spinner_"+a).className="spinner ko",document.getElementById("comment_"+a).focus(),!1;var b=document.getElementById("comment_"+a).value,d=document.getElementById("poll_id_"+a).value,e=document.getElementById("user_id_"+a).value,c=new XMLHttpRequest;c&&(document.getElementById("submit_com_"+a).disabled=!0,document.getElementById("comment_"+
-a).disabled=!0,document.getElementById("spinner_"+a).className="spinner loading",c.onreadystatechange=function(){if(4==c.readyState){var b=c.responseText;if("OK:"==String(b).substring(0,3))return document.getElementById("spinner_"+a).className="spinner ok",document.getElementById("comment_"+a).value="",document.getElementById("ccontainer-"+a).innerHTML=String(b).substring(3),!0;document.getElementById("spinner_"+a).className="spinner ko";document.getElementById("submit_com_"+a).disabled=!1;document.getElementById("comment_"+
-a).disabled=!1;document.getElementById("error_com_"+a).innerHTML=String(b).substring(3);return!1}},c.open("POST","/ajax/edit_poll_comment.php?id="+a,!0),c.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),c.send("id="+a+"&poll_content="+encodeURIComponent(b)+"&process=editcomment&poll_id="+d+"&user_id="+e))}
-function edit_poll(a){var b=new XMLHttpRequest,d=document.getElementById("process-"+a).value;if("save_settings"==d){var e=document.getElementById("cuenta"+a).value,c=document.getElementById("titulo").value,f=document.getElementById("descripcion").value,g=[],h=[];for(i=0;i<e;i++)h[i]=document.getElementById("opcion"+i).value;for(i in h)g[i]=document.getElementById("valor"+i).value}b&&(b.onreadystatechange=function(){if(4==b.readyState){var e=b.responseText;document.getElementById("editbox-"+a).innerHTML=
-String(e);"save_settings"==d&&save_options(a,g,d,c,f);return!0}},b.open("POST","/ajax/polls_utils.php",!0),b.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),b.send("poll_id="+a+"&process="+d))}
-function save_options(a,b,d,e,c){var f=new XMLHttpRequest;f&&(f.onreadystatechange=function(){if(4==f.readyState){var b=f.responseText;document.getElementById("pollvotes"+a).innerHTML=String(b);return!0}},f.open("POST","/ajax/polls_utils.php",!0),f.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),f.send("poll_id="+a+"&process="+d+"&opciones="+b+"&titulo="+e+"&descripcion="+c))}
-function delete_poll(a){var b=new XMLHttpRequest;b&&(b.onreadystatechange=function(){if(4==b.readyState)return document.getElementById("encuesta"+a).innerHTML="",!0},b.open("POST","/ajax/poll_delete.php",!0),b.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),b.send("poll_id="+a))}
-function add_option(){var a=document.getElementsByTagName("dt").length,b=document.getElementById("encuesta-opciones"),d=document.createElement("dt"),e=document.createElement("dd");if(15==a)return alert("Has superado el n\u00famero de opciones m\u00e1ximas"),!0;previous=parseInt(a)-1;eliminar=document.getElementById("delete-"+previous);padre3=eliminar.parentNode;padre3.removeChild(eliminar);original=a;d.id="opcion-"+original;siguiente=parseInt(original)+1;d.innerHTML="opci\u00f3n "+siguiente;e.id=
-"opcion-t-"+original;e.innerHTML='<input type="text" value="" size="70" name="opts['+original+']" id="opts['+original+']"> <span id="delete-'+original+'"> <a href="javascript:delete_option('+original+')"> <img class="icon delete" alt="eliminar opci\u00f3n" title="eliminar opci\u00f3n"></a></span>';b.appendChild(d);b.appendChild(e)}
-function delete_option(a){previous=parseInt(a)-1;opcion=document.getElementById("opcion-"+a);cuadro=document.getElementById("opcion-t-"+a);contenido=document.getElementById("opts["+previous+"]").value;padre=opcion.parentNode;padre.removeChild(opcion);padre2=cuadro.parentNode;padre2.removeChild(cuadro);dd=document.getElementById("opcion-t-"+previous);dd.innerHTML='<input type="text" value="'+contenido+'" size="70" name="opts['+previous+']" id="opts['+previous+']"><span id="delete-'+previous+'"><a href="javascript:delete_option('+
-previous+')" > <img class="icon delete" alt="eliminar opci\u00f3n" title="eliminar opci\u00f3n"></a></span>'};
+// The source code packaged with this file is Free Software, Copyright (C) 2005 by
+// Jon Arano <arano.jon@gmail.com>
+// It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
+// A copy of the AFFERO GENERAL PUBLIC LICENSE is included in the file "COPYING".
+
+function update_votes_counter(id){
+
+    var votos= $('#votos-e-' + id).html()
+    var votos_totales= $('#usuarios-totales-' + id).html()
+
+    votos ++;
+    votos_totales ++;
+
+    $('#votos-e-'+id).html(votos);
+    $('#usuarios-totales-'+id).html(votos_totales);
+
+}
+
+function update_comments_counter(id){
+
+    var comentarios= $('#opiniones-' + id).html()
+
+    comentarios ++;
+    $('#opiniones-'+id).html(comentarios);
+}
+
+function ajax_poll_vote(id) {
+
+    var httpreq =  new XMLHttpRequest();
+    var cuenta = document.getElementById("cuenta_"+id).value;
+    var valores = new Array();
+    var opciones = new Array();
+
+    for (i=0; i < cuenta ; i++) {
+         valores[i] = document.getElementById("opcion_"+id+"["+i+"]").checked;
+    }
+
+
+    for (i=0; i < cuenta; i++) {
+         if (valores[i] == true) {
+         opciones[i] = document.getElementById("opcion_"+id+"["+i+"]").value; // si está votado mete el id de la opción en el array
+        } else opciones[i] = 0;
+
+    }
+
+    if (httpreq) {
+
+        httpreq.onreadystatechange=function() {
+            if (httpreq.readyState == 4) {
+
+                var serverResponse = httpreq.responseText;
+
+                /* Sobreescribe sobre el div el texto de la respuesta */
+                document.getElementById("pollvotes"+id).innerHTML = String(serverResponse);
+
+                update_votes_counter(id);
+
+                return true;
+
+            }
+        }
+
+        httpreq.open('POST', '/ajax/poll_vote.php', true);
+        httpreq.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+        httpreq.send('poll_id='+id+'&opciones='+opciones);
+    }
+}
+
+// Free software licensed under AGPL
+// (c) David <neikokz at gmail dot com>
+
+function setOpacity(opacity) {
+    obj = document.getElementById("ajaxcomments");
+    container = document.getElementById("ajaxcontainer");
+
+    obj.style.filter = "alpha(opacity:"+opacity+")";
+    obj.style.KHTMLOpacity = opacity/100;
+    obj.style.MozOpacity = opacity/100;
+    obj.style.opacity = opacity/100;
+    container.style.height = (opacity*obj.offsetHeight/100)+10+"px";
+}
+
+function fadeIn(opacity) {
+    if (opacity <= 100) {
+        setOpacity(opacity);
+        opacity += 50;
+        window.setTimeout("fadeIn("+opacity+")", 25);
+    }
+}
+
+function startFade() {
+    setOpacity(document.getElementById("ajaxcomments"), 0);
+    document.getElementById("ajaxcomments").style.visibility = 'visible';
+    fadeIn(0);
+}
+
+function submit_comment() {
+    if (document.getElementById("poll_content").value == "") {
+        document.getElementById("error_com").innerHTML = "Comentario vacío";
+        document.getElementById("spinner").className = 'ko';
+        document.getElementById("poll_content").focus();
+        return false;
+    }
+
+    var poll_content = document.getElementById("poll_content").value;
+    var process = document.getElementById("process").value;
+    var poll_id = document.getElementById("poll_id").value;
+    var user_id = document.getElementById("user_id").value;
+
+
+    var httpreq =  new XMLHttpRequest();
+
+    if (httpreq) {
+        document.getElementById("submit_com").disabled = true;
+        document.getElementById("poll_content").disabled = true;
+
+
+        document.getElementById("spinner").className = 'loading';
+
+        httpreq.onreadystatechange=function() {
+            if (httpreq.readyState == 4) {
+                var serverResponse = httpreq.responseText;
+
+                if (String(serverResponse).substring(0, 3) == "OK:") {
+                    document.getElementById("spinner").className = 'ok';
+                    document.getElementById("poll_content").value = "";
+                    document.getElementById("ajaxcomments").innerHTML = String(serverResponse).substring(3);
+                    startFade();
+                    update_comments_counter(id);
+                    return true;
+                } else {
+                    document.getElementById("spinner").className = 'ko';
+                    document.getElementById("submit_com").disabled = false;
+                    document.getElementById("plol_content").disabled = false;
+
+                    document.getElementById("error_com").innerHTML = String(serverResponse).substring(3);
+                    return false;
+                }
+            }
+        }
+
+        httpreq.open('POST', '/ajax/poll_com.php', true);
+        httpreq.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+        httpreq.send('poll_content='+encodeURIComponent(poll_content)+'&process='+process+'&poll_id='+poll_id+'&user_id='+user_id);
+    }
+}
+
+
+function edit_comment(com_id) {
+    if (document.getElementById('comment_'+com_id).value == "") {
+        document.getElementById('error_com_'+com_id).innerHTML = "Comentario vacío";
+        document.getElementById('spinner_'+com_id).className = 'spinner ko';
+        document.getElementById('comment_'+com_id).focus();
+        return false;
+    }
+
+    var comment_content = document.getElementById("comment_"+com_id).value;
+
+    var poll_id = document.getElementById("poll_id_"+com_id).value;
+    var user_id = document.getElementById("user_id_"+com_id).value;
+
+    var httpreq =  new XMLHttpRequest();
+    if (httpreq) {
+        document.getElementById("submit_com_"+com_id).disabled = true;
+        document.getElementById("comment_"+com_id).disabled = true;
+
+        document.getElementById("spinner_"+com_id).className = 'spinner loading';
+
+        httpreq.onreadystatechange=function() {
+            if (httpreq.readyState == 4) {
+                var serverResponse = httpreq.responseText;
+
+                if (String(serverResponse).substring(0, 3) == "OK:") {
+                    document.getElementById("spinner_"+com_id).className = 'spinner ok';
+                    document.getElementById("comment_"+com_id).value = "";
+                    document.getElementById("ccontainer-"+com_id).innerHTML = String(serverResponse).substring(3);
+                    return true;
+                } else {
+                    document.getElementById("spinner_"+com_id).className = 'spinner ko';
+                    document.getElementById("submit_com_"+com_id).disabled = false;
+                    document.getElementById("comment_"+com_id).disabled = false;
+                    document.getElementById("error_com_"+com_id).innerHTML = String(serverResponse).substring(3);
+                    return false;
+                }
+            }
+        }
+
+        httpreq.open('POST', '/ajax/edit_poll_comment.php?id='+com_id, true);
+        httpreq.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+                httpreq.send('id='+com_id+'&poll_content='+encodeURIComponent(comment_content)+'&process=editcomment&poll_id='+poll_id+'&user_id='+user_id);
+        var serverResponse = httpreq.responseText;
+    }
+}
+
+function edit_poll(id){
+
+    var httpreq =  new XMLHttpRequest();
+    var process = document.getElementById("process-"+id).value;
+
+    if (process == 'save_settings'){
+
+        var cuenta = document.getElementById("cuenta"+id).value;
+        var titulo = document.getElementById("titulo").value;
+        var descripcion = document.getElementById("descripcion").value;
+
+        var opciones = new Array();
+        var ids = new Array();
+
+
+        for (i=0; i < cuenta; i++) {
+            ids[i] = document.getElementById("opcion"+i).value;
+
+        }
+
+        for (i in ids) {
+
+             opciones[i] = document.getElementById("valor"+i).value;
+
+
+        }
+
+    }
+
+    if (httpreq) {
+
+        httpreq.onreadystatechange=function() {
+            if (httpreq.readyState == 4) {
+
+                var serverResponse = httpreq.responseText;
+
+                /* Sobreescribe sobre el div el texto de la respuesta */
+                document.getElementById("editbox-"+id).innerHTML = String(serverResponse);
+
+                if (process == 'save_settings') save_options(id, opciones, process, titulo, descripcion)
+
+                return true;
+
+            }
+        }
+
+        httpreq.open('POST', '/ajax/polls_utils.php', true);
+        httpreq.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+        httpreq.send('poll_id='+id+'&process='+process);
+    }
+}
+
+function save_options(id, opciones, process, titulo, descripcion) {
+
+    var httpreq =  new XMLHttpRequest();
+
+
+    if (httpreq) {
+
+        httpreq.onreadystatechange=function() {
+            if (httpreq.readyState == 4) {
+
+                var serverResponse = httpreq.responseText;
+
+                /* Sobreescribe sobre el div el texto de la respuesta */
+                document.getElementById("pollvotes"+id).innerHTML = String(serverResponse);
+
+                return true;
+
+            }
+        }
+
+        httpreq.open('POST', '/ajax/polls_utils.php', true);
+        httpreq.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+        httpreq.send('poll_id='+id+'&process='+process+'&opciones='+opciones+'&titulo='+titulo+'&descripcion='+descripcion);
+    }
+}
+
+function delete_poll(id) {
+
+    var httpreq =  new XMLHttpRequest();
+
+
+    if (httpreq) {
+
+        httpreq.onreadystatechange=function() {
+            if (httpreq.readyState == 4) {
+
+                var serverResponse = httpreq.responseText;
+
+                document.getElementById("encuesta"+id).innerHTML = '';
+
+                return true;
+
+            }
+        }
+
+        httpreq.open('POST', '/ajax/poll_delete.php', true);
+        httpreq.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+        httpreq.send('poll_id='+id);
+    }
+}
+
+function add_option(){
+
+    var allParas = document.getElementsByTagName('dt');
+    var num = allParas.length;
+    var capa = document.getElementById("encuesta-opciones");
+    var dt = document.createElement('dt');
+    var dd = document.createElement('dd');
+
+    if (num == 15 ) {
+        alert('Has superado el número de opciones máximas');
+        return true;
+    }
+
+    previous = parseInt(num)- 1;
+
+    /* Quitar enlace de eliminar en la opción anterior */
+    eliminar = document.getElementById('delete-'+previous);
+    padre3 = eliminar.parentNode;
+    padre3.removeChild(eliminar);
+
+    original = num; // número de opciones actuales
+
+    /* Añadir texto */
+    dt.id = 'opcion-'+original;
+    siguiente = parseInt(original) + parseInt(1);
+    dt.innerHTML = 'opción '+ siguiente ;
+
+
+    /* Añadir cuadro de texto */
+    dd.id = 'opcion-t-'+original;
+    dd.innerHTML = '<input type="text" value="" size="70" name="opts['+original+']" id="opts['+original+']"> <span id="delete-'+original+'"> <a href="javascript:delete_option('+original+')"> <img class="icon delete" alt="eliminar opción" title="eliminar opción"></a></span>';
+
+    /* Crear objetos */
+    capa.appendChild(dt);
+    capa.appendChild(dd);
+
+
+}
+
+function delete_option(number){
+
+    previous = parseInt(number)- 1;
+
+    opcion = document.getElementById('opcion-'+number);
+    cuadro = document.getElementById('opcion-t-'+number);
+    contenido = document.getElementById('opts['+previous+']').value; // para no perder el valor de la opción anterior
+
+    /* Eliminar texto y cuadro de texto de la opción */
+    padre = opcion.parentNode;
+    padre.removeChild(opcion);
+    padre2 = cuadro.parentNode;
+    padre2.removeChild(cuadro);
+
+    /* Devolver enlace para eliminar la opción anterior */
+    dd = document.getElementById("opcion-t-"+previous);
+    dd.innerHTML = '<input type="text" value="'+contenido+'" size="70" name="opts['+previous+']" id="opts['+previous+']"><span id="delete-'+previous+'"><a href="javascript:delete_option('+previous+')" > <img class="icon delete" alt="eliminar opción" title="eliminar opción"></a></span>'; // añadimos el enlace de eliminar opción anterior
+
+}

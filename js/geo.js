@@ -1,9 +1,181 @@
-var geo_map=null,geocoder=null,geo_ermua=new GLatLng(43.186642,-2.502607),geo_last_point,geo_last_address;
-function geo_get_marker(c,b){var a=new GIcon;a.iconSize=new GSize(20,25);a.iconAnchor=new GPoint(10,25);a.infoWindowAnchor=new GPoint(10,12);switch(b){case "geo":case "geo_edit":a.image=base_url+"img/geo/geo.png";break;case "queued":a.image=base_url+"img/geo/nueva-noticia.png";break;case "published":a.image=base_url+"img/geo/publicada.png";break;case "comment":a.image=base_url+"img/geo/comentario.png";break;case "post":a.image=base_url+"img/geo/nueva-notita.png";break;default:a.image=base_url+"img/geo/usuario.png"}return new GMarker(c,
-a)}function geo_basic_load(c,b,a){var d;return GBrowserIsCompatible()&&(d=document.getElementById("map"))?(geo_map=new GMap2(d),a=a||7,c||b?(point=new GLatLng(c,b),geo_map.setCenter(point,a)):geo_map.setCenter(geo_ermua,a),!0):!1}function geo_coder_load(c,b,a,d){if(geo_basic_load(c,b,a)){geo_map.addControl(new GSmallZoomControl);if(c||b)point=new GLatLng(c,b),geo_map.addOverlay(geo_get_marker(point,d));return!0}return!1}
-function geo_coder_editor_load(c,b,a,d){geo_coder_load(c,b,a,d)&&geo_add_click_listener(d)}function geo_add_click_listener(c){GEvent.addListener(geo_map,"click",function(b,a){b||(geo_last_point=a,geo_last_address=a.toString().replace(/[\(\)]/g,""),geo_map.clearOverlays(),geo_map.addOverlay(geo_get_marker(a,c)),document.geocoderform.geosave.disabled=!1,document.geocoderform.address.value=geo_last_address)})}
-function geo_show_address(c){geocoder||(geocoder=new GClientGeocoder,geocoder.setBaseCountryCode("ES"));if(geocoder&&document.geocoderform.address.value){var b=document.geocoderform.address.value;b.match(/^ *-*[0-9\.]+, *-*[0-9\.]+ *$/)?(coords=b.split(/[, ]+/),geo_found_point(new GLatLng(coords[0],coords[1]),c)):geocoder.getLatLng(b,function(a){a?geo_found_point(a,c):(geo_last_address=geo_last_point=!1,document.geocoderform.geosave.disabled=!0,alert('"'+b+'" not found'))})}return!1}
-function geo_found_point(c,b){geo_map.clearOverlays();geo_last_point=c;geo_last_address=document.geocoderform.address.value;geo_map.panTo(c);geo_map.addOverlay(geo_get_marker(c,b));document.geocoderform.geosave.disabled=!1}
-function geo_save_current(c,b){if(geo_last_point&&geo_last_address){var a=base_url+"geo/save.php?type="+c+"&id="+b+"&lat="+geo_last_point.lat()+"&lng="+geo_last_point.lng()+"&text="+encodeURIComponent(geo_last_address);$.ajax({url:a,dataType:"html",success:function(a){/^ERROR:/.test(a)?alert(a):(geo_map.setCenter(geo_last_point),document.geocoderform.geodelete.disabled=!1,document.geocoderform.geosave.disabled=!0)}})}else alert("No address to save")}
-function geo_delete(c,b){$.ajax({url:base_url+"geo/delete.php?type="+c+"&id="+b,dataType:"html",success:function(a){document.geocoderform.geodelete.disabled=!0;/^ERROR:/.test(a)?alert(a):(geo_map.clearOverlays(),geo_map.setCenter(geo_ermua,7))}})}
-function geo_load_xml(c,b,a){GDownloadUrl(base_url+"geo/xml.php?type="+c+"&status="+b,function(b,l){for(var g=[],f=GXml.parse(b).documentElement.getElementsByTagName("marker"),e=0;e<f.length;e++){var h=new GLatLng(parseFloat(f[e].getAttribute("lat")),parseFloat(f[e].getAttribute("lng"))),k=f[e].getAttribute("status");marker=geo_get_marker(h,k);marker.myId=parseInt(f[e].getAttribute("id"));marker.myType=c;g.push(marker)}geo_marker_mgr.addMarkers(g,a);geo_marker_mgr.refresh()})};
+// The source code packaged with this file is Free Software, Copyright (C) 2005 by
+// Ricardo Galli <gallir at uib dot es> and the Jonéame Development Team (admin@joneame.net)
+// It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
+// A copy of the AFFERO GENERAL PUBLIC LICENSE is included in the file "COPYING".
+
+var geo_map = null;
+var geocoder = null;
+var geo_ermua = new GLatLng(43.186642, -2.502607);
+var geo_last_point;
+var geo_last_address;
+
+function geo_get_marker(point, icon) {
+    var baseicon = new GIcon();
+    baseicon.iconSize = new GSize(20, 25);
+    baseicon.iconAnchor = new GPoint(10, 25);
+    baseicon.infoWindowAnchor = new GPoint(10, 12);
+    switch (icon) {
+        case 'geo':
+        case 'geo_edit':
+            baseicon.image = base_url+"img/geo/geo.png";
+            break;
+        case 'queued':
+            baseicon.image = base_url+"img/geo/nueva-noticia.png";
+            break;
+        case 'published':
+            baseicon.image = base_url+"img/geo/publicada.png";
+            break;
+        case 'comment':
+            baseicon.image = base_url+"img/geo/comentario.png";
+            break;
+        case 'post':
+            baseicon.image = base_url+"img/geo/nueva-notita.png";
+            break;
+        case 'user':
+        default:
+            baseicon.image = base_url+"img/geo/usuario.png";
+            break;
+    }
+    return new GMarker(point, baseicon);
+}
+
+function geo_basic_load(lat, lng, zoom) {
+    var map;
+    if (GBrowserIsCompatible() && (map = document.getElementById("map"))) {
+        geo_map = new GMap2(map);
+        zoom = zoom || 7;
+        if (lat || lng) {
+            point = new GLatLng(lat, lng);
+            geo_map.setCenter(point, zoom);
+        } else {
+            geo_map.setCenter(geo_ermua, zoom);
+        }
+        return true;
+    }
+    return false;
+}
+
+function geo_coder_load(lat, lng, zoom, icontype) {
+    if(geo_basic_load(lat, lng, zoom)) {
+        geo_map.addControl(new GSmallZoomControl());
+        if (lat || lng) {
+            point = new GLatLng(lat, lng);
+            geo_map.addOverlay(geo_get_marker(point, icontype));
+        }
+        return true;
+    }
+    return false;
+}
+
+function geo_coder_editor_load(lat, lng, zoom, icontype) {
+    if (geo_coder_load(lat, lng, zoom, icontype))
+        geo_add_click_listener(icontype)
+}
+
+function geo_add_click_listener(icontype) {
+    GEvent.addListener(geo_map, "click", function(overlay, point) {
+        if (overlay) return;
+        geo_last_point = point;
+        geo_last_address = point.toString().replace(/[\(\)]/g, '');
+        geo_map.clearOverlays();
+        geo_map.addOverlay(geo_get_marker(point, icontype));
+        document.geocoderform.geosave.disabled = false;
+        document.geocoderform.address.value = geo_last_address;
+    });
+}
+
+function geo_show_address(icontype) {
+    if (! geocoder) {
+        geocoder = new GClientGeocoder();
+        geocoder.setBaseCountryCode('ES')
+    }
+    if (geocoder && document.geocoderform.address.value) {
+        var address = document.geocoderform.address.value;
+        if (address.match(/^ *-*[0-9\.]+, *-*[0-9\.]+ *$/)) {
+            coords = address.split(/[, ]+/);
+            geo_found_point(new GLatLng(coords[0], coords[1]), icontype);
+        } else {
+            geocoder.getLatLng(
+                address,
+                function(point) {
+                    if (!point) {
+                        geo_last_point = false;
+                        geo_last_address = false;
+                        document.geocoderform.geosave.disabled = true;
+                        alert('"'+address+'"' + " not found");
+                    } else {
+                        geo_found_point(point, icontype);
+                    }
+                }
+            );
+        }
+    }
+    return false;
+}
+
+function geo_found_point(point, icontype) {
+    geo_map.clearOverlays();
+    geo_last_point = point;
+    geo_last_address = document.geocoderform.address.value;
+    geo_map.panTo(point);
+    geo_map.addOverlay(geo_get_marker(point, icontype));
+    document.geocoderform.geosave.disabled = false;
+    //marker.openInfoWindowHtml(address);
+}
+
+function geo_save_current(type, id) {
+    if (geo_last_point && geo_last_address) {
+        var url = base_url + 'geo/save.php?type='+type+'&id='+id+'&lat='+geo_last_point.lat()+'&lng='+geo_last_point.lng()+'&text='+encodeURIComponent(geo_last_address);
+        $.ajax({
+            url: url,
+            dataType: "html",
+            success: function(html) {
+                if (/^ERROR:/.test(html)) {
+                    alert (html);
+                } else {
+                    geo_map.setCenter(geo_last_point);
+                    document.geocoderform.geodelete.disabled = false;
+                    document.geocoderform.geosave.disabled = true;
+                }
+            }
+        });
+    } else {
+        alert ('No address to save');
+    }
+}
+
+function geo_delete(type, id) {
+    var url = base_url + 'geo/delete.php?type='+type+'&id='+id;
+    $.ajax({
+        url: url,
+        dataType: "html",
+        success: function(html) {
+            document.geocoderform.geodelete.disabled = true;
+            if (/^ERROR:/.test(html)) {
+                alert (html);
+            } else {
+                geo_map.clearOverlays();
+                geo_map.setCenter(geo_ermua, 7);
+            }
+        }
+       });
+}
+
+function geo_load_xml(type, req_status, zoom) {
+    GDownloadUrl(base_url+"geo/xml.php?type="+type+"&status="+req_status, function(data, responseCode) {
+        var batch = [];
+        var xml = GXml.parse(data);
+        var markers = xml.documentElement.getElementsByTagName("marker");
+        for (var i = 0; i < markers.length; i++) {
+            var point = new GLatLng(parseFloat(markers[i].getAttribute("lat")),
+                parseFloat(markers[i].getAttribute("lng")));
+            var status = markers[i].getAttribute("status");
+            marker = geo_get_marker(point, status);
+            marker.myId = parseInt(markers[i].getAttribute("id"));
+            marker.myType = type;
+            batch.push(marker);
+        }
+        geo_marker_mgr.addMarkers(batch, zoom);
+        geo_marker_mgr.refresh();
+    });
+}

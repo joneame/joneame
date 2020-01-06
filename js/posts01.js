@@ -1,3 +1,96 @@
-function post_load_form(a,b){$.get(base_url+"backend/post_edit.php?id="+a,function(a){0<a.length&&(a.match(/^ERROR:/i)?alert(a):$("#"+b).html(a),reportAjaxStats("html","post_edit"))})}function nueva(){post_load_form(0,"addpost")}function respuesta(a,b){$.get(base_url+"backend/post_edit.php?id=0&reference="+b,function(b){0<b.length&&(b.match(/^ERROR:/i)?alert(b):$("#respuesta-"+a).html(b),reportAjaxStats("html","post_edit"))})}function editar(a){post_load_form(a,"pcontainer-"+a)}
-function responder(a,b){ref="@"+b+","+a+" ";textarea=$("#post");0==textarea.length&&nueva();post_add_form_text(ref,1)}function post_add_form_text(a,b){b||(b=1);textarea=$("#post");if(20>b&&0==textarea.length)return b++,setTimeout('post_add_form_text("'+a+'", '+b+")",50),!1;if(0==textarea.length)return!1;var d=RegExp(a),c=textarea.val();if(c.match(d))return!1;0<c.length&&" "!=c.charAt(c.length-1)&&(c+=" ");textarea.val(c+a)}
-function hide_answers(a){div=document.getElementById("respuestas-"+a);div.style.display="none";$("#show-hide-"+a).html('<a align="right" href="javascript:show_answers('+a+')"> Mostrar</a><br/>')}function show_answers(a){div=document.getElementById("respuestas-"+a);div.style.display="";$("#show-hide-"+a).html('<a align="right" href="javascript:hide_answers('+a+')"> Ocultar</a><br/>')};
+// The source code packaged with this file is Free Software, Copyright (C) 2005 by
+// Ricardo Galli <gallir at uib dot es> and the Jonéame Development Team (admin@joneame.net)
+// It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
+// A copy of the AFFERO GENERAL PUBLIC LICENSE is included in the file "COPYING".
+
+function post_load_form(id, container) {
+    var url = base_url + 'backend/post_edit.php?id='+id;
+    $.get(url, function (html) {
+            if (html.length > 0) {
+                if (html.match(/^ERROR:/i)) {
+                    alert(html);
+                } else {
+                    $('#'+container).html(html);
+                }
+                reportAjaxStats('html', 'post_edit');
+            }
+        });
+}
+
+
+function nueva() {
+    //get_votes('post_edit.php','','addpost',0 , 0);
+    post_load_form(0, 'addpost');
+}
+
+function respuesta(post_id,reference) {
+
+    var id=0;
+    var url = base_url + 'backend/post_edit.php?id=0&reference='+reference;
+
+    $.get(url, function (html) {
+            if (html.length > 0) {
+                if (html.match(/^ERROR:/i)) {
+                    alert(html);
+                } else {
+
+                    $('#respuesta-'+post_id).html(html);
+
+
+                }
+                reportAjaxStats('html', 'post_edit');
+            }
+        });
+}
+
+
+function editar(id) {
+    //get_votes('post_edit.php', 'edit_post', 'pcontainer-'+id, 0, id);
+    post_load_form(id, 'pcontainer-'+id);
+}
+
+function responder(id, user) {
+    ref = '@' + user + ',' + id + ' ';
+    textarea = $('#post');
+    if (textarea.length == 0) {
+        nueva();
+    }
+    post_add_form_text(ref, 1);
+}
+
+function post_add_form_text(text, tries) {
+    if (! tries) tries = 1;
+    textarea = $('#post');
+    if (tries < 20 && textarea.length == 0) {
+            tries++;
+            setTimeout('post_add_form_text("'+text+'", '+tries+')', 50);
+            return false;
+    }
+    if (textarea.length == 0 ) return false;
+    var re = new RegExp(text);
+    var oldtext = textarea.val();
+    if (oldtext.match(re)) return false;
+    if (oldtext.length > 0 && oldtext.charAt(oldtext.length-1) != ' ') oldtext = oldtext + ' ';
+    textarea.val(oldtext + text);
+}
+
+function hide_answers(id){
+
+div = document.getElementById("respuestas-"+id);
+
+div.style.display= 'none';
+
+$('#show-hide-'+id).html('<a align="right" href="javascript:show_answers('+id+')"> Mostrar</a><br/>');
+
+}
+
+function show_answers(id){
+
+div = document.getElementById("respuestas-"+id);
+
+div.style.display= '';
+
+$('#show-hide-'+id).html('<a align="right" href="javascript:hide_answers('+id+')"> Ocultar</a><br/>');
+
+}
+

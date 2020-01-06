@@ -1,4 +1,85 @@
-function link_show(b,a,d,f){var c=new XMLHttpRequest,e=document.getElementById("cargando").value;0==e&&(document.getElementById("spinner_h").className="loading");c&&(c.onreadystatechange=function(){if(4==c.readyState){var d=c.responseText;document.getElementById("contenido").innerHTML=String(d);document.getElementById("cargando").value=0;(1==a||2==a||8==a)&&$("a.fancybox").fancybox({transitionIn:"none",transitionOut:"none"});0==e&&(link_info(b),document.getElementById("spinner_h").className="blank");
-return!0}},c.open("GET","/ajax/historias_ajax.php?link_id="+b+"&tab="+a+"&what="+d+"&server="+f,!0),c.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),c.send())}function link_info(b){var a=base_url+"ajax/link_info.php";$.getJSON(a+"?"+("id="+b),function(a){update_info(b,a)})}
-function update_info(b,a){if(b!=a.id)return!1;votes_totales=parseInt(a.votes)+parseInt(a.anonymous)+parseInt(a.aleatorios_positivos);votes=parseInt(a.votes)+parseInt(a.anonymous);$("#a-votes-"+a.id).html()!=votes_totales&&($("#a-votes-"+a.id).hide(),$("#a-votes-"+a.id).html(votes_totales+""),$("#a-votes-"+a.id).fadeIn("slow"));$("#a-neg-"+a.id).html(a.negatives+"");$("#a-usu-"+a.id).html(a.votes+"");$("#a-ano-"+a.id).html(a.anonymous+"");$("#a-karma-"+a.id).html(a.karma+"")}
-function smileys_list(){$("#smileylist").toggle(400)};
+// The source code packaged with this file is Free Software, Copyright (C) 2005 by
+// Jon Arano <arano.jon@gmail.com>
+// It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
+// A copy of the AFFERO GENERAL PUBLIC LICENSE is included in the file "COPYING".
+
+function link_show(id, tab, what, server) {
+
+    var httpreq =  new XMLHttpRequest();
+    var tab;
+    var cargando = document.getElementById("cargando").value;
+
+    /* No lo pone si la página no ha acabado de generarse */
+    if (cargando == 0) document.getElementById("spinner_h").className = 'loading';
+
+    if (httpreq) {
+
+        httpreq.onreadystatechange=function() {
+            if (httpreq.readyState == 4) {
+
+                var serverResponse = httpreq.responseText;
+
+                /* Sobreescribe sobre el div el texto de la respuesta */
+                document.getElementById("contenido").innerHTML = String(serverResponse);
+
+                /* Ahora está generada */
+                document.getElementById("cargando").value = 0;
+
+                /* Para las ventanas modales */
+                if (tab==1 || tab ==2 || tab == 8)
+                    $("a.fancybox").fancybox({transitionIn: "none", transitionOut: "none"});
+
+
+                    if (cargando == 0) {
+                    link_info(id);
+                    document.getElementById("spinner_h").className = 'blank';
+                }
+
+                return true;
+
+            }
+        }
+
+        httpreq.open('GET', '/ajax/historias_ajax.php?link_id='+id+'&tab='+tab+'&what='+what+'&server='+server, true);
+        httpreq.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+        httpreq.send();
+    }
+}
+
+function link_info(id)
+{
+    var url = base_url + 'ajax/link_info.php';
+    var content = 'id=' + id;
+    url = url + '?' + content;
+
+    $.getJSON(url,
+         function(data) {
+                update_info(id, data);
+        }
+    );
+
+}
+
+function update_info(id, link){
+
+    if (id != link.id) {
+        return false;
+    }
+
+    votes_totales = parseInt(link.votes)+parseInt(link.anonymous)+parseInt(link.aleatorios_positivos);
+    votes = parseInt(link.votes)+parseInt(link.anonymous);
+    if ($('#a-votes-' + link.id).html() != votes_totales) {
+        $('#a-votes-' + link.id).hide();
+        $('#a-votes-' + link.id).html(votes_totales+"");
+        $('#a-votes-' + link.id).fadeIn('slow');
+    }
+
+    $('#a-neg-' + link.id).html(link.negatives+"");
+    $('#a-usu-' + link.id).html(link.votes+"");
+    $('#a-ano-' + link.id).html(link.anonymous+"");
+    $('#a-karma-' + link.id).html(link.karma+"");
+}
+
+function smileys_list(){
+    $('#smileylist').toggle(400);
+}
