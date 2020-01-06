@@ -1,81 +1,79 @@
 {% if self.status == 'abuse' %}
 
-	<div class="warn"><strong>{% trans _('Aviso') %} </strong>: 
+	<div class="warn"><strong>{% trans _('Aviso') %}</strong>:
 
-	{% if not self.nsfw %} 
-		{% trans _('Noticia descartada por incumplir las') %} <a href="{{ globals.legal}} #tos"> {% trans _('condiciones de uso') %} </a>
-	{% else %} 
-
-		    {% trans _('El enlace de esta historia contiene material sólo apto para adultos y además ha sido <strong>descartada por incumplir las') %} <a href="{{ globals.legal}}#tos">{% trans _('condiciones de uso') %} </a></strong>
-		     
+	{% if not self.nsfw %}
+		{% trans _('Noticia descartada por incumplir las') %} <a href="{{ globals.normas }}">{% trans _('condiciones de uso') %}</a>
+	{% else %}
+		{% trans _('El enlace de esta historia contiene material sólo apto para adultos y además la historia ha sido <strong>descartada por incumplir las') %} <a href="{{ globals.normas }}">{% trans _('condiciones de uso') %} </a></strong>
 	{% endif %}
 
-	</div> 
-{% endif %}	
+	</div>
+{% endif %}
 
 {% if self.status == 'duplicated' %}
 
-	<div class="warn"><strong>{% trans _('Admin:') %} </strong> 
-	{% trans _('La historia está descartada por') %} <a href=" {{ self.duplicate_link }}"> duplicada </a> 
-	</div> 
+	<div class="warn"><strong>{% trans _('Admin:') %} </strong>
+	{% trans _('La historia está descartada por') %} <a href=" {{ self.duplicate_link }}"> duplicada </a>
+	</div>
 {% endif %}
 
 
 {% if self.status == 'published' AND self.tiene_negativos AND NOT self.nsfw  %}
-	 <div class="warn"><strong> {% trans _('Aviso automático de la mafia') %}</strong>: 
+	 <div class="warn"><strong> {% trans _('Aviso automático de la mafia') %}</strong>:
 	 {% trans _('Noticia controvertida, por favor lee los comentarios, a saber qué han liado estos...') %}
-	 </div> 
-			
+	 </div>
+
 {% endif %}
 
 {% if self.nsfw AND self.status != 'duplicated' %}
 
 	{% if self.tiene_negativos %}
-		 <div class="porn"><strong> {% trans _('Aviso') %} </strong>: 
+		 <div class="porn"><strong> {% trans _('Aviso') %} </strong>:
 
 		{% if self.status != 'published' %}
-			{% trans _('Esta noticia tiene varios votos sensuradores. El enlace de esta historia contiene material sólo apto para adultos') %}  
-		{% else %}   
+			{% trans _('Esta noticia tiene varios votos sensuradores. El enlace de esta historia contiene material sólo apto para adultos') %}
+		{% else %}
 			{% trans _('Noticia controvertida, por favor, lee los comentarios. Ojo. El enlace de esta historia contiene material sólo apto para adultos.') %}
 		{% endif %}
 
-		 </div> 
-			
-	{% else %} 
+		 </div>
+
+	{% else %}
 		{% if not self.tiene_negativos AND self.status != 'abuse' %}
 
-		<div class="porn"><strong>{% trans _('¡¡Oiga!!') %} </strong> 
+		<div class="porn"><strong>{% trans _('¡¡Oiga!!') %} </strong>
 		{% trans _('El enlace de esta historia contiene material sólo apto para adultos.') %}
-		</div> 
+		</div>
 
 		{% endif %}
 	{% endif %}
 
-{% endif %} 
-			
-			
+{% endif %}
+
+
 {% if self.votes_enabled AND not self.discarded AND self.tiene_negativos AND not self.is_nsfw AND self.status != 'published' %}
-			
-	 <div class="warn"><strong> {% trans _('Aviso automático') %} </strong>:  
+
+	 <div class="warn"><strong> {% trans _('Aviso automático') %} </strong>:
 
 	{% if self.negative_value == -1 || self.negative_value == -2 %}
 			{% trans _('Esta noticia podría ser <strong>') %} {% exec get_negative_vote self.negative_value %} </strong>
-	{% else %} 
+	{% else %}
 		{% if self.negative_value == -3 %}
 			{% trans _('A la mafia no le gusta esta noticia')  %}
-		{% else %} 
+		{% else %}
 			{% trans _('Esta noticia tiene algunos votos negativos')  %}
 		{% endif %}
-	
+
 	{% endif %}
-				
+
 
 	{% if self.voted|null %}
 		 , <a href="{{ self.relative_permalink }} /votos">{% trans _('asegúrate') %} </a>  {% trans _('antes de votarla') %}  .
-	{% else %} 
+	{% else %}
 		.
 	{% endif %}
-		
-		</div> 
+
+		</div>
 {% endif %}
 
