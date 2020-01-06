@@ -1,24 +1,24 @@
 <html>
 <head>
-	<title>Joneame Avatar Wall</title>
-	<base href="https://joneame.net/" />
+	<meta charset="utf-8">
+	<title>Jonéame Avatar Wall</title>
 	<style>
 		body { background: black; color: white; }
 	</style>
 </head>
 <body>
-<script src="js/jnmwall.js"></script>
+<script src="/js/jnmwall.js.php"></script>
 
 <div style="margin: auto; width: 800px">
 
-<h1 style="text-align: center">Joneame Avatar Wall</h1>
+<h1 style="text-align: center">Jonéame Avatar Wall</h1>
 <div style="position: absolute; top: 1em; right: 2em;"></div>
 
 <script>
 
-var img_tot = 70;
+var img_tot = 100;
 var img_row = 10;
-var delay = 80;
+var delay = 100;
 
 var bg_i = 1;
 var carpeta;
@@ -30,10 +30,9 @@ for (i = 0; i < img_tot; i++) {
 	uid = file;
 	resultado = parseInt(uid) / parseInt(1000);
 	carpeta = Math.floor(resultado);
-	//alert(uid + ' -> ' + resultado + ' ' + carpeta);
 
-	document.write('<a href="goto_id_profile.php?id=' + uid + '" id="hrf' + i + '">');
-	document.write('<img src="cache/avatars/'+carpeta+ '/'+ file + '-80.jpg" id="img' + i + '"width="80px" height="80px" border="0" />');
+	document.write('<a href="/goto_id_profile.php?id=' + uid + '" id="hrf' + i + '">');
+	document.write('<img src="/backend/get_avatar.php?id=' + uid + '&amp;size=80&amp;time=0" id="img' + i + '"width="80px" height="80px" border="0" />');
 	document.write('</a>');
 	if ( (i % img_row) == (img_row - 1) ) {
 		document.write('<br/>');
@@ -47,15 +46,15 @@ function rndChange () {
 	uid = file;
 	carpeta = Math.floor(parseInt(uid) / parseInt(1000));
 
-	document.getElementById('img'+i).src = 'cache/avatars/'+carpeta+'/' + file+'-80.jpg';
-	document.getElementById('hrf'+i).href = 'goto_id_profile.php?id=' + uid;
+	document.getElementById('img'+i).src = '/backend/get_avatar.php?id=' + uid + '&amp;size=80&amp;time=0';
+	document.getElementById('hrf'+i).href = '/goto_id_profile.php?id=' + uid;
 
 	setTimeout('rndChange()', delay);
 }
 
 function linkUser ( uid ) {
 	// alert(uid);
-	document.location = 'goto_id_profile.php?id=' + uid;
+	document.location = '/goto_id_profile.php?id=' + uid;
 }
 
 function bgChange () {
