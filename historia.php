@@ -218,33 +218,28 @@ $server = $_SERVER['PATH_INFO'];
 if (isset($tab_option)){
     switch ($tab_option) {
     case 1:
-        echo '<script>link_show('.$link->id.','.$tab_option.',2,"'.$server.'");</script>';
+        echo '<script>$( document ).ready(function() { link_show('.$link->id.','.$tab_option.',2,"'.$server.'"); });</script>';
         break;
     case 2:
-        echo '<script>link_show('.$link->id.','.$tab_option.',3,"'.$server.'");</script>';
+        echo '<script>$( document ).ready(function() { link_show('.$link->id.','.$tab_option.',3,"'.$server.'"); });</script>';
         break;
-
     case 3:
-        echo '<script>link_show('.$link->id.','.$tab_option.',6,"'.$server.'");</script>';
+        echo '<script>$( document ).ready(function() { link_show('.$link->id.','.$tab_option.',6,"'.$server.'"); });</script>';
         break;
-
     case 6:
-        echo '<script>link_show('.$link->id.','.$tab_option.',7,"'.$server.'");</script>';
+        echo '<script>$( document ).ready(function() { link_show('.$link->id.','.$tab_option.',7,"'.$server.'"); });</script>';
         break;
     case 4:
-
-        echo '<script>link_show('.$link->id.','.$tab_option.',1,"'.$server.'");</script>';
+        echo '<script>$( document ).ready(function() { link_show('.$link->id.','.$tab_option.',1,"'.$server.'"); });</script>';
         break;
     case 5:
-
-        echo '<script>link_show('.$link->id.','.$tab_option.',8,"'.$server.'");</script>';
+        echo '<script>$( document ).ready(function() { link_show('.$link->id.','.$tab_option.',8,"'.$server.'"); });</script>';
         break;
     case 7:
-        echo '<script>link_show('.$link->id.','.$tab_option.',5,"'.$server.'");</script>';
+        echo '<script>$( document ).ready(function() { link_show('.$link->id.','.$tab_option.',5,"'.$server.'"); });</script>';
         break;
-
     case 8:
-        echo '<script>link_show('.$link->id.','.$tab_option.',4,"'.$server.'");</script>';
+        echo '<script>$( document ).ready(function() { link_show('.$link->id.','.$tab_option.',4,"'.$server.'");</script>';
         break;
     }
 } //isset
