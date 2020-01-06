@@ -409,7 +409,7 @@ padding-bottom: 0;
 border: 1px solid;
 overflow: hidden;
 float: right;
-border-color: #adcee9;
+border-color: #ddd;
 }
 
 .news-summary .thumbnail {
@@ -888,9 +888,8 @@ background: url(/img/iconos/sprite.png) 0 -603px no-repeat;
 }
 
 .column-list {
-padding: 11px 0 6px 0; /* list top & bottom */
+padding: 16px 6px;
 margin-bottom: 20px;
-border: 1px solid #4b7db0;
 }
 
 .column-list a, .sidebox a {
@@ -1171,6 +1170,7 @@ margin-bottom: 10px;
 
 .comment-body {
 position: relative;
+box-shadow: none !important;
 }
 
 .comment-body.admin strong, .comment-body.high strong,
@@ -1198,14 +1198,9 @@ color: white;
 .comment-body, .comment-body-hidden { /* ||| */
 line-height: 130%;
 overflow: hidden;
-border-left: 1px solid;
-border-top: 1px solid;
-border-right: 1px solid;
 min-height: 25px;
 border-color: #4b7db0;
 color: #333333;
-border-top-left-radius: 3px;
-border-top-right-radius: 3px;
 }
 
 .comment-meta, .comment-meta-hidden {
@@ -1354,9 +1349,8 @@ border-color: #4b7db0;
 /* fieldsets */
 
 fieldset {
-border: 1px solid;
-padding: 10px 10px;
-border-color: #4b7db0; /* raya de caja de comentarios */
+border: 0 none;
+padding: 10px;
 color: #333;
 }
 
@@ -1447,11 +1441,10 @@ margin: 10px 0 10px 0;
 }
 
 .genericform fieldset, .genericform-contents fieldset {
-border: 1px solid;
+border: 0 none;
 }
 
 .genericform fieldset {
-background: transparent;
 border-color: #4b7db0;
 }
 
@@ -1904,12 +1897,12 @@ clear: left;
 float: left;
 width: 12em; /* increase for wider dt text */
 text-align: right;
-padding: 0 10px 4px 5px;
+padding: 0 10px 6px 5px;
 font-weight: bold !important;
 }
 
 fieldset dd {
-padding: 0 0 4px 177px;
+padding: 0 0 6px 177px;
 font-weight: normal;
 }
 
@@ -2020,7 +2013,6 @@ height: 30px;
 line-height: 30px;
 overflow: hidden;
 background: #5a8cbe;
-border-top: 1px solid #639ad1;
 border-bottom-left-radius: 3px;
 border-bottom-right-radius: 3px;
 box-shadow: #ccc 0px 1px 1px;
@@ -2110,7 +2102,7 @@ text-align: left;
 font-weight: bold;
 font-size: 9pt;
 clear: left;
-background: #5385b7 url(/img/estructura/general.7.png) repeat-x 0 -180px;
+background: #5a8cbe;
 text-shadow: 0 1px 1px rgba(0, 0, 0, 1);
 }
 
@@ -2128,7 +2120,7 @@ color: white !important;         /* overrides .fondo-caja style, since some .bar
 text-align: center;
 font-weight: bold;
 font-size: 115%;
-padding: 3px 0 10px;
+padding: 6px 0 12px;
 border-color: #ffcbaa;
 }
 
@@ -2194,7 +2186,6 @@ margin-bottom: 18px;
 
 .notita-body {
 overflow: hidden;
-border: 1px solid #4b7db0;
 position: relative;
 }
 
@@ -2204,12 +2195,13 @@ border: none;
 
 .fondo-caja, #footwrap, .comment-body, .comment-body-hidden, .form-error-submit,
 .form-error-submit-perfil, #modalContainer, .encuesta, .ayuda-contenido {
-background: #e4ecf5 url(/img/estructura/fondo-caja.2.png) repeat-x scroll left bottom !important;
+background: #eee;
 color: #333;
+box-shadow: 0 2px 2px #ddd;
 }
 
 .fondo-caja-high, .comment-body.high, .notita-body.high {
-background: #6c92b7 url(/img/estructura/fondo-caja-high.3.gif) repeat-x scroll left bottom !important;
+background: #5385b7
 }
 
 .fondo-caja-admin, .comment-body.admin, .notita-body.admin {
@@ -2307,10 +2299,6 @@ font-weight: bold;
 color: black;
 }
 
-.fondo-caja a, .fondo-caja a:active {
-color: #2f6192;
-}
-
 .tabsub {
 height: 25px;
 margin-left: 5px;
@@ -2373,7 +2361,7 @@ float: left;
 }
 
 .espaciador, .help-topic, .encuesta {
-padding: 10px;
+padding: 12px 16px;
 margin-bottom: 20px;
 }
 
@@ -2476,10 +2464,6 @@ margin-bottom: 10px;
 
 a.fancybox {
 color: #000;
-}
-
-.storyrsslist, .topcommentsli {
-border: 1px solid #4b7db0;
 }
 
 .edicion-perfil {
@@ -2593,7 +2577,6 @@ font-size: 100%;
 
 .encuesta {
 overflow: hidden;
-border: 1px solid #4b7db0;
 }
 
 .mnm-pop-container {
@@ -2727,7 +2710,8 @@ font-size: 30pt;
 padding: 15px;
 border-radius: 20px;
 overflow: hidden;
-text-shadow: 0 1px 2px rgba(255, 255, 255, 1);
+text-shadow: 0 1px 1px rgba(255, 255, 255, 1);
+background-color: #b7cfe1;
 }
 
 .visor-cortos .corner {
@@ -2932,10 +2916,8 @@ border-bottom-left-radius: 3px;
 border-bottom-right-radius: 3px;
 font-size: 8pt;
 clear: left;
-background: #B7CFE1;
-border: 1px solid #4b7db0;
 color: white;
-background: #5385b7 url(/img/estructura/general.7.png) repeat-x 0 -180px;
+background: #5a8cbe;
 }
 
 .comment-meta.admin,
@@ -3207,6 +3189,18 @@ display: none;
 cursor: pointer;
 }
 
+#footwrap {
+    background-color: #c0d4e5;
+    box-shadow: none;
+}
+
+.notita-text,
+.news-body p,
+.topcommentsli,
+.comment-text {
+    line-height: 16px;
+}
+
 /* Menéame colors and images */
 
 /***
@@ -3230,7 +3224,8 @@ color: #2F6192;
 }
 
 .sneaker-legend {
-color: #333;
+border: 0 none;
+background-color: #c0d4e5;
 }
 
 .sneaker-behe {

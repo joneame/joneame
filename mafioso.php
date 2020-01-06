@@ -717,7 +717,7 @@ function do_friends() {
 
     echo '<div style="width: 48%; display: block; float: left">';
     echo '<h4>'._('eligió como amigo a...').'</h4>';
-    echo '<div style="padding: 10px 0px 30px 5px" class="fondo-caja borde">';
+    echo '<div style="padding: 10px 0px 30px 5px" class="fondo-caja">';
     $prefered_id = $user->id;
     $prefered_type = 'from';
     echo '<div id="from-container">'. "\n";
@@ -729,7 +729,7 @@ function do_friends() {
 
     echo '<div style="margin-left: 30px; width: 48%; display: block; float: left">';
     echo '<h4>'._('fue elegido como amigo por...').'</h4>';
-    echo '<div style="padding: 10px 0px 30px 5px" class="fondo-caja borde">';
+    echo '<div style="padding: 10px 0px 30px 5px" class="fondo-caja">';
     $prefered_id = $user->id;
     $prefered_type = 'to';
     echo '<div id="to-container">'. "\n";
