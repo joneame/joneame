@@ -181,7 +181,7 @@ class RGDB extends mysqli
             die(header('HTTP/1.1 503 Service Unavailable'));
         }
 
-        $this->set_charset('utf8');
+        $this->set_charset('utf8mb4');
 
         // Check the IP is not banned before doing anything more
         if (!$this->ban_checked) {
