@@ -285,7 +285,7 @@ function do_header($title) {
     echo ' >'. "\n";
     echo '<channel>'."\n";
     echo'   <title>'.$title.'</title>'."\n";
-    echo '  <atom:link href="http://'.get_server_name().htmlentities(clean_input_url($_SERVER['REQUEST_URI'])).'" rel="self" type="application/rss+xml" />'."\n";
+    echo '  <atom:link href="https://'.get_server_name().htmlentities(clean_input_url($_SERVER['REQUEST_URI'])).'" rel="self" type="application/rss+xml" />'."\n";
     echo'   <link>http://'.get_server_name().$home.'</link>'."\n";
 
     echo'   <description>'._('Sitio colaborativo de noticias nada serias').'</description>'."\n";

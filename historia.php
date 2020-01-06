@@ -176,7 +176,7 @@ if (!empty($link->tags))
     $globals['tags']=$link->tags;
 
 // add also a rel to the comments rss
-$globals['extra_head'] = '<link rel="alternate" type="application/rss+xml" title="'._('comentarios de esta noticia').'" href="http://'.get_server_name().$globals['base_url'].'comments_rss2.php?id='.$link->id.'" />'."\n";
+$globals['extra_head'] = '<link rel="alternate" type="application/rss+xml" title="'._('comentarios de esta noticia').'" href="https://'.get_server_name().$globals['base_url'].'comments_rss2.php?id='.$link->id.'" />'."\n";
 
 $globals['extra_js'] = array('historias.js', 'ajax_com.js');
 
