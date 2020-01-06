@@ -43,9 +43,7 @@
 		{% trans _('el') %} {% exec get_date_time self.sent_date %}{% if self.status == 'published' %}, {% trans  _('publicada el') %} {% exec get_date_time self.sent_date %}
 		{% endif %}
 	{% else %}
-		{% trans  _('hace')  %} {% exec txt_time_diff self.sent_date %}
-		{% if self.status == 'published' %}
-			, {% trans  _('en portada hace') %} {% exec txt_time_diff self.date  %}
+		{% trans  _('hace')  %} {% exec txt_time_diff self.sent_date %}{% if self.status == 'published' %}, {% trans  _('en portada hace') %} {% exec txt_time_diff self.date  %}
 		{% endif %}
 	{% endif %}
 
