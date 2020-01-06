@@ -11,7 +11,6 @@
 
 include('config.php');
 include(mnminclude.'html1.php');
-$globals['noindex'] = true;
 
 do_header(_('Ayuda | Jonéame'));
 

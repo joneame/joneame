@@ -71,9 +71,6 @@ if (!$user->disabled && $view == 'profile' && $globals['google_maps_api'] && $gl
     $globals['do_geo'] = true;
 }
 
-$globals['noindex'] = true;
-
-
 if (!empty($user->names) && $login != $user->names) {
     do_header("$login ($user->names)");
 } else{
