@@ -697,7 +697,6 @@ font-size: 20pt;
 font-weight: bold;
 height: 19pt !important;
 text-decoration: none;
-vertical-align: bottom;
 color: white;
 letter-spacing: -2px;
 margin: -3px 0 2px -3px;
@@ -962,7 +961,6 @@ padding-right: 35px;
 .column-list-busqueda {
 padding: 11px 0; /* list top & bottom */
 margin-bottom: 20px;
-border: 1px solid #4b7db0;
 }
 
 .column-list-busqueda a, .sidebox a {
@@ -1301,7 +1299,6 @@ text-align: left;
 }
 
 .comment-votes-info {
-float: right;
 display: inline;
 }
 
@@ -3214,11 +3211,6 @@ stated otherwise in individual files.
 ***/
 
 /* sneaker */
-
-.sneaker {
-/* background: url(/img/mnm/elmnm-sneak-reverse02.png) 97% 95% no-repeat; */
-}
-
 .sneaker-title strong {
 color: #2F6192;
 }
