@@ -95,7 +95,7 @@ function print_comment_form() {
     echo '<h4>'._('escribe un comentario').'</h4><fieldset class="fondo-caja">'."\n";
     echo '<div style="float: right;">'."\n";
     print_simpleformat_buttons('poll_content');
-    echo '</div><span class="note"><strong>'._('¡eh tío!').':</strong> '._('opiniones serias, constructivos, xenófobos, racistas o difamatorios causarán el baneo de la cuenta de usuario y expulsión de la mafia').'</span></label>'."\n";
+    echo '</div>'."\n";
     echo '<div style="margin-top: 10px;"><textarea name="poll_content" id="poll_content" cols="75" rows="12"></textarea></div>'."\n";
     echo '<input type="button" class="button" name="submit" id="submit_com" value="'._('enviar comentario').'" onClick="submit_comment();"/>'."\n";
 
