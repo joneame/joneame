@@ -32,13 +32,13 @@ class OAuthBase {
 
             if ($current_user->user_id && $current_user->user_id != $this->id) {
                 if (! $this->user->disabled) {
-                    do_error(_('cuenta asociada a otro usuario').': '.$this->user->username, false, false);
+                    do_error(_('cuenta asociada a otro usuario').': '.$this->user->username, 403, false);
                 }
                 // We read again, the previous user is another one, already disabled
                 $this->user = new User($current_user->user_id);
                  $this->id = $current_user->user_id;
             } elseif (! $this->user->id || $this->user->disabled) {
-                do_error(_('usuario deshabilitado'), false, false);
+                do_error(_('usuario deshabilitado'), 403, false);
             }
         } else {
 

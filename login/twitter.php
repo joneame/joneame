@@ -42,10 +42,10 @@ class TwitterOAuth extends OAuthBase {
                                 header("Location: ".$this->authorize_url."?oauth_token=$this->token");
                 exit;
             } else {
-                do_error(_('error obteniendo tokens'), false, false);
+                do_error(_('error obteniendo tokens'), 500, false);
             }
         } catch (Exception $e) {
-                do_error(_('error de conexión a') . " $this->service (authRequest)", false, false);
+                do_error(_('error de conexión a') . " $this->service (authRequest)", 500, false);
         }
     }
 
@@ -62,10 +62,10 @@ class TwitterOAuth extends OAuthBase {
             try {
                 $access_token_info = $this->oauth->getAccessToken($this->access_token_url);
             } catch (Exception $e) {
-                do_error(_('error de conexión a') . " $this->service  (authorize1)", false, false);
+                do_error(_('error de conexión a') . " $this->service  (authorize1)", 500, false);
             }
         } else {
-            do_error(_('acceso denegado'), false, false);
+            do_error(_('acceso denegado'), 403, false);
         }
 
         $this->token = $access_token_info['oauth_token'];
@@ -80,7 +80,7 @@ class TwitterOAuth extends OAuthBase {
             try {
                 $data = $this->oauth->fetch($this->credentials_url);
             } catch (Exception $e) {
-                do_error(_('error de conexión a') . " $this->service (authorize2)", false, false);
+                do_error(_('error de conexión a') . " $this->service (authorize2)", 500, false);
             }
 
             if($data){

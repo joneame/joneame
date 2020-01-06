@@ -13,7 +13,7 @@ include(mnminclude.'comment.php');
 include(mnminclude.'busquedas.php');
 
 
-if (!$current_user->devel && !$globals['buscador_activado']) do_error("El buscador está en el quirófano", 404);
+if (!$current_user->devel && !$globals['buscador_activado']) do_error("El buscador está en el quirófano", 500);
 
 // Manage "search" url and redirections accordingly
 if (!empty($globals['base_search_url'])) {

@@ -44,7 +44,7 @@ if (!empty($_GET['month']) && !empty($_GET['year']) && ($month = (int) $_GET['mo
 
     $rows = $db->get_var("SELECT count(*) FROM posts WHERE $time_link post_id > 1");
     if ($rows == 0) {
-        do_error(_('no hay notas seleccionadas'), 500);
+        do_error(_('no hay notitas'), 404);
         die;
     }
 

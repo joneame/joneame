@@ -13,7 +13,7 @@ function peta() {
 }
 
 if (!$globals['reports_notitas']) {
-    do_error('Los reports están desactivados', 403);
+    do_error('Los reportes están desactivados', 403);
 }
 
 if ($_POST['done']) {

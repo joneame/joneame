@@ -7,7 +7,7 @@
 include 'config.php';
 include mnminclude.'html1.php';
 
-if (!$current_user->admin) do_error('cotilla! bu! bu! fuera!', 666666666);
+if (!$current_user->admin) do_error('cotilla! bu! bu! fuera!', 403);
 
 do_header('info premios joneame');
 

@@ -54,7 +54,7 @@ $login = $db->get_var("SELECT user_login from users,posts where post_id=$id and 
 
 /* No hay ni nota ni usuario */
 if(!$login && $id ==0 ) {
-    do_error(_('<strong>Error: </strong>' . _('usuario o nota no encontrada')), 403);
+    do_error(_('usuario o nota no encontrada'), 403);
     die;
 }
 

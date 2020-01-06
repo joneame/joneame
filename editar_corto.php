@@ -19,11 +19,11 @@ $corto = new Corto;
 $corto->id = $id;
 
 if (!$corto->get_single() || !$corto->id ) {
- do_error(_('El corto no existe'.$corto->id), 403);
+ do_error(_('El corto no existe'.$corto->id), 404);
 }
 
 if ( $current_user->user_id != $corto->id_autor && $current_user->user_level != 'god' )
- do_error(_('no tienes permiso para entrar aquí'), 404);
+ do_error(_('no tienes permiso para entrar aquí'), 403);
 
 
 if ( $corto->numero_ediciones() >= $globals['ediciones_max_cortos'] && $current_user->user_level != 'god')

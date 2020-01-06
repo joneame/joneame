@@ -48,7 +48,7 @@ if (!($memcache_key && ($rows = memcache_mget($memcache_key.'rows')) && ($links 
     // Itr's not in cache, or memcache is disabled
     $rows = $db->get_var("SELECT count(*) FROM links WHERE $time_link link_status = 'published'");
     if ($rows == 0) {
-         do_error(_('no hay populares'), 500);
+         do_error(_('no hay populares'), 404);
     }
     $links = $db->get_results("$sql LIMIT $offset,$page_size");
     if ($memcache_key) {

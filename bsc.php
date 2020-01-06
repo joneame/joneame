@@ -9,7 +9,7 @@ include(mnminclude.'html1.php');
 include(mnminclude.'user.php');
 include(mnminclude.'historial.class.php');
 
-if (!$current_user->admin) do_error("No tienes permiso para entrar aquí", 405);
+if (!$current_user->admin) do_error("No tienes permiso para entrar aquí", 403);
 
 // We need it because we modify headers
 ob_start();
@@ -28,7 +28,7 @@ if(!$user->read()) {
     do_error('No se ha encontrado', 404);
 }
 
-if ($user->id == $current_user->user_id) do_error("No puedes hacerte una BSC a ti mismo", 405);
+if ($user->id == $current_user->user_id) do_error("No puedes hacerte una BSC a ti mismo", 403);
 
 do_header(_('BSC al usuario'). ': ' . $user->username);
 

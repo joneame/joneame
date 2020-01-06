@@ -39,7 +39,7 @@ if ($time_link) {
 }
 
 if ($rows == 0) {
-     do_error(_('no hay historias seleccionadas'), 500);
+     do_error(_('no hay noticias'), 404);
 }
 
 do_header(_('historias más comentadas') . ' | Jonéame');

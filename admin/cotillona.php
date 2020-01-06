@@ -10,7 +10,7 @@
     include '../config.php';
     include mnminclude.'html1.php';
 
-    if (!$current_user->admin) do_error('no tienes permisos para entrar aquí', '403');
+    if (!$current_user->admin) do_error('no tienes permisos para entrar aquí', 403);
 
 
     /* Necesitamos las variables posteriormente */

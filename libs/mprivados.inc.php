@@ -148,7 +148,7 @@ function bidali_pribatua() {
     global $db, $rows, $user, $offset, $page_size, $globals, $current_user;
 
     if ($user->level == 'disabled')
-        do_error('No puedes enviar un mensaje a '.$user->username.': está baneado', 403, false, false);
+        do_error('No puedes enviar un mensaje a '.$user->username.': su cuenta está desactivada.', 403, false, false);
 
     if ($_POST && !$_GET['env_pst']) {
         if (!empty($_POST['mensaje'])) {

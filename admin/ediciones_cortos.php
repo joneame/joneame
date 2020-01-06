@@ -37,7 +37,7 @@ if (($current_user->user_level != "god" || $current_user->user_id == 0)) {
         $corto = new Corto;
         $corto->id = $id;
         if (!$corto->get_single() ) {
-            do_error(_('El corto no existe'), 403);
+            do_error(_('El corto no existe'), 404);
 
         }
 

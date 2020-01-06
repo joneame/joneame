@@ -8,7 +8,7 @@ include '../config.php';
 include mnminclude.'html1.php';
 //ini_set('display_errors', true);
 
-if (!$current_user->admin) do_error('No tienes permisos para entrar aquí', 404);
+if (!$current_user->admin) do_error('No tienes permisos para entrar aquí', 403);
 
 do_header('Herramientas por IP');
 

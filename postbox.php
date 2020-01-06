@@ -25,7 +25,7 @@ if (!empty($globals['base_mensaje_url']) && !empty($_SERVER['PATH_INFO'])) {
     }
 }
 
-if ($current_user->user_id == 0)  do_error(_('debes ser usuario registrado para enviar mensajes privados'), 404);
+if ($current_user->user_id == 0)  do_error(_('debes ser usuario registrado para enviar mensajes privados'), 403);
 
 $login = $db->escape($_REQUEST['login']);
 
@@ -49,7 +49,7 @@ if ($current_user->user_id == $user->id)
     do_privados(1);
 else if (pribatuetako_sarbidea($current_user->user_id, $user->id))
     do_privados(0);
-else do_error(_('debes ser usuario registrado para enviar mensajes privados'), 404);
+else do_error(_('debes ser usuario registrado para enviar mensajes privados'), 403);
 
 
 do_pages($rows, $page_size);
