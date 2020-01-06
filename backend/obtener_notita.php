@@ -37,7 +37,7 @@ if (!empty($_GET['id'])) {
 
     /* Existe usuario pero no tiene notas */
     if ($user && $id == 0) {
-        header('Location:  http://'.get_server_name().get_user_uri($user));
+        header('Location:  https://'.get_server_name().get_user_uri($user));
         die;
     }
 

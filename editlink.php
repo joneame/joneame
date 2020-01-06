@@ -263,7 +263,7 @@ function do_save() {
         $linkres->status = $new_status;
      }
 
-    if ($_POST['duplicated'] && $linkres->status == 'duplicated' && $_POST['duplicated'] != 'http://joneame.net/historia/blablabla'){
+    if ($_POST['duplicated'] && $linkres->status == 'duplicated' && $_POST['duplicated'] != 'https://joneame.net/historia/blablabla'){
           $url = clean_input_url($_POST['duplicated']);
       $url = preg_replace('/#[^\/]*$/', '', $url); // Remove the "#", people just abuse
           $url = preg_replace('/^http:\/\/http:\/\//', 'http://', $url); // Some users forget to delete the http://

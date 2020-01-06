@@ -26,7 +26,7 @@ if($_GET["op"] == 'logout') {
        if ($current_user->user_id > 0) {
                $current_user->Logout($_REQUEST['return']);
         } else {
-                header("Location: http://".get_server_name().$globals['base_url']);
+                header("Location: https://".get_server_name().$globals['base_url']);
                 die;
         }
 }

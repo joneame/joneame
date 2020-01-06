@@ -11,7 +11,7 @@ include(mnminclude.'link.php');
 
 // Warning, it redirects to the content of the variable
 if (!empty($globals['lounge_portada'])) {
-    header('Location: http://'.get_server_name().$globals['base_url'].$globals['lounge_portada']);
+    header('Location: https://'.get_server_name().$globals['base_url'].$globals['lounge_portada']);
     die;
 }
 

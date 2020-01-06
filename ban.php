@@ -8,7 +8,7 @@ include('config.php');
 include(mnminclude.'html1.php');
 
 if (!($bn = check_ban_proxy()))
-    header('Location: http://'.get_server_name().$globals['base_url']);
+    header('Location: https://'.get_server_name().$globals['base_url']);
 
 do_header(_('Estás baneado | Jonéame'));
 

@@ -115,9 +115,9 @@ class OAuthBase {
 
         setcookie('return', '', time() - 10000);
         if(!empty($this->return)) {
-            header('Location: http://'.get_server_name().$this->return);
+            header('Location: https://'.get_server_name().$this->return);
         } else {
-            header('Location: http://'.get_server_name().$globals['base_url']);
+            header('Location: https://'.get_server_name().$globals['base_url']);
         }
         exit;
     }

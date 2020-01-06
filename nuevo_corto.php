@@ -13,7 +13,7 @@ include(mnminclude.'log.php');
 
 // Warning, it redirects to the content of the variable
 if (!empty($globals['lounge_cortos'])) {
-    header('Location: http://'.get_server_name().$globals['base_url'].$globals['lounge_cortos']);
+    header('Location: https://'.get_server_name().$globals['base_url'].$globals['lounge_cortos']);
     die;
 }
 

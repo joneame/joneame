@@ -10,8 +10,6 @@ stats_increment('ajax');
 
 $id = (int) $_REQUEST['id'];
 
-if (!empty($_GET["mapplet"])) $limit = "limit 100";
-
 $from = (int) $_REQUEST['from'];
 if ($from <= 0 || $from > 240) $from = 24;
 

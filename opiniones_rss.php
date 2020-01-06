@@ -73,10 +73,10 @@ if ($opiniones) {
 
         // Title must not carry htmlentities
         echo "        <title>".$encuesta->titulo."</title>\n";
-        echo "        <link>http://".get_server_name()."/opinion/".$opinion->id."</link>\n";
+        echo "        <link>https://".get_server_name()."/opinion/".$opinion->id."</link>\n";
         echo "        <pubDate>".$opinion->fecha."</pubDate>\n";
         echo "        <dc:creator>$user->username</dc:creator>\n";
-        echo "        <guid>http://".get_server_name()."/opiniones_rss.php?id=".$opinion->id."</guid>\n";
+        echo "        <guid>https://".get_server_name()."/opiniones_rss.php?id=".$opinion->id."</guid>\n";
         echo "        <description><![CDATA[<p>".put_smileys($opinion->contenido);
         echo '</p><p></p>';
 
@@ -114,17 +114,13 @@ function do_header($title) {
     echo ' >'. "\n";
     echo '<channel>'."\n";
     echo'    <title>'.$title.'</title>'."\n";
-    echo'    <link>http://'.get_server_name().'</link>'."\n";
-    echo"    <image><title>".get_server_name()."</title><link>http://".get_server_name()."</link><url>http://".get_server_name().$globals['base_url']."img/mnm/eli-rss.png</url></image>\n";
+    echo'    <link>https://'.get_server_name().'</link>'."\n";
     echo'    <description>'._('Sitio colaborativo de noticias nada serias').'</description>'."\n";
     echo'    <pubDate>'.date("r", $last_modified).'</pubDate>'."\n";
-    echo'    <generator>http://blog.joneame.net/</generator>'."\n";
+    echo'    <generator>jonéame</generator>'."\n";
     echo'    <language>'.$dblang.'</language>'."\n";
 }
 
 function do_footer() {
     echo "</channel>\n</rss>\n";
 }
-
-
-?>

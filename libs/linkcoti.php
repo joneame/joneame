@@ -41,9 +41,9 @@ var $id = 0;
     function get_short_permalink() {
         global $globals;
         if ($globals['base_story_url']) {
-            return 'http://'.get_server_name().$globals['base_url'].$globals['base_story_url'].'0'.$this->id;
+            return 'https://'.get_server_name().$globals['base_url'].$globals['base_story_url'].'0'.$this->id;
         } else {
-            return 'http://'.get_server_name().$this->get_relative_permalink();
+            return 'https://'.get_server_name().$this->get_relative_permalink();
         }
     }
     function get_relative_permalink() {
@@ -55,7 +55,7 @@ var $id = 0;
         }
     }
     function get_permalink() {
-        return 'http://'.get_server_name().$this->get_relative_permalink();
+        return 'https://'.get_server_name().$this->get_relative_permalink();
     }
 
 

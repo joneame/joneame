@@ -26,7 +26,7 @@ if (!empty($_GET['login']) && !empty($_GET['t']) && !empty($_GET['k'])) {
         if ($time > $now - 7200 && $time < $now && $key == $key2) {
             $db->query("update users set user_validated_date = now() where user_id = $user->id and user_validated_date is null");
             $current_user->Authenticate($user->username, $user->pass, false);
-            header('Location: http://'.get_server_name().$globals['base_url'].'profile.php');
+            header('Location: https://'.get_server_name().$globals['base_url'].'profile.php');
             die;
         }
     }

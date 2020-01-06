@@ -163,7 +163,7 @@ if ($_REQUEST['id'] == 'faq') {
     echo '<h3>Bueno, y ¿qué es esto de Jonéame?</h3>';
     echo '<p>Jonéame es una red social, en la cual puedes compartir enlaces, conocer gente, chatear, y perder el tiempo.</p>';
     echo '<h3>¿De dónde viene Jonéame?</h3>';
-    echo '<p>Ha sido desarrollado por <a href="'.$globals['base_url'].'credits.php">los propios usuarios</a>, partiendo de la base de <a href="http://meneame.net/" target="_blank">Menéame</a>. Ten paciencia si algo no te funciona. Contacta con nosotros para reportar los errores que veas.</p>';
+    echo '<p>Ha sido desarrollado por <a href="'.$globals['base_url'].'credits.php">los propios usuarios</a>, partiendo de la base de <a href="https://www.meneame.net/" target="_blank">Menéame</a>. Ten paciencia si algo no te funciona. Contacta con nosotros para reportar los errores que veas.</p>';
     echo '<h3>Y ¿de qué va todo esto?</h3>';
     echo '<p>Jonéame comienza en el cachondeo, y acaba en el cachondeo. Nos gusta la pornografía, fotos, noticias, vídeos graciosos, noticias manipuladas, humor, viñetas, curiosidades, etc... ¡Y se permite el microblogging! Eso sí: recuerda leerte las <a href="'.$globals['legal'].'">condiciones de uso</a> antes de enviar nada.</p>';
     if ($current_user->user_id > 0) {

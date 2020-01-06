@@ -4,7 +4,7 @@
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // A copy of the AFFERO GENERAL PUBLIC LICENSE is included in the file "COPYING".
 
-// header("Location: http://joneame.net/lounge.php");
+// header("Location: https://joneame.net/lounge.php");
 
 if (0 && $_SERVER['REMOTE_ADDR'] != "ip de devel" && $_SERVER['REMOTE_ADDR'] != "") {
     header("HTTP/1.0 503");
@@ -12,7 +12,7 @@ if (0 && $_SERVER['REMOTE_ADDR'] != "ip de devel" && $_SERVER['REMOTE_ADDR'] != 
 }
 
 if ($_SERVER['HTTP_HOST'] && $_SERVER['HTTP_HOST'] != 'joneame.net') {
-    header('Location: http://joneame.net'.$_SERVER['REQUEST_URI']);
+    header('Location: https://joneame.net'.$_SERVER['REQUEST_URI']);
     die;
 }
 

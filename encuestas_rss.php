@@ -89,10 +89,10 @@ if ($encuestas) {
 
         // Title must not carry htmlentities
         echo "        <title>".htmlentities2unicodeentities($encuesta->titulo)."</title>\n";
-        echo "        <link>http://".get_server_name()."/encuestas.php?id=".$encuesta->id."</link>\n";
+        echo "        <link>https://".get_server_name()."/encuestas.php?id=".$encuesta->id."</link>\n";
         echo "        <pubDate>".$encuesta->comienzo."</pubDate>\n";
         echo "        <dc:creator>$user->username</dc:creator>\n";
-        echo "        <guid>http://".get_server_name()."/encuestas.php?id=".$encuesta->id."</guid>\n";
+        echo "        <guid>https://".get_server_name()."/encuestas.php?id=".$encuesta->id."</guid>\n";
         echo "        <description><![CDATA[<p>$encuesta->contenido";
         echo '</p><p></p>';
                 foreach ($opciones as $opcion) {
@@ -133,11 +133,10 @@ function do_header($title) {
     echo ' >'. "\n";
     echo '<channel>'."\n";
     echo'    <title>'.$title.'</title>'."\n";
-    echo'    <link>http://'.get_server_name().'</link>'."\n";
-    echo"    <image><title>".get_server_name()."</title><link>http://".get_server_name()."</link><url>http://".get_server_name().$globals['base_url']."img/mnm/eli-rss.png</url></image>\n";
+    echo'    <link>https://'.get_server_name().'</link>'."\n";
     echo'    <description>'._('Sitio colaborativo de noticias nada serias').'</description>'."\n";
     echo'    <pubDate>'.date("r", $last_modified).'</pubDate>'."\n";
-    echo'    <generator>http://blog.joneame.net/</generator>'."\n";
+    echo'    <generator>jonéame</generator>'."\n";
     echo'    <language>'.$dblang.'</language>'."\n";
 }
 

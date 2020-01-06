@@ -10,7 +10,7 @@ include(mnminclude.'user.php');
 include(mnminclude.'cortos.class.php');
 
 if (!empty($globals['lounge_cortos'])) {
-    header('Location: http://'.get_server_name().$globals['base_url'].$globals['lounge_cortos']);
+    header('Location: https://'.get_server_name().$globals['base_url'].$globals['lounge_cortos']);
     die;
 }
 

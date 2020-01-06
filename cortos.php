@@ -6,5 +6,5 @@
 
 include('config.php');
 
-header('Location: http://'.get_server_name().'/corto.php');
+header('Location: https://'.get_server_name().'/corto.php');
 die;

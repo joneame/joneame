@@ -9,7 +9,7 @@ include(mnminclude.'encuestas.php');
 include(mnminclude.'html1.php');
 
 if (!empty($globals['lounge_encuestas'])) {
-    header('Location: http://'.get_server_name().$globals['base_url'].$globals['lounge_encuestas']);
+    header('Location: https://'.get_server_name().$globals['base_url'].$globals['lounge_encuestas']);
     die;
 }
 

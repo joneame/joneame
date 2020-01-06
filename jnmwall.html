@@ -1,25 +1,25 @@
-<html> 
-<head> 
-	<title>Joneame Avatar Wall</title> 
-	<base href="http://joneame.net/" /> 
-	<style> 
+<html>
+<head>
+	<title>Joneame Avatar Wall</title>
+	<base href="https://joneame.net/" />
+	<style>
 		body { background: black; color: white; }
-	</style> 
-</head> 
-<body> 
-<script src="js/jnmwall.js"></script> 
- 
-<div style="margin: auto; width: 800px"> 
- 
-<h1 style="text-align: center">Joneame Avatar Wall</h1> 
-<div style="position: absolute; top: 1em; right: 2em;"></div> 
- 
-<script> 
+	</style>
+</head>
+<body>
+<script src="js/jnmwall.js"></script>
+
+<div style="margin: auto; width: 800px">
+
+<h1 style="text-align: center">Joneame Avatar Wall</h1>
+<div style="position: absolute; top: 1em; right: 2em;"></div>
+
+<script>
 
 var img_tot = 70;
 var img_row = 10;
 var delay = 80;
- 
+
 var bg_i = 1;
 var carpeta;
 var resultado;
@@ -31,7 +31,7 @@ for (i = 0; i < img_tot; i++) {
 	resultado = parseInt(uid) / parseInt(1000);
 	carpeta = Math.floor(resultado);
 	//alert(uid + ' -> ' + resultado + ' ' + carpeta);
-	
+
 	document.write('<a href="goto_id_profile.php?id=' + uid + '" id="hrf' + i + '">');
 	document.write('<img src="cache/avatars/'+carpeta+ '/'+ file + '-80.jpg" id="img' + i + '"width="80px" height="80px" border="0" />');
 	document.write('</a>');
@@ -39,25 +39,25 @@ for (i = 0; i < img_tot; i++) {
 		document.write('<br/>');
 	}
 }
- 
+
 function rndChange () {
 	i = Math.floor( Math.random() * img_tot );
 	n = Math.floor( Math.random() * files.length );
 	file = files[n];
 	uid = file;
 	carpeta = Math.floor(parseInt(uid) / parseInt(1000));
-	
+
 	document.getElementById('img'+i).src = 'cache/avatars/'+carpeta+'/' + file+'-80.jpg';
 	document.getElementById('hrf'+i).href = 'goto_id_profile.php?id=' + uid;
- 
+
 	setTimeout('rndChange()', delay);
 }
- 
+
 function linkUser ( uid ) {
 	// alert(uid);
 	document.location = 'goto_id_profile.php?id=' + uid;
 }
- 
+
 function bgChange () {
 	if (bg_i == 1) {
 		document.body.style.background = 'white';
@@ -72,12 +72,12 @@ function bgChange () {
 		return;
 	}
 }
- 
+
 setTimeout('rndChange()', delay);
- 
-</script> 
- 
-</div> 
- 
-</body> 
-</html> 
+
+</script>
+
+</div>
+
+</body>
+</html>

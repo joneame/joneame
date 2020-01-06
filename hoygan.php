@@ -6,4 +6,4 @@
 
 include('config.php');
 
-header('Location: http://'. get_server_name().$globals['base_url'].'cotillona.php?hoygan=1');
+header('Location: https://'. get_server_name().$globals['base_url'].'cotillona.php?hoygan=1');

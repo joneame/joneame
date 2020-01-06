@@ -30,23 +30,9 @@ $isp = geoip_isp_by_name($ip);
 if ($isp) {
     echo 'ISP identificado como: ' . $isp."<br/>";
 } else echo "No se ha podido identificar el ISP<br/>";
-//echo $info[latitude].$info[latitude];
 
 echo "<br/><br/>";
 
-/*
-echo '<iframe width="200" height="150" frameborder="0" scrolling="no"
-marginheight="0" marginwidth="0" src="http://maps.google.com/maps?q='.$info[latitude].',+'.$info[latitude].'+(Localizado+justo+aqu%C3%AD)&amp;hl=es&amp;ie=UTF8&amp;z=14&amp;iwloc=A&amp;ll='.$info[latitude].','.$info[latitude].'&amp;output=embed"></iframe><br
-/><small><a
-href="http://maps.google.com/maps?q='.$info[latitude].',+'.$info[latitude].'+(Localizado+justo+aqu%C3%AD)&amp;hl=es&amp;ie=UTF8&amp;z=14&amp;iwloc=A&amp;ll='.$info[latitude].','.$info[latitude].'&amp;source=embed"
-style="color:#0000FF;text-align:left">Ver mapa más grande</a></small>';
-*/
-
-/*
-echo '<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=es&amp;geocode=&amp;q='.$info[latitude].',+'.$info[latitude].'&amp;ie=UTF8&amp;z=14&amp;output=embed"></iframe><br/>';
-
-echo '<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?q='.$info[latitude].',+'.$info[longitude].'+(La+casa+del+troll)&amp;hl=es&amp;ie=UTF8&amp;z=14&amp;iwloc=A&amp;ll='.$info[latitude].','.$info[longitude].'&amp;output=embed"></iframe>';
-*/
 echo '<span align="center">';
-echo '<a href="http://maps.google.com/maps?q='.$info[latitude].',+'.$info[longitude].'+(La+casa+del+troll)&iwloc=A&hl=es" target="_blank">Ver en Google Maps</a>';
+echo '<a href="https://maps.google.com/maps?q='.$info[latitude].',+'.$info[longitude].'+(La+casa+del+troll)&iwloc=A&hl=es" target="_blank">Ver en Google Maps</a>';
 echo '</span>';

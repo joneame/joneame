@@ -434,13 +434,13 @@ function notify_user($from, $to, $text, $titulo) {
 
     if (! check_email($user->email)) return;
 
-    $url = '(Puedes leerlo también en: http://'.get_server_name().$globals['base_url'].'postbox/'.$user->username.')';
+    $url = '(Puedes leerlo también en: https://'.get_server_name().$globals['base_url'].'postbox/'.$user->username.')';
 
     if (!$titulo)
          $subject = "Notificación de mensaje privado de $sender->username";
     else $subject = "Mensaje de $sender->username: ".$titulo;
 
-    $adv = 'Este mensaje ha sido enviado con tu autorización. Si no deseas seguir recibiendo emails desde esta dirección, deshabilita la opción en http://'.get_server_name().$globals['base_url'].'postbox/'.$user->username.'?settings=1';
+    $adv = 'Este mensaje ha sido enviado con tu autorización. Si no deseas seguir recibiendo emails desde esta dirección, deshabilita la opción en https://'.get_server_name().$globals['base_url'].'postbox/'.$user->username.'?settings=1';
 
     $message = $url."\n\n".$text."\n\n\n\n\n\n".$adv;
 

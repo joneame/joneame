@@ -144,8 +144,8 @@ class Link {
         $url_components = @parse_url($url);
         if(version_compare(phpversion(), '5.0.0') >= 0) {
             $opts = array(
-                'http' => array('user_agent' => 'Bot de noticias de Joneame (http://joneame.net/)', 'max_redirects' => 7, 'timeout' => 10, 'header' => 'Referer: http://'.get_server_name().$globals['base_url']."\r\n" ),
-                'https' => array('user_agent' => 'Bot de noticias de Joneame (http://joneame.net/)', 'max_redirects' => 7, 'timeout' => 10, 'header' => 'Referer: http://'.get_server_name().$globals['base_url']."\r\n" ),
+                'http' => array('user_agent' => 'Bot de noticias de Joneame (https://joneame.net/)', 'max_redirects' => 7, 'timeout' => 10, 'header' => 'Referer: https://'.get_server_name().$globals['base_url']."\r\n" ),
+                'https' => array('user_agent' => 'Bot de noticias de Joneame (https://joneame.net/)', 'max_redirects' => 7, 'timeout' => 10, 'header' => 'Referer: https://'.get_server_name().$globals['base_url']."\r\n" ),
             );
             $context = stream_context_create($opts);
             if(($stream = @fopen($url, 'r', false, $context))) {
@@ -500,7 +500,7 @@ class Link {
         }
 
         if ($globals['base_story_url']) {
-            $this->joneame_link = 'http://'.get_server_name().$globals['base_url'].$globals['base_story_url'].'0'.$this->id;
+            $this->joneame_link = 'https://'.get_server_name().$globals['base_url'].$globals['base_story_url'].'0'.$this->id;
         }
 
         if ($type != 'preview') {
@@ -883,7 +883,7 @@ class Link {
 
     function get_trackback() {
         global $globals;
-        return "http://".get_server_name().$globals['base_url'].'trackback.php?id='.$this->id;
+        return "https://".get_server_name().$globals['base_url'].'trackback.php?id='.$this->id;
     }
 
     function get_status_text($status = false) {

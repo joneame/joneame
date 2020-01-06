@@ -2,9 +2,7 @@
 // The source code packaged with this file is Free Software, Copyright (C) 2005 by
 // Ricardo Galli <gallir at uib dot es>.
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
-// You can get copies of the licenses here:
-//      http://www.affero.org/oagpl.html
-// AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
+// A copy of the AFFERO GENERAL PUBLIC LICENSE is included in the file "COPYING".
 
 include('config.php');
 include(mnminclude.'geo.php');
@@ -237,12 +235,12 @@ if ($links) {
         echo '<p><strong>' . _('etiquetas') . '</strong>: ' . preg_replace('/,([^ ])/', ', $1', $link->tags) . '</p>';
 
         if (time() - $link->date < 172800) { // Only add the votes/comments image if the link has less than two days
-            echo '<p><a href="'.$permalink.'"><img src="http://'. get_server_name() .$globals['base_url'].'backend/vote_com_img.php?id='. $link->id .'" alt="votes" width="200" height="16"/></a></p>';
+            echo '<p><a href="'.$permalink.'"><img src="https://'. get_server_name() .$globals['base_url'].'backend/vote_com_img.php?id='. $link->id .'" alt="votes" width="200" height="16"/></a></p>';
         }
 
         if ($link->status != 'published') $rel = 'rel="nofollow"';
         else $rel = '';
-        echo "<p>»&nbsp;<a href='http://".get_server_name().$globals['base_url']."backend/go.php?id=".$link->id."' $rel>"._('historia original')."</a></p>";
+        echo "<p>»&nbsp;<a href='https://".get_server_name().$globals['base_url']."backend/go.php?id=".$link->id."' $rel>"._('historia original')."</a></p>";
         echo "]]></description>\n";
         if ($thumb) {
             echo '      <media:thumbnail url="'.$link->thumb."\" width='$link->thumb_x' height='$link->thumb_y' />\n";
@@ -250,7 +248,7 @@ if ($links) {
         //echo '<wfw:comments>'.$link->comments().'</wfw:comments>';
         // echo "       <trackback:ping>".get_trackback($link->id)."</trackback:ping>\n";  // no standard
         //echo "<content:encoded><![CDATA[ ]]></content:encoded>\n";
-        echo '      <wfw:commentRss>http://'.get_server_name().$globals['base_url'].'comments_rss2.php?id='.$link->id.'</wfw:commentRss>';
+        echo '      <wfw:commentRss>https://'.get_server_name().$globals['base_url'].'comments_rss2.php?id='.$link->id.'</wfw:commentRss>';
         echo "  </item>\n\n";
     }
 }
@@ -281,16 +279,16 @@ function do_header($title) {
     echo '  xmlns:dc="http://purl.org/dc/elements/1.1/"'."\n";
     echo '  xmlns:georss="http://www.georss.org/georss"'."\n";
     echo '  xmlns:media="http://search.yahoo.com/mrss/"'."\n";
-    echo '  xmlns:joneame="http://joneame.net/faq-es.php"'."\n";
+    echo '  xmlns:joneame="https://joneame.net/faq-es.php"'."\n";
     echo ' >'. "\n";
     echo '<channel>'."\n";
     echo'   <title>'.$title.'</title>'."\n";
     echo '  <atom:link href="https://'.get_server_name().htmlentities(clean_input_url($_SERVER['REQUEST_URI'])).'" rel="self" type="application/rss+xml" />'."\n";
-    echo'   <link>http://'.get_server_name().$home.'</link>'."\n";
+    echo'   <link>https://'.get_server_name().$home.'</link>'."\n";
 
     echo'   <description>'._('Sitio colaborativo de noticias nada serias').'</description>'."\n";
     echo'   <pubDate>'.date("r", $last_modified).'</pubDate>'."\n";
-    echo'   <generator>http://blog.joneame.net/</generator>'."\n";
+    echo'   <generator>jonéame</generator>'."\n";
     echo'   <language>'.$dblang.'</language>'."\n";
 
 }

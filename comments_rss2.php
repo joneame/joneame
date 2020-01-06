@@ -2,9 +2,7 @@
 // The source code packaged with this file is Free Software, Copyright (C) 2005-2009 by
 // Ricardo Galli <gallir at uib dot es> and the Jonéame Development Team (admin@joneame.net)
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
-// You can get copies of the licenses here:
-//      http://www.affero.org/oagpl.html
-// AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
+// A copy of the AFFERO GENERAL PUBLIC LICENSE is included in the file "COPYING".
 
 include('config.php');
 include mnminclude.'comment.php';
@@ -145,7 +143,7 @@ if ($comments) {
         echo "      <joneame:user>$comment->username</joneame:user>\n";
         echo "      <joneame:votes>".intval($comment->votes)."</joneame:votes>\n";
         echo "      <joneame:karma>".intval($comment->karma)."</joneame:karma>\n";
-        echo "      <joneame:url>".'http://'.get_server_name().$comment->get_relative_individual_permalink()."</joneame:url>\n";
+        echo "      <joneame:url>".'https://'.get_server_name().$comment->get_relative_individual_permalink()."</joneame:url>\n";
 
         // Title must not carry htmlentities
         echo "      <title>#$comment->order ".htmlentities2unicodeentities($link->title)."</title>\n";
@@ -184,14 +182,14 @@ function do_header($title) {
     echo '     xmlns:content="http://purl.org/rss/1.0/modules/content/"'."\n";
     echo '     xmlns:wfw="http://wellformedweb.org/CommentAPI/"'."\n";
     echo '     xmlns:dc="http://purl.org/dc/elements/1.1/"'."\n";
-    echo '     xmlns:joneame="http://joneame.net/faq-es.php"'."\n";
+    echo '     xmlns:joneame="https://joneame.net/faq-es.php"'."\n";
     echo ' >'. "\n";
     echo '<channel>'."\n";
     echo'   <title>'.$title.'</title>'."\n";
-    echo'   <link>http://'.get_server_name().'</link>'."\n";
+    echo'   <link>https://'.get_server_name().'</link>'."\n";
     echo'   <description>'._('Sitio colaborativo de noticias nada serias').'</description>'."\n";
     echo'   <pubDate>'.date("r", $last_modified).'</pubDate>'."\n";
-    echo'   <generator>http://blog.joneame.net/</generator>'."\n";
+    echo'   <generator>jonéame</generator>'."\n";
     echo'   <language>'.$dblang.'</language>'."\n";
 }
 

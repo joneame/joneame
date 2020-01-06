@@ -9,7 +9,7 @@ include_once mnminclude.'sidebars.php' ;
 
 // Warning, it redirects to the content of the variable
 if (!empty($globals['lounge_general']) && !$current_user->devel) {
-    header('Location: http://'.get_server_name().$globals['base_url'].$globals['lounge_general']);
+    header('Location: https://'.get_server_name().$globals['base_url'].$globals['lounge_general']);
     die;
 }
 
@@ -203,13 +203,7 @@ function do_footer($credits = true) {
     echo '<div id="footcol3">'."";
     echo '<h5>jonéame</h5>'."";
     echo '<ul id="joneamefooter">'."";
-    echo '<li><a href="http://twitter.com/joneame">en twitter</a></li>'."";
-        if ($globals['blog'])
-        echo '<li><a href="http://blog.joneame.net/">blog</a></li>'."";
-        else
-        echo '<li><a href="http://mischorradas.wordpress.com">blog</a></li>'."";
-    if ($globals['version_movil'])
-        echo '<li><a href="http://movil.joneame.net">versión móvil</a></li>'."";
+    echo '<li><a href="https://twitter.com/joneame">en twitter</a></li>'."";
     echo '<li><a href="'.$globals['base_url'].'cortos.php">cortos</a></li>'."";
     echo '<li><a href="'.$globals['base_url'].'top_mierdas.php">¿historias?</a></li>'."";
     echo '<li><a href="'.$globals['base_url'].'encuestas.php">encuestas</a></li>'."";
@@ -490,7 +484,7 @@ function print_share_icons($full_link, $short_link = false, $title = '', $id) {
     }
 
     if ($globals['base_story_url']) {
-           $joneame_link = 'http://'.get_server_name().$globals['base_url'].$globals['base_story_url'].'0'.$id;
+           $joneame_link = 'https://'.get_server_name().$globals['base_url'].$globals['base_story_url'].'0'.$id;
         }
 
         if (! $title) $title = get_server_name();
@@ -500,9 +494,9 @@ function print_share_icons($full_link, $short_link = false, $title = '', $id) {
 
     echo '&nbsp;<span class="tool"></span>';
     // Share it in Twitter
-    echo '<a href="http://twitter.com/share?text='.$title.$space.'&amp;url='.$short_link.'&amp;via=joneame" target="_blank"><img class="icon favicon-twitter img-flotante" src="'.get_cover_pixel().'" alt="twitter" title="'._('compartir en twitter').'"/></a>';
+    echo '<a href="https://twitter.com/share?text='.$title.$space.'&amp;url='.$short_link.'&amp;via=joneame" target="_blank"><img class="icon favicon-twitter img-flotante" src="'.get_cover_pixel().'" alt="twitter" title="'._('compartir en twitter').'"/></a>';
     // Share it in Facebook
-    echo '&nbsp;&nbsp;<a href="http://www.facebook.com/share.php?u='.$full_link.'" target="_blank"><img class="icon favicon-facebook img-flotante" src="'.get_cover_pixel().'" alt="facebook" title="'._('compartir en facebook').'"/></a> ';
+    echo '&nbsp;&nbsp;<a href="https://www.facebook.com/share.php?u='.$full_link.'" target="_blank"><img class="icon favicon-facebook img-flotante" src="'.get_cover_pixel().'" alt="facebook" title="'._('compartir en facebook').'"/></a> ';
     //Share it in Google +
     // echo '&nbsp;<span id="plusone-span-'.$id.'"></span> <script> $(function () {gapi.plusone.render("plusone-span", {"size": "small", "count": false})});</script>';
 

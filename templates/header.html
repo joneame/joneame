@@ -21,7 +21,7 @@
 
 {% exec do_css_includes %}
 
-<link rel="search" type="application/opensearchdescription+xml" title="{% trans _('Búsqueda en Jonéame') %}" href="http://{% exec get_server_name %}{{globals.base_url}}opensearch_plugin.php"/>
+<link rel="search" type="application/opensearchdescription+xml" title="{% trans _('Búsqueda en Jonéame') %}" href="https://{% exec get_server_name %}{{globals.base_url}}opensearch_plugin.php"/>
 
 <link rel="alternate" type="application/rss+xml" title="{% trans _('publicadas') %}" href="https://{% exec get_server_name %}{{globals.base_url}}rss2.php"/>
 <link rel="alternate" type="application/rss+xml" title="{% trans _('pendientes') %}" href="https://{% exec get_server_name %}{{globals.base_url}}rss2.php?status=queued"/>

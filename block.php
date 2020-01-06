@@ -23,7 +23,7 @@ autorización.<br/><br/>
 <br/><br/>
 Si crees que ha sido un error o quieres más información, contacta con nosotros:
 <em>ad<em></em>min&#64;jo<strong></strong>neame&#46;n<strong></strong>et</em>.<br/>
-Para acceder a Jonéame, haz clic <a href="http://joneame.net/">aquí.</a>
+Para acceder a Jonéame, haz clic <a href="https://joneame.net/">aquí.</a>
 <br/><br/><hr/><br/>
 Links from this site were blocked due to abuse or lack of autorization.
 <br/><br/>
@@ -36,7 +36,7 @@ Links from this site were blocked due to abuse or lack of autorization.
 <br/><br/>
 If you believe this site was blocked in error or you want further information, contact us:
 <em>ad<em></em>min&#64;jo<strong></strong>neame&#46;n<strong></strong>et</em>.<br/>
-To access Jonéame, click <a href="http://joneame.net/">here.</a>
+To access Jonéame, click <a href="https://joneame.net/">here.</a>
 </fieldset></div></div>
 
 <?php

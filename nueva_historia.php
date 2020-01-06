@@ -2,9 +2,7 @@
 // The source code packaged with this file is Free Software, Copyright (C) 2005 by
 // Ricardo Galli <gallir at uib dot es> and the Jonéame Development Team (admin@joneame.net)
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
-// You can get copies of the licenses here:
-//              http://www.affero.org/oagpl.html
-// AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
+// A copy of the AFFERO GENERAL PUBLIC LICENSE is included in the file "COPYING".
 
 include('config.php');
 include(mnminclude.'html1.php');
@@ -91,7 +89,7 @@ exit;
         echo '<h4>dirección de la historia</h4>';
         echo '<form class="fondo-caja" action="nueva_historia.php" method="post" id="thisform" onSubmit="$(\'#working\').html(\''._('espera').'...&nbsp;<img src=\\\'\'+img_src1+\'\\\'/>\'); return true;"><fieldset>';
         echo '<p><label for="url">'._('enlace').':</label><br />';
-        echo '<input type="text" name="url" id="url" value="'.htmlspecialchars($url).'" class="form-full" placeholder="http://" /></p>';
+        echo '<input type="text" name="url" id="url" value="'.htmlspecialchars($url).'" class="form-full" placeholder="https://" /></p>';
         echo '<input type="hidden" name="phase" value="1" />';
         $randkey = rand(10000,10000000);
         echo '<input type="hidden" name="key" value="'.md5($randkey.$current_user->user_id.$current_user->user_email.$site_key.get_server_name()).'" />'."\n";

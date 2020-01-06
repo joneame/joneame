@@ -8,7 +8,7 @@ include('config.php');
 include(mnminclude.'html1.php');
 
 function peta() {
-    header('Location: http://'.get_server_name().$globals['base_url']);
+    header('Location: https://'.get_server_name().$globals['base_url']);
     die;
 }
 

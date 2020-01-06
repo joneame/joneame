@@ -99,10 +99,10 @@ if ($posts) {
         $content = htmlentities2unicodeentities(put_smileys(save_text_to_html($post->clean_content())));
         echo "  <item>\n";
         echo "      <title>$title</title>\n";
-        echo "      <link>http://".get_server_name().post_get_base_url($username).'/'.$post->id."</link>\n";
+        echo "      <link>https://".get_server_name().post_get_base_url($username).'/'.$post->id."</link>\n";
         echo "      <pubDate>".date("r", $post->date)."</pubDate>\n";
         echo "      <dc:creator>$username</dc:creator>\n";
-        echo "      <guid>http://".get_server_name().post_get_base_url($username).'/'.$post->id."</guid>\n";
+        echo "      <guid>https://".get_server_name().post_get_base_url($username).'/'.$post->id."</guid>\n";
     if ($post->tipo != 'admin') {
         // Insert GEO
         if (($latlng = geo_latlng('user', $post->author))) {
@@ -146,11 +146,11 @@ function do_header($title) {
     echo '<channel>'."\n";
     echo '  <title>'.$title.'</title>'."\n";
     echo ' '."\n";
-    echo '  <link>http://'.get_server_name().post_get_base_url().'</link>'."\n";
+    echo '  <link>https://'.get_server_name().post_get_base_url().'</link>'."\n";
 
     echo '  <description>'._('Sitio colaborativo de noticias nada serias').'</description>'."\n";
     echo '  <pubDate>'.date("r", $last_modified).'</pubDate>'."\n";
-    echo '  <generator>http://blog.joneame.net/</generator>'."\n";
+    echo '  <generator>jonéame</generator>'."\n";
     echo '  <language>'.$dblang.'</language>'."\n";
 }
 

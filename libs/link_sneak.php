@@ -10,7 +10,7 @@ var link_karma = 0;
 var a;
 //]]>
 </script>
-<script src="http://<?php echo get_server_name().$globals['base_url']; ?>js/link_sneak02.js.php"></script>
+<script src="https://<?php echo get_server_name().$globals['base_url']; ?>js/link_sneak02.js.php"></script>
 <?php
 echo '<div class="mini-sneaker-item">';
 echo '<div class="mini-sneaker-title">';

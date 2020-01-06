@@ -18,7 +18,7 @@ function init_sneak() {
     if ($current_user->user_id == 0) {
         $nusers= $db->get_var("select count(*) from sneakers");
         if ($nusers > $globals['max_sneakers']) {
-            header('Location: http://'.get_server_name().$globals['base_url'].'toomuch.html');
+            header('Location: https://'.get_server_name().$globals['base_url'].'toomuch.html');
             die;
         }
     }
@@ -32,7 +32,7 @@ function init_sneak() {
     $nusers= $db->get_var("select count(*) from sneakers where sneaker_id like '".$globals['user_ip']."-%'");
 
     if ($nusers > $max_conn) {
-        header('Location: http://' . get_server_name().$globals['base_url'].'toomuch.html');
+        header('Location: https://' . get_server_name().$globals['base_url'].'toomuch.html');
         die;
     }
 
