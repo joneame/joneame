@@ -15,16 +15,10 @@ if (!empty($globals['lounge_general']) && !$current_user->devel) {
 
 $globals['start_time'] = microtime(true);
 
-if (preg_match('/joneame.net$/', get_server_name())) {
-    $globals['joneame']  = true;
-} else $globals['joneame']  = false;
+$globals['joneame'] = (isset($globals['joneame']) && $globals['joneame']) || get_server_name() == 'joneame.net';
+$globals['localhost'] = get_server_name() == 'localhost';
 
-if (preg_match('/localhost$/', get_server_name())) {
-    $globals['localhost']  = true;
-} else $globals['localhost']  = false;
-
-
-header('Content-type: text/html; charset=utf-8');
+header('Content-Type: text/html; charset=utf-8');
 
 if ($current_user->user_id) {
     header('Cache-Control: private');
@@ -107,12 +101,6 @@ function do_header($title, $id='home') {
 
     $globals['recovery'] = false;
 
-    if (isset($_GET['madera']) && $_GET['madera'] == '1')
-        $madera = 1;
-
-    if (isset($_GET['puticlub']) && $_GET['puticlub'] == '1')
-        $putijoneame = 1;
-
     if (!isset($globals['link_id'])) $globals['link_id'] = false;
 
     $cotillona = preg_match('/cotillona\.php/', $_SERVER['REQUEST_URI']);
@@ -127,9 +115,7 @@ function do_header($title, $id='home') {
         $current_user->polls = get_polls_unvoted();
     }
 
-    $vars = compact('cotillona', 'title', 'id', 'madera', 'putijoneame');
-
-    header('X-UA-Compatible: IE=edge');
+    $vars = compact('cotillona', 'title', 'id');
     Haanga::Load('header.html', $vars);
 }
 
