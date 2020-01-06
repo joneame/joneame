@@ -36,7 +36,7 @@
 
 	<strong> {{self.url_str }} </strong><br />
 
-	{% trans  _('por') %} <a href=" {% exec get_user_uri self.username, 'enviadas'  %}"> {{ self.username }} </a>
+	{% trans  _('por') %} <a href="{% exec get_user_uri self.username, 'enviadas'  %}"> {{ self.username }} </a>
 
 	{% if globals.now  - self.date > 604800  %}
 
