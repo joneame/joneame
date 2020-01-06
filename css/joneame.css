@@ -1299,7 +1299,8 @@ text-align: left;
 }
 
 .comment-votes-info {
-display: inline;
+display: block;
+float: right;
 }
 
 .comment-votes-info img {
