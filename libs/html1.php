@@ -494,9 +494,9 @@ function print_share_icons($full_link, $short_link = false, $title = '', $id) {
 
     echo '&nbsp;<span class="tool"></span>';
     // Share it in Twitter
-    echo '<a href="https://twitter.com/share?text='.$title.$space.'&amp;url='.$short_link.'&amp;via=joneame" target="_blank"><img class="icon favicon-twitter img-flotante" src="'.get_cover_pixel().'" alt="twitter" title="'._('compartir en twitter').'"/></a>';
+    echo '<a href="https://twitter.com/share?text='.$title.$space.'&amp;url='.$short_link.'&amp;via=joneame" rel="noopener" target="_blank"><img class="icon favicon-twitter img-flotante" src="'.get_cover_pixel().'" alt="twitter" title="'._('compartir en twitter').'"/></a>';
     // Share it in Facebook
-    echo '&nbsp;&nbsp;<a href="https://www.facebook.com/share.php?u='.$full_link.'" target="_blank"><img class="icon favicon-facebook img-flotante" src="'.get_cover_pixel().'" alt="facebook" title="'._('compartir en facebook').'"/></a> ';
+    echo '&nbsp;&nbsp;<a href="https://www.facebook.com/share.php?u='.$full_link.'" rel="noopener" target="_blank"><img class="icon favicon-facebook img-flotante" src="'.get_cover_pixel().'" alt="facebook" title="'._('compartir en facebook').'"/></a> ';
     //Share it in Google +
     // echo '&nbsp;<span id="plusone-span-'.$id.'"></span> <script> $(function () {gapi.plusone.render("plusone-span", {"size": "small", "count": false})});</script>';
 

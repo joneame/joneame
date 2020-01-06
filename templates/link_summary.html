@@ -7,7 +7,7 @@
 
 <h1>
 
-<a href=" {{ self.url|escape }}" onmousedown="return clk(this, {{ self.id }})" {% if self.status != 'published' %} rel="nofollow" {% endif %} target="_blank" class="titular">{{ self.title }}</a>
+<a href=" {{ self.url|escape }}" onmousedown="return clk(this, {{ self.id }})" {% if self.status != 'published' %} rel="nofollow" {% endif %} target="_blank" rel="noopener" class="titular">{{ self.title }}</a>
 
 {% if self.content_type == 'image' %}
 	&nbsp;<img src="{% exec get_cover_pixel %}" class="icon image media-icon" alt="{% trans _('imagen') %}" title="{% trans _('imagen') %}" />
