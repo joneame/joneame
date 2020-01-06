@@ -3,9 +3,7 @@
 // Ricardo Galli <gallir at uib dot es> and the Jonéame Development Team (admin@joneame.net)
 // David Martín :: Suki_ :: <david at sukiweb dot net>.
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
-// You can get copies of the licenses here:
-//         http://www.affero.org/oagpl.html
-// AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
+// A copy of the AFFERO GENERAL PUBLIC LICENSE is included in the file "COPYING".
 
 function check_ban_proxy() {
     global $globals;
@@ -14,11 +12,11 @@ function check_ban_proxy() {
 }
 
 function check_ban($ban_text, $ban_type, $check_valid = true, $first_level = false) {
-    global $db, $globals;    
-    
+    global $db, $globals;
+
     $ban_text = $db->escape($ban_text);
     $ban_type = $db->escape($ban_type);
-    
+
     // If check_valid == false does not check for validity of the address
     // in order to avoid problems with bad links in external pages
     switch ($ban_type) {
@@ -50,7 +48,7 @@ function check_ban($ban_text, $ban_type, $check_valid = true, $first_level = fal
                 return $ban;
             }
             $list = subclasses_list($ban_text);
-            $where="ban_text IN ($list) AND ban_type='$ban_type' AND (ban_expire IS null OR ban_expire > now())"; 
+            $where="ban_text IN ($list) AND ban_type='$ban_type' AND (ban_expire IS null OR ban_expire > now())";
             break;
         default:
             return false;
@@ -159,14 +157,14 @@ function del_ban($ban_id) {
 
 class Ban {
     var $ban_id = 0;
-    
+
     function Ban($ban_id=0) {
         if ($ban_id>0) {
             $this->ban_id = intval($ban_id);
             $this->read();
         }
     }
-    
+
     function read() {
         global $db;
         $ban_id = intval($this->ban_id);
@@ -193,7 +191,7 @@ class Ban {
         $this->read = false;
         return false;
     }
-    
+
     function store() {
         global $db;
         $this->ban_id=intval($this->ban_id);

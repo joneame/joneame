@@ -2,9 +2,7 @@
 // The source code packaged with this file is Free Software, Copyright (C) 2005 by
 // Ricardo Galli <gallir at uib dot es> and the Jonéame Development Team (admin@joneame.net)
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
-// You can get copies of the licenses here:
-//         http://www.affero.org/oagpl.html
-// AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
+// A copy of the AFFERO GENERAL PUBLIC LICENSE is included in the file "COPYING".
 
 class User {
     const SQL = "user_id as id, user_login as username, user_sex, user_login_register as username_register, user_level as level, UNIX_TIMESTAMP(user_date) as date, user_ip as ip, UNIX_TIMESTAMP(user_modification) as modification, user_pass as pass, user_prev_carisma as previous_carisma, user_email as email, user_email_register as email_register, user_names as names, user_lang as lang, user_karma as karma, user_estado as estado, user_avatar as avatar, user_public_info as public_info, user_url as url, user_thumb as thumb, user_birth as birth";

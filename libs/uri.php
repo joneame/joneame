@@ -2,9 +2,7 @@
 // The source code packaged with this file is Free Software, Copyright (C) 2005 by
 // Ricardo Galli <gallir at uib dot es>
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
-// You can get copies of the licenses here:
-//         http://www.affero.org/oagpl.html
-// AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
+// A copy of the AFFERO GENERAL PUBLIC LICENSE is included in the file "COPYING".
 // Part of the code is extracted from WP 2 functions
 
 function get_uri($title) {
@@ -130,7 +128,7 @@ function remove_accents($string) {
        chr(197).chr(190) => 'z', chr(197).chr(191) => 's',
        // Euro Sign
        chr(226).chr(130).chr(172) => 'E');
-    
+
        $string = strtr($string, $chars);
     return $string;
 }

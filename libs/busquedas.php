@@ -2,9 +2,7 @@
 // The source code packaged with this file is Free Software, Copyright (C) 2005 by
 // Jon Arano <arano.jon@gmail.com>
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
-// You can get copies of the licenses here:
-//         http://www.affero.org/oagpl.html
-// AFFERO GENERAL PUBLIC LICENSE is also included in the file called "COPYING".
+// A copy of the AFFERO GENERAL PUBLIC LICENSE is included in the file "COPYING".
 
 define('FAV_SEARCH_YES', '<img src="'.get_cover_pixel().'" class="img-flotante icon heart-on" title="'._('en favoritos').'" alt="del"/>');
 define('FAV_SEARCH_NO', '<img src="'.get_cover_pixel().'" class="img-flotante icon heart-off" title="'._('agregar a favoritos').'" alt="add"/>');
