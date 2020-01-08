@@ -38,7 +38,7 @@
 				{% endif %}
 			{% endif %}
 		{% endif %}
-		 <br/><a href="javascript:obtener('mostrar_comentario.php','comment','cid-{{self.id}}',0,{{ self.id }})" title=" {% trans _('ver comentario')%} ">» {% trans _('clic aquí para ver el comentario') %}</a>
+		 <br/><a href="javascript:obtener('mostrar_comentario.php','comment','cid-{{self.id}}',0,{{ self.id }})" title="{% trans _('ver comentario') %}">» {% trans _('clic aquí para ver el comentario') %}</a>
 	{% else %}
 		{% exec self.return_text length, single_link %}
 	{% endif %}

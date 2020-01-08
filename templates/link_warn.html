@@ -14,7 +14,7 @@
 {% if self.status == 'duplicated' %}
 
 	<div class="warn"><strong>{% trans _('Admin:') %} </strong>
-	{% trans _('La historia está descartada por') %} <a href=" {{ self.duplicate_link }}"> duplicada </a>
+	{% trans _('La historia está descartada por') %} <a href="{{ self.duplicate_link }}"> duplicada </a>
 	</div>
 {% endif %}
 

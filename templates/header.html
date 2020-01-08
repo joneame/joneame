@@ -30,7 +30,7 @@
 <link rel="shortcut icon" href="{{ globals.base_url }}{{ globals.favicon }}" type="image/x-png"/>
 
 {% if globals.link_id > 0 %}
-	<link rel="pingback" href="http://{% exec get_server_name %}{{globals.base_url}}xmlrpc.php"/>
+	<link rel="pingback" href="https://{% exec get_server_name %}{{globals.base_url}}xmlrpc.php"/>
 {% endif %}
 
 {% exec do_js_includes %}
@@ -75,7 +75,7 @@
 		{% if current_user.p_conversation > 0 %}
 			<li><a href="{% exec post_get_base_url %}_conversacion"><img src="{% exec get_cover_pixel %}" class="icon post" />({{ current_user.p_conversation }})</a></li>
 		{% endif %}
-		<li><a href=" {% exec get_mensajes_uri current_user.user_login %}"><img src="{% exec get_cover_pixel %}" class="icon message" /> ({{ current_user.unread_messages }})</a></li>
+		<li><a href="{% exec get_mensajes_uri current_user.user_login %}"><img src="{% exec get_cover_pixel %}" class="icon message" />({{ current_user.unread_messages }})</a></li>
 		{% if current_user.polls > 0 %}
 				<li><a href="{{globals.base_url}}encuestas.php?unvoted=1"><img src="{% exec get_cover_pixel %}" class="icon poll-new" />({{ current_user.polls }})</a></li>
 		{% endif %}
