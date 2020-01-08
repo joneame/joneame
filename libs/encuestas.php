@@ -355,7 +355,7 @@ class Encuesta {
         $post->karma = 0;
         $post->randkey = rand(1000000,100000000);
         $post->tipo = 'encuesta';
-        $post->content = $this->titulo.' http://'.get_server_name().$this->get_relative_individual_permalink();
+        $post->content = $this->titulo.' https://'.get_server_name().$this->get_relative_individual_permalink();
         $post->store();
     }
 
