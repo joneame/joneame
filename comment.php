@@ -112,7 +112,7 @@ function print_comment_form() {
     echo '<div class="commentform">'."\n";
     echo '<form action="" method="post">'."\n";
     echo '<h4>'._('escribe un comentario').'</h4><fieldset class="fondo-caja">'."\n";
-    echo '<div style="float: right;">'."\n";
+    echo '<div>'."\n";
     print_simpleformat_buttons('comment');
     echo '<div style="margin-top: 10px;"><textarea name="comment_content" id="comment" cols="75" rows="12"></textarea></div>'."\n";
     echo '<input class="button" type="submit" name="submit" value="'._('enviar comentario').'" />'."\n";
