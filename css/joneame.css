@@ -592,9 +592,7 @@ background: url(/img/iconos/error.png) 0 50% no-repeat;
 .form-error-submit, .form-error-submit-perfil {
 padding: 10px;
 margin: 15px 0 0 0;
-border: 1px solid;
 background: #adcee9;
-border-color: #4b7db0;
 }
 
 .form-error-submit-perfil {
