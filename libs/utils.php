@@ -228,13 +228,16 @@ function text_to_html($str, $hashtype = false, $do_links = true) {
     if ($do_links) {
         $str = preg_replace('/(\b)(https*:\/\/)(www\.){0,1}([^ \t\n\r\]\&]{5,70})([^ \t\n\r\]]*)([^ :.\t,\n\r\(\)\"\'\]\?])/u', '$1<a href="$2$3$4$5$6" title="$2$3$4$5$6" rel="nofollow noopener">$4$6</a>', $str);
     }
-    if ($hashtype) {
+    if ($globals['buscador_activado'] && $hashtype) {
         // Add links to hashtags
         $str = preg_replace('/(^|\s)\#([^\d][^\s\.\,\:\;\¡\!\)\-]{1,42})/u', '$1<a href="'.$globals['base_url'].'search.php?w='.$hashtype.'&amp;q=%23$2&amp;o=date">#$2</a>', $str);
     }
     $str = preg_replace('/\b_([^\s<>_]+)_\b/', "<em>$1</em>", $str);
+    $str = str_replace('</em> <em>', ' ', $str);
     $str = preg_replace('/(^|[\(¡;,:¿\s])\*([^\s<>]+)\*/', "$1<strong>$2</strong>", $str);
+    $str = str_replace('</strong> <strong>', ' ', $str);
     $str = preg_replace('/(^| )\-([^\s<>]+)\-/', "$1<del>$2</del>", $str);
+    $str = str_replace('</del> <del>', ' ', $str);
     return $str;
 }
 
