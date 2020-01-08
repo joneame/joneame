@@ -47,7 +47,7 @@ td {
 </style>
 ';
 
-do_header('Pronote | Jonéame');
+do_header('pr0note | Jonéame');
 
 echo '<div id="singlewrap">'."\n";
 
