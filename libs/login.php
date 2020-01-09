@@ -114,7 +114,7 @@ class UserAuth {
                         .'3'.':' // Version number
                         .$this->now.':'
                         .$time);
-                setcookie('joneame_key_2', $strCookie, $time, $globals['base_url'], get_server_name(), true, true);
+                setcookie('joneame_key_2', $strCookie, $time, $globals['base_url'], get_server_name(), $globals['https'], true);
                 break;
         }
     }
@@ -160,9 +160,9 @@ class UserAuth {
     function SetUserCookie($do_login) {
         global $globals;
         if ($do_login) {
-            setcookie('joneame_2', $this->user_login.':'.$this->mnm_user[1], $this->now + 3600000, $globals['base_url'], get_server_name(), true, true);
+            setcookie('joneame_2', $this->user_login.':'.$this->mnm_user[1], $this->now + 3600000, $globals['base_url'], get_server_name(), $globals['https'], true);
         } else {
-            setcookie('joneame_2', '_:'.$this->mnm_user[1], $this->now + 360000, $globals['base_url'], get_server_name(), true, true);
+            setcookie('joneame_2', '_:'.$this->mnm_user[1], $this->now + 360000, $globals['base_url'], get_server_name(), $globals['https'], true);
         }
     }
 

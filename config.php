@@ -4,6 +4,12 @@
 // It's licensed under the AFFERO GENERAL PUBLIC LICENSE unless stated otherwise.
 // A copy of the AFFERO GENERAL PUBLIC LICENSE is included in the file "COPYING".
 
+// IMPORTANT:
+// You should not edit anything here. These values are meant to be edited in
+// local.php. If a certain value doesn't exist there, just copy it from here
+// and paste it there before you edit it. Anything in local.php will override
+// whatever is set here.
+
 define("mnmpath", dirname(__FILE__));
 define("mnminclude", dirname(__FILE__).'/libs/');
 ini_set("include_path", '.:'.mnminclude.':'.mnmpath);
@@ -22,6 +28,8 @@ $globals['base_url'] = '/';
 
 // Base domain
 $globals['domain'] = 'joneame.net';
+// is https used?
+$globals['https'] = true;
 
 // lounge
 //$globals['lounge_mezua'] = 'Estamos de mantenimiento.';
