@@ -811,10 +811,14 @@ overflow: hidden;
 }
 
 .news-submitted {
+margin: 0;
+min-height: 20px;
+}
+
+.news-submitted-text {
 font-size: 85%;
 margin: 0;
-white-space: nowrap;
-min-height: 25px;
+padding-top: 3px;
 color: #666;
 }
 
@@ -824,7 +828,7 @@ color: #666;
 }
 
 .news-submitted img {
-border-color: #adcee9;
+border: 0 none;
 }
 
 .news-tags {
@@ -4084,7 +4088,19 @@ a .hglass {
         width: auto;
     }
     ul.herramientas {
+        margin: 0 10px;
+    }
+    .herramientas li {
+        display: inline-block;
+        white-space: nowrap;
+        margin-left: 0;
+        margin-right: 10px;
+    }
+    .herramientas li:last-child {
         margin: 0;
+    }
+    .notes {
+        margin: 5px 5px 0;
     }
     #newswrap {
         margin: unset;
@@ -4098,9 +4114,12 @@ a .hglass {
     .news-shakeit {
         width: 50px;
         left: 6px;
+        position: unset;
+        float: left;
+        margin: 0 10px 10px 0;
     }
     .news-body {
-        padding-left: 62px;
+        padding-left: 0;
     }
     .news-details .tool {
         display: none;
@@ -4124,19 +4143,16 @@ a .hglass {
     .pages a, .pages span, .pages-margin a, .pages-margin span, .pages-mini a, .pages-mini span,
     .herramientas {
         height: auto;
-        line-height: 24px;
+        line-height: 30px;
         background: #5385b7;
         padding-left: 12px !important;
         padding-right: 12px !important;
         margin-bottom: 8px !important;
     }
-    .notes .barra, #last_post .barra {
+    .barra, .notes .barra, #last_post .barra {
         height: auto;
         line-height: 24px;
         background: #5385b7;
-    }
-    .barra:focus, .barra:hover {
-        background: #cedde9 !important;
     }
     .notitas-votes-info {
         position: unset;
@@ -4217,5 +4233,36 @@ a .hglass {
     }
     .comments-list {
         clear: both;
+    }
+    .news-summary {
+        margin-left: 10px;
+    }
+    .news-submitted-text {
+        padding-top: 0;
+    }
+    .porn, .warn {
+        position: unset;
+    }
+    .ayuda-contenido {
+        display: block;
+        margin: 0 5px;
+    }
+    .tabhoriz {
+        float: unset;
+        width: auto;
+        margin: 5px;
+    }
+    .tabhoriz li {
+        display: inline-block;
+        margin: 2px;
+    }
+    .tabhoriz li a {
+        display: inline-block;
+        margin: 0;
+        width: auto;
+        border-radius: 3px;
+    }
+    .pages a:hover, .pages-margin a:hover {
+        background: white;
     }
 }

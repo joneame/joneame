@@ -19,7 +19,7 @@ if ($current_user->user_id > 0 && !$current_user->admin) {
 
 do_header(_("Registro | Jonéame"), "post");
 
-echo '<div class="genericform">'."\n";
+echo '<div class="genericform login-form">'."\n";
 
 
 if(isset($_POST["process"])) {

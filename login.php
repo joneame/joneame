@@ -151,7 +151,7 @@ function do_recover() {
     // dont do stats of password recovering pages - Jon
     $globals['recovery'] = true;
 
-    echo '<div class="genericform">'."\n";
+    echo '<div class="genericform login-form">'."\n";
     echo '<h4>'._("recuperación de contraseñas").'</h4>'."\n";
     echo '<form class="fondo-caja" action="login.php" id="thisform-recover" method="post">'."\n";
     echo '<fieldset>'."\n";

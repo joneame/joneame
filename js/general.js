@@ -704,3 +704,11 @@ if (accion == 'formulario'){
     }
 
 }
+
+function showmytitle() {
+    var e = window.event.target || window.event.srcElement;
+    var title = e.title;
+    jQuery.fancybox({
+        content: "<strong>URL original:</strong><br>" + title,
+    });
+}

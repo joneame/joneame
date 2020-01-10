@@ -540,6 +540,10 @@ class Link {
 
         /* URL and Content */
         $this->url_str =  htmlentities(preg_replace('/^https*:\/\//', '', txt_shorter($this->url)));
+        $this->url_domain = txt_shorter(parse_url($this->url, PHP_URL_HOST));
+        if (strpos($this->url_domain, 'www.') === 0) {
+            $this->url_domain = substr($this->url_domain, 4);
+        }
         $this->content_str = text_to_html(put_smileys($this->content, 'links'));
 
         /* neiko: chapado */
