@@ -199,6 +199,8 @@ class User {
     function get_last_date() {
             global $db;
             $lastDate = $db->get_var("SELECT UNIX_TIMESTAMP(max(fecha)) as fecha FROM (
+                                        SELECT max(link_sent_date) as fecha FROM links WHERE link_author = $this->id
+                                        UNION
                                         SELECT max(post_date) as fecha FROM posts WHERE post_user_id = $this->id
                                         UNION
                                         SELECT max(vote_date) as fecha FROM votes WHERE vote_user_id = $this->id
