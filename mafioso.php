@@ -254,12 +254,9 @@ function do_profile() {
 
     }
 
-
     // Show public info is it's a god
-    if($current_user->user_id > 0 && !empty($user->public_info) && (
-            $current_user->user_id == $user->id
-            || $current_user->user_level=='god' )) {
-        echo '<dt>'._('Jabber/Gtalk').':</dt><dd> '.$user->public_info.'</dd>';
+    if ($current_user->user_id > 0 && !empty($user->public_info) && $current_user->user_level == 'god') {
+        echo '<dt>'._('Jabber/Gtalk').':</dt><dd>'.$user->public_info.'</dd>';
     }
 
     if(!empty($url)) {
