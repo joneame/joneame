@@ -831,6 +831,10 @@ color: #666;
 border: 0 none;
 }
 
+.news-submitted-domain {
+    cursor: pointer;
+}
+
 .news-tags {
 font-size: 90%;
 margin: 0;
