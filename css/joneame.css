@@ -2862,7 +2862,6 @@ vertical-align: middle;
 
 .ayuda-contenido {
 margin: 0 50px 0 214px;
-border: 1px solid #5a8cbe;
 border-top-left-radius: 0;
 padding: 5px 10px 15px;
 }
@@ -2882,7 +2881,7 @@ text-shadow: 0 0 1px rgba(255, 255, 255, 0.9);
 
 .ayuda-contenido h3 {
 margin-top: 8px;
-margin-bottom: 0;
+margin-bottom: 4px;
 font-size: 120%;
 font-weight: bold;
 color: #333;
@@ -2891,6 +2890,7 @@ color: #333;
 .ayuda-contenido li {
 margin-left: 15px;
 margin-bottom: 3px;
+line-height: 20px;
 }
 
 .ayuda-contenido ul,
@@ -2900,7 +2900,8 @@ margin: 5px;
 
 .ayuda-contenido p {
 text-align: justify;
-text-indent: 2em;
+text-indent: 1em;
+line-height: 20px;
 }
 
 .ayuda-contenido blockquote {
