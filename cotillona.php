@@ -117,7 +117,6 @@ if (!empty($_REQUEST['friends'])) {
 <script>
 //<![CDATA[
 var my_version = '<?php echo $sneak_version; ?>';
-var ts=<?php echo (time()-3600); ?>; // just due a freaking IE cache problem
 var server_name = '<?php echo get_server_name(); ?>';
 var base_url = '<?php echo $globals['base_url']; ?>';
 var sneak_base_url = '<?php echo $globals['base_url']; ?>backend/cotillona.php';
@@ -168,7 +167,7 @@ function set_initial_display(item, i) {
 function clear_animation() {
     clearInterval(animation_timer);
     animating = false;
-    $('#items').children().css('background', 'transparent');
+    $('#items').children().css('opacity', '');
 }
 
 function animate_background() {
@@ -553,13 +552,6 @@ if ($current_user->user_id > 0) {
 
 
 echo '<div class="sneaker" style="margin-top: 0px">';
-
-/* neiko: */
-/*
-if ($current_user->user_id > 0)
-    echo '<div class="userlist" id="userlist"><span class="testuzuri" id="uzo">cargando...</span></div>';
-*/
-
 echo '<div class="sneaker-legend fondo-caja redondo" onmouseout="tooltip.clear(event);" onmouseover="tooltip.clear(event);">';
 echo '<form action="" class="sneaker-control" id="sneaker-control" name="sneaker-control">';
 echo '<div class="cotillona-caja-larga">';
@@ -590,7 +582,6 @@ echo '<input type="checkbox" checked="checked" name="sneak-encuesta" id="encuest
 /* neiko: */
 echo _('cotillas').  ': <strong><span style="font-size: 120%;" id="ccnt">0</span></strong> ';
 echo '(<strong><span id="ccntu" title="cotillas registrados">0</span></strong>+';
-echo '<strong><span id="ccntj" title="cotillas por jabber">0</span></strong>+';
 echo '<strong><span id="ccnta" title="cotillas anónimos">0</span></strong>)';
 echo '&nbsp;&nbsp;<abbr title="'._('tiempo en milisegundos para procesar cada petición a nuestro pobre microondas').'">ping-pong</abbr>: <strong><span style="font-size: 120%;" id="ping">∞</span></strong>';
 echo '</div>';
@@ -667,8 +658,6 @@ function print_sneak_tabs($option) {
     if ($current_user->user_id > 0 && $current_user->admin) {
     echo '<li'.$active[3].'><a href="'.$globals['base_url'].'cotillona.php?admin=1">'._('admin').'</a></li>' . "\n";
     }
-
-    echo '<li style="margin-left: 10px;"><a href="'.$globals['base_url'].'telnet.php">'._('telnet').'</a></li>' . "\n";
 
     if (isset($_GET['hoygan']) && $_GET['hoygan'] == '1')
       echo '<li><a href="'.$globals['base_url'].'cotillona.php?hoygan=1"><em>'._('cotillhoygan').'</em></a></li>' . "\n";

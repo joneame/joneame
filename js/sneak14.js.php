@@ -1,18 +1,12 @@
 <?php
 include('../config.php');
 include(mnminclude.'sneak.php');
-header('Content-Type: text/javascript; charset=UTF-8');
+header('Content-Type: text/javascript; charset=utf-8');
 header('Cache-Control: max-age=3600');
-
-function creo_que_es_admin() {
-    global $current_user;
-
-    return (($current_user->user_level == 'god') || ($current_user->user_level == 'admin'));
-}
-
 ?>
+'use strict';
 
-
+var ts=<?php echo (time()-3600); ?>; // just due a freaking IE cache problem
 var new_items = 0;
 var max_items = <?php echo $max_items; ?>;
 var data_timer;
@@ -29,30 +23,23 @@ var last_comment_sent=0;
 var comment_period = 1; //seconds
 var ccnt = 0;     // Connected counter
 var ccntu = 0;     // Connected counter
-var ccntj = 0;     // Connected counter
 var ccnta = 0;     // Connected counter
 var ttm = 0;
-var uzo = 0;
 var user_login = '';
 var play = true;
-var is_roster_being_shown = 0;
 
 var recent_nicks = new Array();
-var friend_nicks = new Array();
 
 <?php
 if ($current_user->user_id > 0) {
-    echo "user_login = '$current_user->user_login';\n";
+    echo "var user_login = '$current_user->user_login';\n";
     $friends = $db->get_col("select user_login from users, friends where friend_type='manual' and friend_from = $current_user->user_id and friend_value > 0 and user_id = friend_to");
     if ($friends) {
-        $i = 0;
-        foreach ($friends as $friend) {
-            echo "friend_nicks[$i] = '".mb_strtolower($friend)."';\n";
-            $i++;
-        }
+        echo 'var friend_nicks = ' . mb_strtolower(json_encode($friends)) . ';';
     }
 }
 ?>
+
 var global_options = new Object;
 global_options.show_vote = true;
 global_options.show_problem = true;
@@ -100,13 +87,6 @@ function start_sneak() {
 
         });
 
-    var should_show_roster = readCookie('show_roster');
-    if (should_show_roster == '1') {
-        $('#userlist').toggle();
-        is_roster_being_shown = 1;
-    } else
-        is_roster_being_shown = 0;
-
     do_play();
     return false;
 }
@@ -151,32 +131,34 @@ function received_data(data) {
 
     $('#ping').html(ping_time);
 
-    var new_data = Array();
-    eval (data);
-    $('#ccnt').html(ccnt);
-    $('#ccntu').html(ccntu);
-    $('#ccntj').html(ccntj);
-    $('#ccnta').html(ccnta);
-    $('#ttm').html(ttm);
-    $('#uzo').html(uzo);
-    new_items= new_data.length;
-    if(new_items > 0) {
+    ts = data.ts;
+    $('#ccnt').html(data.ccntu + data.ccnta);
+    $('#ccntu').html(data.ccntu);
+    $('#ccnta').html(data.ccnta);
+    $('#ttm').html(data.ttm);
+    if (typeof data.new_data !== "undefined") {
+        var new_item_keys = Object.keys(data.new_data);
+        new_item_keys.sort();
+        new_items = new_item_keys.length;
+
         if (do_animation) clear_animation();
         next_update = Math.round(0.5*next_update + 0.5*min_update/(new_items*2));
 
         //Remove old items
         $('#items').children().slice(max_items-new_items).remove();
 
-        for (i=new_items-1; i>=0 ; i--) {
-            if (to_html(new_data[i]) != 'undefined') {
-                html = $('<div class="sneaker-item">'+to_html(new_data[i])+'</div>');
+        var i = new_items - 1;
+        new_item_keys.forEach(function(key) {
+            if (to_html(data.new_data[key]) != 'undefined') {
+                html = $('<div class="sneaker-item">'+to_html(data.new_data[key])+'</div>');
                 set_initial_display(html, i);
                 $('#items').prepend(html);
-                if (new_data[i].type == 'chat') {
-                    sneak_add_recent_nicks(new_data[i].who);
+                if (data.new_data[key].type == 'chat') {
+                    sneak_add_recent_nicks(data.new_data[key].who);
                 }
             }
-        }
+            --i;
+        });
         if (do_animation) {
             animation_timer = setInterval('animate_background()', 100);
             animating = true;
@@ -214,12 +196,6 @@ function send_chat(form) {
         return false;
     }
 
-/*
-if( currentTime.getTime() < last_comment_sent + (comment_period*1000)) {
-        alert("Sólo se puede enviar un mensaje cada " + comment_period + " segundos.");
-        return false;
-    }
-*/
     abort_request();
     comment= form.donde.value + form.comment.value;
     last_comment_sent = currentTime.getTime();
@@ -235,10 +211,6 @@ if( currentTime.getTime() < last_comment_sent + (comment_period*1000)) {
 
 function check_command(comment) {
     if (!comment.match(/^!/)) return false;
-    if (comment.match(/^!telnet/)) {
-        window.location = 'telnet.php';
-        return true;
-    }
     if (comment.match(/^!cotillona/)) {
         window.location = 'cotillona.php';
         return true;
@@ -440,12 +412,4 @@ function sneak_autocomplete() {
             $('#comment-input').val(str.replace(/[\w\.\-]+$/, match[0]));
             $('#comment-input')[0].selectionStart = $('#comment-input').val().length;
         }
-}
-
-function toggle_roster() {
-    $('#userlist').toggle(400);
-    if (is_roster_being_shown == 1)
-        createCookie('show_roster', 0);
-    else
-        createCookie('show_roster', 1);
 }

@@ -79,6 +79,6 @@ echo $link->json_votes_info(intval($value));
 
 function error($mess) {
     $dict['error'] = $mess;
-    echo json_encode_single($dict);
+    echo json_encode($dict);
     die;
 }

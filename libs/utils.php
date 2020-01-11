@@ -713,12 +713,6 @@ function stats_increment($type, $all=false) {
     }
 }
 
-// Json basic functions
-
-function json_encode_single($dict) {
-    return json_encode($dict);
-}
-
 // Generic function to get content from an url
 function get_url($url, $referer = false, $max=1024*1024*10) {
     global $globals;
