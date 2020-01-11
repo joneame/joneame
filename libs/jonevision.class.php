@@ -87,7 +87,7 @@ class Jonevision {
             echo '<div class="user-avatar"><img src="'.get_no_avatar_url(80).'"/></div>';
 
         echo '<div class="notita-text">';
-        echo do_jonevision_convert($this->link);
+        echo print($this->link);
         echo '</div>';
         echo '</div>';
 

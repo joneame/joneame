@@ -305,18 +305,12 @@ class HtmlImages {
 
         // Check first in these server using *only* the URL
         $video_servers = array(
-                        // 'video.google.com' => 'check_google_video',
                         'youtube.com' => 'check_youtube',
-                        'yfrog.com' => 'check_yfrog',
-                        // 'metacafe.com' => 'check_metacafe',
-                        // 'vimeo.com' => 'check_vimeo',
-                        // 'zappinternet.com' => 'check_zapp_internet',
-                        // 'dailymotion.com' => 'check_daily_motion',
                 );
         $base_host = preg_replace('/^www\./', '', $this->parsed_url['host']);
         if ($video_servers[$base_host]) {
             if ($this->debug) echo "<!-- Check thumb by URL: $video_servers[$base_host] -->\n";
-            if(call_user_func('$this->' . $video_servers[$base_host])) {
+            if(call_user_func([$this, $video_servers[$base_host]])) {
                 if ($this->debug) echo "<!-- Selected thumb by URL: $video_servers[$base_host] -->\n";
                 $this->selected->video = true;
                 return $this->selected;
@@ -389,14 +383,7 @@ class HtmlImages {
                     && preg_match('/(< *(?:embed|iframe|object|param))[^>]*>|\.flv/i', $this->html)) {
                 if ($this->debug)
                     echo "<!-- Searching for video -->\n";
-                if ($this->check_youtube() ||
-                        $this->check_yfrog() ||
-                        $this->check_google_video() ||
-                        $this->check_metacafe() ||
-                        $this->check_vimeo() ||
-                        $this->check_zapp_internet() ||
-                        $this->check_daily_motion() ||
-                        $this->check_elmundo_video() ) {
+                if ($this->check_youtube()) {
                     $this->selected->video = true;
                     return $this->selected;
                 }
@@ -678,42 +665,6 @@ class HtmlImages {
 
     // VIDEOS
 
-    // Google Video detection
-    function check_google_video() {
-        if (preg_match('/=["\']http:\/\/video\.google\.[a-z]{2,5}\/.+?\?docid=(.+?)&/i', $this->html, $match) &&
-                (preg_match('/video\.google/', $this->parsed_url['host']) || ! $this->check_in_other($match[1]))) {
-            $video_id = $match[1];
-            if ($this->debug)
-                echo "<!-- Detect Google Video, id: $video_id -->\n";
-            if ($video_id) {
-                $url = $this->get_google_thumb($video_id);
-                if($url) {
-                    $img = new BasicThumb($url);
-                    if ($img->get()) {
-                        $img->type = 'local';
-                        $img->candidate = true;
-                        $this->selected = $img;
-                        if ($this->debug)
-                            echo "<!-- Video selected from $img->url -->\n";
-                        return $this->selected;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
-    function get_google_thumb($videoid) {
-        if(($res = get_url("http://video.google.com/videofeed?docid=$videoid"))) {
-            $vrss = $res['content'];
-            if($vrss) {
-                preg_match('/<media:thumbnail url=["\'](.+?)["\']/',$vrss,$thumbnail_array);
-                return $thumbnail_array[1];
-            }
-        }
-        return false;
-    }
-
     // Youtube detection
     function check_youtube() {
         if ((preg_match('/youtube\.com/', $this->parsed_url['host']) && preg_match('/v=([\w_\-]+)/i', $this->url, $match)) ||
@@ -756,187 +707,6 @@ class HtmlImages {
         }
         return $thumbnail;
     }
-
-    // Check yfrog video thumbnail, from http://code.google.com/p/imageshackapi/wiki/YFROGurls
-    function check_yfrog() {
-        $url = false;
-
-        if (preg_match('/yfrog\.com/', $this->parsed_url['host']) ) {
-            $new_url = 'http://yfrog.com/'.basename($this->parsed_url['path']);
-            if  (preg_match('/[zf]$/i', $this->url)) {
-                $url = $new_url . ":frame";
-            } elseif (preg_match('/[jpigbt]$/i', $this->url)) {
-                $url = $new_url . ":medium";
-            }
-            if ($this->debug) echo "<!-- Detect YFrog, url: $url -->\n";
-            if ($url) {
-                $img = new BasicThumb($url);
-                if ($img->get()) {
-                    $img->type = 'local';
-                    $img->candidate = true;
-                    $this->selected = $img;
-                    if ($this->debug) echo "<!-- Thumb selected from $img->url -->\n";
-                    return $this->selected;
-                }
-            }
-        }
-        return false;
-    }
-
-    // Metaface detection
-    function check_metacafe() {
-        if (preg_match('/=["\']http:\/\/www\.metacafe\.com\/fplayer\/(\d+)\//i', $this->html, $match) &&
-                (preg_match('/metacafe\.com/', $this->parsed_url['host']) || ! $this->check_in_other($match[1]))) {
-            $video_id = $match[1];
-            if ($this->debug)
-                echo "<!-- Detect Metacafe, id: $video_id -->\n";
-            if ($video_id) {
-                $url = $this->get_metacafe_thumb($video_id);
-                if($url) {
-                    $img = new BasicThumb($url);
-                    if ($img->get()) {
-                        $img->type = 'local';
-                        $img->candidate = true;
-                        $this->selected = $img;
-                        if ($this->debug)
-                            echo "<!-- Video selected from $img->url -->\n";
-                        return $this->selected;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
-    function get_metacafe_thumb($videoid) {
-        if(($res = get_url("http://www.metacafe.com/api/item/$videoid"))) {
-            $vrss = $res['content'];
-            if($vrss) {
-                preg_match('/<media:thumbnail url=["\'](.+?)["\']/',$vrss,$thumbnail_array);
-                return $thumbnail_array[1];
-            }
-        }
-        return false;
-    }
-
-    // Elmundo.es detection
-    function check_elmundo_video() {
-        if (preg_match('#ArchivoFlash *= *"(http.+?reproductor_video.swf)".+?fotograma=(.+?\.jpg)#is', $this->html, $match) &&
-            ! $this->check_in_other($match[2], 2)) {
-            $server = $match[1];
-            $url = $match[2];
-            if ($this->debug)
-                echo "<!-- Detected El Mundo, fotograma: $url -->\n";
-            if ($url) {
-                $img = new BasicThumb($url, $server);
-                if ($img->get()) {
-                    $img->type = 'local';
-                    $img->candidate = true;
-                    $this->selected = $img;
-                    if ($this->debug)
-                        echo "<!-- Video selected from $img->url -->\n";
-                    return $this->selected;
-                }
-            }
-        }
-        return false;
-    }
-
-    // Vimeo detection
-    function check_vimeo() {
-        if (preg_match('/=["\'](?:\/\/vimeo\.com\/moogaloop\.swf\?clip_id=|\/\/player.vimeo.com\/video\/)(\d+)/i', $this->html, $match) &&
-                (preg_match('/vimeo\.com/', $this->parsed_url['host']) || ! $this->check_in_other($match[1]))) {
-            $video_id = $match[1];
-            if ($this->debug)
-                echo "<!-- Detect Vimeo, id: $video_id -->\n";
-            if ($video_id) {
-                $url = $this->get_vimeo_thumb($video_id);
-                if($url) {
-                    $img = new BasicThumb($url);
-                    if ($img->get()) {
-                        $img->type = 'local';
-                        $img->candidate = true;
-                        $this->selected = $img;
-                        if ($this->debug)
-                            echo "<!-- Video selected from $img->url -->\n";
-                        return $this->selected;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
-    function get_vimeo_thumb($videoid) {
-        if(($res = get_url("http://vimeo.com/api/v2/video/$videoid.xml"))) {
-            $vrss = $res['content'];
-            if($vrss) {
-                preg_match('/<thumbnail_large>(.+)<\/thumbnail_large>/i',$vrss,$thumbnail_array);
-                return $thumbnail_array[1];
-            }
-        }
-        return false;
-    }
-
-    // ZappInternet Video detection
-    function check_zapp_internet() {
-        if (preg_match('#http://zappinternet\.com/v/([^&]+)#i', $this->html, $match) &&
-                (preg_match('/zappinternet\.com/', $this->parsed_url['host']) || ! $this->check_in_other($match[1]))) {
-            $video_id = $match[1];
-            if ($this->debug)
-                echo "<!-- Detect Zapp Internet Video, id: $video_id -->\n";
-            if ($video_id) {
-                $url = $this->get_zapp_internet_thumb($video_id);
-                if($url) {
-                    $img = new BasicThumb($url);
-                    if ($img->get()) {
-                        $img->type = 'local';
-                        $img->candidate = true;
-                        $this->selected = $img;
-                        if ($this->debug)
-                            echo "<!-- Video selected from $img->url -->\n";
-                        return $this->selected;
-                    }
-                }
-            }
-        }
-
-        return false;
-    }
-
-    function get_zapp_internet_thumb($videoid) {
-        return 'http://zappinternet.com/videos/'.substr($videoid, 0, 1).'/frames/'.$videoid.'.jpg';
-    }
-
-    // Daily Motion Video detection
-    function check_daily_motion() {
-        if (preg_match('#=["\']http://www.dailymotion.com/swf/([^&"\']+)#i', $this->html, $match) &&
-                (preg_match('/dailymotion\.com/', $this->parsed_url['host']) || ! $this->check_in_other($match[1]))) {
-            $video_id = $match[1];
-            if ($this->debug)
-                echo "<!-- Detect Daily Motion Video, id: $video_id -->\n";
-            if ($video_id) {
-                $url = $this->get_daily_motion_thumb($video_id);
-                if($url) {
-                    $img = new BasicThumb($url);
-                    if ($img->get()) {
-                        $img->type = 'local';
-                        $img->candidate = true;
-                        $this->selected = $img;
-                        if ($this->debug)
-                            echo "<!-- Video selected from $img->url -->\n";
-                        return $this->selected;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
-    function get_daily_motion_thumb($videoid) {
-        return 'http://www.dailymotion.com/thumbnail/160x120/video/'.$videoid;
-    }
-
 }
 
 function build_full_url($url, $referer) {
