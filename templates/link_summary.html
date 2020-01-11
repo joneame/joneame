@@ -78,8 +78,7 @@
 <span class="comments">
 	<a href="{{ self.permalink }}">
 		<span id="n_comentarios-{{self.id}}">{{self.comentarios}}</span>
-		<span id="t_comentarios-{{self.id}}">{{self.comments_mess}}</span>
-	</a>
+		<span id="t_comentarios-{{self.id}}">{{self.comments_mess}}</span></a>
 </span>
 
 <span class="tool">
@@ -128,11 +127,11 @@
 
 <span class="tool"><strong> {% trans _('categoría') %}:</strong>
   {% if self.status == 'published'  %}
-  	<a href="{{ globals.base_url }}?category={{ self.category }}" title="{% trans _('categoría') %}"> {{self.category_name}}</a>
+  	<a href="{{ globals.base_url }}?category={{ self.category }}" title="{% trans _('categoría') %}"> {{self.category_name}}</a></span>
   {% else %}
-  	<a href="{{ globals.base_url }}jonealas.php?category={{ self.category }}" title="{% trans _('categoría') %}">  {{ self.category_name }} </a>
+  	<a href="{{ globals.base_url }}jonealas.php?category={{ self.category }}" title="{% trans _('categoría') %}">{{ self.category_name }}</a></span>
   {% endif %}
-</span>
+
 
 {% if self.show_tags AND self.tags AND globals.buscador_activado %}
 	{% exec explode "," self.tags as tags_array %}

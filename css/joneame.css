@@ -660,6 +660,11 @@ padding: 0 4px 0 6px;
 border-left-color: #4b7db0;
 }
 
+.news-details .tool:first-child {
+    border-left: 0 none;
+    padding-left: 0;
+}
+
 .news-details .comments {
 padding: 0 4px 0 24px;
 font-weight: bold;
