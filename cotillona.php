@@ -528,7 +528,7 @@ function flipChar(c) {
 
 //]]>
 </script>
-<script src="<?php echo $globals['base_url']; ?>js/sneak14.js.php?1"></script>
+<script src="<?php echo $globals['base_url']; ?>js/sneak14.js.php?2"></script>
 <?php
 
 
