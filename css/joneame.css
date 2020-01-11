@@ -614,6 +614,24 @@ margin: 0;
 padding: 5px 0 5px 25px;
 }
 
+.redondo, .porn, .warn, .form-error-submit, .form-error-submit-perfil,
+.busqueda, .fondo-caja .form-error, .mezuko_aldatuta, .help-topic,
+.mnm-pop, .estado, .tabsub-shakeit, #tooltip-text,
+.ayuda-contenido, .thumbnail, .header.uno ul.secciones li,
+.usuario li a /*, .userlist */ {
+border-radius: 3px;
+}
+
+.semi-redondo, img,
+input, textarea, button, .button,
+.mini-pages span, .mini-pages a,
+.buttonlink, .userlist li,
+.barra-carisma-outer, .barra-encuesta-outer,
+.mejor-comentario, .c-edit, .header-avatar,
+.n-edit, .geo-edit {
+border-radius: 2px;
+}
+
 /* news */
 
 .news-summary {
@@ -629,11 +647,11 @@ padding-right: 5px;
 
 .news-details {
 display: block;
-margin: 4px 0 0 0;
+line-height: 22px;
 padding: 0;
 overflow: hidden;
 white-space: nowrap;
-color: #4b7db0;
+color: #3d668f;
 }
 
 .news-details span {
@@ -683,11 +701,12 @@ font-size: 8.2pt;
 margin: 5px 0 0 0;
 padding: 0;
 overflow: hidden;
-box-shadow: 0 0 5px #AAA;
+box-shadow: 0 0 5px #ccc;
+border-radius: 3px 3px 0 0;
 }
 
 .news-details a:link, .news-details a:visited {
-color: #5a8cbe;
+    color: #3d668f;
 }
 
 .mnm-published a:hover, .mnm-queued a:hover, .mnm-discarded a:hover, .jnm-abuse a:hover {
@@ -701,8 +720,7 @@ font-weight: bold;
 height: 19pt !important;
 text-decoration: none;
 color: white;
-letter-spacing: -2px;
-margin: -3px 0 2px -3px;
+margin: -1px 0 3px;
 }
 
 .mnm-published span, .mnm-queued span, .mnm-discarded span, .jnm-abuse span {
@@ -771,8 +789,6 @@ color: #4b7db0;
 
 .menealo {
 background-color: #fff;
-border-bottom-left-radius: 3px;
-border-bottom-right-radius: 3px;
 }
 
 .menealo a {
@@ -789,8 +805,8 @@ background: url(/img/estructura/general.7.png) repeat-x scroll 0 -225px;
 display: block;
 padding: 3px 0;
 border: 1px solid #4b7db0;
-border-bottom-left-radius: 3px;
-border-bottom-right-radius: 3px;
+border-bottom-left-radius: 0;
+border-bottom-right-radius: 0;
 }
 
 .menealo div {
@@ -799,20 +815,30 @@ border-bottom-right-radius: 3px;
 }
 
 .news-body h1 {
-margin: 0;
+margin: 4px 0 2px;
 padding: 0 5px 0 0;
 font-size: 140%;
-font-weight: bold;
 background: none;
 border: none;
 text-shadow: 0 0 3px #eee;
+line-height: 25px;
+}
+
+.news-body h1 a {
+    color: #3d668f;
+}
+
+.news-body h1 .n-edit {
+    font-size: 12px;
+    text-shadow: none;
+    height: 18px;
+    line-height: 20px;
 }
 
 .news-body p {
 margin: 2px 0 1px 0;
 padding: 0 5px 0 0;
 text-align: justify;
-overflow: hidden;
 }
 
 .news-submitted {
@@ -844,6 +870,14 @@ border: 0 none;
 font-size: 90%;
 margin: 0;
 color: #666;
+}
+
+.news-meta {
+    background-color: #f8f8f8;
+    padding: 5px 10px;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-color: #eee;
 }
 
 /* trackback */
@@ -2241,24 +2275,6 @@ border-bottom-right-radius: 3px;
 text-align: left;
 }
 
-.redondo, .porn, .warn, .form-error-submit, .form-error-submit-perfil,
-.busqueda, .fondo-caja .form-error, .mezuko_aldatuta, .help-topic,
-.mnm-pop, .estado, .tabsub-shakeit, .news-shakeit, #tooltip-text,
-.ayuda-contenido, .thumbnail, .header.uno ul.secciones li,
-.usuario li a /*, .userlist */ {
-border-radius: 3px;
-}
-
-.semi-redondo, img,
-input, textarea, button, .button,
-.mini-pages span, .mini-pages a,
-.buttonlink, .userlist li,
-.barra-carisma-outer, .barra-encuesta-outer,
-.mejor-comentario, .c-edit, .header-avatar,
-.n-edit, .geo-edit {
-border-radius: 2px;
-}
-
 .simpleformat {
 padding: 5px 12px 8px 8px;
 margin-bottom: 5px;
@@ -3210,6 +3226,13 @@ cursor: pointer;
 .topcommentsli,
 .comment-text {
     line-height: 16px;
+}
+
+.news-body p {
+    font-size: 14px;
+    line-height: 21px;
+    color: #333;
+    margin: 5px 0 10px;
 }
 
 .smiley-list {
@@ -4312,4 +4335,5 @@ a .hglass {
     div.header ul.user .user-greeting {
         display: none;
     }
+
 }
