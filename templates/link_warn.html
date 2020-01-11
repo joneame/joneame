@@ -56,7 +56,7 @@
 
 	 <div class="warn"><strong> {% trans _('Aviso automático') %} </strong>:
 
-	{% if self.negative_value == -1 || self.negative_value == -2 %}
+	{% if self.negative_value == -1 OR self.negative_value == -2 %}
 			{% trans _('Esta noticia podría ser <strong>') %} {% exec get_negative_vote self.negative_value %} </strong>
 	{% else %}
 		{% if self.negative_value == -3 %}
