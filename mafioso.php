@@ -185,7 +185,7 @@ function do_profile() {
     // Avatar
     echo '<img class="thumbnail" src="'.get_avatar_url($user->id, $user->avatar, 80).'" width="80" height="80" alt="'.$user->username.'" title="avatar" />';
 
-    echo '<div style="float:left;min-width:65%">';
+    echo '<div>';
     echo '<dl>';
     if(!empty($user->username)) {
         echo '<dt>'._('usuario').':</dt><dd>';
@@ -409,7 +409,7 @@ if (!$globals['cortos_activados']) {
 if ($current_user->user_id > 0 && $user->id ==$current_user->user_id)
     echo '<div style="float: right;">Para enviar un nuevo corto, haz clic <a href="'.$globals['base_url'].'nuevo_corto.php">aquí</a>.</div>';
 
-echo '<div style="float:left;min-width:65%">';
+echo '<div>';
 
 if ($user->id ==$current_user->user_id) {
         $eskaera = $db->get_col("SELECT id FROM cortos WHERE por = '".$user->id."'  ORDER BY id LIMIT $offset,$page_size");
