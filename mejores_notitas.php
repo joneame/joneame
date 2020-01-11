@@ -62,10 +62,10 @@ echo '<br/>';
 do_best_stories();
 do_best_comments();
 
-echo '</div>' . "\n";
+echo '</div>';
 /*** SIDEBAR ****/
 
-echo '<div id="newswrap">'."\n";
+echo '<div id="newswrap">';
 
 echo '<div class="notes">';
 $nota = new Post;
@@ -81,9 +81,9 @@ foreach ($notas as $dbpost) {
 
 echo "</ol>\n";
 
-echo '</div>'."\n";
+echo '</div>';
 do_pages($rows, $page_size);
-echo '</div>'."\n";
+echo '</div>';
 
 do_footer();
 
@@ -91,9 +91,9 @@ function print_period_tabs() { //funcion de la barra
     global $range_values, $range_names, $month, $year;
 
     if(!($current_range = check_integer('range')) || $current_range < 1 || $current_range >= count($range_values)) $current_range = 0;
-    echo '<ul class="tabsub-shakeit">'."\n";
+    echo '<ul class="tabsub-shakeit">';
     if ($month> 0 && $year > 0) {
-        echo '<li class="tabsub-this"><a href="mejores_notitas.php?month='.$month.'&amp;year='.$year.'">' ."$month-$year". '</a></li>'."\n";
+        echo '<li class="tabsub-this"><a href="mejores_notitas.php?month='.$month.'&amp;year='.$year.'">' ."$month-$year". '</a></li>';
         $current_range = -1;
     } elseif(!($current_range = check_integer('range')) || $current_range < 1 || $current_range >= count($range_values)) {
         $current_range = 0;
@@ -105,7 +105,7 @@ function print_period_tabs() { //funcion de la barra
         } else {
             $active = "";
         }
-        echo '<li'.$active.'><a href="mejores_notitas.php?range='.$i.'">' .$range_names[$i]. '</a></li>'."\n";
+        echo '<li'.$active.'><a href="mejores_notitas.php?range='.$i.'">' .$range_names[$i]. '</a></li>';
     }
-    echo '</ul>'."\n";
+    echo '</ul>';
 }

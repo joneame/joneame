@@ -214,7 +214,7 @@
 
 
             /* Info */
-            echo $que. '<img src="'.get_avatar_url($user['id'], -1, 20).'"  alt="'.$user['username'].'"/> <a href="'.get_user_uri($user['username']).'">'. $user['username'].'</a> por <img src="'.get_avatar_url($admin['id'], -1, 20).'"  alt="'.$admin['username'].'"/><a href="'.get_user_uri($admin['username']).'">'. $admin['username'].'</a> a las '.$log->date."\n";
+            echo $que. '<img src="'.get_avatar_url($user['id'], -1, 20).'"  alt="'.$user['username'].'"/> <a href="'.get_user_uri($user['username']).'">'. $user['username'].'</a> por <img src="'.get_avatar_url($admin['id'], -1, 20).'"  alt="'.$admin['username'].'"/><a href="'.get_user_uri($admin['username']).'">'. $admin['username'].'</a> a las '.$log->date;
             if (baneatuta($user['id'])) echo ' (<a href="'.$globals['base_url'].'cotillona.php?unban='.$user['id'].'">Desbanear</a>)';
             echo '<br/><br/>';
         }
@@ -243,14 +243,14 @@ function print_sneak_tabs($option) {
     global $current_user, $dia_peticion;
     $active = array();
     $active[$option] = ' class="current"';
-    echo '<ul class="tabmain">' . "\n";
+    echo '<ul class="tabmain">';
 
-    echo '<li'.$active[1].'><a href="'.$globals['base_url'].'/admin/cotillona.php">'._('completo').'</a></li>' . "\n";
-    echo '<li'.$active[2].'><a href="'.$globals['base_url'].'/admin/cotillona.php?admin=1">'._('sala admin').'</a></li>' . "\n";
-    echo '<li'.$active[3].'><a href="'.$globals['base_url'].'/admin/cotillona.php?log=1">'._('cotibans').'</a></li>' . "\n";
+    echo '<li'.$active[1].'><a href="'.$globals['base_url'].'/admin/cotillona.php">'._('completo').'</a></li>';
+    echo '<li'.$active[2].'><a href="'.$globals['base_url'].'/admin/cotillona.php?admin=1">'._('sala admin').'</a></li>';
+    echo '<li'.$active[3].'><a href="'.$globals['base_url'].'/admin/cotillona.php?log=1">'._('cotibans').'</a></li>';
 
-    if ($_REQUEST['dia']) echo '<li'.$active[4].'><a href="'.$globals['base_url'].'/admin/cotillona.php?logs=1">'._('día ').$dia_peticion.'</a></li>' . "\n";
-    echo '</ul>' . "\n";
+    if ($_REQUEST['dia']) echo '<li'.$active[4].'><a href="'.$globals['base_url'].'/admin/cotillona.php?logs=1">'._('día ').$dia_peticion.'</a></li>';
+    echo '</ul>';
 }
 
 //barra de búsqueda
@@ -263,7 +263,7 @@ function print_search_box() {
 
     $key = md5($globals['user_ip'].$current_user->user_id.$site_key);
 
-    echo '<div style="float:right;">'."\n";
+    echo '<div style="float:right;">';
     echo '<form method="get" action="'.$globals['base_url'].'admin/cotillona.php">';
 
     if ($_REQUEST["dia"])

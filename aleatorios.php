@@ -22,10 +22,10 @@ do_banner_right();
 echo '<br/>';
 do_best_comments();
 do_vertical_tags('published');
-echo '</div>' . "\n";
+echo '</div>';
 /*** END SIDEBAR ***/
 
-echo '<div id="newswrap">'."\n";
+echo '<div id="newswrap">';
 
 $links = $db->get_col("SELECT link_id FROM links WHERE link_status != 'autodiscard' AND link_status != 'discard' AND link_status != 'abuse' ORDER BY RAND() LIMIT $page_size");
 $link = new Link;
@@ -37,9 +37,9 @@ if ($links) {
 
     }
 }
-echo "\n"."\n"."\n";
+echo "\n"."\n";
 echo '<br>';
-echo '</div>'."\n";
+echo '</div>';
 echo '<ul class="barra redondo herramientas" style="margin: 0 0 12px 12px;">';
 echo '<li><a href="aleatorios.php" class="icon reload">¿Quieres todavía más? ¡Haz clic aquí!</a></li>';
 echo '</ul><br/>';

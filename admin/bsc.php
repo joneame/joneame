@@ -29,7 +29,7 @@ if ((!$current_user->admin || $current_user->user_id == 0)) {
 
     admin_tabs();
 
-    echo '<div id="singlewrap">' . "\n";
+    echo '<div id="singlewrap">';
 
     mostrar_logs();
     echo '</table>';
@@ -43,23 +43,23 @@ if ((!$current_user->admin || $current_user->user_id == 0)) {
     function admin_tabs() {
         global $globals;
         $active = ' class="current"';
-        echo '<ul class="tabmain">' . "\n";
+        echo '<ul class="tabmain">';
 
     $tabs=array("hostname", "punished_hostname", "email", /*"ip", "words",*/ "proxy");
 
     foreach($tabs as $tab) {
 
             if ($tab == 'proxy') { //pone IP en el texto en vez de proxy
-                echo '<li><a href="'.$globals['base_url'].'admin/bans.php?admin='.$tab.'">'._('IP').'</a></li>' . "\n";
+                echo '<li><a href="'.$globals['base_url'].'admin/bans.php?admin='.$tab.'">'._('IP').'</a></li>';
             } else {
-                echo '<li> <a href="'.$globals['base_url'].'admin/bans.php?admin='.$tab.'">'._($tab).'</a></li>' . "\n";
+                echo '<li> <a href="'.$globals['base_url'].'admin/bans.php?admin='.$tab.'">'._($tab).'</a></li>';
             }
     }
 
 
-        echo '<li class="current"><a  href="'.$globals['base_url'].'admin/bsc.php"><b>'._('BSC').'</b></a></li>' . "\n";
+        echo '<li class="current"><a  href="'.$globals['base_url'].'admin/bsc.php"><b>'._('BSC').'</b></a></li>';
 
-        echo '</ul>' . "\n";
+        echo '</ul>';
     }
 
 
@@ -75,7 +75,7 @@ if ((!$current_user->admin || $current_user->user_id == 0)) {
         //nuestro propio menu para BSC
             echo '<div class="genericform" style="margin:0">';
 
-            echo '<div style="float:right;">'."\n";
+            echo '<div style="float:right;">';
 
             echo '</div>';
             echo '<table style="font-size: 10pt">';

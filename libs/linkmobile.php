@@ -84,7 +84,7 @@ class LinkMobile extends Link{
             echo ' <span class="tool">carisma: <span id="a-karma-'.$this->id.'">'.intval($this->karma).'</span></span>';
         }
 
-            echo '</div>'."\n";
+            echo '</div>';
             // End news details
 
         if ($globals['link']) {
@@ -92,11 +92,11 @@ class LinkMobile extends Link{
             echo '<strong>'._('sensuras').'</strong>: '.$this->negatives.'&nbsp;&nbsp;';
             echo '<strong>'._('mafiosos').'</strong>: '.$this->votes.'&nbsp;&nbsp;';
             echo '<strong>'._('anónimos').'</strong>: '.$this->anonymous.'&nbsp;&nbsp;';
-            echo '</div>' . "\n";
+            echo '</div>';
         }
 
-        echo '</div>'."\n";
-        echo '</div>'."\n";
+        echo '</div>';
+        echo '</div>';
 
     }
 
@@ -132,8 +132,8 @@ class LinkMobile extends Link{
             else $mess = ':-(';
             echo '<span id="a-shake-'.$this->id.'">'.$mess.'</span>';
         }
-        echo '</div>'."\n";
-        echo '</div>'."\n";
+        echo '</div>';
+        echo '</div>';
     }
 
 
@@ -174,9 +174,9 @@ echo '<a href="javascript:menealo('."$current_user->user_id,$this->id".')" id="a
                 else $mess = ':-(';
                 echo '<span id="a-shake-'.$this->id.'">'.$mess.'</span>';
             }
-            echo '</div>'."\n";
+            echo '</div>';
 
-        echo '</div>'."\n";
+        echo '</div>';
     }
 
     function print_warn() {

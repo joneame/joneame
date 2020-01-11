@@ -356,7 +356,7 @@ class Post {
 
    function print_edit_form() {
         global $globals, $current_user;
-        echo '<div class="commentform" id="edit-form">'."\n";
+        echo '<div class="commentform" id="edit-form">';
         echo '<fieldset class="fondo-caja redondo clearleft"><legend class="sign mini barra redondo">';
 
         if ($this->id == 0) {
@@ -371,27 +371,27 @@ class Post {
         } else  echo _('editar notita');
 
         echo '</legend>';
-        echo '<form action="'.$globals['base_url'].'backend/post_edit.php?user='.$current_user->user_id.'" method="post" id="thisform'.$randform.'" name="thisform'.$randform.'">'."\n";
-        echo '<input type="hidden" name="key" value="'.$this->randkey.'" />'."\n";
-        echo '<input type="hidden" name="post_id" value="'.$this->id.'" />'."\n";
-        echo '<input type="hidden" name="user_id" value="'.$this->author.'" />'."\n";
-        echo '<textarea name="post" rows="6" cols="40" id="post" onKeyDown="textCounter(document.thisform'.$randform.'.post,document.thisform'.$randform.'.postcounter,'.$globals['longitud_notitas'].')" onKeyUp="textCounter(document.thisform'.$this->id.'.post,document.thisform'.$randform.'.postcounter,'.$globals['longitud_notitas'].')">'.$this->content.'</textarea>'."\n";
+        echo '<form action="'.$globals['base_url'].'backend/post_edit.php?user='.$current_user->user_id.'" method="post" id="thisform'.$randform.'" name="thisform'.$randform.'">';
+        echo '<input type="hidden" name="key" value="'.$this->randkey.'" />';
+        echo '<input type="hidden" name="post_id" value="'.$this->id.'" />';
+        echo '<input type="hidden" name="user_id" value="'.$this->author.'" />';
+        echo '<textarea name="post" rows="6" cols="40" id="post" onKeyDown="textCounter(document.thisform'.$randform.'.post,document.thisform'.$randform.'.postcounter,'.$globals['longitud_notitas'].')" onKeyUp="textCounter(document.thisform'.$this->id.'.post,document.thisform'.$randform.'.postcounter,'.$globals['longitud_notitas'].')">'.$this->content.'</textarea>';
         $body_left = $globals['longitud_notitas'] - mb_strlen(html_entity_decode($this->content, ENT_COMPAT, 'UTF-8'), 'UTF-8');
         echo '<input readonly type="text" name="postcounter" size="3" maxlength="3" value="'. $body_left . '" /> <span class="note">' . _('caracteres libres') . '</span>';
 
     print_simpleformat_buttons('post');
         echo '&nbsp;&nbsp;&nbsp;';
 
-        echo '<input class="button" type="submit" value="'._('enviar').'" />'."\n";
+        echo '<input class="button" type="submit" value="'._('enviar').'" />';
 
     if ($this->tipo =='admin') $checked= 'checked="checked"';
-    if ($current_user->admin ) echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="type" type="checkbox"'.$checked.'value="admin" id="notita-admin"/>&nbsp;<label for="type">'._('notita admin').'</strong></label>'."\n";
+    if ($current_user->admin ) echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="type" type="checkbox"'.$checked.'value="admin" id="notita-admin"/>&nbsp;<label for="type">'._('notita admin').'</strong></label>';
 
-        echo '</form>'."\n";
-        echo '</fieldset>'."\n";
-        echo '</div><br/>'."\n";
+        echo '</form>';
+        echo '</fieldset>';
+        echo '</div><br/>';
 
-        echo'<script>'."\n";
+        echo'<script>';
 
         // prepare Options Object
         if ($this->id == 0) {
@@ -408,9 +408,9 @@ class Post {
         }
 
         // wait for the DOM to be loaded
-        echo'$(\'#thisform'.$randform.'\').ajaxForm(options);' ."\n";
+        echo'$(\'#thisform'.$randform.'\').ajaxForm(options);' ;
 
-        echo '</script>'."\n";
+        echo '</script>';
     }
 
 
@@ -429,8 +429,8 @@ class Post {
             }
 
             echo '</ul><br/><br/><br/>';
-            echo '</div>'."\n";
-            echo '<ol class="notitas-list" id="newpost"></ol>'."\n";
+            echo '</div>';
+            echo '<ol class="notitas-list" id="newpost"></ol>';
         }
     }
 

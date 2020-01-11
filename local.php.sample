@@ -56,3 +56,6 @@ $globals['oauth']['twitter']['consumer_key'] = '';
 $globals['oauth']['twitter']['consumer_secret'] = '';
 $globals['oauth']['twitter']['oauth_token'] = '';
 $globals['oauth']['twitter']['oauth_token_secret'] = '';
+
+// código de analytics
+$globals['analytics_code'] = '';

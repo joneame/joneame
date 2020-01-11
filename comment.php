@@ -56,10 +56,10 @@ echo '<div id="sidebar">';
 do_banner_right();
 //do_best_stories();
 //do_best_comments();
-echo '</div>' . "\n";
+echo '</div>';
 /*** END SIDEBAR ***/
 
-echo '<div id="newswrap">'."\n";
+echo '<div id="newswrap">';
 
 echo '<h1><a href="'.$link->get_permalink().'" class="titular">'. $link->title. '</a></h1>';
 
@@ -74,7 +74,7 @@ $sql = "SELECT conversation_from as comment_id FROM conversations, comments WHER
 $answers = $db->get_results($sql);
 if ($answers) {
 
-    echo '<div style="padding-left: 40px; padding-top: 10px">'."\n";
+    echo '<div style="padding-left: 40px; padding-top: 10px">';
     echo '<ol class="comments-list">';
     foreach ($answers as $dbanswer) {
         $answer = Comment::from_db($dbanswer->comment_id);
@@ -83,21 +83,21 @@ if ($answers) {
         echo '</li>';
     }
     echo "</ol>\n";
-    echo '</div>'."\n";
+    echo '</div>';
 }
 
 if($link->comentarios_permitidos == 0) {
 
-        echo '<h4 class="redondo">'."\n";
-        echo _('comentarios cerrados temporalmente')."\n";
-        echo '</h4>'."\n";
+        echo '<h4 class="redondo">';
+        echo _('comentarios cerrados temporalmente');
+        echo '</h4>';
 
 } else if ($current_user->authenticated) {
         print_comment_form();
 } else {
-        echo '<div class="barra redondo">'."\n";
-        echo '<a href="'.$globals['base_url'].'login.php?return='.$_SERVER['REQUEST_URI'].'">'._('Entra con tu cuenta de usuario').'</a> '._('si deseas escribir comentarios').'. '._('O crea tu cuenta haciendo clic'). ' <a href="'.$globals['base_url'].'register.php">aquí</a>'."\n";
-        echo '</div>'."\n";
+        echo '<div class="barra redondo">';
+        echo '<a href="'.$globals['base_url'].'login.php?return='.$_SERVER['REQUEST_URI'].'">'._('Entra con tu cuenta de usuario').'</a> '._('si deseas escribir comentarios').'. '._('O crea tu cuenta haciendo clic'). ' <a href="'.$globals['base_url'].'register.php">aquí</a>';
+        echo '</div>';
 }
 
 echo '</div>';
@@ -109,29 +109,29 @@ function print_comment_form() {
 
     if (!$link->sent) return;
 
-    echo '<div class="commentform">'."\n";
-    echo '<form action="" method="post">'."\n";
-    echo '<h4>'._('escribe un comentario').'</h4><fieldset class="fondo-caja">'."\n";
-    echo '<div>'."\n";
+    echo '<div class="commentform">';
+    echo '<form action="" method="post">';
+    echo '<h4>'._('escribe un comentario').'</h4><fieldset class="fondo-caja">';
+    echo '<div>';
     print_simpleformat_buttons('comment');
-    echo '<div style="margin-top: 10px;"><textarea name="comment_content" id="comment" cols="75" rows="12"></textarea></div>'."\n";
-    echo '<input class="button" type="submit" name="submit" value="'._('enviar comentario').'" />'."\n";
+    echo '<div style="margin-top: 10px;"><textarea name="comment_content" id="comment" cols="75" rows="12"></textarea></div>';
+    echo '<input class="button" type="submit" name="submit" value="'._('enviar comentario').'" />';
 
     // Allow gods to put "admin" comments which does not allow votes
     if ($current_user->admin ) {
 
-     echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="type" type="checkbox" value="admin" id="comentario-admin"/>&nbsp;<label for="type">'._('comentario admin').'</strong></label>'."\n";
-     echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="especial" type="checkbox" value="1" id="comentario-especial"/>&nbsp;<label for="type">'._('no mostrar mi nick').'</strong></label>'."\n";
+     echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="type" type="checkbox" value="admin" id="comentario-admin"/>&nbsp;<label for="type">'._('comentario admin').'</strong></label>';
+     echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="especial" type="checkbox" value="1" id="comentario-especial"/>&nbsp;<label for="type">'._('no mostrar mi nick').'</strong></label>';
 
     }
 
 
-    echo '<input type="hidden" name="process" value="newcomment" />'."\n";
-    echo '<input type="hidden" name="randkey" value="'.rand(1000000,100000000).'" />'."\n";
-    echo '<input type="hidden" name="link_id" value="'.$link->id.'" />'."\n";
-    echo '<input type="hidden" name="user_id" value="'.$current_user->user_id.'" />'."\n";
-    echo '</fieldset>'."\n";
-    echo '</form>'."\n";
+    echo '<input type="hidden" name="process" value="newcomment" />';
+    echo '<input type="hidden" name="randkey" value="'.rand(1000000,100000000).'" />';
+    echo '<input type="hidden" name="link_id" value="'.$link->id.'" />';
+    echo '<input type="hidden" name="user_id" value="'.$current_user->user_id.'" />';
+    echo '</fieldset>';
+    echo '</form>';
     echo "</div>\n";
 
 }

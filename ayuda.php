@@ -55,7 +55,7 @@ do_footer();
 function ayuda_tabs($tab_selected = false) {
     global $globals;
     $active = ' class="current"';
-    echo '<ul class="tabhoriz">' . "\n";
+    echo '<ul class="tabhoriz">';
 
     if (!empty($_SERVER['QUERY_STRING']))
         $query = "?".htmlentities($_SERVER['QUERY_STRING']);
@@ -74,10 +74,10 @@ function ayuda_tabs($tab_selected = false) {
 
     foreach ($tabs as $name => $tab) {
         if ($tab_selected == $tab) {
-            echo '<li'.$active.'><a href="'.$globals['base_url'].'ayuda.php?id='.$tab.'" title="'.$reload_text.'">'._($name).'</a></li>' . "\n";
+            echo '<li'.$active.'><a href="'.$globals['base_url'].'ayuda.php?id='.$tab.'" title="'.$reload_text.'">'._($name).'</a></li>';
         } else {
-            echo '<li><a href="'.$globals['base_url'].'ayuda.php?id='.$tab.'">'._($name).'</a></li>' . "\n";
+            echo '<li><a href="'.$globals['base_url'].'ayuda.php?id='.$tab.'">'._($name).'</a></li>';
         }
     }
-    echo '</ul>' . "\n";
+    echo '</ul>';
 }

@@ -51,10 +51,10 @@ do_banner_right();
 if ($globals['mostrar_caja_publicadas']) do_best_stories();
 do_best_comments();
 do_vertical_tags('published');
-echo '</div>' . "\n";
+echo '</div>';
 /*** END SIDEBAR ***/
 
-echo '<div id="newswrap">'."\n";
+echo '<div id="newswrap">';
 
 $links = $db->get_results($sql);
 
@@ -66,7 +66,7 @@ if ($links) {
     }
 }
 do_pages($rows, $page_size);
-echo '</div>'."\n";
+echo '</div>';
 
 do_footer();
 
@@ -74,14 +74,14 @@ function print_period_tabs() {
     global $range_values, $range_names;
 
     if(!($current_range = check_integer('range')) || $current_range < 1 || $current_range >= count($range_values)) $current_range = 0;
-    echo '<ul class="tabsub-shakeit">'."\n";
+    echo '<ul class="tabsub-shakeit">';
     for($i=0; $i<count($range_values) /*&& $range_values[$i] < 40 */; $i++) {
         if($i == $current_range)  {
             $active = ' class="tabsub-this"';
         } else {
             $active = "";
         }
-        echo '<li'.$active.'><a href="mas_visitadas.php?range='.$i.'">' .$range_names[$i]. '</a></li>'."\n";
+        echo '<li'.$active.'><a href="mas_visitadas.php?range='.$i.'">' .$range_names[$i]. '</a></li>';
     }
-    echo '</ul>'."\n";
+    echo '</ul>';
 }

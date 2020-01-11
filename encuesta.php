@@ -38,7 +38,7 @@ do_header(_('Encuesta: '.htmlspecialchars(text_to_summary($encuesta->titulo)).' 
 echo '<div id="sidebar">';
 do_last_questions ();
 encuestas_mas_votadas();
-echo '</div>' . "\n";
+echo '</div>';
 
 echo '<div id="newswrap"><div class="notes">';
 
@@ -77,9 +77,9 @@ if ( $current_user->user_id > 0 ){
     print_comment_form();
 
 } else {
-        echo '<div class="barra redondo">'."\n";
-        echo '<a href="'.$globals['base_url'].'login.php?return='.$_SERVER['REQUEST_URI'].'">'._('Entra con tu cuenta de usuario').'</a> '._('si deseas escribir tu opinión a esta encuesta').'. '._('O crea tu cuenta haciendo clic'). ' <a href="'.$globals['base_url'].'register.php">aquí</a>'."\n";
-        echo '</div>'."\n";
+        echo '<div class="barra redondo">';
+        echo '<a href="'.$globals['base_url'].'login.php?return='.$_SERVER['REQUEST_URI'].'">'._('Entra con tu cuenta de usuario').'</a> '._('si deseas escribir tu opinión a esta encuesta').'. '._('O crea tu cuenta haciendo clic'). ' <a href="'.$globals['base_url'].'register.php">aquí</a>';
+        echo '</div>';
 }
 
 
@@ -90,24 +90,24 @@ do_footer();
 function print_comment_form() {
     global $encuesta, $current_user, $globals;
 
-    echo '<div class="commentform">'."\n";
-    echo '<form action="" method="post">'."\n";
-    echo '<h4>'._('escribe un comentario').'</h4><fieldset class="fondo-caja">'."\n";
-    echo '<div style="float: right;">'."\n";
+    echo '<div class="commentform">';
+    echo '<form action="" method="post">';
+    echo '<h4>'._('escribe un comentario').'</h4><fieldset class="fondo-caja">';
+    echo '<div style="float: right;">';
     print_simpleformat_buttons('poll_content');
-    echo '</div>'."\n";
-    echo '<div style="margin-top: 10px;"><textarea name="poll_content" id="poll_content" cols="75" rows="12"></textarea></div>'."\n";
-    echo '<input type="button" class="button" name="submit" id="submit_com" value="'._('enviar comentario').'" onClick="submit_comment();"/>'."\n";
+    echo '</div>';
+    echo '<div style="margin-top: 10px;"><textarea name="poll_content" id="poll_content" cols="75" rows="12"></textarea></div>';
+    echo '<input type="button" class="button" name="submit" id="submit_com" value="'._('enviar comentario').'" onClick="submit_comment();"/>';
 
     echo '<img id="spinner" class="blank" src="'.$globals['base_url'].'img/estructura/pixel.gif" width="16" height="16"/>';
 
     echo '<br/><span id="error_com"></span>';
 
-    echo '<input type="hidden" id="process" name="process" value="newcomment" />'."\n";
-    echo '<input type="hidden" id="poll_id" name="poll_id" value="'.$encuesta->id.'" />'."\n";
-    echo '<input type="hidden" id="user_id" name="user_id" value="'.$current_user->user_id.'" />'."\n";
-    echo '</fieldset>'."\n";
-    echo '</form>'."\n";
+    echo '<input type="hidden" id="process" name="process" value="newcomment" />';
+    echo '<input type="hidden" id="poll_id" name="poll_id" value="'.$encuesta->id.'" />';
+    echo '<input type="hidden" id="user_id" name="user_id" value="'.$current_user->user_id.'" />';
+    echo '</fieldset>';
+    echo '</form>';
     echo "</div>\n";
 
 }

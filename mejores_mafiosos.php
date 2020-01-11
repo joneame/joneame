@@ -61,7 +61,7 @@ switch ($sortby) {
 
 do_header(_('mafiosos') . ' | Jonéame');
 
-echo '<div id="singlewrap">' . "\n";
+echo '<div id="singlewrap">';
 echo '<div class="topheading"><h2>'._('La mafia se ordena así').'</h2></div>';
 
 echo '<table><tr>';

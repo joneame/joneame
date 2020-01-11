@@ -31,11 +31,11 @@ function show_options() {
     echo '<input type="hidden" id="process-'.$encuesta->id.'" name="process-'.$encuesta->id.'" value="save_settings">';
     echo '<input type="hidden" id="cuenta'.$encuesta->id.'" name="cuenta" value="'. $encuesta->opciones['count'].'">';
 
-    echo '<label>Titulo</label><br><input type="text" name="titulo" id="titulo" size="100" value="'.$encuesta->titulo.'" /><br/>'."\n";
-    echo '<label>Descripción</label><br><input type="text" name="descripcion" id="descripcion" size="100" value="'.$encuesta->contenido.'" />'."\n";
+    echo '<label>Titulo</label><br><input type="text" name="titulo" id="titulo" size="100" value="'.$encuesta->titulo.'" /><br/>';
+    echo '<label>Descripción</label><br><input type="text" name="descripcion" id="descripcion" size="100" value="'.$encuesta->contenido.'" />';
     echo '<br/>';
 
-    echo '<label>Opciones</label><br>'."\n";
+    echo '<label>Opciones</label><br>';
     $cantidad = 0;
     for ($i=0; $i < $encuesta->opciones['count'];$i++) {
 

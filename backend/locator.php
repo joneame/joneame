@@ -12,7 +12,7 @@ $ip = addslashes($ip);
 header('Content-Type: text/html; charset=latin1');
 //echo '<html xml:lang="es" lang="es">';
 
-echo "\n".'<script>$("#modalTitle").html("** Localizador IP Jonéame **")</script>'."\n";
+echo "\n".'<script>$("#modalTitle").html("** Localizador IP Jonéame **")</script>';
 
 /* Get all IP Info */
 $info = geoip_record_by_name($ip);

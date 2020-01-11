@@ -165,129 +165,11 @@ function do_js_from_array($array) {
 function do_footer($credits = true) {
     global $globals, $db, $current_user;
 
-    echo '</div>';
-
-    echo '<div id="footwrap">'."";
-
-    echo '<div class="footthingy">';
-
-    echo '<div id="footcol1">'."";
-
-    do_rss();
-
-    echo '</div>'."";
-
-    echo '<div id="footcol2">'."";
-    echo '<h5>ayuda</h5>'."";
-    echo '<ul id="halluda_hoygan">'."";
-    echo '<li><a href="'.$globals['base_url'].'ayuda.php">'._('ayuda').'</a></li>'."";
-    echo '<li><a href="'.$globals['base_url'].'ayuda.php?id=faq">'._('faq').'</a></li>'."";
-    echo '</ul>'."";
-    echo '</div>'."";
-
-    echo '<div id="footcol3">'."";
-    echo '<h5>jonéame</h5>'."";
-    echo '<ul id="joneamefooter">'."";
-    echo '<li><a href="https://twitter.com/joneame">en twitter</a></li>'."";
-    echo '<li><a href="'.$globals['base_url'].'cortos.php">cortos</a></li>'."";
-    echo '<li><a href="'.$globals['base_url'].'top_mierdas.php">¿historias?</a></li>'."";
-    echo '<li><a href="'.$globals['base_url'].'encuestas.php">encuestas</a></li>'."";
-    echo '</ul>'."";
-    echo '</div>'."";
-
-
-    echo '<div id="footcol4">'."";
-    echo '<h5>estadísticas</h5>'."";
-    echo '<ul id="statisticslist">'."";
-    echo '<li><a href="'.$globals['base_url'].'mejores_mafiosos.php">'._('mafiosos').'</a></li>'."";
-    echo '<li><a href="'.$globals['base_url'].'las_mejores.php">'._('populares').'</a></li>'."";
-    echo '<li><a href="'.$globals['base_url'].'mas_comentadas.php">'._('más comentadas').'</a></li>'."";
-    echo '<li><a href="'.$globals['base_url'].'mejores_comentarios.php">'._('mejores comentarios').'</a></li>'."";
-    echo '<li><a href="'.$globals['base_url'].'mejores_notitas.php">'._('mejores notitas').'</a></li>'."";
-    echo '<li><a href="'.$globals['base_url'].'nube.php">'._('nube de etiquetas').'</a></li>'."";
-    echo '<li><a href="'.$globals['base_url'].'nube_de_webs.php">'._('nube de webs').'</a></li>'."";
-
-    echo '</ul>'."";
-    echo '</div>'."";
-
-    echo '</div>'; // footthingy --neiKo
-
-    echo '<div id="gatete"></div>';
-
-    // El banner ira aqui.
-    // do_banner_behean();
-
-    if($credits) do_credits();
-    do_js_from_array($globals['post_js']);
-
-    echo '</div></div>';
-
-    // warn warn warn
-    // dont do stats of password recovering pages
-    if (isset($globals['joneame']) && $globals['joneame'] && isset($globals['recovery']) && !$globals['recovery'] ) {
-
-        if ($current_user->user_id > 0) $tipovisita = 'Registrado';
-        else                $tipovisita = 'Anonimo';
-
-        $analytics = "
-            <script>
-
-            var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', 'UA-6807553-1']);
-            _gaq.push(['_setCustomVar', 1, 'TipoVisita', '$tipovisita']);
-            _gaq.push(['_trackPageview']);
-
-            (function() {
-              var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-              ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-              var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-            })();
-
-            </script>";
-
-        $analytics = str_replace(array("\n", "\r", "\t", "  "), ' ', $analytics);
-
-        echo $analytics;
-    }
+    $vars = compact('credits');
+    Haanga::Load('footer.html', $vars);
 
     $gen_time = microtime(true) - $globals['start_time'];
-
     printf("\n<!-- Generado en %.3f segundos con %d peticiones -->", $gen_time, $db->num_queries);
-
-    echo "</body></html>";
-}
-
-function do_rss() {
-    global $globals, $current_user;
-
-    echo '<h5>'._('suscripciones por RSS').'</h5>'."";
-    echo '<ul>'."";
-
-    echo '<li>';
-    echo '<a href="'.$globals['base_url'].'rss2.php">'._('publicadas').'</a>';
-    echo '</li>';
-
-    echo '<li>';
-    echo '<a href="'.$globals['base_url'].'rss2.php?status=queued">'._('en cola').'</a>';
-    echo '</li>';
-
-    if($current_user->user_id > 0) {
-        echo '<li>';
-        echo '<a href="'.$globals['base_url'].'comments_rss2.php?conversation_id='.$current_user->user_id.'" title="'._('comentarios de las noticias donde has comentado').'">'._('mis conversaciones').'</a>';
-        echo '</li>';
-        echo '<li>';
-        echo '<a href="'.$globals['base_url'].'comments_rss2.php?author_id='.$current_user->user_id.'">'._('comentarios en mis historias').'</a>';
-        echo '</li>';
-    }
-
-    echo '<li>';
-    echo '<a href="'.$globals['base_url'].'comments_rss2.php">'._('comentarios').'</a>';
-    echo '</li>';
-
-    echo '<li>';
-    echo '<a href="'.$globals['base_url'].'encuestas_rss.php">'._('encuestas').'</a>';
-    echo '</li>';
-    echo '</ul>';
 }
 
 function do_rss_box() {
@@ -376,7 +258,7 @@ function do_pages($total, $page_size=25, $margin = true, $mini = false) {
     $total_pages=ceil($total/$page_size);
     $start=max($current-intval($index_limit/2), 1);
     $end=$start+$index_limit-1;
-    echo "\n".'<!--html1:do_pages_start-->';
+    echo '<!--html1:do_pages_start-->';
 
     if ($margin) {
         echo '<div class="pages-margin">';
@@ -522,38 +404,6 @@ function do_banner_right() { // side banner A
     global $globals;
 
     if (isset($globals['mobile']) && $globals['mobile']) return;
-}
-
-function do_credits() {
-    global  $globals;
-
-    echo '<div class="footlegal">';
-    echo '<ul id="legalese">';
-
-    // IMPORTANT: links change in every installation, CHANGE IT!!
-    // contact info
-    if ($globals['joneame']) {
-        echo '<li>Jonéame</li>';
-        echo '<li> - </li>';
-        echo '<li><a href="'.$globals['base_url'].'ayuda.php?id=legal">'._('condiciones legales').'</a> ';
-        echo '<a href="'.$globals['base_url'].'ayuda.php?id=uso">'._('y de uso').'</a></li>';
-        echo '<li> - </li>';
-        echo '<li><a href="https://raw.githubusercontent.com/joneame/joneame/master/COPYING">'._('licencia').'</a>, <a href="https://github.com/joneame/joneame">'._('código fuente').'</a></li>';
-        echo '<li> - </li>';
-        echo '<li><a href="http://www.famfamfam.com/lab/icons/silk/">'._('iconos silk').'</a></li>';
-        echo '<li> - </li>';
-                echo '<li><a href="'.$globals['base_url'].'ayuda.php?id=legal">'.('contacto').'</a></li>';
-        echo '<li> - </li>';
-                echo '<li><a href="'.$globals['base_url'].'credits.php">'.('créditos').'</a></li>';
-    } else {
-        echo '<li>link to code and licenses here (please respect the menéame Affero license and publish your own code!)</li>';
-        echo '<li><a href="">contact here</a></li>';
-        echo '<li>code: <a href="#">Affero license here</a>, <a href="#">download code here</a></li>';
-        echo '<li>you and contact link here</li>';
-    }
-    echo '</ul>';
-    echo '</div>';
-
 }
 
 function do_posts_tabs($tab_selected, $username) {

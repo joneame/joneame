@@ -102,11 +102,11 @@ do_categories_new ('shakeit', $cat);
 if ($globals['mostrar_caja_pendientes']) do_best_queued();
 do_best_comments();
 do_vertical_tags('queued');
-echo '</div>' . "\n";
+echo '</div>';
 
 /*** END SIDEBAR ***/
 
-echo '<div id="newswrap">'."\n";
+echo '<div id="newswrap">';
 
 if ($cat) $from_where .= " AND link_category=$cat ";
 
@@ -127,7 +127,7 @@ if ($links) {
 }
 
 do_pages($rows, $page_size);
-echo '</div>'."\n";
+echo '</div>';
 
 do_footer();
 
@@ -151,18 +151,18 @@ if ($metas) {
     }
 }
 
-echo '<li '.$active[3].'><a href="'.$globals['base_url'].'jonealas.php?meta=_populares" class="icon popular">'._('populares'). '</a>'.$toggle_active[3].'</li>'."\n";
+echo '<li '.$active[3].'><a href="'.$globals['base_url'].'jonealas.php?meta=_populares" class="icon popular">'._('populares'). '</a>'.$toggle_active[3].'</li>';
 
 if ($current_user->user_id > 0) {
-    echo '<li '.$active[2].'><a href="'.$globals['base_url'].'jonealas.php?meta=_amigos" class="icon heart">'._('amigos'). '</a>'.$toggle_active[2].'</li>'."\n";
+    echo '<li '.$active[2].'><a href="'.$globals['base_url'].'jonealas.php?meta=_amigos" class="icon heart">'._('amigos'). '</a>'.$toggle_active[2].'</li>';
 }
 
 if (!$globals['bot']) {
-    echo '<li '.$active[5].'><a href="'.$globals['base_url'].'jonealas.php?meta=_descartadas" class="icon trash">'._('descartadas'). '</a>'.$toggle_active[5].'</li>'."\n";
+    echo '<li '.$active[5].'><a href="'.$globals['base_url'].'jonealas.php?meta=_descartadas" class="icon trash">'._('descartadas'). '</a>'.$toggle_active[5].'</li>';
 }
 
 if ($current_user->user_id > 0 && $current_user->user_level == 'god') {
-    echo '<li '.$active[6].'><a href="'.$globals['base_url'].'jonealas.php?meta=_enviandose" class="icon story-queueing">'._('noticias que están siendo enviadas'). '</a>'.$toggle_active[5].'</li>'."\n";
+    echo '<li '.$active[6].'><a href="'.$globals['base_url'].'jonealas.php?meta=_enviandose" class="icon story-queueing">'._('noticias que están siendo enviadas'). '</a>'.$toggle_active[5].'</li>';
 }
 
 if ($cat) $cat_rss = '&amp;category='.$cat;
@@ -184,6 +184,6 @@ switch ($option) {
 }
 
 echo '<div style="clear: both;"></div>';
-echo '</ul>'."\n";
+echo '</ul>';
 
 }

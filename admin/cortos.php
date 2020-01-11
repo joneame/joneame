@@ -31,7 +31,7 @@ if (!$_REQUEST['admin']) $_REQUEST['admin'] = "pendientes";
 if (($current_user->user_level=="god" && $current_user->user_id > 0)) {
     do_header(_('Administración de cortos'));
     admin_tabs($_REQUEST["admin"]);
-    echo '<div id="singlewrap">' . "\n";
+    echo '<div id="singlewrap">';
     cargacortos($_REQUEST["admin"]);
     do_pages($rows, $page_size, false);
 
@@ -48,20 +48,20 @@ do_footer();
 function admin_tabs($tab_selected = false) {
     global $globals;
     $active = ' class="current"';
-    echo '<ul class="tabmain">' . "\n";
+    echo '<ul class="tabmain">';
 
     $tabs=array('pendientes', 'aceptadas', 'configuracion');
 
     foreach($tabs as $tab) {
         if ($tab_selected == $tab) {
-            echo '<li'.$active.'><a href="'.$globals['base_url'].'admin/cortos.php?admin='.$tab.'" title="'.$reload_text.'"><b>'._($tab).'</b></a></li>' . "\n";
+            echo '<li'.$active.'><a href="'.$globals['base_url'].'admin/cortos.php?admin='.$tab.'" title="'.$reload_text.'"><b>'._($tab).'</b></a></li>';
         } else {
-            echo '<li><a  href="'.$globals['base_url'].'admin/cortos.php?admin='.$tab.'"><b>'._($tab).'</b></a></li>' . "\n";
+            echo '<li><a  href="'.$globals['base_url'].'admin/cortos.php?admin='.$tab.'"><b>'._($tab).'</b></a></li>';
         }
     }
 
-    echo '<li><a  href="'.$globals['base_url'].'admin/ediciones_cortos.php"><b>'._('ediciones').'</b></a></li>' . "\n";
-    echo '</ul>' . "\n";
+    echo '<li><a  href="'.$globals['base_url'].'admin/ediciones_cortos.php"><b>'._('ediciones').'</b></a></li>';
+    echo '</ul>';
 }
 
 /*
@@ -122,7 +122,7 @@ function cargacortos($ban_type) {
         // ex container-wide
         echo '<div class="genericform" style="margin:0">';
 
-        echo '<div style="float:right;">'."\n";
+        echo '<div style="float:right;">';
 
         echo '</div>';
         echo '<table style="font-size: 10pt">';

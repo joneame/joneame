@@ -24,10 +24,10 @@ do_banner_right();
 do_best_stories();
 do_best_comments();
 do_vertical_tags('published');
-echo '</div>' . "\n";
+echo '</div>';
 /*** END SIDEBAR ***/
 
-echo '<div id="newswrap">'."\n";
+echo '<div id="newswrap">';
 
 echo '<div class="topheading"><h2>'._('¿noticias?').' :-) </h2></div>';
 

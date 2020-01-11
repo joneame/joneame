@@ -143,7 +143,7 @@ class Encuesta {
 
         echo '<br>';
 
-        echo '<input type="hidden" name="encid" value="'.$this->id.'" />'."\n";
+        echo '<input type="hidden" name="encid" value="'.$this->id.'" />';
 
         echo '<div id="pollvotes'.$this->id.'">';
 
@@ -152,9 +152,9 @@ class Encuesta {
         else
             $this->print_stats();
 
-        echo '</div>'."\n";
+        echo '</div>';
 
-        echo '</fieldset>'."\n";
+        echo '</fieldset>';
     }
 
     /*
@@ -169,7 +169,7 @@ class Encuesta {
         for ($i=0; $i < $this->opciones['count'];$i++) {
             echo text_to_html(put_smileys($this->opciones[$i]->poll->info));
             echo ' <span class="smaller">(<strong>' . $this->opciones[$i]->votes.'</strong> votos / <strong>' . $this->opciones[$i]->percent . '</strong>%)</span><br/>';
-            echo '<div class="barra-encuesta-outer"><div class="barra-carisma-inner" style="width: '.$this->opciones[$i]->percent.'%;"></div></div><br/><br/>'."\n";
+            echo '<div class="barra-encuesta-outer"><div class="barra-carisma-inner" style="width: '.$this->opciones[$i]->percent.'%;"></div></div><br/><br/>';
         }
 
         $this->print_editbox();

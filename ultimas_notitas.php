@@ -22,7 +22,7 @@ echo '<div id="sidebar">';
 do_banner_right();
 echo '<br/>';
 do_best_posts();
-echo '</div>' . "\n";
+echo '</div>';
 /*** END SIDEBAR ***/
 
 $min_date = date("Y-m-d H:00:00", time() - 86000);
@@ -31,7 +31,7 @@ $posts = $db->get_col("SELECT post_id FROM posts WHERE post_date > '$min_date' O
 
     if ($posts) {
 
-        echo '<div id="newswrap">'."\n";
+        echo '<div id="newswrap">';
         echo '<div class="notes">';
         echo '<ol class="notitas-list">';
 

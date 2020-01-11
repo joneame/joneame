@@ -189,7 +189,7 @@ var $avatar;
         if (!$this->activado) {
         echo '<div class="faq">';
         echo '<h3>'._('El corto está sin aprobar').'</h3>';
-        echo '</div>'."\n";
+        echo '</div>';
         }
 
         echo '<div class="visor-cortos">';

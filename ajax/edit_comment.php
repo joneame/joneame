@@ -35,12 +35,12 @@ function print_edit_form() {
     if ($current_user->user_level != 'god' && time() - $comment->date > $globals['comment_edit_time']) die;
 
     $rows = min(40, max(substr_count($comment->content, "\n") * 2, 8));
-    echo '<div class="commentform">'."\n";
-    echo '<form action="'.htmlspecialchars($_SERVER['PHP_SELF']).'" method="post">'."\n";
-    echo '<fieldset class="fondo-caja redondo"><legend class="mini barra redondo">'._('editar comentario').'</legend>'."\n";
+    echo '<div class="commentform">';
+    echo '<form action="'.htmlspecialchars($_SERVER['PHP_SELF']).'" method="post">';
+    echo '<fieldset class="fondo-caja redondo"><legend class="mini barra redondo">'._('editar comentario').'</legend>';
     print_simpleformat_buttons('comment_'.$comment->id);
-    echo '<div style="clear: right"><textarea name="comment_content" id="comment_'.$comment->id.'" rows="'.$rows.'" cols="75">'.$comment->content.'</textarea></div>'."\n";
-    echo '<input class="button" type="button" id="submit_com_'.$comment->id.'" onClick="edit_comment('.$comment->id.');" name="submit" value="'._('editar comentario').'" />'."\n";
+    echo '<div style="clear: right"><textarea name="comment_content" id="comment_'.$comment->id.'" rows="'.$rows.'" cols="75">'.$comment->content.'</textarea></div>';
+    echo '<input class="button" type="button" id="submit_com_'.$comment->id.'" onClick="edit_comment('.$comment->id.');" name="submit" value="'._('editar comentario').'" />';
 
     echo '<img id="spinner_'.$comment->id.'" class="blank" src="'.$globals['base_url'].'img/estructura/pixel.gif" width="16" height="16"/>';
 
@@ -52,25 +52,25 @@ function print_edit_form() {
         echo '<div style="display: none;">';
     }
     if ($comment->type == 'admin') {
-        echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="type" type="checkbox" id="comentario-admin_'.$comment->id.'" '.$checked.'/>&nbsp;<label for="comentario-admin_'.$comment->id.'">'._('comentario admin').' </label>'."\n";
-        echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="especial" type="checkbox" id="comentario-especial_'.$comment->id.'" '.$checked.'/>&nbsp;<label for="comentario-especial_'.$comment->id.'">'._('no mostrar mi nick').' </label>'."\n";
+        echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="type" type="checkbox" id="comentario-admin_'.$comment->id.'" '.$checked.'/>&nbsp;<label for="comentario-admin_'.$comment->id.'">'._('comentario admin').' </label>';
+        echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="especial" type="checkbox" id="comentario-especial_'.$comment->id.'" '.$checked.'/>&nbsp;<label for="comentario-especial_'.$comment->id.'">'._('no mostrar mi nick').' </label>';
     } elseif ($comment->type == 'especial') {
-        echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="type" type="checkbox" id="comentario-admin_'.$comment->id.'" '.$checked.'/>&nbsp;<label for="comentario-admin_'.$comment->id.'">'._('comentario admin').' </label>'."\n";
-        echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="especial" type="checkbox" id="comentario-especial_'.$comment->id.'"/>&nbsp;<label for="comentario-especial_'.$comment->id.'">'._('no mostrar mi nick').' </label>'."\n";
+        echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="type" type="checkbox" id="comentario-admin_'.$comment->id.'" '.$checked.'/>&nbsp;<label for="comentario-admin_'.$comment->id.'">'._('comentario admin').' </label>';
+        echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="especial" type="checkbox" id="comentario-especial_'.$comment->id.'"/>&nbsp;<label for="comentario-especial_'.$comment->id.'">'._('no mostrar mi nick').' </label>';
     } else {
-        echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="type" type="checkbox" id="comentario-admin_'.$comment->id.'"/>&nbsp;<label for="comentario-admin_'.$comment->id.'">'._('comentario admin').' </label>'."\n";
-        echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="especial" type="checkbox" id="comentario-especial_'.$comment->id.'"/>&nbsp;<label for="comentario-especial_'.$comment->id.'">'._('no mostrar mi nick').' </label>'."\n";
+        echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="type" type="checkbox" id="comentario-admin_'.$comment->id.'"/>&nbsp;<label for="comentario-admin_'.$comment->id.'">'._('comentario admin').' </label>';
+        echo '&nbsp;&nbsp;&nbsp;&nbsp;<input name="especial" type="checkbox" id="comentario-especial_'.$comment->id.'"/>&nbsp;<label for="comentario-especial_'.$comment->id.'">'._('no mostrar mi nick').' </label>';
     }
     echo '</div>';
 
     echo '<br/><span id="error_com_'.$comment->id.'"></span>';
 
-    echo '<input type="hidden" id="process_'.$comment->id.'" name="process_'.$comment->id.'" value="editcomment" />'."\n";
-    echo '<input type="hidden" id="key_'.$comment->id.'" name="key_'.$comment->id.'" value="'.md5($comment->randkey.$site_key).'" />'."\n";
-    echo '<input type="hidden" id="link_id_'.$comment->id.'" name="link_id_'.$comment->id.'" value="'.$link->id.'" />'."\n";
-    echo '<input type="hidden" id="user_id_'.$comment->id.'" name="user_id_'.$comment->id.'" value="'.$current_user->user_id.'" />'."\n";
-    echo '</fieldset>'."\n";
-    echo '</form>'."\n";
+    echo '<input type="hidden" id="process_'.$comment->id.'" name="process_'.$comment->id.'" value="editcomment" />';
+    echo '<input type="hidden" id="key_'.$comment->id.'" name="key_'.$comment->id.'" value="'.md5($comment->randkey.$site_key).'" />';
+    echo '<input type="hidden" id="link_id_'.$comment->id.'" name="link_id_'.$comment->id.'" value="'.$link->id.'" />';
+    echo '<input type="hidden" id="user_id_'.$comment->id.'" name="user_id_'.$comment->id.'" value="'.$current_user->user_id.'" />';
+    echo '</fieldset>';
+    echo '</form>';
     echo "</div>\n";
 }
 

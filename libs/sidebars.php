@@ -32,7 +32,7 @@ function do_vertical_tags($what=false) {
     $res = $db->get_results("select tag_words, count(*) as count $from_where order by count desc limit 30");
     if ($res) {
         $output = '<div class="tags-box">';
-        $output .= '<h4><a href="'.$globals['base_url'].'nube.php">'._('etiquetas').'</a></h4><p class="nube">'."\n";
+        $output .= '<h4><a href="'.$globals['base_url'].'nube.php">'._('etiquetas').'</a></h4><p class="nube">';
         foreach ($res as $item) {
             $words[$item->tag_words] = $item->count;
         }
@@ -71,11 +71,11 @@ function do_best_sites() {
 ");
     if ($res) {
         $i = 0;
-        $output .= '<div class="sidebox"><h4>'._('sitios más votados').'</h4><ul class="topcommentsli fondo-caja espaciador" style="list-style-type: none;">'."\n";
+        $output .= '<div class="sidebox"><h4>'._('sitios más votados').'</h4><ul class="topcommentsli fondo-caja espaciador" style="list-style-type: none;">';
         foreach ($res as $site) {
             $i++;
             $parsed_url = parse_url($site->blog_url);
-            $output .= '<li><strong>'.$i.'. <a href="'.$globals['base_url'].'search.php?q=site:'.rawurlencode($site->blog_url).'+period:36+status:published" title="'._('votos 36 horas').': '.$site->total.' Coef: '.$site->coef.'">'.$parsed_url['host'].'</a></strong></li>'."\n";
+            $output .= '<li><strong>'.$i.'. <a href="'.$globals['base_url'].'search.php?q=site:'.rawurlencode($site->blog_url).'+period:36+status:published" title="'._('votos 36 horas').': '.$site->total.' Coef: '.$site->coef.'">'.$parsed_url['host'].'</a></strong></li>';
         }
         $output .= '</ul></div>';
         echo $output;
@@ -99,13 +99,13 @@ function do_best_comments() {
     // but a time-decreasing function applied to the number of votes
     $res = $db->get_results("select comment_id, comment_order, user_id, user_login, user_avatar, link_id, link_uri, link_title, link_comments,  comment_karma*(1-(unix_timestamp(now())-unix_timestamp(comment_date))*0.7/43000) as value from comments, links, users  where comment_date > '$min_date' and comment_karma > 50 and comment_link_id = link_id and comment_user_id = user_id order by value desc limit 12");
     if ($res) {
-        $output .= '<div class="sidebox"><h4><a href="'.$globals['base_url'].'mejores_comentarios.php">'._('mejores comentarios').'</a></h4><ul class="topcommentsli fondo-caja espaciador">'."\n";
+        $output .= '<div class="sidebox"><h4><a href="'.$globals['base_url'].'mejores_comentarios.php">'._('mejores comentarios').'</a></h4><ul class="topcommentsli fondo-caja espaciador">';
         foreach ($res as $comment) {
             $numero = $numero + 1;
             $foo_link->uri = $comment->link_uri;
             $link = $foo_link->get_relative_permalink().get_comment_page_suffix($globals['comments_page_size'], $comment->comment_order, $comment->link_comments).'#comment-'.$comment->comment_order;
                         $output .= '<li><a href="'.get_user_uri($comment->user_login).'"><img src="'.get_avatar_url($comment->user_id, $comment->user_avatar, 20).'" alt="" width="20" height="20" onmouseover="return tooltip.ajax_delayed(event, \'get_user_info.php\', '.$comment->user_id.');" onmouseout="tooltip.clear(event);"/></a>';
-            $output .= '<p><strong>'.'#'.$numero. ' <a href="'.get_user_uri($comment->user_login, 'comentarios').'">'.$comment->user_login.'</a></strong>'._(' en ').' <a onmouseout="tooltip.clear(event);"  onclick="tooltip.clear(this);" onmouseover="return tooltip.ajax_delayed(event, \'get_comment_tooltip.php\', \''.$comment->comment_id.'\', 10000);" href="'.$link.'">'.$comment->link_title.'</a></p></li>'."\n";
+            $output .= '<p><strong>'.'#'.$numero. ' <a href="'.get_user_uri($comment->user_login, 'comentarios').'">'.$comment->user_login.'</a></strong>'._(' en ').' <a onmouseout="tooltip.clear(event);"  onclick="tooltip.clear(this);" onmouseover="return tooltip.ajax_delayed(event, \'get_comment_tooltip.php\', \''.$comment->comment_id.'\', 10000);" href="'.$link.'">'.$comment->link_title.'</a></p></li>';
         }
         $output .= '</ul></div>';
         echo $output;
@@ -129,7 +129,7 @@ function do_last_comments() {
     // but a time-decreasing function applied to the number of votes
     $res = $db->get_results("SELECT comment_id, comment_order, comment_type, user_login, user_level, link_id, link_uri, link_title, link_comments FROM comments, users, links WHERE comment_user_id = user_id  AND comment_link_id = link_id AND user_level != 'disabled' ORDER BY comment_date DESC LIMIT 12");
     if ($res) {
-        $output .= '<div class="sidebox"><h4><a href="'.$globals['base_url'].'ultimos_comentarios.php">'._('últimos comentarios').'</a></h4><ul class="topcommentsli fondo-caja espaciador">'."\n";
+        $output .= '<div class="sidebox"><h4><a href="'.$globals['base_url'].'ultimos_comentarios.php">'._('últimos comentarios').'</a></h4><ul class="topcommentsli fondo-caja espaciador">';
         foreach ($res as $comment) {
             $numero = $numero + 1;
             $foo_link->uri = $comment->link_uri;
@@ -139,7 +139,7 @@ function do_last_comments() {
                 $user_login = 'admin';
             }
             $link = $foo_link->get_relative_permalink().get_comment_page_suffix($globals['comments_page_size'], $comment->comment_order, $comment->link_comments).'#comment-'.$comment->comment_order;
-            $output .='<li><strong>'.'#'.$numero. ' '. $user_login .'</strong>'._(' en ').' <a onmouseout="tooltip.clear(event);"  onclick="tooltip.clear(this);" onmouseover="return tooltip.ajax_delayed(event, \'get_comment_tooltip.php\', \''.$comment->comment_id.'\', 10000);" href="'.$link.'">'.$comment->link_title.'</a></li>'."\n";
+            $output .='<li><strong>'.'#'.$numero. ' '. $user_login .'</strong>'._(' en ').' <a onmouseout="tooltip.clear(event);"  onclick="tooltip.clear(this);" onmouseover="return tooltip.ajax_delayed(event, \'get_comment_tooltip.php\', \''.$comment->comment_id.'\', 10000);" href="'.$link.'">'.$comment->link_title.'</a></li>';
         }
         $output .= '</ul></div>';
         echo $output;
@@ -177,11 +177,11 @@ $n = 0;
             if ($n == 0) $output .= '<h5>';
             else $output .= '<h5>';
             $output .= '<a href="'.$url.'" onmouseover="return tooltip.ajax_delayed(event, \'get_link.php\', '.$link->link_id.');" onmouseout="tooltip.clear(event);">'.$link->link_title.'</a></h5>';
-            $output .= '<div class="mini-pop"></div>'."\n";
+            $output .= '<div class="mini-pop"></div>';
             $n++;
 
         }
-        $output .= '</div></div>'."\n";
+        $output .= '</div></div>';
         echo $output;
 
     }
@@ -199,11 +199,11 @@ function do_best_story_comments($link) {
     $limit = min(25, intval($link->comments/5));
     $res = $db->get_results("select comment_id, user_id, user_avatar, comment_order, user_login, substring(comment_content, 1, 60) as content from comments, users  where comment_link_id = $link->id and comment_karma > 25 and comment_user_id = user_id order by comment_karma desc limit $limit");
     if ($res) {
-        $output .= '<div class="sidebox"><h4><a href="'.$link->get_relative_permalink().'/mejores-comentarios">'._('mejores comentarios').'</a></h4><ul class="topcommentsli fondo-caja espaciador">'."\n";
+        $output .= '<div class="sidebox"><h4><a href="'.$link->get_relative_permalink().'/mejores-comentarios">'._('mejores comentarios').'</a></h4><ul class="topcommentsli fondo-caja espaciador">';
         foreach ($res as $comment) {
             $url = $link->get_relative_permalink().get_comment_page_suffix($globals['comments_page_size'], $comment->comment_order, $link->comments).'#comment-'.$comment->comment_order;
               $output .= '<li><a href="'.get_user_uri($comment->user_login).'"><img src="'.get_avatar_url($comment->user_id, $comment->user_avatar, 20).'" alt="" width="20" height="20" onmouseover="return tooltip.ajax_delayed(event, \'get_user_info.php\', '.$comment->user_id.');" onmouseout="tooltip.clear(event);"/></a>';
-                        $output .= '<p><strong><a href="'.get_user_uri($comment->user_login, 'comentarios').'">'.$comment->user_login.'</a></strong>'._('  ').' <a onmouseout="tooltip.clear(event);"  onclick="tooltip.clear(this);" onmouseover="return tooltip.ajax_delayed(event, \'get_comment_tooltip.php\', \''.$comment->comment_id.'\', 10000);"  href="'.$url.'"><em>'.text_to_summary($comment->content, 60).'</em></a></p></li>'."\n";
+                        $output .= '<p><strong><a href="'.get_user_uri($comment->user_login, 'comentarios').'">'.$comment->user_login.'</a></strong>'._('  ').' <a onmouseout="tooltip.clear(event);"  onclick="tooltip.clear(this);" onmouseover="return tooltip.ajax_delayed(event, \'get_comment_tooltip.php\', \''.$comment->comment_id.'\', 10000);"  href="'.$url.'"><em>'.text_to_summary($comment->content, 60).'</em></a></p></li>';
                 }
 
         $output .= '</ul></div>';
@@ -250,10 +250,10 @@ function do_best_stories() {
             }
 
             $output .= '<a href="'.$url.'" onmouseover="return tooltip.ajax_delayed(event, \'get_link.php\', '.$l->link_id.');" onmouseout="tooltip.clear(event);">'.$link->title.'</a></h5>';
-            $output .= '<div class="mini-pop"></div>'."\n";
+            $output .= '<div class="mini-pop"></div>';
             $n++;
         }
-        $output .= '</div></div>'."\n";
+        $output .= '</div></div>';
         echo $output;
 
     }
@@ -290,9 +290,9 @@ function do_best_queued() {
                 $output .= "<img src='"."$link->thumb' alt='' class='thumbnail'/>";
             }
             $output .= '<h5><a href="'.$url.'" onmouseover="return tooltip.ajax_delayed(event, \'get_link.php\', '.$l->link_id.');" onmouseout="tooltip.clear(event);" >'.$link->title.'</a></h5>';
-            $output .= '<div class="mini-pop"></div>'."\n";
+            $output .= '<div class="mini-pop"></div>';
         }
-        $output .= '</div></div>'."\n";
+        $output .= '</div></div>';
         echo $output;
 
     }
@@ -307,10 +307,10 @@ function do_best_posts() {
     $min_date = date("Y-m-d H:i:00", $globals['now'] - 60 * 60 * 24 * 7);
     $res = $db->get_results("select post_id, user_login, post_content, user_avatar, user_id from posts, users where post_date > '$min_date' and  post_user_id = user_id and post_karma > 0 order by post_karma desc limit 10");
     if ($res) {
-        $output .= '<div class="sidebox"><h4><a href="'.$globals['base_url'].'mejores_notitas.php">'._('mejores notitas').'</a></h4><ul class="topcommentsli fondo-caja espaciador">'."\n";
+        $output .= '<div class="sidebox"><h4><a href="'.$globals['base_url'].'mejores_notitas.php">'._('mejores notitas').'</a></h4><ul class="topcommentsli fondo-caja espaciador">';
         foreach ($res as $p) {
             $output .= '<li><a href="'.get_user_uri($p->user_login).'"><img src="'.get_avatar_url($p->user_id, $p->user_avatar, 20).'" onmouseover="return tooltip.ajax_delayed(event, \'get_user_info.php\', '.$post->author.');" onmouseout="tooltip.clear(event);"/></a>';
-            $output .= '<p><a href="'.post_get_base_url($p->user_login).'"><strong>'.$p->user_login.'</strong></a>: <a onmouseout="tooltip.clear(event);"  onclick="tooltip.clear(this);" onmouseover="return tooltip.ajax_delayed(event, \'get_post_tooltip.php\', \''.$p->post_id.'\', 10000);" href="'.post_get_base_url($p->user_login).'/'.$p->post_id.'"><em>'.text_to_summary(preg_replace('/(@[\S.-]+)(,\d+)/','$1',$p->post_content), 80).'</em></a></p></li>'."\n"; // clean user references
+            $output .= '<p><a href="'.post_get_base_url($p->user_login).'"><strong>'.$p->user_login.'</strong></a>: <a onmouseout="tooltip.clear(event);"  onclick="tooltip.clear(this);" onmouseover="return tooltip.ajax_delayed(event, \'get_post_tooltip.php\', \''.$p->post_id.'\', 10000);" href="'.post_get_base_url($p->user_login).'/'.$p->post_id.'"><em>'.text_to_summary(preg_replace('/(@[\S.-]+)(,\d+)/','$1',$p->post_content), 80).'</em></a></p></li>'; // clean user references
         }
         $output .= '</ul></div>';
         echo $output;
@@ -321,18 +321,18 @@ function do_best_posts() {
 function encuestas_mas_votadas() {
     global $db, $globals;
 
-    $output = '<ul>' . "\n";
+    $output = '<ul>';
     $min_date = date("Y-m-d H:i:00", $globals['now'] - 86400*15); // 15 dias
     $res = $db->get_results("select encuesta_id, user_login, encuesta_title from encuestas, users where encuesta_start > '$min_date' and  encuesta_user_id = user_id and encuesta_total_votes > 0 order by encuesta_total_votes desc limit 10");
 
     if ($res) {
 
 $output .= '<h4 style="margin-top: 45px"><a href="'.$globals['base_url'].'encuestas.php">'._('encuestas más votadas').'</a></h4>';
-        $output .= '<ul class="topcommentsli fondo-caja espaciador">'."\n";
+        $output .= '<ul class="topcommentsli fondo-caja espaciador">';
 
         foreach ($res as $p) {
 
-            $output .= '<li><strong>'.$p->user_login.'</strong>: <a onmouseout="tooltip.clear(event);"  onclick="tooltip.clear(this);" onmouseover="return tooltip.ajax_delayed(event, \'get_encuesta.php\', \''.$p->encuesta_id.'\', 10000);" href="'.get_encuesta_uri($p->encuesta_id).'"><em>'.$p->encuesta_title.'</em></a></li>'."\n";
+            $output .= '<li><strong>'.$p->user_login.'</strong>: <a onmouseout="tooltip.clear(event);"  onclick="tooltip.clear(this);" onmouseover="return tooltip.ajax_delayed(event, \'get_encuesta.php\', \''.$p->encuesta_id.'\', 10000);" href="'.get_encuesta_uri($p->encuesta_id).'"><em>'.$p->encuesta_title.'</em></a></li>';
         }
             $output .= '</ul>';
         echo $output;
@@ -344,15 +344,15 @@ $output .= '<h4 style="margin-top: 45px"><a href="'.$globals['base_url'].'encues
 function do_last_questions() {
     global $db, $globals;
 
-    $output = '<ul>' . "\n";
+    $output = '<ul>';
 
     $res = $db->get_results("select encuesta_id, encuesta_title, user_login from encuestas, users where encuesta_user_id = user_id order by encuesta_id desc limit 8");
 
     if ($res) {
     $output .= '<h4 style="margin-top: 45px"><a href="'.$globals['base_url'].'encuestas.php">'._('últimas encuestas').'</a></h4>';
-        $output .= '<ul class="topcommentsli fondo-caja espaciador">'."\n";
+        $output .= '<ul class="topcommentsli fondo-caja espaciador">';
         foreach ($res as $p) {
-            $output .= '<li><strong>'.$p->user_login.'</strong>: <a onmouseout="tooltip.clear(event);"  onclick="tooltip.clear(this);" onmouseover="return tooltip.ajax_delayed(event, \'get_encuesta.php\', \''.$p->encuesta_id.'\', 10000);" href="'.get_encuesta_uri($p->encuesta_id).'"><em>'.$p->encuesta_title.'</em></a></li>'."\n";
+            $output .= '<li><strong>'.$p->user_login.'</strong>: <a onmouseout="tooltip.clear(event);"  onclick="tooltip.clear(this);" onmouseover="return tooltip.ajax_delayed(event, \'get_encuesta.php\', \''.$p->encuesta_id.'\', 10000);" href="'.get_encuesta_uri($p->encuesta_id).'"><em>'.$p->encuesta_title.'</em></a></li>';
         }
         $output .= '</ul>';
         echo $output;
@@ -366,8 +366,8 @@ function do_categories_new($what_cat_type, $what_cat_id) {
     if (isset($globals['mobile']) && $globals['mobile']) return;
 
     echo '<h4>categorías</h4>';
-    echo '<div class="column-list fondo-caja">' . "\n";
-    echo '<ul>' . "\n";
+    echo '<div class="column-list fondo-caja">';
+    echo '<ul>';
 
     $query=preg_replace('/category=[0-9]*/', '', $_SERVER['QUERY_STRING']);
     // Always return to page 1
@@ -393,13 +393,13 @@ function do_categories_new($what_cat_type, $what_cat_id) {
 
             echo '<li'.$thiscat.'><a href="'.$globals['base_url'].'?category='.$category->category_id.$query.'">';
             echo _($category->category_name);
-            echo "</a></li>\n";
+            echo "</a></li>";
         }
     }
 
     echo '</ul>';
-    echo '<br style="clear: both;" />' . "\n";
-    echo '</div><!--html1:do_categories_new-->' . "\n";
+    echo '<br style="clear: both;" />';
+    echo '</div><!--html1:do_categories_new-->';
 
 }
 
@@ -415,18 +415,18 @@ function do_saved_searches() {
     if (!$busquedas) return;
 
     echo '<h4>búsquedas guardadas</h4>';
-    echo '<div class="column-list-busqueda fondo-caja">' . "\n";
-    echo '<ul>' . "\n";
+    echo '<div class="column-list-busqueda fondo-caja">';
+    echo '<ul>';
 
     foreach ($busquedas as $palabra) {
 
         echo '<li><a href="'.$globals['base_url'].'search.php?q='.$palabra->texto.'">';
             echo $palabra->texto;
-            echo "</a></li>\n";
+            echo "</a></li>";
     }
 
     echo '</ul>';
-    echo '<br style="clear: both;" />' . "\n";
-    echo '</div><!--html1:do_busquedas_guardadas-->' . "\n";
+    echo '<br style="clear: both;" />';
+    echo '</div><!--html1:do_busquedas_guardadas-->';
 
 }

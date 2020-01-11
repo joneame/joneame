@@ -43,10 +43,10 @@ if ($page < 2) {
     do_vertical_tags('published');
 }
 
-echo '</div>' . "\n";
+echo '</div>';
 /*** END SIDEBAR ***/
 
-echo '<div id="newswrap">'."\n";
+echo '<div id="newswrap">';
 
 
 $order_by = " ORDER BY link_date DESC ";
@@ -66,6 +66,6 @@ if ($links) {
 
 
 do_pages($rows, $page_size);
-echo '</div>'."\n";
+echo '</div>';
 
 do_footer();

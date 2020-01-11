@@ -207,6 +207,9 @@ $globals['pendientes_page_size'] = 40;
 $globals['mailgun_domain'] = '';
 $globals['mailgun_key'] = '';
 
+// código de analytics
+$globals['analytics_code'] = '';
+
 // Greeting in several languages
 // Unfortunately, array constructor does not work properly with GNU _()
 

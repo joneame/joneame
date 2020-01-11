@@ -66,7 +66,7 @@ if (!empty($user->names) && $login != $user->names) {
         do_header($login);
 }
 
-echo '<div id="singlewrap">'."\n";
+echo '<div id="singlewrap">';
 
 $url_login = urlencode($login);
 
@@ -132,7 +132,7 @@ switch ($view) {
         break;
 }
 
-echo '</div>'."\n";
+echo '</div>';
 
 do_footer();
 
@@ -616,7 +616,7 @@ function do_commented () {
     $comments = $db->get_results("SELECT comment_id, link_id, comment_type FROM comments, links WHERE comment_user_id=$user->id and link_id=comment_link_id ORDER BY comment_date desc LIMIT $offset,$page_size");
     if ($comments) {
         echo '<ul class="barra redondo herramientas" style="margin: 0 0 5px 15px;">';
-        echo '<li><a class="icon comment" href="'.get_user_uri($user->username, 'comentarios_encuestas').'"><img src="'.get_cover_pixel().'" />a encuestas</a></li>'."\n";
+        echo '<li><a class="icon comment" href="'.get_user_uri($user->username, 'comentarios_encuestas').'"><img src="'.get_cover_pixel().'" />a encuestas</a></li>';
         echo '<li><a class="icon mozilla" href="'.$globals['base_url'].'link_bookmark.php?user_id='.$user->id.'&amp;option=chorradas" title="'._('exportar bookmarks en formato Mozilla').'">'._('exportar bookmarks en formato Mozilla').'</a>';
         echo '<li><a class="icon rss" href="'.$globals['base_url'].'comments_rss2.php?user_id='.$user->id.'" title="'._('obtener comentarios en rss2').'">'._('obtener comentarios en rss2').'</a></li>';
         echo '</ul><br/>';
@@ -718,7 +718,7 @@ function do_user_tabs($option, $user) {
 
     $active[$option] = ' class="current"';
 
-    echo '<ul class="tabmain">'."\n";
+    echo '<ul class="tabmain">';
     echo '<li'.$active[1].'><a href="'.get_user_uri($user).'">'._('perfil'). '</a></li>';
     echo '<li'.$active[7].'><a href="'.get_user_uri($user, 'amigos').'">'._('amigos').'</a></li>';
 
@@ -746,7 +746,7 @@ function do_poll_comments() {
     include mnminclude.'opinion.php';
 
     echo '<ul class="barra redondo herramientas" style="margin: 0 0 5px 15px;">';
-    echo '<li><a class="icon comment" href="'.get_user_uri($user->username, 'comentarios').'"><img src="'.get_cover_pixel().'" />a historias</a></li>'."\n";
+    echo '<li><a class="icon comment" href="'.get_user_uri($user->username, 'comentarios').'"><img src="'.get_cover_pixel().'" />a historias</a></li>';
     echo '<li><a class="icon rss" href="'.$globals['base_url'].'opiniones_rss.php?user_id='.$user->id.'" title="'._('obtener historial en rss2').'">'._('historial por RSS').'</a></li>';
     echo '</ul>';
 

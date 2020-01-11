@@ -37,12 +37,12 @@ if(isset($_POST["fase"])) {
     switch ($_POST["fase"]) {
             case 1:
                 do_header(_("enviar encuesta 2/4"), "post");
-                echo '<div id="singlewrap">' . "\n";
+                echo '<div id="singlewrap">';
                 do_submit1();
                 break;
             case 2:
                 do_header(_("enviar encuesta 3/4"), "post");
-                echo '<div id="singlewrap">' . "\n";
+                echo '<div id="singlewrap">';
                 do_submit2();
                 break;
             case 3:
@@ -52,7 +52,7 @@ if(isset($_POST["fase"])) {
 } else {
     force_authentication();
     do_header(_("nueva encuesta 1/4"), "post");
-    echo '<div id="singlewrap">' . "\n";
+    echo '<div id="singlewrap">';
     do_submit0();
 }
 
@@ -72,8 +72,8 @@ function do_submit0() {
     echo '<li><strong>'._('opciones').':</strong> '._('puedes añadir tantas opciones como deseas, pero que tengan un sentido mínimo').'</li>';
     echo '<li><strong>'._('carisma').':</strong> '._('las encuestas no cuentan para el cálculo del carisma').'</li>';
     echo '<li><strong>'._('respeto').':</strong> '._('no te rías de las encuestas de los demás, a no ser que sean disparatadas, claro está').'</li>';
-    echo '<br/><li>Dicho esto, ¡cuéntanos tu duda!</li></ul>'."\n";
-    echo '</ul></div>'."\n";
+    echo '<br/><li>Dicho esto, ¡cuéntanos tu duda!</li></ul>';
+    echo '</ul></div>';
     print_empty_submit_form();
 }
 
@@ -102,7 +102,7 @@ function do_submit1 () {
     if(strlen($_POST['pregunta']) < 7) {
         error_encuesta(_("pregunta demasiado corta"));
     } else {
-        echo '<h2>'._('envío de una nueva encuesta: paso 2 de 4').'</h2>'."\n";
+        echo '<h2>'._('envío de una nueva encuesta: paso 2 de 4').'</h2>';
         echo '<form class="" action="nueva_encuesta.php" method="post" id="bidali" name="bidali"><br>';
         echo '<div class="genericform">';
         echo '<h4>nueva encuesta</h4>';
@@ -119,19 +119,19 @@ function do_submit1 () {
         echo '<input type="text" name="fechaFin" id="fechaFin" value="15" size="2"/></p>';
 
         //voto multiple
-        echo '<fieldset class="redondo"><legend class="mini barra redondo">'._('voto múltiple').'</legend>'."\n";
+        echo '<fieldset class="redondo"><legend class="mini barra redondo">'._('voto múltiple').'</legend>';
         echo _('la activación del voto múltiple supone que los usuarios pueden votar más de una opción al mismo tiempo').'.';
-        echo '<br/><br/><input type="checkbox" name="multiple" id="multiple" value="1" />&nbsp;<label for="multiple"><strong>'._('activar voto múltiple').' </strong></label>'."\n";
-        echo '</fieldset><br/>'."\n";
+        echo '<br/><br/><input type="checkbox" name="multiple" id="multiple" value="1" />&nbsp;<label for="multiple"><strong>'._('activar voto múltiple').' </strong></label>';
+        echo '</fieldset><br/>';
 
         /* Desactivar promoción de encuesta */
-        echo '<fieldset class="redondo"><legend class="mini barra redondo">'._('notita de promoción automática').'</legend>'."\n";
-        echo '<br/><br/><input type="checkbox" name="no_promocion" id="no_promocion" value="1" />&nbsp;<label for="multiple"><strong>'._('no insertar notita de promoción para esta encuesta').' </strong></label>'."\n";
-        echo '</fieldset><br/>'."\n";
+        echo '<fieldset class="redondo"><legend class="mini barra redondo">'._('notita de promoción automática').'</legend>';
+        echo '<br/><br/><input type="checkbox" name="no_promocion" id="no_promocion" value="1" />&nbsp;<label for="multiple"><strong>'._('no insertar notita de promoción para esta encuesta').' </strong></label>';
+        echo '</fieldset><br/>';
 
 
         echo '<p><input class="button" type=button onclick="window.history.go(-1)" value="'._('« retroceder').'"/> ';
-        echo '<input type="hidden" name="fase" value="2" />'."\n";
+        echo '<input type="hidden" name="fase" value="2" />';
         echo '<input class="button" type="submit" value="'._('siguiente »').'" ';
         echo '/>&nbsp;&nbsp;&nbsp;<span id="working">&nbsp;</span></p>';
         echo '</fieldset>';
@@ -147,10 +147,10 @@ function do_submit2 () {
     if(strlen($_POST['contenido']) < 13) {
         error_encuesta(_("descripción demasiado corta"));
     } else {
-        echo '<h2>'._('envío de una nueva encuesta: paso 3 de 4').'</h2>'."\n";
+        echo '<h2>'._('envío de una nueva encuesta: paso 3 de 4').'</h2>';
         echo '<br/><div class="genericform">';
         echo '<form class="" action="nueva_encuesta.php" method="post" id="bidali" name="bidali">';
-        echo '<h4>'._($_POST['pregunta']).'</h4><fieldset class="fondo-caja">'."\n";
+        echo '<h4>'._($_POST['pregunta']).'</h4><fieldset class="fondo-caja">';
         echo '<input type="hidden" name="pregunta" id="pregunta" value="'.$_POST['pregunta'].'"/>';
 
         echo '<p><label for="testua">'._('descripción').':</label><br />';
@@ -187,12 +187,12 @@ function do_submit2 () {
 
         echo '<input type="hidden" name="cantidadOpciones" id="cantidadOpciones" value="'.$_POST['cantidadOpciones'].'"/>';
 
-        echo '<fieldset class="redondo"><legend class="mini barra redondo">'._('opciones de encuesta').'</legend>'."\n";
+        echo '<fieldset class="redondo"><legend class="mini barra redondo">'._('opciones de encuesta').'</legend>';
         echo _('introduce las opciones').':<br />';
 
         echo '<dl class="encuesta-opciones" id="encuesta-opciones">';
         for ($i=0 ; $i < 3 ; $i++) {
-            echo '<dt id="opcion-'.$i.'">'._('opción '.($i+1)).'</dt><dd id="opcion-t-'.$i.'"><input type="text" name="opts['.$i.']" id="opts['.$i.']" type="text" size="70" value=""/>'."\n";
+            echo '<dt id="opcion-'.$i.'">'._('opción '.($i+1)).'</dt><dd id="opcion-t-'.$i.'"><input type="text" name="opts['.$i.']" id="opts['.$i.']" type="text" size="70" value=""/>';
             if ($i == 2) echo '<span id="delete-2"><a src="'.get_cover_pixel().'" href="javascript:delete_option(2)"><img class="icon delete img-flotante" alt="eliminar opcion" title="eliminar opcion"/></a></span></dd>';
             else echo '</dd>';
 
@@ -200,15 +200,15 @@ function do_submit2 () {
 
         echo '</dl>';
         echo '<a src="'.get_cover_pixel().'" href="javascript:add_option()"><img class="icon add" alt="añadir opcion" title="añadir opcion"/></a>';
-        echo '</fieldset><br/>'."\n";
+        echo '</fieldset><br/>';
 
         echo '<p><input class="button" type=button onclick="window.history.go(-1)" value="'._('« retroceder').'"/> ';
-        echo '<input type="hidden" name="fase" value="3" />'."\n";
+        echo '<input type="hidden" name="fase" value="3" />';
         echo '<input class="button" type="submit" value="'._('enviar y finalizar »').'" ';
         echo '/>&nbsp;&nbsp;&nbsp;<span id="working">&nbsp;</span></p>';
         echo '</form>';
 
-        echo '</fieldset><br/>'."\n";
+        echo '</fieldset><br/>';
 
     }
 }
@@ -303,15 +303,15 @@ function error_encuesta($mess) {
 
     if (!$previous_error) {
         // ex container-wide
-        echo '<div class="genericform">'."\n"; // this div MUST be closed after function call!
-        echo '<h2>'._('uups!').'</h2>'."\n";
+        echo '<div class="genericform">'; // this div MUST be closed after function call!
+        echo '<h2>'._('uups!').'</h2>';
         $previous_error = true;
     }
-    echo '<h4 class="redondo">&nbsp;&nbsp;'._($mess).'</h4><br/>'."\n";
+    echo '<h4 class="redondo">&nbsp;&nbsp;'._($mess).'</h4><br/>';
 
-    echo '<form class="genericform">'."\n";
-    echo '<p><input class="button" type=button onclick="window.history.go(-1)" value="'._('« retroceder').'"/></p>'."\n";
-    echo '</form>'."\n";
-    echo '</div>'."\n";
+    echo '<form class="genericform">';
+    echo '<p><input class="button" type=button onclick="window.history.go(-1)" value="'._('« retroceder').'"/></p>';
+    echo '</form>';
+    echo '</div>';
 
 }

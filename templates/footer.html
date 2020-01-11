@@ -1,0 +1,99 @@
+</div>
+
+<div id="footwrap">
+<div class="footthingy">
+    <div id="footcol1">
+        <h5>suscripciones por RSS</h5>
+        <ul>
+            <li><a href="{{ globals.base_url }}rss2.php">publicadas</a>
+            <li><a href="{{ globals.base_url }}rss2.php?status=queued">en cola</a>
+            {% if current_user.user_id > 0 %}
+                <li><a href="{{ globals.base_url }}comments_rss2.php?conversation_id={{ current_user.user_id }}"
+                    title="comentarios de las noticias donde has comentado">mis conversaciones</a>
+                <li><a href="{{ globals.base_url }}comments_rss2.php?author_id={{ current_user.user_id }}">comentarios en mis historias</a>
+            {% endif %}
+            <li><a href="{{ globals.base_url }}comments_rss2.php">comentarios</a>
+            <li><a href="{{ globals.base_url }}encuestas_rss.php">encuestas</a>
+        </ul>
+    </div>
+
+    <div id="footcol2">
+        <h5>ayuda</h5>
+        <ul id="halluda_hoygan">
+            <li><a href="{{ globals.base_url }}ayuda.php">ayuda</a>
+            <li><a href="{{ globals.base_url }}ayuda.php?id=faq">faq</a>
+        </ul>
+    </div>
+
+    <div id="footcol3">
+        <h5>jonéame</h5>
+        <ul id="joneamefooter">
+            <li><a href="https://twitter.com/joneame">en twitter</a>
+            <li><a href="{{ globals.base_url }}cortos.php">cortos</a>
+            <li><a href="{{ globals.base_url }}top_mierdas.php">¿historias?</a>
+            <li><a href="{{ globals.base_url }}encuestas.php">encuestas</a>
+        </ul>
+    </div>
+
+    <div id="footcol4">
+        <h5>estadísticas</h5>
+        <ul id="statisticslist">
+            <li><a href="{{ globals.base_url }}mejores_mafiosos.php">mafiosos</a>
+            <li><a href="{{ globals.base_url }}las_mejores.php">populares</a>
+            <li><a href="{{ globals.base_url }}mas_comentadas.php">más comentadas</a>
+            <li><a href="{{ globals.base_url }}mejores_comentarios.php">mejores comentarios</a>
+            <li><a href="{{ globals.base_url }}mejores_notitas.php">mejores notitas</a>
+            <li><a href="{{ globals.base_url }}nube.php">nube de etiquetas</a>
+            <li><a href="{{ globals.base_url }}nube_de_webs.php">nube de webs</a>
+        </ul>
+    </div>
+
+</div>
+
+<div id="gatete"></div>
+
+{% if credits %}
+    <div class="footlegal">
+        <ul id="legalese">
+        {% if globals.joneame %}
+            <li>Jonéame
+            <li>—
+            <li><a href="{{ globals.base_url }}ayuda.php?id=legal">condiciones legales</a>
+            <a href="{{ globals.base_url }}ayuda.php?id=uso">y de uso</a>
+            <li>—
+            <li><a href="https://raw.githubusercontent.com/joneame/joneame/master/COPYING">licencia</a>,
+                <a href="https://github.com/joneame/joneame">código fuente</a>
+            <li>—
+            <li><a href="http://www.famfamfam.com/lab/icons/silk/">iconos silk</a>
+            <li>—
+            <li><a href="{{ globals.base_url }}ayuda.php?id=legal">contacto</a>
+            <li>—
+            <li><a href="{{ globals.base_url }}credits.php">créditos</a>
+        {% else %}
+            <li>link to code and licenses here (please respect the menéame Affero license and publish your own code!)
+            <li><a href="">contact here</a>
+            <li>code: <a href="#">Affero license here</a>, <a href="#">download code here</a>
+            <li>you and contact link here
+        {% endif %}
+        </ul>
+    </div>
+{% endif %}
+</div></div>
+
+{% if globals.analytics_code AND !globals.recovery %}
+    <script>
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', '{{ globals.analytics_code }}']);
+        _gaq.push(['_setCustomVar', 1, 'TipoVisita', '{% if current_user.user_id > 0 %}Registrado{% else %}Anonimo{% endif %}']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+{% endif %}
+
+</body>
+</html>

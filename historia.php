@@ -172,7 +172,7 @@ if (!empty($link->tags))
     $globals['tags']=$link->tags;
 
 // add also a rel to the comments rss
-$globals['extra_head'] = '<link rel="alternate" type="application/rss+xml" title="'._('comentarios de esta noticia').'" href="https://'.get_server_name().$globals['base_url'].'comments_rss2.php?id='.$link->id.'" />'."\n";
+$globals['extra_head'] = '<link rel="alternate" type="application/rss+xml" title="'._('comentarios de esta noticia').'" href="https://'.get_server_name().$globals['base_url'].'comments_rss2.php?id='.$link->id.'" />';
 
 $globals['extra_js'] = array('historias.js', 'ajax_com.js');
 
@@ -195,12 +195,12 @@ if (! $current_user->user_id) {
     do_best_stories();
 }
 do_rss_box();
-echo '</div>' . "\n";
+echo '</div>';
 /*** END SIDEBAR ***/
 
 $globals['show_visits'] = true;
 
-echo '<div id="newswrap">'."\n";
+echo '<div id="newswrap">';
 
 $link->print_summary();
 
@@ -238,7 +238,7 @@ if (isset($tab_option)){
     }
 } //isset
 
-echo '</div>'."\n"; //newswap
+echo '</div>'; //newswap
 
 $globals['tag_status'] = $globals['link']->status;
 do_footer();

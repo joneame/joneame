@@ -64,10 +64,10 @@ switch ($_REQUEST['w']) {
 echo '<div id="sidebar">';
 do_banner_right();
 do_rss_box($rss_program);
-echo '</div>' . "\n";
+echo '</div>';
 /*** END SIDEBAR ***/
 
-echo '<div id="newswrap">'."\n";
+echo '<div id="newswrap">';
 
 // Search form
 echo '<div class="genericform" style="text-align: center">';

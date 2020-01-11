@@ -59,10 +59,10 @@ if ($page < 2) {
     do_vertical_tags('published');
 }
 
-echo '</div>' . "\n";
+echo '</div>';
 /*** END SIDEBAR ***/
 
-echo '<div id="newswrap">'."\n";
+echo '<div id="newswrap">';
 
 /* teaser */
 ?>
@@ -86,6 +86,6 @@ if ($links) {
 
 do_pages($rows, $page_size);
 
-echo '</div>'."\n";
+echo '</div>';
 
 do_footer();

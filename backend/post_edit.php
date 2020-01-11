@@ -123,7 +123,7 @@ function save_post ($post_id) {
 
     /* Imprime a la derecha si es una respuesta */
     if ($post->is_answer() && $post_id == 0){
-        echo '<div style="padding-left: 40px;>'."\n";
+        echo '<div style="padding-left: 40px;>';
         echo '<ol class="notitas-list">';
     }
 
@@ -133,7 +133,7 @@ function save_post ($post_id) {
 
     if ($post->is_answer() && $post_id == 0){
         echo "</ol>\n";
-        echo '</div>'."\n";
+        echo '</div>';
         echo '<div id="respuesta-'.$post->id.'"></div>';
     }
 }

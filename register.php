@@ -19,7 +19,7 @@ if ($current_user->user_id > 0 && !$current_user->admin) {
 
 do_header(_("Registro | Jonéame"), "post");
 
-echo '<div class="genericform login-form">'."\n";
+echo '<div class="genericform login-form">';
 
 
 if(isset($_POST["process"])) {
@@ -35,7 +35,7 @@ if(isset($_POST["process"])) {
     do_register0();
 }
 
-echo '</div>' . "\n";
+echo '</div>';
 
 do_footer();
 exit;
@@ -45,29 +45,29 @@ function do_register0() {
     global $globals;
 
     echo '<h4>'._('registro en Jonéame').'</h4>';
-    echo '<form class="fondo-caja" action="register.php" method="post" id="thisform" onSubmit="return check_checkfield(\'acceptlegal\', \''._('no has aceptado las condiciones de legales de uso').'\')">' . "\n";
-    echo '<fieldset>' . "\n";
-    echo '<p><label for="name">' . _("nombre de usuario") . ':</label><br />' . "\n";
-    echo '<input type="text" name="username" id="name" value="" onkeyup="enablebutton(this.form.checkbutton1, this.form.submit, this)" size="25" tabindex="1"/>' . "\n";
-    echo '<span id="checkit"><input type="button" class="button" id="checkbutton1" disabled="disabled" value="'._('verificar').'" onclick="checkfield(\'username\', this.form, this.form.username)"/></span>' . "\n";
-    echo '&nbsp;<span id="usernamecheckitvalue"></span></p>' . "\n";
-    echo '<p><label for="email">email:</label><br />' . "\n";
+    echo '<form class="fondo-caja" action="register.php" method="post" id="thisform" onSubmit="return check_checkfield(\'acceptlegal\', \''._('no has aceptado las condiciones de legales de uso').'\')">';
+    echo '<fieldset>';
+    echo '<p><label for="name">' . _("nombre de usuario") . ':</label><br />';
+    echo '<input type="text" name="username" id="name" value="" onkeyup="enablebutton(this.form.checkbutton1, this.form.submit, this)" size="25" tabindex="1"/>';
+    echo '<span id="checkit"><input type="button" class="button" id="checkbutton1" disabled="disabled" value="'._('verificar').'" onclick="checkfield(\'username\', this.form, this.form.username)"/></span>';
+    echo '&nbsp;<span id="usernamecheckitvalue"></span></p>';
+    echo '<p><label for="email">email:</label><br />';
     echo '<span class="note">'._('es importante que sea correcto, recibirás un correo en tu buzón para validar tu cuenta').'</span> <br />';
-    echo '<input type="text" id="email" name="email" value=""  onkeyup="enablebutton(this.form.checkbutton2, this.form.submit, this)" size="25" tabindex="2"/>' . "\n";
-    echo '<input type="button" class="button" id="checkbutton2" disabled="disabled" value="'._('verificar').'" onclick="checkfield(\'email\', this.form, this.form.email)"/>' . "\n";
-    echo '&nbsp;<span id="emailcheckitvalue"></span></p>' . "\n";
-    echo '<p><label for="password">' . _("contraseña") . ':</label><br />' . "\n";
+    echo '<input type="text" id="email" name="email" value=""  onkeyup="enablebutton(this.form.checkbutton2, this.form.submit, this)" size="25" tabindex="2"/>';
+    echo '<input type="button" class="button" id="checkbutton2" disabled="disabled" value="'._('verificar').'" onclick="checkfield(\'email\', this.form, this.form.email)"/>';
+    echo '&nbsp;<span id="emailcheckitvalue"></span></p>';
+    echo '<p><label for="password">' . _("contraseña") . ':</label><br />';
     echo '<span class="note">'._('al menos ocho caracteres, incluyendo mayúsculas, minúsculas y números').' </span><br />';
-    echo '<input type="password" id="password" name="password" size="25" tabindex="3" onkeyup="return securePasswordCheck(this.form.password);"/><span id="password1-warning"></span></p>' . "\n";
-    echo '<p><label for="verify">' . _("repite la contraseña") . ': </label><br />' . "\n";
-    echo '<input type="password" id="verify" name="password2" size="25" tabindex="4" onkeyup="checkEqualFields(this.form.password2, this.form.password)"/></p>' . "\n";
-    echo '<p><input type="checkbox" id="acceptlegal" name="acceptlegal" value="accept" tabindex="5"/></span>' . "\n";
+    echo '<input type="password" id="password" name="password" size="25" tabindex="3" onkeyup="return securePasswordCheck(this.form.password);"/><span id="password1-warning"></span></p>';
+    echo '<p><label for="verify">' . _("repite la contraseña") . ': </label><br />';
+    echo '<input type="password" id="verify" name="password2" size="25" tabindex="4" onkeyup="checkEqualFields(this.form.password2, this.form.password)"/></p>';
+    echo '<p><input type="checkbox" id="acceptlegal" name="acceptlegal" value="accept" tabindex="5"/></span>';
     echo '<span class="note">'._('he leído y acepto tanto las ').'<a href="'.$globals['legal'].'">'._('condiciones legales').'</a>'._(' como las').' <a href="'.$globals['normas'].'">'._('normas').'</a>';
-    echo '<p><input type="submit" class="button" disabled="disabled" name="submit" value="'._('crear usuario').'" class="log2" tabindex="6" /></p>' . "\n";
-    echo '<input type="hidden" name="process" value="1"/>' . "\n";
-    echo '</fieldset>' . "\n";
-    echo '</form>' . "\n";
-    echo '<div class="recoverpass" align="center"><h4 class="boton"><a href="login.php?op=recover">'._('¿Has olvidado la contraseña?').'</a></h4></div>'."\n";
+    echo '<p><input type="submit" class="button" disabled="disabled" name="submit" value="'._('crear usuario').'" class="log2" tabindex="6" /></p>';
+    echo '<input type="hidden" name="process" value="1"/>';
+    echo '</fieldset>';
+    echo '</form>';
+    echo '<div class="recoverpass" align="center"><h4 class="boton"><a href="login.php?op=recover">'._('¿Has olvidado la contraseña?').'</a></h4></div>';
 
 
 
@@ -85,8 +85,8 @@ function do_register1() {
     if (!check_user_fields()) return;
 
     echo '<br style="clear:both" />';
-    echo '<h4>'._('validación').'</h4>'."\n";
-    echo '<form action="register.php" method="post" id="thisform"><fieldset class="fondo-caja">' . "\n";
+    echo '<h4>'._('validación').'</h4>';
+    echo '<form action="register.php" method="post" id="thisform"><fieldset class="fondo-caja">';
 
     ts_print_form();
 
@@ -96,7 +96,7 @@ function do_register1() {
     echo '<input type="hidden" name="username" value="'.clean_input_string($_POST["username"]).'" />';
     echo '<input type="hidden" name="password" value="'.clean_input_string($_POST["password"]).'" />';
     echo '<input type="hidden" name="password2" value="'.clean_input_string($_POST["password2"]).'" />';
-    echo '</fieldset></form>'."\n";
+    echo '</fieldset></form>';
 
 }
 
@@ -123,8 +123,8 @@ function do_register2() {
     if (!user_exists($username)) {
 
         if ($db->query("INSERT INTO users (user_login, user_login_register, user_email, user_email_register, user_pass, user_date, user_ip) VALUES ('$dbusername', '$dbusername', '$dbemail', '$dbemail', '$password', now(), '$user_ip')")) {
-            echo '<h4>'._('registro de usuario').'</h4>'."\n";
-            echo '<fieldset class="fondo-caja">'."\n";
+            echo '<h4>'._('registro de usuario').'</h4>';
+            echo '<fieldset class="fondo-caja">';
             require_once(mnminclude.'user.php');
 
             $user=new User();
@@ -143,7 +143,7 @@ function do_register2() {
                  $messages->generateKey($user);
 
             }
-            echo '</fieldset>'."\n";
+            echo '</fieldset>';
 
         } else {
             register_error(_("Error insertando usuario en la base de datos"));

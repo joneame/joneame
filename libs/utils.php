@@ -23,7 +23,6 @@ $globals['negative_votes_values'] = Array (-1 => _('repetida'), -2 => _('inadecu
 
 $globals['extra_js'] = Array();
 $globals['extra_css'] = Array();
-$globals['post_js'] = Array();
 $globals['mobile'] = false;
 
 // For PHP < 5
@@ -436,18 +435,18 @@ function utf8_substr($str,$start)
 function not_found($mess = '') {
     header("HTTP/1.0 404 Not Found");
     header("Status: 404 Not Found");
-    echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">' . "\n";
-    echo '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="'.$dblang.'" lang="'.$dblang.'">' . "\n";
-    echo '<head>' . "\n";
-    echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />' . "\n";
+    echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">';
+    echo '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="'.$dblang.'" lang="'.$dblang.'">';
+    echo '<head>';
+    echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />';
     echo "<title>". _('error') . "</title>\n";
-    echo '<meta name="generator" content="meneame" />' . "\n";
-    echo '<link rel="icon" href="'.$globals['base_url'].'img/favicons/favicon4.ico" type="image/x-icon" />' . "\n";
-    echo '</head>' . "\n";
+    echo '<meta name="generator" content="meneame" />';
+    echo '<link rel="icon" href="'.$globals['base_url'].'img/favicons/favicon4.ico" type="image/x-icon" />';
+    echo '</head>';
     echo "<body>\n";
     if (empty($mess)) {
         echo '<h1>' . _('Error.') . ' [número pi]</h1><p>' . _('no encontrado.') . '</p><br><br><br><br><br><br><br><br><br><br><br><br>';
-        echo '<li><a href="javascript:history.go(-1)">'._('Retroceder').'</a></li>'."\n";
+        echo '<li><a href="javascript:history.go(-1)">'._('Retroceder').'</a></li>';
     } else {
         echo $mess;
     }
@@ -930,7 +929,7 @@ function print_oauth_icons($return = false) {
         }
         if ($title) {
             echo '<a href="'.$globals['base_url'].'login/signin.php?service=twitter&amp;op=init&amp;return='.$return.'" title="'.$title.'">';
-            echo '<img style="vertical-align:middle;" src="'.$globals['base_url'].'img/v2/signin-twitter2.png" width="89" height="21" alt=""/></a>&nbsp;&nbsp;'."\n";
+            echo '<img style="vertical-align:middle;" src="'.$globals['base_url'].'img/v2/signin-twitter2.png" width="89" height="21" alt=""/></a>&nbsp;&nbsp;';
         }
     }
     if ($globals['facebook_key']) {
@@ -948,7 +947,7 @@ function print_oauth_icons($return = false) {
         }
         if ($title) {
             echo '<a href="'.$globals['base_url'].'login/fbconnect.php?return='.$return.'" title="'.$title.'">';
-            echo '<img style="vertical-align:middle" src="'.$globals['base_url'].'img/v2/signin-fb.gif" width="89" height="21" alt=""/></a>&nbsp;&nbsp;'."\n";
+            echo '<img style="vertical-align:middle" src="'.$globals['base_url'].'img/v2/signin-fb.gif" width="89" height="21" alt=""/></a>&nbsp;&nbsp;';
         }
     }
 }

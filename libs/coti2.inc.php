@@ -74,17 +74,17 @@ function print_razon_edit($id) {
     $razon_baneo = "Has sido baneado de la cotillona de Jonéame. Si piensas que hubo algún error, comunícanoslo a través de un email a admin@joneame.net";
 
     echo '<div class="redondo atencion">Acompañado de la razón exacta, es un posible comienzo para la razón: <b>'. $razon_baneo. '</b></div><br/>';
-        echo '<div class="genericform"><div class="genericform">'."\n";
+        echo '<div class="genericform"><div class="genericform">';
     echo '<span style="color: red;">'._('mínimo 15 caracteres').'</span><br/><br/>';
-        echo '<div class="commentform">'."\n";
-        echo '<form action="'.htmlspecialchars($_SERVER['PHP_SELF']).'" method="post">'."\n";
-        echo '<h4>'._('inserta la razón del ban').'</h4>'."\n";
+        echo '<div class="commentform">';
+        echo '<form action="'.htmlspecialchars($_SERVER['PHP_SELF']).'" method="post">';
+        echo '<h4>'._('inserta la razón del ban').'</h4>';
         echo '<fieldset class="fondo-caja">';
-        echo '<div class="fondo-caja"><textarea name="razon_ban" id="insertar" rows="3" style="width: 99%;"></textarea></div>'."\n";
-        echo '<input class="button" type="submit" name="submit" value="'._('banear').'" />'."\n";
-        echo '<input type="hidden" name="user_id" value="'.$id.'" />'."\n";
-        echo '</fieldset>'."\n";
-        echo '</form>'."\n";
+        echo '<div class="fondo-caja"><textarea name="razon_ban" id="insertar" rows="3" style="width: 99%;"></textarea></div>';
+        echo '<input class="button" type="submit" name="submit" value="'._('banear').'" />';
+        echo '<input type="hidden" name="user_id" value="'.$id.'" />';
+        echo '</fieldset>';
+        echo '</form>';
         echo "</div></div></div>\n";
 
 }

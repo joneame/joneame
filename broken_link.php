@@ -21,7 +21,7 @@ $offset=($page-1)*$page_size;
 
 print_sidebar();
 
-echo '<div id="newswrap">'."\n";
+echo '<div id="newswrap">';
 
 $id = $db->escape($_REQUEST['id']);
 
@@ -109,7 +109,7 @@ echo '<p>No hay historias inválidas reportadas. Utiliza el icono al final del t
 
 }
 
-echo '</div>'."\n";
+echo '</div>';
 do_footer();
 
 function print_sidebar(){
@@ -120,7 +120,7 @@ do_banner_right();
 echo '<br/>';
 do_best_comments();
 do_vertical_tags('published');
-echo '</div>' . "\n";
+echo '</div>';
 
 /*** END SIDEBAR ***/
 

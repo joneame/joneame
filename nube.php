@@ -45,10 +45,10 @@ print_period_tabs();
 echo '<div id="sidebar">';
 do_banner_right();
 do_best_stories();
-echo '</div>' . "\n";
+echo '</div>';
 /*** END SIDEBAR ***/
 
-echo '<div id="newswrap">'."\n";
+echo '<div id="newswrap">';
 
 
 echo '<div class="topheading"><h2>+ '.$words_limit.'</h2></div>';
@@ -75,14 +75,14 @@ function print_period_tabs() {
     global $globals, $range_values, $range_names;
 
     if(!($current_range = check_integer('range')) || $current_range < 1 || $current_range >= count($range_values)) $current_range = 0;
-    echo '<ul class="tabsub-shakeit">'."\n";
+    echo '<ul class="tabsub-shakeit">';
     for($i=0; $i<count($range_values) && $range_values[$i] < 40; $i++) {
         if($i == $current_range)  {
             $active = ' class="tabsub-this"';
         } else {
             $active = "";
         }
-        echo '<li'.$active.'><a href="nube.php?range='.$i.'">' .$range_names[$i]. '</a></li>'."\n";
+        echo '<li'.$active.'><a href="nube.php?range='.$i.'">' .$range_names[$i]. '</a></li>';
     }
-    echo '</ul>'."\n";
+    echo '</ul>';
 }

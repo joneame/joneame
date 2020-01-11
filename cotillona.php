@@ -608,9 +608,9 @@ if ($current_user->user_id > 0){
 }
 
 
-echo '</div>' . "\n";
+echo '</div>';
 
-echo '<div id="singlewrap">' . "\n";
+echo '<div id="singlewrap">';
 
 echo '<div class="sneaker-item">';
 echo '<div class="sneaker-title">';
@@ -642,31 +642,31 @@ function print_sneak_tabs($option) {
     for ($n=1; $n <= 9; $n++) $active[$n] = '';
 
     $active[$option] = ' class="current"';
-    echo '<ul class="tabmain">' . "\n";
+    echo '<ul class="tabmain">';
 
-    echo '<li'.$active[1].'><a href="'.$globals['base_url'].'cotillona.php">'._('todos').'</a></li>' . "\n";
-    echo '<li'.$active[2].'><a href="'.$globals['base_url'].'cotillona.php?friends=1">'._('amigos').'</a></li>' . "\n";
+    echo '<li'.$active[1].'><a href="'.$globals['base_url'].'cotillona.php">'._('todos').'</a></li>';
+    echo '<li'.$active[2].'><a href="'.$globals['base_url'].'cotillona.php?friends=1">'._('amigos').'</a></li>';
 
     if ($current_user->user_id > 0 && $current_user->devel) {
-    echo '<li'.$active[4].'><a href="'.$globals['base_url'].'cotillona.php?devel=1">'._('devels').'</a></li>' . "\n";
+    echo '<li'.$active[4].'><a href="'.$globals['base_url'].'cotillona.php?devel=1">'._('devels').'</a></li>';
     }
 
     if ($current_user->user_id > 0 && $current_user->admin) {
-    echo '<li'.$active[3].'><a href="'.$globals['base_url'].'cotillona.php?admin=1">'._('admin').'</a></li>' . "\n";
+    echo '<li'.$active[3].'><a href="'.$globals['base_url'].'cotillona.php?admin=1">'._('admin').'</a></li>';
     }
 
     if (isset($_GET['hoygan']) && $_GET['hoygan'] == '1')
-      echo '<li><a href="'.$globals['base_url'].'cotillona.php?hoygan=1"><em>'._('cotillhoygan').'</em></a></li>' . "\n";
+      echo '<li><a href="'.$globals['base_url'].'cotillona.php?hoygan=1"><em>'._('cotillhoygan').'</em></a></li>';
     else
-      echo '<li><a href="'.$globals['base_url'].'cotillona.php?hoygan=1">'._('cotillhoygan').'</a></li>' . "\n";
+      echo '<li><a href="'.$globals['base_url'].'cotillona.php?hoygan=1">'._('cotillhoygan').'</a></li>';
 
     if (isset($_GET['flip']) && $_GET['flip'] == '1')
-      echo '<li><a href="'.$globals['base_url'].'cotillona.php?flip=1"><em>'._('al revés').'</em></a></li>' . "\n";
+      echo '<li><a href="'.$globals['base_url'].'cotillona.php?flip=1"><em>'._('al revés').'</em></a></li>';
     else
-      echo '<li><a href="'.$globals['base_url'].'cotillona.php?flip=1">'._('al revés').'</a></li>' . "\n";
+      echo '<li><a href="'.$globals['base_url'].'cotillona.php?flip=1">'._('al revés').'</a></li>';
 
       if ($current_user->admin)
-      echo '<li style="margin-left: 10px;"><a class="separada" href="'.$globals['base_url'].'admin/cotillona.php">'._('log cotillona').'</a></li>' . "\n";
+      echo '<li style="margin-left: 10px;"><a class="separada" href="'.$globals['base_url'].'admin/cotillona.php">'._('log cotillona').'</a></li>';
 
-    echo '</ul>' . "\n";
+    echo '</ul>';
 }

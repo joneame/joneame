@@ -31,12 +31,12 @@ class FBConnect extends OAuthBase {
 
         // Print html needed for FB Connect API
         echo "<html><head>\n";
-        echo '<script src="http://static.new.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php" type="text/javascript"></script>'."\n";
-        echo '<script>'."\n";
-        echo 'FB.init("'.$globals['facebook_key'].'", "'.$globals['base_url'].'libs/fbconnect/xd_receiver.php",{"reloadIfSessionStateChanged":true});'."\n";
-        echo 'self.location = "'.$this->authorize_url.'";'."\n";
-        echo '</script>'."\n";
-        echo '</head><body></body></html>'."\n";
+        echo '<script src="http://static.new.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php" type="text/javascript"></script>';
+        echo '<script>';
+        echo 'FB.init("'.$globals['facebook_key'].'", "'.$globals['base_url'].'libs/fbconnect/xd_receiver.php",{"reloadIfSessionStateChanged":true});';
+        echo 'self.location = "'.$this->authorize_url.'";';
+        echo '</script>';
+        echo '</head><body></body></html>';
         exit;
     }
 

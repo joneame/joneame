@@ -23,7 +23,7 @@ if ($current_user->admin) {
     }
 
     admin_tabs($_REQUEST["admin"]);
-    echo '<div id="singlewrap"><br/>' . "\n";
+    echo '<div id="singlewrap"><br/>';
     admin_bans($_REQUEST["admin"]);
 } else {
      do_error(_('Esta página es sólo para administradores'), 403);
@@ -38,7 +38,7 @@ do_footer();
 function admin_tabs($tab_selected = false) {
     global $globals;
     $active = ' class="current"';
-    echo '<ul class="tabmain">' . "\n";
+    echo '<ul class="tabmain">';
 
 
     if (!empty($_SERVER['QUERY_STRING']))
@@ -49,22 +49,22 @@ function admin_tabs($tab_selected = false) {
     foreach($tabs as $tab) {
         if ($tab_selected == $tab) {
             if ($tab == 'proxy') {//pone IP en el texto en vez de proxy
-                echo '<li'.$active.'><a href="'.$globals['base_url'].'admin/bans.php?admin='.$tab.'" title="'.$reload_text.'">'._('IP').$reload_icon.'</a></li>' . "\n";
+                echo '<li'.$active.'><a href="'.$globals['base_url'].'admin/bans.php?admin='.$tab.'" title="'.$reload_text.'">'._('IP').$reload_icon.'</a></li>';
             } else {
-                echo '<li'.$active.'><a href="'.$globals['base_url'].'admin/bans.php?admin='.$tab.'" title="'.$reload_text.'">'._($tab).$reload_icon.'</a></li>' . "\n";
+                echo '<li'.$active.'><a href="'.$globals['base_url'].'admin/bans.php?admin='.$tab.'" title="'.$reload_text.'">'._($tab).$reload_icon.'</a></li>';
             }
         } else {
             if ($tab == 'proxy') { //pone IP en el texto en vez de proxy
-                echo '<li><a  href="'.$globals['base_url'].'admin/bans.php?admin='.$tab.'">'._('IP').'</a></li>' . "\n";
+                echo '<li><a  href="'.$globals['base_url'].'admin/bans.php?admin='.$tab.'">'._('IP').'</a></li>';
             } else {
-                echo '<li><a  href="'.$globals['base_url'].'admin/bans.php?admin='.$tab.'">'._($tab).'</a></li>' . "\n";
+                echo '<li><a  href="'.$globals['base_url'].'admin/bans.php?admin='.$tab.'">'._($tab).'</a></li>';
             }
         }
     }
 
-    echo '<li><a  href="'.$globals['base_url'].'admin/bsc.php">'._('BSC').'</a></li>' . "\n";
+    echo '<li><a  href="'.$globals['base_url'].'admin/bsc.php">'._('BSC').'</a></li>';
 
-    echo '</ul>' . "\n";
+    echo '</ul>';
 }
 
 function admin_bans($ban_type) {
@@ -91,7 +91,7 @@ function admin_bans($ban_type) {
     // ex container-wide
     echo '<div class="genericform" style="margin:0">';
 
-    echo '<div style="float:right;">'."\n";
+    echo '<div style="float:right;">';
     echo '<form method="get" action="'.$globals['base_url'].'admin/bans.php">';
     echo '<input type="hidden" name="admin" value="'.$ban_type.'" />';
     echo '<input type="hidden" name="key" value="'.$key.'" />';
@@ -137,8 +137,8 @@ function admin_bans($ban_type) {
         case 'new':
             echo '<tr><td>';
             echo '<input type="text" id="ban_text" name="ban_text" size="30" maxlength="'.$ban_text_length.'" value="" />';
-            echo '&nbsp;<span id="checkit"><input type="button" id="checkbutton1" value="'._('verificar').'" onclick="checkfield(\'ban_'.$ban_type.'\', this.form, this.form.ban_text)"/></span>' . "\n";
-            echo '<br /><span id="ban_'.$ban_type.'checkitvalue"></span>' . "\n";
+            echo '&nbsp;<span id="checkit"><input type="button" id="checkbutton1" value="'._('verificar').'" onclick="checkfield(\'ban_'.$ban_type.'\', this.form, this.form.ban_text)"/></span>';
+            echo '<br /><span id="ban_'.$ban_type.'checkitvalue"></span>';
             echo '</td><td>';
             echo '<input class="form-full" type="text" name="ban_comment" id="ban_comment" />';
             echo '</td><td>';

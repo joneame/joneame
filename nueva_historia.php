@@ -16,7 +16,7 @@ $globals['ads'] = false;
 /* He has a URL, go to 2nd phase directly. Updated for Chrome Joneame Extension (by Urko) -- Jon*/
 if (!empty($_GET['url'])) {
             do_header(_("enviar chorrada 2/3"), "post");
-                        echo '<div id="singlewrap">' . "\n";
+                        echo '<div id="singlewrap">';
                         do_submit1();
                         echo "</div>\n"; // singlewrap
             do_footer();
@@ -28,12 +28,12 @@ if(isset($_POST["phase"])) {
         switch ($_POST["phase"]) {
                 case 1:
                         do_header(_("enviar chorrada 2/3"), "post");
-                        echo '<div id="singlewrap">' . "\n";
+                        echo '<div id="singlewrap">';
                         do_submit1();
                         break;
                 case 2:
                         do_header(_("enviar chorrada 3/3"), "post");
-                        echo '<div id="singlewrap">' . "\n";
+                        echo '<div id="singlewrap">';
                         do_submit2();
                         break;
                 case 3:
@@ -44,7 +44,7 @@ if(isset($_POST["phase"])) {
         check_already_sent();
         force_authentication();
         do_header(_("enviar chorrada 1/3"), "post");
-        echo '<div id="singlewrap">' . "\n";
+        echo '<div id="singlewrap">';
         do_submit0();
 }
 echo "</div>\n"; // singlewrap
@@ -54,13 +54,13 @@ exit;
     function preload_indicators() {
         global $globals;
 
-        echo '<script>'."\n";
-        echo '<!--'."\n";
-        echo 'var img_src1=\''.$globals['base_url'].'img/estructura/cargando.gif\''."\n";;
-        echo 'var img1= new Image(); '."\n";
+        echo '<script>';
+        echo '<!--';
+        echo 'var img_src1=\''.$globals['base_url'].'img/estructura/cargando.gif\'';;
+        echo 'var img1= new Image(); ';
         echo 'img1.src = img_src1';
-        echo '//-->'."\n";
-        echo '</SCRIPT>'."\n";
+        echo '//-->';
+        echo '</SCRIPT>';
     }
 
     function check_already_sent() {
@@ -92,7 +92,7 @@ exit;
         echo '<input type="text" name="url" id="url" value="'.htmlspecialchars($url).'" class="form-full" placeholder="https://" /></p>';
         echo '<input type="hidden" name="phase" value="1" />';
         $randkey = rand(10000,10000000);
-        echo '<input type="hidden" name="key" value="'.md5($randkey.$current_user->user_id.$current_user->user_email.$site_key.get_server_name()).'" />'."\n";
+        echo '<input type="hidden" name="key" value="'.md5($randkey.$current_user->user_id.$current_user->user_email.$site_key.get_server_name()).'" />';
         echo '<input type="hidden" name="randkey" value="'.$randkey.'" />';
         echo '<input type="hidden" name="id" value="c_1" />';
         echo '<p><input class="button" type="submit" value="'._('continuar »').'" ';
@@ -112,7 +112,7 @@ exit;
         echo '<li><strong>'._('busca antes').':</strong> '._('por favor, usa el buscador para así evitar historias duplicadas').'</li>';
         echo '<li><strong>'._('respeta el voto de los demás').':</strong> '._('en jonéame tenemos el voto mafia, al loro con él, si ves que tu historia no gusta, pasa a la siguiente y no te preocupes').'</li>';
 
-        echo '</ul></div><br/>'."\n";
+        echo '</ul></div><br/>';
         print_empty_submit_form();
     }
 
@@ -131,7 +131,7 @@ exit;
                       $url = 'http://'.$url;
                 }
 
-        echo '<div>'."\n";
+        echo '<div>';
 
         $new_user = false;
         if (!check_link_key()) {
@@ -150,7 +150,7 @@ exit;
         if ($globals['limit_user_24_hours'] && $queued_24_hours > $globals['limit_user_24_hours']) {
                 echo '<p class="error">'._('Debes esperar, tienes demasiadas noticias en cola de las últimas 24 horas'). " ($queued_24_hours), "._('disculpa las molestias'). ' </p>';
                 syslog(LOG_NOTICE, "Jonéame, too many queued in 24 hours ($current_user->user_login): $_POST[url]");
-                echo '<br style="clear: both;" />' . "\n";
+                echo '<br style="clear: both;" />';
                 echo '</div>'. "\n";
                 return;
         }
@@ -238,7 +238,7 @@ exit;
                         }
                         echo '<strong>'._('no votes de forma apresurada, penaliza el karma').'</strong><br/>';
                         echo '<a href="'.$globals['base_url'].'jonealas.php" target="_blank">'._('haz clic aquí para ir a votar').'</a></p>';
-                        echo '<br style="clear: both;" />' . "\n";
+                        echo '<br style="clear: both;" />';
                         echo '</div>'. "\n";
                         return;
                 }
@@ -365,7 +365,7 @@ exit;
                         } else {
                                 syslog(LOG_NOTICE, "Jonéame, error parsing during ban: $blog->id, $blog->url ($current_user->user_login)");
                         }
-                        echo '<br style="clear: both;" />' . "\n";
+                        echo '<br style="clear: both;" />';
                         echo '</div>'. "\n";
                         return;
                 }
@@ -383,31 +383,31 @@ exit;
         $linkres->sent_date = $linkres->date=time();
         $linkres->store();
 
-        echo '<h2>'._('envío de una nueva chorrada: paso 2 de 3').'</h2>'."\n";
+        echo '<h2>'._('envío de una nueva chorrada: paso 2 de 3').'</h2>';
 
-        echo '<div class="genericform">'."\n";
+        echo '<div class="genericform">';
 
-        echo '<form action="nueva_historia.php" method="post" id="thisform" name="thisform">'."\n";
+        echo '<form action="nueva_historia.php" method="post" id="thisform" name="thisform">';
 
-        echo '<fieldset class="fondo-caja redondo inverso"><legend class="mini barra redondo">'._('información del enlace').'</legend>'."\n";
-        echo '<input type="hidden" name="url" id="url" value="'.htmlspecialchars($linkres->url).'" />'."\n";
-        echo '<input type="hidden" name="phase" value="2" />'."\n";
-        echo '<input type="hidden" name="randkey" value="'.intval($_POST['randkey']).'" />'."\n";
-        echo '<input type="hidden" name="key" value="'.$_POST['key'].'" />'."\n";
-        echo '<input type="hidden" name="id" value="'.$linkres->id.'" />'."\n";
+        echo '<fieldset class="fondo-caja redondo inverso"><legend class="mini barra redondo">'._('información del enlace').'</legend>';
+        echo '<input type="hidden" name="url" id="url" value="'.htmlspecialchars($linkres->url).'" />';
+        echo '<input type="hidden" name="phase" value="2" />';
+        echo '<input type="hidden" name="randkey" value="'.intval($_POST['randkey']).'" />';
+        echo '<input type="hidden" name="key" value="'.$_POST['key'].'" />';
+        echo '<input type="hidden" name="id" value="'.$linkres->id.'" />';
         echo '<p class="genericformtxt"><strong>';
         echo mb_substr($linkres->url_title, 0, 200);
         echo '</strong><br/>';
         echo htmlspecialchars($linkres->url);
-        echo '</p> '."\n";
-        echo '</fieldset>'."\n";
+        echo '</p> ';
+        echo '</fieldset>';
 
         echo '<br/>';
 
-        echo '<h4>'._('detalles de la noticia').'</h4><div class="fondo-caja"><fieldset>'."\n";
+        echo '<h4>'._('detalles de la noticia').'</h4><div class="fondo-caja"><fieldset>';
 
-        echo '<label for="title" accesskey="1">'._('título de la noticia').':</label>'."\n";
-        echo '<p><span class="note">'._('título de la noticia. máximo: 120 caracteres').'</span>'."\n";
+        echo '<label for="title" accesskey="1">'._('título de la noticia').':</label>';
+        echo '<p><span class="note">'._('título de la noticia. máximo: 120 caracteres').'</span>';
         // Is it an image or video?
         echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
         $linkres->print_content_type_buttons();
@@ -416,37 +416,37 @@ exit;
             $link_title = mb_substr($linkres->url_title, 0, 200);
         }
         echo '<br/><input type="text" id="title" name="title" value="'.$link_title.'" size="80" maxlength="120" />';
-        echo '</p>'."\n";
+        echo '</p>';
 
-        echo '<label for="tags" accesskey="2">'._('etiquetas').':</label>'."\n";
+        echo '<label for="tags" accesskey="2">'._('etiquetas').':</label>';
         echo '<p><span class="note">'._('añade etiquetas para facilitar la posterior búsqueda').'</span>';
-        echo '<br/><input placeholder="pornografía, gatos, humor" type="text" id="tags" name="tags" value="'.$link_tags.'" size="70" maxlength="70" /></p>'."\n";
+        echo '<br/><input placeholder="pornografía, gatos, humor" type="text" id="tags" name="tags" value="'.$link_tags.'" size="70" maxlength="70" /></p>';
 
         //botones de formateo
         echo '<div style="float: right;">';
         print_simpleformat_buttons('bodytext');
         echo '</div>';
 
-        echo '<p><label for="bodytext" accesskey="3">'._('descripción de la noticia').':</label>'."\n";
+        echo '<p><label for="bodytext" accesskey="3">'._('descripción de la noticia').':</label>';
         echo '<br /><span class="note">'._('describe el enlace con tus palabras — este campo es opcional');
-        echo '</span>'."\n";
-        echo '<br/><textarea name="bodytext" rows="10" cols="60" id="bodytext" onKeyDown="textCounter(document.thisform.bodytext,document.thisform.bodycounter,5000)" onKeyUp="textCounter(document.thisform.bodytext,document.thisform.bodycounter,5000)">'.$link_content.'</textarea>'."\n";
+        echo '</span>';
+        echo '<br/><textarea name="bodytext" rows="10" cols="60" id="bodytext" onKeyDown="textCounter(document.thisform.bodytext,document.thisform.bodycounter,5000)" onKeyUp="textCounter(document.thisform.bodytext,document.thisform.bodycounter,5000)">'.$link_content.'</textarea>';
         $body_left = 5000 - mb_strlen(html_entity_decode($link_content, ENT_COMPAT, 'UTF-8'), 'UTF-8');
         echo '<input readonly type="text" name="bodycounter" size="3" maxlength="3" value="'. $body_left . '" /> <span class="note">' . _('caracteres libres') . '</span>';
 
 
-        echo '</p>'."\n";
-        echo '<br /></p>'."\n";
+        echo '</p>';
+        echo '<br /></p>';
 
         print_categories_form();
 
         echo '<br/>';
-        echo '<input class="button" type="button" onclick="window.history.go(-1)" value="'._('« retroceder').'" />&nbsp;&nbsp;'."\n";
-        echo '<input class="button" type="submit" value="'._('continuar »').'" />'."\n";
-        echo '</fieldset></div>'."\n";
-        echo '</form>'."\n";
-        echo '</div>'."\n";
-        echo '</div>'."\n";
+        echo '<input class="button" type="button" onclick="window.history.go(-1)" value="'._('« retroceder').'" />&nbsp;&nbsp;';
+        echo '<input class="button" type="submit" value="'._('continuar »').'" />';
+        echo '</fieldset></div>';
+        echo '</form>';
+        echo '</div>';
+        echo '</div>';
     }
 
 
@@ -470,7 +470,7 @@ exit;
 
         $linkres->category=intval($_POST['category']);
 
-        if ($linkres->category == 207 || $linkres->category == 37) echo '<div class="form-error-submit">&nbsp;&nbsp;'._("Estás enviando una historia en una categoría pornografía. Acuérdate de NSFW o +18 si procede").'</div><br/>'."\n";
+        if ($linkres->category == 207 || $linkres->category == 37) echo '<div class="form-error-submit">&nbsp;&nbsp;'._("Estás enviando una historia en una categoría pornografía. Acuérdate de NSFW o +18 si procede").'</div><br/>';
 
         $enviadas = (int) $db->get_var("select count(*) from links where link_status!='published' and link_date > date_sub(now(), interval 24 hour) and link_author=$current_user->user_id");
 
@@ -502,10 +502,10 @@ exit;
             $linkres->content = clean_text($_POST['bodytext']);
 
         if (link_errors($linkres)) {
-                echo '<form class="genericform">'."\n";
-                echo '<p><input class="button" type=button onclick="window.history.go(-1)" value="'._('« retroceder').'"/></p>'."\n";
-                echo '</form>'."\n";
-                echo '</div>'."\n"; // opened in print_form_submit_error
+                echo '<form class="genericform">';
+                echo '<p><input class="button" type=button onclick="window.history.go(-1)" value="'._('« retroceder').'"/></p>';
+                echo '</form>';
+                echo '</div>'; // opened in print_form_submit_error
                 return;
         }
 
@@ -518,34 +518,34 @@ exit;
         $link_title = $linkres->title;
         $link_content = $linkres->content;
         preload_indicators();
-        echo '<div class="genericform">'."\n";
+        echo '<div class="genericform">';
 
-        echo '<h2>'._('envío de una nueva noticia: paso 3 de 3').'</h2>'."\n";
+        echo '<h2>'._('envío de una nueva noticia: paso 3 de 3').'</h2>';
 
-        echo '<form action="nueva_historia.php" method="post" class="genericform">'."\n";
-        echo '<fieldset class="redondo"><legend class="mini barra redondo"><span class="sign">'._('detalles de la noticia').'</span></legend>'."\n";
+        echo '<form action="nueva_historia.php" method="post" class="genericform">';
+        echo '<fieldset class="redondo"><legend class="mini barra redondo"><span class="sign">'._('detalles de la noticia').'</span></legend>';
 
         echo '<div class="genericformtxt"><label>'._('ATENCIÓN: ¡esto es sólo una muestra!').'</label>&nbsp;&nbsp;<br/>'._('Ahora puedes 1) ').'<label>'._('retroceder').'</label>'._(' o 2)  ').'<label>'._('enviar a la cola y finalizar').'.</label> '._('¡Deja que la mafia decida!').'</div>';
 
-        echo '<div class="formnotice">'."\n";
+        echo '<div class="formnotice">';
         $linkres->print_summary('preview');
 
-        echo '</div>'."\n";
+        echo '</div>';
 
-        echo '<input type="hidden" name="phase" value="3" />'."\n";
-        echo '<input type="hidden" name="randkey" value="'.intval($_POST['randkey']).'" />'."\n";
-        echo '<input type="hidden" name="key" value="'.$_POST['key'].'" />'."\n";
-        echo '<input type="hidden" name="id" value="'.$linkres->id.'" />'."\n";
-        echo '<input type="hidden" name="trackback" value="'.htmlspecialchars(trim($_POST['trackback'])).'" />'."\n";
-        echo '<input type="hidden" name="aleatorio" value="'.$_POST['aleatorio'].'" />'."\n";
+        echo '<input type="hidden" name="phase" value="3" />';
+        echo '<input type="hidden" name="randkey" value="'.intval($_POST['randkey']).'" />';
+        echo '<input type="hidden" name="key" value="'.$_POST['key'].'" />';
+        echo '<input type="hidden" name="id" value="'.$linkres->id.'" />';
+        echo '<input type="hidden" name="trackback" value="'.htmlspecialchars(trim($_POST['trackback'])).'" />';
+        echo '<input type="hidden" name="aleatorio" value="'.$_POST['aleatorio'].'" />';
 
-        echo '<br style="clear: both;" /><br style="clear: both;" />'."\n";
-        echo '<input class="button" type="button" onclick="window.history.go(-1)" value="'._('« retroceder').'"/>&nbsp;&nbsp;'."\n";
+        echo '<br style="clear: both;" /><br style="clear: both;" />';
+        echo '<input class="button" type="button" onclick="window.history.go(-1)" value="'._('« retroceder').'"/>&nbsp;&nbsp;';
         echo '<input class="button" type="submit" value="'._('enviar a la cola y finalizar »').'" ';
         echo '/>&nbsp;&nbsp;&nbsp;<span id="working">&nbsp;</span>';
-        echo '</fieldset>'."\n";
-        echo '</form>'."\n";
-        echo '</div>'."\n";
+        echo '</fieldset>';
+        echo '</form>';
+        echo '</div>';
     }
 
     function do_submit3() {
@@ -680,11 +680,11 @@ exit;
 
         if (!$previous_error) {
                 // ex container-wide
-            echo '<div class="genericform">'."\n"; // this div MUST be closed after function call!
-                echo '<h2>'._('¡Vaya! :-(').'</h2>'."\n";
+            echo '<div class="genericform">'; // this div MUST be closed after function call!
+                echo '<h2>'._('¡Vaya! :-(').'</h2>';
                 $previous_error = true;
         }
-        echo '<div class="form-error-submit">&nbsp;&nbsp;'._($mess).'</div><br/>'."\n";
+        echo '<div class="form-error-submit">&nbsp;&nbsp;'._($mess).'</div><br/>';
     }
 
     function report_dupe($url) {
@@ -695,7 +695,7 @@ exit;
                 echo '<p class="error"><strong>'._('noticia repetida!').'</strong></p> ';
                 echo '<p class="error-text">'._('lo sentimos').'</p>';
                 $dupe->print_summary();
-                echo '<br style="clear: both;" /><br/>' . "\n";
+                echo '<br style="clear: both;" /><br/>';
                 echo '<form class="genericform" action="">';
                 echo '<input class="button" type="button" onclick="window.history.go(-1)" value="'._('« retroceder').'" />';
                 echo '</form>'. "\n";

@@ -14,14 +14,14 @@ force_authentication();
 do_header(_("editar historia"), "post");
 
 
-echo '<div id="singlewrap">'."\n";
-echo '<div class="genericform">'."\n";
+echo '<div id="singlewrap">';
+echo '<div class="genericform">';
 
 if (!empty($_REQUEST['id']) && is_numeric($_REQUEST['id'])) {
     $link_id = intval($_REQUEST['id']);
     $linkres = Link::from_db($link_id);
     if (!$linkres->is_editable() || intval($_GET['user'] != $current_user->user_id)) {
-        echo '<div class="form-error-submit">&nbsp;&nbsp;'._("historia no modificable").'</div>'."\n";
+        echo '<div class="form-error-submit">&nbsp;&nbsp;'._("historia no modificable").'</div>';
         return;
     }
     if ($_POST['phase'] == "1") {
@@ -35,7 +35,7 @@ if (!empty($_REQUEST['id']) && is_numeric($_REQUEST['id'])) {
 }
 
 echo "</div>";
-echo "</div>"."\n";
+echo "</div>";
 
 do_footer();
 
@@ -47,29 +47,29 @@ function do_edit() {
     $link_tags = htmlspecialchars(trim($linkres->tags));
     $link_url = $linkres->url;
 
-    echo '<div class="genericform">'."\n";
+    echo '<div class="genericform">';
 
 
-    echo '<h4>'._('editar historia').'</h4>'."\n";
-    echo '<form class="fondo-caja" action="editlink.php?user='.$current_user->user_id.'" method="post" id="thisform" name="thisform">'."\n";
+    echo '<h4>'._('editar historia').'</h4>';
+    echo '<form class="fondo-caja" action="editlink.php?user='.$current_user->user_id.'" method="post" id="thisform" name="thisform">';
     echo '<fieldset>';
 
     $now = time();
-    echo '<input type="hidden" name="key" value="'.md5($now.$linkres->randkey).'" />'."\n";
-    echo '<input type="hidden" name="timestamp" value="'.$now.'" />'."\n";
-    echo '<input type="hidden" name="phase" value="1" />'."\n";
-    echo '<input type="hidden" name="id" value="'.$linkres->id.'" />'."\n";
+    echo '<input type="hidden" name="key" value="'.md5($now.$linkres->randkey).'" />';
+    echo '<input type="hidden" name="timestamp" value="'.$now.'" />';
+    echo '<input type="hidden" name="phase" value="1" />';
+    echo '<input type="hidden" name="id" value="'.$linkres->id.'" />';
 
     echo "\n";
 
 
     if($current_user->admin) {
-        echo '<p><label for="url">'._('url de la noticia').':</label>'."\n";
+        echo '<p><label for="url">'._('url de la noticia').':</label>';
         echo '<br/><input type="url" id="url" name="url" value="'.htmlspecialchars($link_url).'" size="80" />';
-        echo '</p>'."\n";
+        echo '</p>';
     }
 
-    echo '<label for="title" accesskey="2">'._('título de la historia').':</label>'."\n";
+    echo '<label for="title" accesskey="2">'._('título de la historia').':</label>';
     echo '<span class="note">máximo de 120 caracteres</span>';
 
     // Is it an image or video?
@@ -127,29 +127,29 @@ function do_edit() {
 
     }
 
-    echo '</p>'."\n";
+    echo '</p>';
 
-    echo '<label for="tags" accesskey="3">'._('etiquetas').':</label>'."\n";
-    echo '<p><span class="note">'._('añade etiquetas para facilitar la posterior búsqueda').'</span>'."\n";
-    echo '<br/><input type="text" id="tags" name="tags" value="'.$link_tags.'" size="70" maxlength="70" /></p>'."\n";
+    echo '<label for="tags" accesskey="3">'._('etiquetas').':</label>';
+    echo '<p><span class="note">'._('añade etiquetas para facilitar la posterior búsqueda').'</span>';
+    echo '<br/><input type="text" id="tags" name="tags" value="'.$link_tags.'" size="70" maxlength="70" /></p>';
 
     echo '<div style="float: right;">';
     print_simpleformat_buttons('bodytext');
     echo '</div>';
 
-    echo '<p><label for="bodytext" accesskey="4">'._('descripción de la historia').':</label>'."\n";
-    echo '<br /><span class="note">'._('describe el enlace con tus palabras — este campo es opcional').'</span>'."\n";
+    echo '<p><label for="bodytext" accesskey="4">'._('descripción de la historia').':</label>';
+    echo '<br /><span class="note">'._('describe el enlace con tus palabras — este campo es opcional').'</span>';
 
-    echo '</span>'."\n";
-    echo '<br/><textarea name="bodytext" rows="10" cols="60" id="bodytext" onKeyDown="textCounter(document.thisform.bodytext,document.thisform.bodycounter,5000)" onKeyUp="textCounter(document.thisform.bodytext,document.thisform.bodycounter,5000)">'.$link_content.'</textarea>'."\n";
+    echo '</span>';
+    echo '<br/><textarea name="bodytext" rows="10" cols="60" id="bodytext" onKeyDown="textCounter(document.thisform.bodytext,document.thisform.bodycounter,5000)" onKeyUp="textCounter(document.thisform.bodytext,document.thisform.bodycounter,5000)">'.$link_content.'</textarea>';
     $body_left = 5000 - mb_strlen(html_entity_decode($link_content, ENT_COMPAT, 'UTF-8'), 'UTF-8');
     echo '<input readonly type="text" name="bodycounter" size="3" maxlength="3" value="'. $body_left . '" /> <span class="note">' . _('caracteres libres') . '</span>';
-    echo '</p>'."\n";
+    echo '</p>';
 
 
     //bloquear comentarios y votos
     if($current_user->admin) {
-    echo '<fieldset class="redondo">'."\n";
+    echo '<fieldset class="redondo">';
     if ($linkres->votos_permitidos)
         echo '<input type="checkbox" checked="checked" name="votes" value="1" style="margin: 0" id="votospermitidos"/>';
     else
@@ -160,7 +160,7 @@ function do_edit() {
         echo '<input type="checkbox" checked="checked" name="comentarios" value="1" style="margin: 0" id="comentariospermitidos"/>';
     else
         echo '<input type="checkbox" name="comentarios" value="1" id="comentariospermitidos"/>';
-    echo '<label for="comentariospermitidos">&nbsp;'._('comentarios permitidos').'</label>'."\n";
+    echo '<label for="comentariospermitidos">&nbsp;'._('comentarios permitidos').'</label>';
     echo '</fieldset>';
     }
 
@@ -187,10 +187,10 @@ function do_edit() {
 
 
 
-    echo '<br/><input class="button" type="submit" value="'._('editar »').'" />'."\n";
-    echo '</fieldset>'."\n";
-    echo '</form>'."\n";
-    echo '</div>'."\n";
+    echo '<br/><input class="button" type="submit" value="'._('editar »').'" />';
+    echo '</fieldset>';
+    echo '</form>';
+    echo '</div>';
 }
 
 function do_save() {
@@ -311,19 +311,19 @@ function do_save() {
      log_insert('link_publish', $linkres->id, $linkres->author); //insertar log de publicacion manual
 
     }
-        echo '<div class="form-error-submit">&nbsp;&nbsp;'._("historia actualizada").'</div>'."\n";
+        echo '<div class="form-error-submit">&nbsp;&nbsp;'._("historia actualizada").'</div>';
     }
 
     $linkres = Link::from_db($linkres->id);
 
-    echo '<div class="news-body formnotice">'."\n";
+    echo '<div class="news-body formnotice">';
     $linkres->print_summary('preview');
-    echo '</div>'."\n";
+    echo '</div>';
 
     echo '<form class="note" method="GET" action="historia.php" >';
-    echo '<input type="hidden" name="id" value="'.$linkres->id.'" />'."\n";
-    echo '<input class="button" type="button" onclick="window.history.go(-1)" value="'._('« modificar').'">&nbsp;&nbsp;'."\n";;
-    echo '<input class="button" type="submit" value="'._('ir a la historia').'" />'."\n";
+    echo '<input type="hidden" name="id" value="'.$linkres->id.'" />';
+    echo '<input class="button" type="button" onclick="window.history.go(-1)" value="'._('« modificar').'">&nbsp;&nbsp;';;
+    echo '<input class="button" type="submit" value="'._('ir a la historia').'" />';
     echo '</form>'. "\n";
 }
 

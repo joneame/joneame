@@ -135,10 +135,10 @@ if ($rows > 20) {
     do_best_comments();
 }
 
-echo '</div>' . "\n";
+echo '</div>';
 /*** END SIDEBAR ***/
 
-echo '<div id="newswrap">'."\n";
+echo '<div id="newswrap">';
 
 echo '<div class="notes">';
 
@@ -165,7 +165,7 @@ if ($posts) {
                 if ($respuestas) {
                     //TODO echo '<p align="right"><a  id="show-hide-'.$original_id.'" href="javascript:hide_answers('.$original_id.')"> Ocultar</a></p><br/>';
                     $answer = new Post;
-                    echo '<div id="respuestas-'.$original_id.'" class="replies">'."\n";
+                    echo '<div id="respuestas-'.$original_id.'" class="replies">';
                     echo '<ol class="notitas-list">';
                     foreach ($respuestas as $dbanswer) {
                         $answer = Post::from_db($dbanswer);
@@ -173,7 +173,7 @@ if ($posts) {
                         $answer->print_summary();
                     }
                     echo "</ol>\n";
-                    echo '</div>'."\n";
+                    echo '</div>';
                 }
             }
 

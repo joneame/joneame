@@ -73,7 +73,7 @@ do_header("Encuestas | Jonéame");
 echo '<div id="sidebar">';
 do_last_questions ();
 encuestas_mas_votadas();
-echo '</div>' . "\n";
+echo '</div>';
 
 echo '<div id="newswrap"><div class="notes">';
 

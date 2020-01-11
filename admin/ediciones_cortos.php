@@ -57,7 +57,7 @@ if (($current_user->user_level != "god" || $current_user->user_id == 0)) {
 
     admin_tabs();
 
-    echo '<div id="singlewrap">' . "\n";
+    echo '<div id="singlewrap">';
 
     ediciones_pendientes($key);
     echo '</table>';
@@ -72,17 +72,17 @@ if (($current_user->user_level != "god" || $current_user->user_id == 0)) {
         global $globals;
         $active = ' class="current"';
 
-        echo '<ul class="tabmain">' . "\n";
+        echo '<ul class="tabmain">';
 
         $tabs=array("pendientes", "aceptadas", "configuracion");
 
         foreach($tabs as $tab) {
 
-            echo '<li><a  href="'.$globals['base_url'].'admin/cortos.php?admin='.$tab.'"><b>'._($tab).'</b></a></li>' . "\n";
+            echo '<li><a  href="'.$globals['base_url'].'admin/cortos.php?admin='.$tab.'"><b>'._($tab).'</b></a></li>';
         }
-                echo '<li class="current"><a  href="'.$globals['base_url'].'admin/ediciones_cortos.php"><b>'._('ediciones').'</b></a></li>' . "\n";
+                echo '<li class="current"><a  href="'.$globals['base_url'].'admin/ediciones_cortos.php"><b>'._('ediciones').'</b></a></li>';
 
-        echo '</ul>' . "\n";
+        echo '</ul>';
     }
 
 
@@ -96,7 +96,7 @@ if (($current_user->user_level != "god" || $current_user->user_id == 0)) {
         //nuestro propio menu para ediciones
             echo '<div class="genericform" style="margin:0">';
 
-            echo '<div style="float:right;">'."\n";
+            echo '<div style="float:right;">';
 
             echo '</div>';
             echo '<table style="font-size: 10pt">';

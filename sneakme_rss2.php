@@ -129,21 +129,21 @@ function do_header($title) {
     header('Last-Modified: ' .  gmdate('D, d M Y H:i:s', $last_modified) . ' GMT');
     header('Content-type: text/xml; charset=UTF-8', true);
 
-    echo '<rss version="2.0" '."\n";
+    echo '<rss version="2.0" ';
 
-    echo '  xmlns:content="http://purl.org/rss/1.0/modules/content/"'."\n";
-    echo '  xmlns:wfw="http://wellformedweb.org/CommentAPI/"'."\n";
-    echo '  xmlns:dc="http://purl.org/dc/elements/1.1/"'."\n";
+    echo '  xmlns:content="http://purl.org/rss/1.0/modules/content/"';
+    echo '  xmlns:wfw="http://wellformedweb.org/CommentAPI/"';
+    echo '  xmlns:dc="http://purl.org/dc/elements/1.1/"';
     echo ' >'. "\n";
-    echo '<channel>'."\n";
-    echo '  <title>'.$title.'</title>'."\n";
-    echo ' '."\n";
-    echo '  <link>https://'.get_server_name().post_get_base_url().'</link>'."\n";
+    echo '<channel>';
+    echo '  <title>'.$title.'</title>';
+    echo ' ';
+    echo '  <link>https://'.get_server_name().post_get_base_url().'</link>';
 
-    echo '  <description>'._('Sitio colaborativo de noticias nada serias').'</description>'."\n";
-    echo '  <pubDate>'.date("r", $last_modified).'</pubDate>'."\n";
-    echo '  <generator>jonéame</generator>'."\n";
-    echo '  <language>'.$dblang.'</language>'."\n";
+    echo '  <description>'._('Sitio colaborativo de noticias nada serias').'</description>';
+    echo '  <pubDate>'.date("r", $last_modified).'</pubDate>';
+    echo '  <generator>jonéame</generator>';
+    echo '  <language>'.$dblang.'</language>';
 }
 
 function do_footer() {

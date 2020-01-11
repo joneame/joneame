@@ -49,7 +49,7 @@ td {
 
 do_header('pr0note | Jonéame');
 
-echo '<div id="singlewrap">'."\n";
+echo '<div id="singlewrap">';
 
 $annotation = new Annotation('promote');
 $annotation->text = $output;
@@ -57,6 +57,6 @@ if($annotation->read()) {
     echo $annotation->text;
 }
 
-echo '</div>'."\n";
+echo '</div>';
 
 do_footer();

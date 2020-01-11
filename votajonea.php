@@ -37,7 +37,7 @@ function fase2(){
     global $db, $current_user;
 
 
-    echo '<h3><img src="'.get_cover_pixel().'" style="margin-top: 8px;" class="icon info"/><strong> Estos son los votos seleccionados:</strong></h3></br><br/>'."\n";
+    echo '<h3><img src="'.get_cover_pixel().'" style="margin-top: 8px;" class="icon info"/><strong> Estos son los votos seleccionados:</strong></h3></br><br/>';
 
     $canciones = $db->get_col("SELECT id FROM jonevision ORDER BY id");
 
@@ -53,15 +53,15 @@ function fase2(){
         if ($joneavision[$cancion->id] == 1) $puntos = ' punto';
         else $puntos = ' puntos';
 
-        echo $joneavision[$cancion->id].$puntos.' a la canción <strong>'.$cancion->titulo.'</strong> de '.$cancion->login.'<br/>'."\n";
+        echo $joneavision[$cancion->id].$puntos.' a la canción <strong>'.$cancion->titulo.'</strong> de '.$cancion->login.'<br/>';
 
-        echo '<input type="hidden" name="'.$cancion->id.'" value="'.$joneavision[$cancion->id] .'">'."\n";
+        echo '<input type="hidden" name="'.$cancion->id.'" value="'.$joneavision[$cancion->id] .'">';
     }
 
 
     echo '<br/><br/>Confirma que deseas emitir la votación seleccionada (no hay vuelta atrás)<br/>';
-    echo '<input type="hidden" name="fase" value="2">'."\n";
-    echo '<input type="hidden" name="user_id" value="'.$current_user->user_id.'">'."\n";
+    echo '<input type="hidden" name="fase" value="2">';
+    echo '<input type="hidden" name="user_id" value="'.$current_user->user_id.'">';
     echo '<input type="submit" value="Confirmar">';
 
 }
@@ -174,7 +174,7 @@ function errors($joneavision){
 
 function error($text){
     echo '<img src="'.get_cover_pixel().'" style="margin-top: 8px;" class="icon info"/> '.$text.'</br><br/>';
-    echo '<input class="button" type="button" onclick="window.history.go(-1)" value="'._('« madre de dios (atrás)').'"/>&nbsp;&nbsp;'."\n";
+    echo '<input class="button" type="button" onclick="window.history.go(-1)" value="'._('« madre de dios (atrás)').'"/>&nbsp;&nbsp;';
 
 
 }

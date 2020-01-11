@@ -138,7 +138,7 @@ echo '<dd><input type="password" autocomplete="off" id="verify" name="password2"
     if ($admin_mode) {
         echo '&nbsp;<br/><span class="note" style="margin-top: 10px;">'._('opciones para administradores (¡cuidado!):').'</span><br/>';
 
-        echo '<li><dt>' . _("estado") . '</dt>' . "\n";
+        echo '<li><dt>' . _("estado") . '</dt>';
         echo '<dd><select name="user_level">';
         foreach ($user_levels as $level) {
             echo '<option value="'.$level.'"';

@@ -164,7 +164,7 @@ echo '<option value="votos_historia">votos de una historia</option>';
     }
 
 
-echo '<input type="hidden" name="buscar" value="1" />'."\n";
-echo '<input class="button" type="submit" value="'._('buscar').'" />'."\n";
+echo '<input type="hidden" name="buscar" value="1" />';
+echo '<input class="button" type="submit" value="'._('buscar').'" />';
 
 }

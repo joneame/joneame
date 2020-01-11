@@ -16,19 +16,19 @@
         if ($current_user->user_level != 'god'  && $current_user->user_id != $corto->id_autor ) die;
 
                 $rows = min(40, max(substr_count($corto->texto, "\n") * 2, 8));
-                echo '<div class="genericform"><div class="genericform">'."\n";
-                echo '<div class="commentform">'."\n";
-                echo '<form action="'.htmlspecialchars($_SERVER['PHP_SELF']).'" method="post">'."\n";
-                echo '<h4>'._('editar el corto').' #'.$corto->id.'</h4>'."\n";
+                echo '<div class="genericform"><div class="genericform">';
+                echo '<div class="commentform">';
+                echo '<form action="'.htmlspecialchars($_SERVER['PHP_SELF']).'" method="post">';
+                echo '<h4>'._('editar el corto').' #'.$corto->id.'</h4>';
                 echo '<fieldset class="fondo-caja">';
-                echo '<div class="fondo-caja"><textarea name="corto_content" id="editar'.$corto->id.'" rows="'.$rows.'" style="width: 99%;">'.$corto->texto.'</textarea></div>'."\n";
-                echo '<input class="button" type="submit" name="submit" value="'._('guardar edición').'" />'."\n";
-                echo '<input type="hidden" name="process" value="editcomment" />'."\n";
-                echo '<input type="hidden" name="key" value="'.md5($current_user->user_id.$current_user->user_date.$site_key).'" />'."\n";
-                echo '<input type="hidden" name="id" value="'.$corto->id.'" />'."\n";
-                echo '<input type="hidden" name="user_id" value="'.$current_user->user_id.'" />'."\n";
-                echo '</fieldset>'."\n";
-                echo '</form>'."\n";
+                echo '<div class="fondo-caja"><textarea name="corto_content" id="editar'.$corto->id.'" rows="'.$rows.'" style="width: 99%;">'.$corto->texto.'</textarea></div>';
+                echo '<input class="button" type="submit" name="submit" value="'._('guardar edición').'" />';
+                echo '<input type="hidden" name="process" value="editcomment" />';
+                echo '<input type="hidden" name="key" value="'.md5($current_user->user_id.$current_user->user_date.$site_key).'" />';
+                echo '<input type="hidden" name="id" value="'.$corto->id.'" />';
+                echo '<input type="hidden" name="user_id" value="'.$current_user->user_id.'" />';
+                echo '</fieldset>';
+                echo '</form>';
                 echo "</div></div></div>\n";
         }
 

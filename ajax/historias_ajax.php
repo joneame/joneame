@@ -104,7 +104,7 @@ function print_burradas(){
 
     } else echo 'no hay burradas... de momento';
 
-    echo '</div>' . "\n";
+    echo '</div>';
 
 }
 
@@ -125,14 +125,14 @@ function print_trackbacks(){
         foreach($trackbacks as $trackback_id) {
             $trackback->id=$trackback_id;
             $trackback->read();
-            echo '<li class="tab-trackback-entry"><a href="'.$trackback->url.'" rel="nofollow">'.$trackback->title.'</a> ['.preg_replace('/https*:\/\/([^\/]+).*/', "$1", $trackback->url).']</li>' . "\n";
+            echo '<li class="tab-trackback-entry"><a href="'.$trackback->url.'" rel="nofollow">'.$trackback->title.'</a> ['.preg_replace('/https*:\/\/([^\/]+).*/', "$1", $trackback->url).']</li>';
         }
     }
 
     echo '</ul>';
     echo '</fieldset>';
     echo '<br/>';
-    echo '<a href="'.$link->get_trackback().'" title="'._('URI para trackbacks').'" class="tab-trackback-url"><img src="'.$globals['base_url'].'img/estructura/pixel.gif" alt="'._('enlace trackback').'" class="icon trackback img-flotante"/> '._('dirección de trackback').'</a>' . "\n";
+    echo '<a href="'.$link->get_trackback().'" title="'._('URI para trackbacks').'" class="tab-trackback-url"><img src="'.$globals['base_url'].'img/estructura/pixel.gif" alt="'._('enlace trackback').'" class="icon trackback img-flotante"/> '._('dirección de trackback').'</a>';
 
     echo '</div>';
 }
@@ -150,7 +150,7 @@ function print_sneaker(){
     echo '</fieldset>';
     echo '</div>';
 
-    echo '<script>$(function(){start_link_sneak()});</script>' . "\n";
+    echo '<script>$(function(){start_link_sneak()});</script>';
 
 }
 
@@ -253,15 +253,15 @@ function print_best_comments() {
                 $msg = _('Necesitas ').$globals['min_karma_for_comments'] . _(' de carisma para escribir comentarios'). ", pero tu carisma es ".$current_user->user_karma;
             }
 
-            echo '<div class="barra redondo">'."\n";
-            echo $msg . "\n";
-            echo '</div>'."\n";
+            echo '<div class="barra redondo">';
+            echo $msg;
+            echo '</div>';
 
     } else if (!$globals['bot']){
 
-        echo '<div class="barra redondo">'."\n";
-        echo '<a href="'.$globals['base_url'].'login.php?return='.urlencode($link->get_permalink()).'">'._('Entra con tu cuenta de usuario').'</a> '._('si deseas escribir comentarios').'. '._('O crea tu cuenta haciendo clic'). ' <a href="'.$globals['base_url'].'register.php">aquí</a>'."\n";
-        echo '</div>'."\n";
+        echo '<div class="barra redondo">';
+        echo '<a href="'.$globals['base_url'].'login.php?return='.urlencode($link->get_permalink()).'">'._('Entra con tu cuenta de usuario').'</a> '._('si deseas escribir comentarios').'. '._('O crea tu cuenta haciendo clic'). ' <a href="'.$globals['base_url'].'register.php">aquí</a>';
+        echo '</div>';
 
     }
    }
@@ -331,15 +331,15 @@ function print_comments() {
                 $msg = _('Necesitas ').$globals['min_karma_for_comments'] . _(' de carisma para escribir comentarios'). ", pero tu carisma es ".$current_user->user_karma;
             }
 
-            echo '<div class="barra redondo">'."\n";
-            echo $msg . "\n";
-            echo '</div>'."\n";
+            echo '<div class="barra redondo">';
+            echo $msg;
+            echo '</div>';
 
     } else if (!$globals['bot']){
 
-        echo '<div class="barra redondo">'."\n";
-        echo '<a href="'.$globals['base_url'].'login.php?return='.urlencode($link->get_permalink()).'">'._('Entra con tu cuenta de usuario').'</a> '._('si deseas escribir comentarios').'. '._('O crea tu cuenta haciendo clic'). ' <a href="'.$globals['base_url'].'register.php">aquí</a>'."\n";
-        echo '</div>'."\n";
+        echo '<div class="barra redondo">';
+        echo '<a href="'.$globals['base_url'].'login.php?return='.urlencode($link->get_permalink()).'">'._('Entra con tu cuenta de usuario').'</a> '._('si deseas escribir comentarios').'. '._('O crea tu cuenta haciendo clic'). ' <a href="'.$globals['base_url'].'register.php">aquí</a>';
+        echo '</div>';
 
     }
    }
@@ -422,9 +422,9 @@ function print_logs() {
 
 function cant_comment($texto){
 
-        echo '<h4 class="redondo">'."\n";
-        echo _($texto)."\n";
-        echo '</h4>'."\n";
+        echo '<h4 class="redondo">';
+        echo _($texto);
+        echo '</h4>';
 }
 
 function do_comment_pages($total, $current, $reverse = true) {
@@ -493,13 +493,13 @@ function print_comment_form() {
 
     if (!$link->author > 0 && !$link->sent) return;
 
-    echo '<div class="commentform">'."\n";
-    echo '<form action="" method="post">'."\n";
-    echo '<h4>'._('escribe un comentario').'</h4><fieldset class="fondo-caja">'."\n";
-    echo '<div>'."\n";
+    echo '<div class="commentform">';
+    echo '<form action="" method="post">';
+    echo '<h4>'._('escribe un comentario').'</h4><fieldset class="fondo-caja">';
+    echo '<div>';
     print_simpleformat_buttons('comment', true);
-    echo '<div class="smileylist" id="smileylist">'.smiley_list().'</div><div><textarea name="comment_content" id="comment" cols="75" rows="12"></textarea></div>'."\n";
-    echo '<input type="button" class="button" name="submit" id="submit_com" value="'._('enviar comentario').'" onClick="submit_comment();"/>'."\n";
+    echo '<div class="smileylist" id="smileylist">'.smiley_list().'</div><div><textarea name="comment_content" id="comment" cols="75" rows="12"></textarea></div>';
+    echo '<input type="button" class="button" name="submit" id="submit_com" value="'._('enviar comentario').'" onClick="submit_comment();"/>';
 
     echo '<img id="spinner" class="blank" src="'.$globals['base_url'].'img/estructura/pixel.gif" width="16" height="16"/>';
 
@@ -509,18 +509,18 @@ function print_comment_form() {
     else
         echo '<div style="display: none;">';
 
-        echo '<input name="type" type="checkbox" value="admin" id="comentario-admin"/>&nbsp;<label for="comentario-admin">'._('comentario admin').'</strong></label>'."\n";
-        echo '&nbsp;&nbsp;<input name="especial" type="checkbox" value="especial" id="comentario-especial"/>&nbsp;<label for="comentario-especial">'._('no mostrar mi nick').'</strong></label>'."\n";
+        echo '<input name="type" type="checkbox" value="admin" id="comentario-admin"/>&nbsp;<label for="comentario-admin">'._('comentario admin').'</strong></label>';
+        echo '&nbsp;&nbsp;<input name="especial" type="checkbox" value="especial" id="comentario-especial"/>&nbsp;<label for="comentario-especial">'._('no mostrar mi nick').'</strong></label>';
         echo '</div>';
 
     echo '<br/><span id="error_com"></span>';
 
-    echo '<input type="hidden" id="process" name="process" value="newcomment" />'."\n";
-    echo '<input type="hidden" id="randkey" name="randkey" value="'.rand(1000000,100000000).'" />'."\n";
-    echo '<input type="hidden" id="link_id" name="link_id" value="'.$link->id.'" />'."\n";
-    echo '<input type="hidden" id="user_id" name="user_id" value="'.$current_user->user_id.'" />'."\n";
-    echo '</fieldset>'."\n";
-    echo '</form>'."\n";
+    echo '<input type="hidden" id="process" name="process" value="newcomment" />';
+    echo '<input type="hidden" id="randkey" name="randkey" value="'.rand(1000000,100000000).'" />';
+    echo '<input type="hidden" id="link_id" name="link_id" value="'.$link->id.'" />';
+    echo '<input type="hidden" id="user_id" name="user_id" value="'.$current_user->user_id.'" />';
+    echo '</fieldset>';
+    echo '</form>';
     echo "</div>\n";
 
 }
@@ -539,24 +539,24 @@ function print_story_tabs($option,$id = false) {
         $burradas = $db->get_var("SELECT COUNT(*) comment_id, comment_karma FROM comments WHERE comment_link_id=$id AND comment_karma < 7");
 
     $permalink = $link->get_relative_permalink();
-    echo '<ul class="tabsub">'."\n";
-    echo '<li'.$active[1].'><a href="'.$permalink.'" onClick="link_show('.$link->id.', 1, 2); return false;">'._('comentarios'). '</a></li>'."\n";
-    echo '<li'.$active[2].'><a href="'.$permalink.'/mejores-comentarios" onClick="link_show('.$link->id.', 2, 3); return false;">'._('+ valorados'). '</a></li>'."\n";
+    echo '<ul class="tabsub">';
+    echo '<li'.$active[1].'><a href="'.$permalink.'" onClick="link_show('.$link->id.', 1, 2); return false;">'._('comentarios'). '</a></li>';
+    echo '<li'.$active[2].'><a href="'.$permalink.'/mejores-comentarios" onClick="link_show('.$link->id.', 2, 3); return false;">'._('+ valorados'). '</a></li>';
     if ($burradas > 0)
-        echo '<li'.$active[8].'><a href="'.$permalink.'/burradas" onClick="link_show('.$link->id.', 8, 4); return false;">'._('burradas'). '</a></li>'."\n";
-    // echo '<li'.$active[7].'><a href="'.$permalink.'/trackbacks" onClick="link_show('.$link->id.', 7, 5); return false;"">'._('trackbacks'). '</a></li>'."\n";
+        echo '<li'.$active[8].'><a href="'.$permalink.'/burradas" onClick="link_show('.$link->id.', 8, 4); return false;">'._('burradas'). '</a></li>';
+    // echo '<li'.$active[7].'><a href="'.$permalink.'/trackbacks" onClick="link_show('.$link->id.', 7, 5); return false;"">'._('trackbacks'). '</a></li>';
 
     if (!$globals['bot']) { // Don't show "empty" pages to bots, Google can penalize too
 
         if ($link->sent_date > time() - 2592000) { // newer than 60 days
-            echo '<li'.$active[3].'><a href="'.$permalink.'/votos" onClick="link_show('.$link->id.', 3, 6); return false;">'._('votos'). '</a></li>'."\n";
+            echo '<li'.$active[3].'><a href="'.$permalink.'/votos" onClick="link_show('.$link->id.', 3, 6); return false;">'._('votos'). '</a></li>';
         }
 
-        echo '<li'.$active[6].'><a href="'.$permalink.'/favoritos" onClick="link_show('.$link->id.', 6, 7); return false;">&nbsp;'.FAV_YES.'&nbsp;</a></li>'."\n";
+        echo '<li'.$active[6].'><a href="'.$permalink.'/favoritos" onClick="link_show('.$link->id.', 6, 7); return false;">&nbsp;'.FAV_YES.'&nbsp;</a></li>';
 
         if ($link->date > time() - 2592000) {
-            // echo '<li'.$active[5].'><a href="'.$permalink.'/cotillona" onClick="link_show('.$link->id.', 5, 8); return false;">&micro;&nbsp;'._('cotillona'). '</a></li>'."\n";
-            echo '<li'.$active[4].'><a href="'.$permalink.'/eventos#" onClick="link_show('.$link->id.', 4, 1); return false;">'._('eventos'). '</a></li>'."\n";
+            // echo '<li'.$active[5].'><a href="'.$permalink.'/cotillona" onClick="link_show('.$link->id.', 5, 8); return false;">&micro;&nbsp;'._('cotillona'). '</a></li>';
+            echo '<li'.$active[4].'><a href="'.$permalink.'/eventos#" onClick="link_show('.$link->id.', 4, 1); return false;">'._('eventos'). '</a></li>';
 
         }
     }
@@ -564,7 +564,7 @@ function print_story_tabs($option,$id = false) {
     /* Spinner */
     echo '&nbsp;&nbsp;&nbsp;<img id="spinner_h" class="blank" src="'.$globals['base_url'].'img/estructura/pixel.gif" width="16" height="16"/>';
 
-    echo '</ul>'."\n";
+    echo '</ul>';
 }
 
 function smiley_list(){

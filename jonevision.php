@@ -89,7 +89,7 @@ if ($current_user->user_id == 1){
         }
 
     echo '<br/><br/><input type="submit" value="¡Trampolín a la fama!"><br/>';
-    echo '<input type="hidden" name="user_id" value="'.$current_user->user_id.'">'."\n";
+    echo '<input type="hidden" name="user_id" value="'.$current_user->user_id.'">';
     echo '</div></div>';
 
 }*/

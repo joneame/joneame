@@ -125,7 +125,7 @@ function ts_print_form() {
     if (empty($globals['recaptcha_public_key']) || empty($globals['recaptcha_private_key'])) {
         echo _("introduce el texto de la imagen:")."<br/>\n";
         echo '<div class="tc"><img src="ts_image.php" alt="code number"/></div>';
-        echo '<input type="text" size="20" name="security_code" /><br/>'."\n";
+        echo '<input type="text" size="20" name="security_code" /><br/>';
     } else {
     // reCaptcha
         echo recaptcha_get_html($globals['recaptcha_public_key'],null);

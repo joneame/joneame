@@ -26,9 +26,9 @@ $globals['original_user_ip_int'] = sprintf("%u", ip2long($_SERVER["REMOTE_ADDR"]
 ob_start();
 
 do_header(_('Nuevo corto | Jonéame'));
-echo '<div id="singlewrap">' . "\n";
+echo '<div id="singlewrap">';
 
-echo '<div class="genericform">'."\n";
+echo '<div class="genericform">';
     force_authentication();
 
 if(!empty($_POST['testua'])) {
@@ -40,8 +40,8 @@ if(!empty($_POST['testua'])) {
 } else carga_submit_cortos();
 
 
-echo '</div>'."\n";
-echo '</div>'."\n"; // singlewrap
+echo '</div>';
+echo '</div>'; // singlewrap
 
 do_footer();
 
@@ -67,7 +67,7 @@ function envia_corto($testu) {
         $corto->print_short_info();
     } else
     echo '<h3>'._('Perdone las molestias: ha habido un error, inténtelo más tarde').'</h3>';
-    echo '</div>'."\n";
+    echo '</div>';
 
 }
 function akatsa($message) {
@@ -85,7 +85,7 @@ function carga_submit_cortos() {
     echo '<li><strong>'._('no seas cutre').':</strong> '._('gracias, pero todos conocemos el c&amp;p').'</li>';
     echo '<li><strong>'._('no insultes a otros users').':</strong> '._('¡eh tío!').'</li>';
     echo '<li><strong>'._('no nos interesa lo que haga tu vecino').':</strong> '._('si no es algo disparatado, claro está').'</li>';
-    echo '<br/><li>Una vez dicho eso, ¡escríbenos tu propuesta!</li></ul></div>'."\n";
+    echo '<br/><li>Una vez dicho eso, ¡escríbenos tu propuesta!</li></ul></div>';
 
     echo '<div class="genericform">';
     echo '<h4>mándanos tu corto ;-)</h4><form class="fondo-caja" action="nuevo_corto.php" method="post" id="bidali" name="bidali">';
