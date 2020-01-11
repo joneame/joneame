@@ -489,14 +489,6 @@ function print_share_icons($full_link, $short_link = false, $title = '', $id) {
     // echo '</span><span class="tool"><a href="'.$joneame_link.'"><img src="'.$globals['base_url'].$globals['favicon'].'" alt="jonéame" title="'._('enlace corto jonéame').'" width="16" height="16"/></a></span>';
 }
 
-
-function navegador_no_soportado () {
-    global $globals;
-    echo '<div class="aviso-navegador">';
-    echo '<strong>Atención:</strong> Tu navegador no está soportado. <a href="'.$globals['base_url'].'navegador.php">Más información...</a>';
-    echo '</div>';
-}
-
 function do_error($mess = false, $error = false, $send_status = true, $generate_header = true, $generate_footer = true) {
     global $globals;
     $globals['ads'] = false;
