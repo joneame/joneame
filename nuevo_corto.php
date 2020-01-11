@@ -90,7 +90,7 @@ function carga_submit_cortos() {
     echo '<div class="genericform">';
     echo '<h4>mándanos tu corto ;-)</h4><form class="fondo-caja" action="nuevo_corto.php" method="post" id="bidali" name="bidali">';
     echo '<fieldset>';
-    echo '<p><label for="testua">'._('texto (ojo: no incluyas código HTML)').':</label><br />';
+    echo '<p><label for="testua">'._('texto').':</label><br />';
     echo '<input type="text" name="testua" id="testua" class="form-full" /></p>';
     ts_print_form();
     echo '<input type="hidden" name="phase" value="1" />';

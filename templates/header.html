@@ -83,7 +83,7 @@
 
 	<li><a href="{{ globals.base_url }}login.php?op=logout&amp;return={{globals.uri|urlencode}}">{% trans _('Cerrar sesión') %}</a></li>
 
-	<li class="login"><a href="{% exec get_user_uri current_user.user_login %}"><img alt="avatar de {{ current_user.user_login }}" src="{% exec get_avatar_url current_user.user_id, current_user.user_avatar, 20 %}" /></a><a href="{% exec get_user_uri current_user.user_login %}">{{ current_user.user_login}}</a></li>
+	<li class="login"><a href="{% exec get_user_uri current_user.user_login %}"><img alt="avatar de {{ current_user.user_login }}" src="{% exec get_avatar_url current_user.user_id, current_user.user_avatar, 20 %}" /></a><span class="user-greeting" title="jonéame te saluda en {{ globals.greeting_lang }}">{{ globals.greeting_text }}</span> <a href="{% exec get_user_uri current_user.user_login %}">{{ current_user.user_login}}</a></li>
 {% else %}
 	<li><a href="{{ globals.base_url }}register.php">{% trans _('Registrarse') %}</a></li>
 	{% if globals.return %}

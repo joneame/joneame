@@ -213,7 +213,6 @@ $globals['analytics_code'] = '';
 // Greeting in several languages
 // Unfortunately, array constructor does not work properly with GNU _()
 
-/*
 $greetings = array('bienvenid@'=>'españolo y española ;-)','hola'=>'español','kaixo'=>'euskera',
         'apa'=>'catalán','com va'=>'catalán','com vas'=>'catalán','cómo andás'=>'argentino','epa'=>'catalán',
         'aupa'=>'euskera','ieup'=>'vasco','gñap'=>'gñapés','aiya'=>'sindarin','hello'=>'inglés',
@@ -240,11 +239,9 @@ $greetings = array('bienvenid@'=>'españolo y española ;-)','hola'=>'español',
         'klaatu barada nikto'=>'el idioma de Klatu y Gort','ola'=>'gallego','boas'=>'gallego',
         'bonos díes'=>'asturiano', 'hola karmorrero'=>'el idioma karmorrero','OLA HAMIJO'=>'HOYGAN',
         'eres un serdo,'=>'oriolet', 'hola furcia'=>'el_fail',
-        'holaaaaaaaaaa genteeeee'=>'me_joneo_pensando_en_ti',
-                'juguémos, '=>'jugador', 'viciémos, '=>'jugador',
-
-    );
-*/
+        'holaaaaaaaaaa genteeeee'=>'me_joneo_pensando_en_ti',);
+$globals['greeting_text'] = array_rand($greetings);
+$globals['greeting_lang'] = $greetings[$globals['greeting_text']];
 
 // For Facebook authentication
 //$globals['facebook_key'] = '';
