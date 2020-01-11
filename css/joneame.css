@@ -3206,6 +3206,36 @@ cursor: pointer;
     line-height: 16px;
 }
 
+.smiley-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.smiley-list-item {
+    display: flex;
+    flex-wrap: wrap;
+    width: 284px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+}
+
+.smiley-list-item-text,
+.smiley-list-item-icon {
+    font-size: 9pt;
+    box-sizing: border-box;
+    width: 50%;
+    text-align: center;
+}
+.smiley-list-item-text {
+    text-align: right;
+    padding-right: 10px;
+}
+.smiley-list-item-icon {
+    text-align: left;
+    padding-left: 10px;
+}
+
 /* Menéame colors and images */
 
 /***
@@ -4269,5 +4299,8 @@ a .hglass {
     }
     .pages a:hover, .pages-margin a:hover {
         background: white;
+    }
+    .smiley-list-item {
+        width: 50%;
     }
 }

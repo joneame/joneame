@@ -1,0 +1,16 @@
+<h2>Lista de emoticonos</h2>
+
+<p>Estos son los emoticonos que puedes usar en comentarios, notitas, la cotillona...</p>
+
+<div class="smiley-list">
+    {% for text, icon in smileys %}
+        <div class="smiley-list-item">
+            <div class="smiley-list-item-text">
+                {{ text }}
+            </div>
+            <div class="smiley-list-item-icon">
+                {{ icon }}
+            </div>
+        </div>
+    {% endfor %}
+</div>
