@@ -7,7 +7,7 @@
 
 <h1>
 
-<a href="{{ self.url|escape }}" onmousedown="return clk(this, {{ self.id }})" {% if self.status != 'published' %} rel="nofollow noopener" {% else %} rel="noopener" {% endif %} target="_blank" class="titular">{{ self.title }}</a>
+<a href="{{ self.url|escape }}" onmousedown="return clk(this, {{ self.id }})" {% if self.status != 'published' %} rel="nofollow noopener" {% else %} rel="noopener" {% endif %} class="titular">{{ self.title }}</a>
 
 {% if self.content_type == 'image' %}
 	&nbsp;<img src="{% exec get_cover_pixel %}" class="icon image media-icon" alt="{% trans _('imagen') %}" title="{% trans _('imagen') %}" />
@@ -18,7 +18,7 @@
 {% endif %}
 
 {% if current_user.user_id > 0 %}
-	<a href="{{ globals.base_url }}broken_link.php?id={{ self.id }}" target="_blank" class="titular">
+	<a href="{{ globals.base_url }}broken_link.php?id={{ self.id }}" class="titular">
 	<img src="{% exec get_cover_pixel %}" class="icon info" alt="{% trans _('reportar link erróneo') %}" title="{% trans _('reportar link erróneo') %}" /></a>
 {% endif %}
 

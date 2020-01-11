@@ -106,7 +106,7 @@ exit;
         echo '<div class="faq">';
         echo '<h3>'._('por favor, respeta estas instrucciones para mejorar la poca calidad que tenemos:').'</h3>';
         echo '<ul class="instruction-list">';
-        echo '<li><strong>¿'._('has leído las').' <a href="condiciones.php" target="_blank">'._('condiciones de uso').'</a></strong>?</li>';
+        echo '<li><strong>¿'._('has leído las').' <a href="condiciones.php">'._('condiciones de uso').'</a></strong>?</li>';
         echo '<li><strong>'._('contenido interesante').':</strong> '._('en jonéame gusta el porno (por si no lo sabías), ¿crees que interesará tu historia?').'</li>';
         echo '<li><strong>'._('no somos un medio serio').':</strong> '._('jonéame no es un medio serio, tómatelo todo a coña, pero no te privamos de noticias serias, si te gustan, o son de gran relevancia').'</li>';
         echo '<li><strong>'._('busca antes').':</strong> '._('por favor, usa el buscador para así evitar historias duplicadas').'</li>';
@@ -237,7 +237,7 @@ exit;
                                 echo '<p class="error-text">'._('necesitas votar como mínimo a'). " <strong>$needed " . _('noticias') . '</strong><br/>';
                         }
                         echo '<strong>'._('no votes de forma apresurada, penaliza el karma').'</strong><br/>';
-                        echo '<a href="'.$globals['base_url'].'jonealas.php" target="_blank">'._('haz clic aquí para ir a votar').'</a></p>';
+                        echo '<a href="'.$globals['base_url'].'jonealas.php">'._('haz clic aquí para ir a votar').'</a></p>';
                         echo '<br style="clear: both;" />';
                         echo '</div>'. "\n";
                         return;

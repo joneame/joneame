@@ -15,7 +15,7 @@ $corto->get_random();
 if ($corto->aux->status) {
     $izena = $corto->aux->value2;
 } else {
-    $izena = '<a href='.get_user_uri($corto->por, 'cortos').' target="_blank">'.$corto->por.'</a>';
+    $izena = '<a href='.get_user_uri($corto->por, 'cortos').'>'.$corto->por.'</a>';
 }
 
 $info =  _('v').': <span id="vc-'.$corto->id.'">'.$corto->votos.'</span>, '._('c').': <span id="vk-'.$corto->id.'">'.$corto->carisma.'</span>';

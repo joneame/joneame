@@ -63,7 +63,7 @@
 
 <li><a href="{{ globals.base_url }}ayuda.php">Ayuda</a></li>
 {% if current_user.admin %}
-	<li><a href="{{ globals.base_url }}admin/index.php" target="_blank">{% trans _('Admin') %}</a></li>
+	<li><a href="{{ globals.base_url }}admin/index.php">{% trans _('Admin') %}</a></li>
 {% endif %}
 
 {% if current_user.user_id > 0 %}
