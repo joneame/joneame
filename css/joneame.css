@@ -415,6 +415,8 @@ border-color: #ddd;
 .news-summary .thumbnail {
     max-height: 75px;
     max-width: 100px;
+    box-shadow: 0 0 5px #ccc;
+    margin: 0 0 10px 15px;
 }
 
 .sidebox .thumbnail {
