@@ -39,9 +39,6 @@ $globals['db_name_secure'] = '';
 $globals['db_user_secure'] = '';
 $globals['db_password_secure'] = '';
 
-//google maps API
-$globals ['google_maps_api'] = '';
-
 // clave pública y privada de Recaptcha
 $globals['recaptcha_public_key'] = '';
 $globals['recaptcha_private_key'] = '';

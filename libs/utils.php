@@ -629,7 +629,7 @@ function get_cover_pixel() {
 // $edit_time: time, in seconds, that the user has to edit it (usually a $global but we dont have to take
 //     care of that here)
 // WARNING: it supposes that gods can edit *everything*
-function calc_remaining_edit_time($created_time, $edit_time, $geo=false) {
+function calc_remaining_edit_time($created_time, $edit_time) {
     global $globals, $current_user;
 
     $remaining_secs = $edit_time - ($globals['now'] - $created_time);
@@ -638,7 +638,7 @@ function calc_remaining_edit_time($created_time, $edit_time, $geo=false) {
     if ($current_user->user_level == 'god')
         return 'god';
 
-    if ($current_user->especial && $geo && $globals['now'] - $created_time < 14400) return 'especial';
+    if ($current_user->especial && $globals['now'] - $created_time < 14400) return 'especial';
 
     if ($remaining_secs < 90 && $remaining_secs > 60)
         return '1½ min';

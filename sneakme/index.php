@@ -39,16 +39,6 @@ $rss_option = '';
 $js_ans_link = false;
 
 switch ($option) {
-    case '_geo':
-        require_once(mnminclude.'geo.php');
-        $tab_option = 5;
-        $titulo = _('Notitas geolocalizadas');
-        if ($current_user->user_id > 0 && ($latlng = geo_latlng('user', $current_user->user_id))) {
-            geo_init('onLoad', $latlng, 5);
-        } else {
-            geo_init('onLoad', false, 2);
-        }
-        break;
     case '':
     case '_all':
         $tab_option = 1;
@@ -155,62 +145,54 @@ echo '<div class="notes">';
 $post = new Post;
 $post->print_post_teaser($rss_option);
 
-if ($option == '_geo') {
-    echo '<br/><div class="topheading"><h2>notitas de las últimas 24 horas</h2></div>';
-    echo '<div id="map" style="width: 95%; height: 500px;margin:0 0 0 20px;"></div></div>';
-    echo '<script>';
-    include 'js/geoposts.js';
-    echo '</script>';
-} else {
-    $posts = $db->get_col($sql);
-    if ($posts) {
-        echo '<ol class="notitas-list">';
-        foreach ($posts as $dbpost) {
-            $post = Post::from_db($dbpost);
-            if ( $post_id > 0 && $user->id > 0 && $user->id != $post->author) {
-                echo '<li>'. _('Error: la notita no existe') . '</li>';
-            } else {
+$posts = $db->get_col($sql);
+if ($posts) {
+    echo '<ol class="notitas-list">';
+    foreach ($posts as $dbpost) {
+        $post = Post::from_db($dbpost);
+        if ( $post_id > 0 && $user->id > 0 && $user->id != $post->author) {
+            echo '<li>'. _('Error: la notita no existe') . '</li>';
+        } else {
 
-                $original_id = $post->id;
-                if ($tab_option == 1 || $js_ans_link) $post->can_answer = true;
-                if (!$post->is_answer || $tab_option == 6 || $tab_option == 4) $post->print_summary();
+            $original_id = $post->id;
+            if ($tab_option == 1 || $js_ans_link) $post->can_answer = true;
+            if (!$post->is_answer || $tab_option == 6 || $tab_option == 4) $post->print_summary();
 
-                if (!$post->is_answer) {
-                    $sql = "SELECT answer_post_id as post_id FROM answers WHERE answer_from = $post->id";
-                    $respuestas = $db->get_col($sql);
+            if (!$post->is_answer) {
+                $sql = "SELECT answer_post_id as post_id FROM answers WHERE answer_from = $post->id";
+                $respuestas = $db->get_col($sql);
 
-                    if ($respuestas) {
-                        //TODO echo '<p align="right"><a  id="show-hide-'.$original_id.'" href="javascript:hide_answers('.$original_id.')"> Ocultar</a></p><br/>';
-                        $answer = new Post;
-                        echo '<div id="respuestas-'.$original_id.'" class="replies">'."\n";
-                        echo '<ol class="notitas-list">';
-                        foreach ($respuestas as $dbanswer) {
-                            $answer = Post::from_db($dbanswer);
-                            if ($tab_option == 1 || $js_ans_link == true) $answer->can_answer = true;
-                            $answer->print_summary();
-                        }
-                        echo "</ol>\n";
-                        echo '</div>'."\n";
+                if ($respuestas) {
+                    //TODO echo '<p align="right"><a  id="show-hide-'.$original_id.'" href="javascript:hide_answers('.$original_id.')"> Ocultar</a></p><br/>';
+                    $answer = new Post;
+                    echo '<div id="respuestas-'.$original_id.'" class="replies">'."\n";
+                    echo '<ol class="notitas-list">';
+                    foreach ($respuestas as $dbanswer) {
+                        $answer = Post::from_db($dbanswer);
+                        if ($tab_option == 1 || $js_ans_link == true) $answer->can_answer = true;
+                        $answer->print_summary();
                     }
+                    echo "</ol>\n";
+                    echo '</div>'."\n";
                 }
-
-                // buscamos la notita padre, el JS imprime la opción de respuesta en la notita madre y estas pestañas no contienen notitas padres
-                if (($tab_option == 4 && $post->is_answer()) || ($tab_option == 6 && $post->is_answer())) $original_id = $db->get_var("SELECT answer_from FROM answers WHERE answer_post_id=$post->id");
-
-                if (!$post->is_answer() || $js_ans_link && $tab_option ==6 || $tab_option == 4) echo '<div id="respuesta-'.$original_id.'"></div>';
-
             }
-        }
-        echo "</ol>\n";
 
-    // Update conversation time
-        if ($tab_option == 6) {
-            Post::update_read_conversation();
+            // buscamos la notita padre, el JS imprime la opción de respuesta en la notita madre y estas pestañas no contienen notitas padres
+            if (($tab_option == 4 && $post->is_answer()) || ($tab_option == 6 && $post->is_answer())) $original_id = $db->get_var("SELECT answer_from FROM answers WHERE answer_post_id=$post->id");
+
+            if (!$post->is_answer() || $js_ans_link && $tab_option ==6 || $tab_option == 4) echo '<div id="respuesta-'.$original_id.'"></div>';
+
         }
     }
-    echo '</div>';
-    do_pages($rows, $page_size);
+    echo "</ol>\n";
+
+// Update conversation time
+    if ($tab_option == 6) {
+        Post::update_read_conversation();
+    }
 }
+echo '</div>';
+do_pages($rows, $page_size);
 
 echo '</div>';
 do_footer();

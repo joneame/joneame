@@ -11,7 +11,6 @@ if (! defined('mnmpath')) {
 }
 include_once(mnminclude.'post.php');
 include_once(mnminclude.'user.php');
-include_once(mnminclude.'geo.php');
 
 if (!empty($_GET['id'])) {
     if (preg_match('/(.+)-(\d+)/u', $_GET['id'], $matches) > 0) {

@@ -210,15 +210,6 @@ function do_footer($credits = true) {
     echo '</ul>'."";
     echo '</div>'."";
 
-
-    echo '<div id="footcol5">'."";
-    echo '<h5>mapas</h5>'."";
-    echo '<ul id="mapslist">'."";
-    echo '<li><a href="'.$globals['base_url'].'geovision.php">'._('geovisión').'</a></li>'."";
-    echo '<li><a href="'.$globals['base_url'].'mapa.php">'._('historias').'</a></li>'."";
-    echo '</ul>'."";
-    echo '</div>'."";
-
     echo '</div>'; // footthingy --neiKo
 
     echo '<div id="gatete"></div>';
@@ -586,15 +577,6 @@ function do_posts_tabs($tab_selected, $username) {
 
     // Best
     echo '<li><a href="'.$globals['base_url'].'mejores_notitas.php" title="'._('más votadas en 24 horas').'">'._('mejores').'</a></li>';
-
-    // GEO
-    if ($globals['google_maps_api']) {
-        if ($tab_selected == 5) {
-            echo '<li'.$active.'><a href="'.post_get_base_url('_geo').'" title="'.$reload_text.'">'._('mapa').'</a></li>';
-        } else {
-            echo '<li><a href="'.post_get_base_url('_geo').'" title="'._('geo').'">'._('mapa').'</a></li>';
-        }
-    }
 
     if ($tab_selected == 7) {
         echo '<li'.$active.'><a href="'.post_get_base_url('_favorites').'">'._('favoritas').'</a></li>';

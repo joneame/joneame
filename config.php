@@ -195,9 +195,6 @@ $globals['do_video'] = false;
 //page_size_pendientes
 $globals['pendientes_page_size'] = 40;
 
-//google maps API
-//$globals ['google_maps_api'] = '';
-
 // clave pública y privada de Recaptcha
 //$globals['recaptcha_public_key'] = '';
 //$globals['recaptcha_private_key'] = '';

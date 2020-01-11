@@ -52,9 +52,6 @@
 			<a href="{{ globals.base_url }}editlink.php?id={{ self.id }}&amp;user={{ current_user.user_id}}" title="{% trans _('editar historia') %} # {{self.id}}"> {% exec self.get_editable_teaser %}</a>
 		{% endif %}
 
-		{% if self.is_map_editable AND globals.joneame AND globals.link_id > 0 %}
-			&nbsp;&nbsp;<a href="#" onclick="$('#geoedit').load('{{ globals.base_url }}geo/get_form.php?id={{ self.id }}&amp;type=link&amp;icon={{ self.status }}'); return false;">{% exec self.get_map_editable_teaser %}</a><br/>
-		{% endif %}
 		{% if self.is_editable AND current_user.user_id == self.author AND not current_user.admin %}
 			<div class="news-details">
 			<strong>{% trans _('Si deseas editar la noticia, tienes') %} {{self.edit_remaining_time}} {% trans _('minutos.') %}<br/>{% trans _('Una vez pasado este tiempo, ponte en contacto con un administrador.') %}</strong>
@@ -159,15 +156,6 @@
 {% endif %}
 
 </div>
-
-{% if self.add_geo  %}
-	<div id="geoedit" class="geoform" style="margin-left:20px">
-	{% if current_user.user_id == self.author AND self.sent_date > globals.now AND not self.latlng %}
-		{% trans _('ubica al origen de la noticia o evento (ciudad, país)') as geotxt %}
-		{% exec geo_coder_print_form 'link', self.id, globals.latlng, geotxt as dummy %}
-	{% endif %}
-	</div>
-{% endif %}
 
 </div>
 </div>

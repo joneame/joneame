@@ -54,8 +54,6 @@ if ($_SERVER['PATH_INFO'] == $_SERVER['REQUEST_URI']) {
     die;
 }
 
-adm_geoedicion ();
-
 if (!$link->sent && !$current_user->admin) {
 
      do_error(_('la historia no ha sido enviada'), 404);
@@ -190,10 +188,6 @@ do_banner_right();
 
 echo '<br/>';
 
-// GEO
-if ($link->latlng && $globals['joneame']) {
-    echo '<div id="map" style="width:300px;height:200px;margin-bottom:25px;">&nbsp;</div>'."\n";
-}
 if ($link->comments > 4) {
     do_best_story_comments($link);
 }
@@ -248,17 +242,3 @@ echo '</div>'."\n"; //newswap
 
 $globals['tag_status'] = $globals['link']->status;
 do_footer();
-
-function adm_geoedicion () {
-    global $globals, $link;
-
-    if($globals['google_maps_api']  && $globals['joneame']) {
-        $link->geo = true;
-        $link->latlng = $link->get_latlng();
-        if ($link->latlng) {
-            geo_init('geo_coder_load', $link->latlng, 5, $link->status);
-        } elseif ($link->is_map_editable()) {
-            geo_init(null, null);
-        }
-    }
-}

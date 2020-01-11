@@ -329,10 +329,6 @@ function to_html(data) {
             tooltip_ajax_call += " onmouseover=\"return tooltip.ajax_delayed(event, 'get_comment_tooltip.php', '"+data.id+"', 10000);\"";
             html += '<img src="img/estructura/pixel.gif" width="24" height="20" style="background: url(\'img/iconos/coti.png\') 0 -20px;" alt="<?php echo _('comentario editado');?>" '+tooltip_ajax_call+'/><\/div>';
             break;
-        case 'geo_edited':
-            tooltip_ajax_call += " onmouseover=\"return tooltip.ajax_delayed(event, 'get_link.php', '"+data.id+"', 10000);\"";
-            html += '<img src="img/estructura/pixel.gif" width="24" height="20" style="background: url(\'img/iconos/coti.png\') 0 -80px;" alt="<?php echo _('geo editado');?>" '+tooltip_ajax_call+'/><\/div>';
-            break;
         default:
             html += data.type+'<\/div>';
     }

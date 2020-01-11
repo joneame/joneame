@@ -5,7 +5,6 @@
 // A copy of the AFFERO GENERAL PUBLIC LICENSE is included in the file "COPYING".
 
 include('config.php');
-include(mnminclude.'geo.php');
 include(mnminclude.'link.php');
 include_once(mnminclude.'ban.php');
 
@@ -221,10 +220,6 @@ if ($links) {
             }
         }
         echo "      <guid>$permalink</guid>\n";
-        // Insert GEO
-        if (($latlng = geo_latlng('link', $link->id))) {
-            echo "      <georss:point>$latlng->lat $latlng->lng</georss:point>\n";
-        }
         echo '      <description><![CDATA[';
         // In case of meta, only sends votes and karma
         // developed for alianzo.com
@@ -277,7 +272,6 @@ function do_header($title) {
     echo '  xmlns:content="http://purl.org/rss/1.0/modules/content/"'."\n";
     echo '  xmlns:wfw="http://wellformedweb.org/CommentAPI/"'."\n";
     echo '  xmlns:dc="http://purl.org/dc/elements/1.1/"'."\n";
-    echo '  xmlns:georss="http://www.georss.org/georss"'."\n";
     echo '  xmlns:media="http://search.yahoo.com/mrss/"'."\n";
     echo '  xmlns:joneame="https://joneame.net/faq-es.php"'."\n";
     echo ' >'. "\n";

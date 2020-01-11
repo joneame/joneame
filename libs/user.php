@@ -22,10 +22,8 @@ class User {
         global $db;
 
         require_once(mnminclude.'avatars.php');
-        require_once(mnminclude.'geo.php');
         avatars_db_remove($this->id);
         avatars_remove_user_files($this->id);
-        geo_delete('user', $this->id);
 
         // Delete relationships
         $db->query("DELETE FROM friends WHERE friend_type='manual' and (friend_from = $this->id or friend_to = $this->id)");
@@ -186,12 +184,6 @@ class User {
         global $db;
 
         return $db->get_var("SELECT api from api_msg where uid=$this->id ");
-    }
-
-    function get_latlng() {
-        require_once(mnminclude.'geo.php');
-
-        return geo_latlng('user', $this->id);
     }
 
     // obtiene la última fecha en la que el usuario realizó alguna acción, y la devuelve en formato DD/MM/YYYY HH:MM:SS

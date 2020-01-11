@@ -9,7 +9,6 @@ include(mnminclude.'html1.php');
 include(mnminclude.'link.php');
 include(mnminclude.'comment.php');
 include(mnminclude.'user.php');
-include(mnminclude.'geo.php');
 require_once(mnminclude.'encuestas.php');
 
 $globals['ads'] = true;
@@ -60,16 +59,6 @@ if (isset($_REQUEST['view']))
 $view = clean_input_string($_REQUEST['view']);
 
 if(empty($view)) $view = 'profile';
-
-// Load Google GEO
-if (!$user->disabled && $view == 'profile' && $globals['google_maps_api'] && $globals['joneame'] && (($globals['latlng']=$user->get_latlng()) || $current_user->user_id == $user->id)) {
-    if ($current_user->user_id == $user->id) {
-        geo_init('geo_coder_editor_load', $globals['latlng'], 7, 'user');
-    } else {
-        geo_init('geo_coder_load', $globals['latlng'], 7, 'user');
-    }
-    $globals['do_geo'] = true;
-}
 
 if (!empty($user->names) && $login != $user->names) {
     do_header("$login ($user->names)");
@@ -195,18 +184,6 @@ function do_profile() {
 
     // Avatar
     echo '<img class="thumbnail" src="'.get_avatar_url($user->id, $user->avatar, 80).'" width="80" height="80" alt="'.$user->username.'" title="avatar" />';
-
-    // Geo div
-    if($globals['do_geo']) {
-    echo '<div style="width:140px; float:left;">';
-        echo '<div id="map" class="thumbnail" style="width:130px; height:130px; overflow:hidden; float:left"></div>';
-        if ($current_user->user_id > 0 && $current_user->user_id != $user->id && $globals['latlng'] && ($my_latlng = geo_latlng('user', $current_user->user_id))) {
-            $distance = (int) geo_distance($my_latlng, $globals['latlng']);
-            echo '<p style="color: #429ee9; font-size: 90%">'._('estás a')." <strong>$distance kms</strong> "._('de').' '.$user->username.'</p>';
-        }
-    echo '&nbsp;</div>';
-    }
-
 
     echo '<div style="float:left;min-width:65%">';
     echo '<dl>';
@@ -368,13 +345,6 @@ function do_profile() {
 
     echo '</div>';
     echo '</fieldset>';
-
-    // Print GEO form
-    if($globals['do_geo'] && $current_user->user_id == $user->id ) {
-        echo '<div class="geoform">';
-        geo_coder_print_form('user', $current_user->user_id, $globals['latlng'], _('ubícate en el mapa (si te apetece)'), 'user');
-        echo '</div>';
-    }
 
     if ($current_user->user_level == 'god') {
         $clone_counter = 0;

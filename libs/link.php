@@ -534,10 +534,6 @@ class Link {
         $this->is_editable = $this->is_editable();
         $this->edit_remaining_time = round($globals['edicion_historias_usuario'] / 60);
 
-        /* Geo edit */
-        $this->is_map_editable = $this->is_map_editable();
-        $this->add_geo = isset($this->geo) && $this->geo && $this->is_map_editable() && $globals['joneame'];
-
         /* URL and Content */
         $this->url_str =  htmlentities(preg_replace('/^https*:\/\//', '', txt_shorter($this->url)));
         $this->url_domain = txt_shorter(parse_url($this->url, PHP_URL_HOST));
@@ -772,18 +768,6 @@ class Link {
         return false;
     }
 
-    function is_map_editable() {
-        global $current_user, $globals;
-
-        if($current_user->user_id == 0) return false;
-        if( ($this->author == $current_user->user_id && $current_user->user_level == 'normal' && $globals['now'] - $this->sent_date < 9800)
-            || ($current_user->especial && $globals['now'] - $this->sent_date < 14400)
-            || $current_user->admin) {
-            return true;
-        }
-        return false;
-    }
-
     function get_editable_teaser() {
         global $current_user, $globals;
 
@@ -795,24 +779,6 @@ class Link {
             $editable_teaser .= 'admin';
         elseif ($this->author == $current_user->user_id)
             $editable_teaser .= calc_remaining_edit_time($this->sent_date, $globals['edicion_historias_usuario']);
-        elseif ($this->author != $current_user->user_id && $current_user->especial)
-            $editable_teaser .= 'special';
-        $editable_teaser .= '</span>';
-
-        return $editable_teaser;
-    }
-
-    function get_map_editable_teaser() {
-        global $current_user, $globals;
-
-        if ($current_user->admin)
-            $iddqd = ' iddqd';
-
-        $editable_teaser = '<span class="geo-edit'.$iddqd.'">';
-        if ($current_user->admin)
-            $editable_teaser .= 'admin';
-        elseif ($this->author == $current_user->user_id)
-            $editable_teaser .= calc_remaining_edit_time($this->sent_date, 9800, true); // !!FIXME hardcoded!
         elseif ($this->author != $current_user->user_id && $current_user->especial)
             $editable_teaser .= 'special';
         $editable_teaser .= '</span>';
@@ -913,11 +879,6 @@ class Link {
                 return _('descartada');
         }
         return $status;
-    }
-
-    function get_latlng() {
-        require_once(mnminclude.'geo.php');
-        return geo_latlng('link', $this->id);
     }
 
     function print_content_type_buttons($link_title = false) {

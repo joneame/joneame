@@ -359,7 +359,7 @@ function print_logs() {
 
     echo '<div id="voters-container">';
 
-    $logs = $db->get_results("select logs.*, user_id, user_login, user_avatar from logs, users where log_type in ('link_new', 'link_publish', 'link_discard', 'link_edit', 'link_geo_edit', 'link_depublished') and log_ref_id=".$link->id." and user_id= log_user_id order by log_date asc");
+    $logs = $db->get_results("select logs.*, user_id, user_login, user_avatar from logs, users where log_type in ('link_new', 'link_publish', 'link_discard', 'link_edit', 'link_depublished') and log_ref_id=".$link->id." and user_id= log_user_id order by log_date asc");
 
     if ($logs) {
 
@@ -384,10 +384,6 @@ function print_logs() {
 
             case 'link_edit':
             $que='editada';
-            break;
-
-            case 'link_geo_edit':
-            $que = 'geolocalizada';
             break;
 
             case 'link_depublished':

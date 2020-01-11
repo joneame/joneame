@@ -5,7 +5,6 @@
 // A copy of the AFFERO GENERAL PUBLIC LICENSE is included in the file "COPYING".
 
 include('config.php');
-include(mnminclude.'geo.php');
 include(mnminclude.'post.php');
 
 if(!empty($_REQUEST['rows'])) {
@@ -103,12 +102,6 @@ if ($posts) {
         echo "      <pubDate>".date("r", $post->date)."</pubDate>\n";
         echo "      <dc:creator>$username</dc:creator>\n";
         echo "      <guid>https://".get_server_name().post_get_base_url($username).'/'.$post->id."</guid>\n";
-    if ($post->tipo != 'admin') {
-        // Insert GEO
-        if (($latlng = geo_latlng('user', $post->author))) {
-        echo "      <georss:point>$latlng->lat $latlng->lng</georss:point>\n";
-        }
-    }
         echo "      <description><![CDATA[$content";
         echo '</p><p>»&nbsp;'._('autor').': <strong>'.$username.'</strong></p>';
         echo "]]></description>\n";
@@ -141,7 +134,6 @@ function do_header($title) {
     echo '  xmlns:content="http://purl.org/rss/1.0/modules/content/"'."\n";
     echo '  xmlns:wfw="http://wellformedweb.org/CommentAPI/"'."\n";
     echo '  xmlns:dc="http://purl.org/dc/elements/1.1/"'."\n";
-    echo '  xmlns:georss="http://www.georss.org/georss"'."\n";
     echo ' >'. "\n";
     echo '<channel>'."\n";
     echo '  <title>'.$title.'</title>'."\n";

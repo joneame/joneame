@@ -107,7 +107,7 @@ function do_master($size) {
 function do_statics() {
     global $globals;
 
-    $urls = ['jonealas.php', 'cotillona.php', 'geovision.php', 'notitas/', 'nube.php', 'las_mejores.php', 'mas_comentadas.php',
+    $urls = ['jonealas.php', 'cotillona.php', 'notitas/', 'nube.php', 'las_mejores.php', 'mas_comentadas.php',
              'mas_visitadas.php', 'aleatorios.php', 'corto.php', 'ultimos_comentarios.php', 'ayuda.php', 'encuestas.php',
              'mejores_comentarios.php', 'mejores_mafiosos.php', 'mapa.php', 'mejores_notitas.php', 'nube_de_webs.php'];
 
