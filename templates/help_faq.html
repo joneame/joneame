@@ -1,0 +1,79 @@
+<h2>FAQ: preguntas más frecuentes</h2>
+
+<h3>¿Cómo promover las historias?</h3>
+<p>Selecciona la opción <a href="{{ globals.base_url }}jonealas.php">pendientes</a> y te aparecerán las noticias no publicadas,
+    ordenadas descendentemente por fecha de envío. Sólo tienes que "jonear" aquellas que más gracia te hagan, más te gusten,
+    o más curiosas consideres. Una vez superado unos umbrales de votos y carisma serán promovidas a la página principal.</p>
+<p>No te olvides de leer las <a href="{{ globals.base_url }}ayuda.php?id=uso">condiciones de uso</a>.</p>
+
+<h3>¿Qué es ese desplegable llamado "sensurar" que me aparece cuando voy a jonear noticias pendientes?</h3>
+<p>Es un formulario para indicar que una noticia es repetida o inadecuada. Dichos reportes son votos negativos a la noticia,
+    no abuses de él. Los envíos que reúnan muchos votos negativos serán movidos a la cola de descartadas.
+    Por último puedes votar mafia si te apetece, ¡para eso somos la mafia! (Pero no te pases ;-)</p>
+
+<h3>¿Qué es eso de cortos en la parte superior izquierda de la página?</h3>
+<p>La sección cortos es única y exclusiva de Jonéame. Es un formulario de envío de frases ingeniosas, que después serán revisadas por un administrador.
+    Dicho administrador aceptará o rechazará tu propuesta (no todo vale, debes seguir las instrucciones).
+    Una vez aceptado, tu corto irá apareciendo en la parte superior de la página, mezclado con los enviados por los otros usuarios de Jonéame.</p>
+
+<h3>¿Cómo envío historias?</h3>
+{% if current_user.user_id > 0 %}
+    <p>Selecciona <a href="{{ globals.base_url }}nueva_historia.php">enviar nueva historia</a>.
+        En un proceso de tres pasos simples la historia será enviada a <a href="{{ globals.base_url }}jonealas.php">la cola de pendientes</a>.</p>
+{% else %}
+    <p>Debes <a href="{{ globals.base_url }}register.php">registrarte</a> antes, es muy fácil y rápido.
+        Luego seleccionas <a href="{{ globals.base_url }}nueva_historia.php">enviar nueva historia</a>.
+        En un proceso de tres pasos simples la historia será enviada a <a href="{{ globals.base_url }}jonealas.php">la cola de pendientes</a>.</p>
+{% endif %}
+
+<h3>¿Se responsabiliza Jonéame de los comentarios escritos por los usuarios?</h3>
+<p>NO. Cada uno puede opinar lo que quiera y sobre lo que quiera, ergo no nos hacemos responsables.
+    Los administradores no revisan los comentarios antes de ser publicados, por lo que la responsabilidad
+    recae sobre el usuario que ha puesto el comentario. Por favor, sé cuidadoso con lo que escribes.</p>
+
+<h3>¿Qué tipos de historias puedo enviar?</h3>
+<p>Las que tú desees, pero sigue leyendo. Estarán sujetas a la revisión de los lectores que las votarán, o no.
+    Aun así, el objetivo principal es que se traten de noticias y apuntes de blogs.
+    Lo que no debes hacer es spam, es decir enviar muchos enlaces de unas pocas fuentes. Intenta ser variado.
+    Envía historias que puedan ser interesantes para muchos, intenta pasar un cromo interesante.
+    No mires sólo tu ombligo, usa el sentido común y un mínimo de espíritu colaborativo y respeto hacia los demás.</p>
+
+<h3>¿Qué tipos de historias debería enviar?</h3>
+<p>En Jonéame puedes enviar lo que quieras pero, intenta que los envíos que hagas sean originales y divertidos
+    y evita enviar enlaces con contenido que pueda resultar desagrable para el resto de usuarios.</p>
+
+<h3>¿Por qué no puedo negativo las noticias o los comentarios?</h3>
+<p>Hace falta un carisma mínimo para votar negativo las noticias ({{ globals.min_karma_for_negatives }})
+    y otro para cualquier voto a los comentarios ({{ globals.min_karma_for_comment_votes }}).</p>
+
+<h3>¿Cómo se seleccionan las noticias que se publican en la portada?</h3>
+<p>Lo hace un proceso que se ejecuta cada cinco minutos.</p>
+<p>Primero calcula cuál es el carisma mínimo que tienen que tener las noticias.
+    Este valor depende de la media del carisma de las noticias que fueron publicadasd en las últimas dos semanas,
+    más un coeficiente que depende del tiempo transcurrido desde la publicación de la última noticia.
+    Este coeficiente decrece a medida que pasa el tiempo y se hace uno (1) cuando ha pasado una hora.
+    Eso quiere decir que pasada una hora, cuando el coeficiente se hizo uno, cualquier noticia que tenga un carisma igual
+    o superior a la media será publicada. Esto tiene dos objetivos, por un lado se persigue que si la calidad es constante
+    se publicará una media de una noticia por hora, pero las que reciban más votos (se espera que sea incremental) serán publicadas antes.</p>
+<p>El carisma de cada noticia se calcula multiplicando el número de votos por el carisma del autor del voto.
+    Si es anónimo ese voto vale {{ globals.anon_carisma }}, si es de un usuario registrado el valor es multiplicado por su carisma
+    (si es mayor a 22, el valor se limita a ese número).</p>
+<p>Finalmente hay una restricción adicional para evitar abusos de los usuarios registrados:
+    sólo pueden ser publicadas aquellas noticias que al menos tengan N votos, donde N actualmente es 3.</p>
+
+<h3>¿Qué es esa pestaña "descartadas" en la página de votación de pendientes?</h3>
+<p>Cuando una noticia recibe más votos negativos (sensuras) que votos positivos, es movida a esta cola.
+    Los usuarios pueden seguir votando y si consigue los votos suficientes volverá a la cola de pendientes normal.</p>
+
+<h3>¿Qué son las notitas?</h3>
+<p>Una herramienta de comunicación entre los usuarios de Jonéame que se organiza en pequeños apuntes, como los mini-post de un blog colectivo
+    (de todos los usuarios de las notitas) y a la vez individual.
+    Puedes usarlo para cuestiones relacionadas con Jonéame o para explicar o contar lo que quieras.</p>
+
+<h3>¿Qué es la cotillona?</h3>
+<p>La cotillona muestra lo que sucede en Jonéame en tiempo real.
+    Si eres usuario registrado también puedes usarla para chatear o ponerte en contacto con los administradores.</p>
+
+<h3>¿Dónde notifico errores, problemas o sugerencias?</h3>
+<p>Puedes notificarnos en una notita o mediante un mail a ad<em></em>min&#64;jon<strong></strong>eame&#46;ne<strong></strong>t.
+    Si es un problema de seguridad, te rogamos que uses el mail.</p>

@@ -1,0 +1,47 @@
+<h2>¿Qué es Jonéame?</h2>
+
+<h3>Bueno, y ¿qué es esto de Jonéame?</h3>
+<p>Jonéame es una red social, en la cual puedes compartir enlaces, conocer gente, chatear, y perder el tiempo.</p>
+
+<h3>¿De dónde viene Jonéame?</h3>
+<p>Ha sido desarrollado por <a href="{{ globals.base_url }}credits.php">los propios usuarios</a>,
+    partiendo de la base de <a href="https://www.meneame.net/" target="_blank">Menéame</a>.
+    Ten paciencia si algo no te funciona. Contacta con nosotros para reportar los errores que veas.</p>
+
+<h3>Y ¿de qué va todo esto?</h3>
+<p>Jonéame comienza en el cachondeo, y acaba en el cachondeo. Nos gusta la pornografía, fotos, noticias,
+    vídeos graciosos, noticias manipuladas, humor, viñetas, curiosidades, etc...
+    ¡Y se permite el microblogging! Eso sí: recuerda leerte las <a href="{{ globals.base_url }}ayuda.php?id=uso">condiciones de uso</a> antes de enviar nada.</p>
+{% if current_user.user_id > 0 %}
+    <h3>¿Qué puedo hacer en Jonéame?</h3>
+{% else %}
+    <h3>¿Por qué debería registrarme?</h3>
+    <p>Pues porque como usuario registrado podrás, entre otras cosas:</p>
+{% endif %}
+<ul>
+    <li><strong>Enviar <a href="{{ globals.base_url }}">historias</a></strong><br>
+        Una vez registrado puedes enviar las historias que consideres curiosas/cachondas/interesantes para la comunidad.
+        Si tienes algún tipo de duda sobre que tipo de historias puedes enviar revisa nuestras preguntas frecuentes sobre Jonéame
+        (o simplemente echa un ojo a las <a href="{{ globals.base_url }}">publicadas</a>).
+    <li><strong>Escribir comentarios</strong><br/>
+        Puedes escribir tu opinión sobre las historias enviadas a Jonéame mediante comentarios de texto.
+        También puedes votar positivamente aquellos comentarios ingeniosos, divertidos o interesantes
+        y negativamente aquellos que consideres inoportunos.
+    <li><strong>Chatear en la <a href="{{ globals.base_url }}cotillona.php">cotillona</a></strong><br>
+        Gracias a la cotillona puedes ver en tiempo real toda la actividad de Jonéame.
+        Además como usuario registrado podrás chatear con mucha más gente de la comunidad mafiosa.
+        Puedes usarla para ponerte en contacto con algún administrador también si lo deseas.
+    <li><strong>Enviar <a href="{{ globals.base_url }}cortos.php">cortos</a></strong><br>
+        Una vez registrado puedes enviar cortos. Los cortos son pequeños textos que pueden hablar de lo que quieras.
+        Lo que se te ocurra. Estos aparecerán en la parte superior de toda la web, seleccionados aleatoriamente.
+        ¿A qué esperas para ver el tuyo ahí?
+    <li><strong>Enviar mensajes privados a otros usuarios</strong><br>
+        En Jonéame puedes enviar mensajes privados a otros usuarios registrados.
+        Para ello sólo tienes que ir al perfil de dicho usuario y hacer click en "privados".
+        No, si al final acabas ligando y todo...
+    <li><strong>Hacer <a href="{{ globals.base_url }}encuestas.php">encuestas</a></strong><br>
+        También puedes enviar encuestas. Añade las opciones que desees y los usuarios podrán responderla, eligiendo entre esas opciones.
+</ul>
+{% if current_user.user_id < 1 %}
+    <p>Regístrate haciendo clic <a href="{{ globals.base_url }}register.php">aquí</a>.</p>
+{% endif %}
