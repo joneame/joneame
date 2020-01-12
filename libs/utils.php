@@ -952,8 +952,13 @@ function print_oauth_icons($return = false) {
     }
 }
 
+// esto actualmente no se usa, habría que devolverlo a su sitio. no lo borro por si es útil algún día
 function check_queue($user_id) {
     global $db, $globals;
+
+    if (!isset($globals['max_successive_links_in_queue']) || $globals['max_successive_links_in_queue'] < 1) {
+        return false;
+    }
 
     $envios_consecutivos = 0;
     $previous_user = 0;
