@@ -119,9 +119,9 @@ if ($links) {
         $link = Link::from_db($link_id);
 
         if ($offset < 1000) {
-            $link->print_summary('full', 16);
+            $link->print_summary('short', 16);
         } else {
-            $link->print_summary('full');
+            $link->print_summary('short');
         }
     }
 }
