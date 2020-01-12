@@ -332,7 +332,7 @@ function print_categories_form($selected = 0) {
 }
 
 function get_share_to_twitter_url($url, $title) {
-    return 'https://twitter.com/share?text=' . urlencode($title) . '&url=' . urlencode($url) . '&via=joneame';
+    return 'https://twitter.com/share?text=' . urlencode($title) . '&amp;url=' . urlencode($url) . '&amp;via=joneame';
 }
 
 function get_share_to_facebook_url($url, $title) {
