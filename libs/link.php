@@ -832,9 +832,9 @@ class Link {
     function get_short_permalink() {
         global $globals;
         if ($globals['base_story_url']) {
-            return $globals['base_url'].$globals['base_story_url'].'0'.$this->id;
+            return 'https://' . get_server_name() . $globals['base_url'] . $globals['base_story_url'] . '0' . $this->id;
         } else {
-            return $this->get_relative_permalink();
+            return 'https://' . get_server_name() . $this->get_relative_permalink();
         }
     }
 

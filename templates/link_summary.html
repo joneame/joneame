@@ -101,9 +101,12 @@
 	{% endif %}
 </span>
 
-
-
-{% exec print_share_icons self.permalink, self.short_permalink, self.title, self.id  %}
+<span class="tool">
+	<a href="{% exec get_share_to_twitter_url self.short_permalink self.title %}" rel="noopener" target="_blank">
+		<img class="icon favicon-twitter img-flotante" src="{% exec get_cover_pixel %}" alt="compartir en twitter" title="compartir en twitter"/></a>
+	<a href="{% exec get_share_to_facebook_url self.short_permalink self.title %}" rel="noopener" target="_blank">
+		<img class="icon favicon-facebook img-flotante" src="{% exec get_cover_pixel %}" alt="compartir en facebook" title="compartir en facebook"/></a>
+</span>
 
 {% if self.voted|null AND self.can_negative_vote AND type != 'preview' AND self.votes_enabled %}
 

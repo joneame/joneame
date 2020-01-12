@@ -331,35 +331,12 @@ function print_categories_form($selected = 0) {
     echo '</fieldset>';
 }
 
-function print_share_icons($full_link, $short_link = false, $title = '', $id) {
-    global $globals;
+function get_share_to_twitter_url($url, $title) {
+    return 'https://twitter.com/share?text=' . urlencode($title) . '&url=' . urlencode($url) . '&via=joneame';
+}
 
-    $full_link = urlencode($full_link);
-    if (! $short_link) {
-        $short_link = $full_link;
-    } else {
-        $short_link = urlencode($short_link);
-    }
-
-    if ($globals['base_story_url']) {
-           $joneame_link = 'https://'.get_server_name().$globals['base_url'].$globals['base_story_url'].'0'.$id;
-        }
-
-        if (! $title) $title = get_server_name();
-
-    $title = urlencode($title);
-    $space = urlencode(' - ');
-
-    echo '&nbsp;<span class="tool"></span>';
-    // Share it in Twitter
-    echo '<a href="https://twitter.com/share?text='.$title.$space.'&amp;url='.$short_link.'&amp;via=joneame" rel="noopener" target="_blank"><img class="icon favicon-twitter img-flotante" src="'.get_cover_pixel().'" alt="twitter" title="'._('compartir en twitter').'"/></a>';
-    // Share it in Facebook
-    echo '&nbsp;&nbsp;<a href="https://www.facebook.com/share.php?u='.$full_link.'" rel="noopener" target="_blank"><img class="icon favicon-facebook img-flotante" src="'.get_cover_pixel().'" alt="facebook" title="'._('compartir en facebook').'"/></a> ';
-    //Share it in Google +
-    // echo '&nbsp;<span id="plusone-span-'.$id.'"></span> <script> $(function () {gapi.plusone.render("plusone-span", {"size": "small", "count": false})});</script>';
-
-    // Jonéame link
-    // echo '</span><span class="tool"><a href="'.$joneame_link.'"><img src="'.$globals['base_url'].$globals['favicon'].'" alt="jonéame" title="'._('enlace corto jonéame').'" width="16" height="16"/></a></span>';
+function get_share_to_facebook_url($url, $title) {
+    return 'https://www.facebook.com/share.php?u=' . urlencode($url);
 }
 
 function do_error($mess = false, $error = false, $send_status = true, $generate_header = true, $generate_footer = true) {
