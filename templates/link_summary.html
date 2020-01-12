@@ -13,11 +13,6 @@
 	<a href="{{ self.url|escape }}" onmousedown="return clk(this, {{ self.id }})"
 		{% if self.status != 'published' %} rel="nofollow noopener" {% else %} rel="noopener" {% endif %} class="titular">{{ self.title }}</a>
 
-	{% if self.is_editable %}
-		<a href="{{ globals.base_url }}editlink.php?id={{ self.id }}&amp;user={{ current_user.user_id}}"
-			title="{% trans _('editar historia') %} #{{ self.id }}">{% exec self.get_editable_teaser %}</a>
-	{% endif %}
-
 {% if self.content_type == 'image' %}
 	<img src="{% exec get_cover_pixel %}" class="icon image media-icon" alt="{% trans _('imagen') %}" title="{% trans _('imagen') %}" />
 {% else %}
@@ -48,13 +43,13 @@
 	</div>
 </div>
 
-{% if type == 'full' OR type == 'preview' %}
-	<p>
+<p>
 	{{ self.content_str }}
+	{% if self.is_editable %}
+		<a href="{{ globals.base_url }}editlink.php?id={{ self.id }}&amp;user={{ current_user.user_id}}"
+			title="{% trans _('editar historia') %} #{{ self.id }}">{% exec self.get_editable_teaser %}</a>
+	{% endif %}
 	{% if type != 'preview' %}
-
-
-
 		{% if self.is_editable AND current_user.user_id == self.author AND not current_user.admin %}
 			<div class="news-details">
 			<strong>{% trans _('Si deseas editar la noticia, tienes') %} {{ self.edit_remaining_time }} {% trans _('minutos.') %}<br>
@@ -69,8 +64,16 @@
 			{% endif %}
 		{% endif %}
 	{% endif %}
-	</p>
-{% endif %}
+	{% if type == 'full' %}
+		<br><strong>clics:</strong>  {{ self.clicks }}, <strong>visitas:</strong> {{ self.visits }}
+		{% if self.show_tags AND self.tags AND globals.buscador_activado %}
+			{% exec explode "," self.tags as tags_array %}
+			— <strong>{% trans _('etiquetas') %}:</strong>
+			{% for id, tag in tags_array %}
+				{% if id > 0 %}, {% endif %}<a href="{{ globals.base_url }}search.php?p=tag&amp;q={{ tag|urlencode }}">{{ tag }}</a>{% endfor %}
+		{% endif %}
+	{% endif %}
+</p>
 
 {% if self.best_comment %}
 	<div class="mejor-comentario">
@@ -90,16 +93,15 @@
 
 <span class="tool">
 	<strong>carisma:</strong> <span id="a-karma-{{self.id}}">{% exec intval self.karma %}</span>
+	(<span title="votos de usuarios" id="a-usu-{{self.id}}">{{self.votes_sum}}</span>,
+	 <span title="votos anónimos" id="a-ano-{{self.id}}">{{self.anonymous}}</span>,
+	 <span title="sensuras" id="a-neg-{{self.id}}" style="color: {% if self.negatives > 0 %}red{% else %}#aaa{% endif %};">{{self.negatives_sum}}</span>)
 </span>
+
 <span class="tool">
-	<strong>usuarios:</strong> <span id="a-usu-{{self.id}}">{{self.votes_sum}}</span>&nbsp;
-	<strong>anónimos:</strong> <span id="a-ano-{{self.id}}">{{self.anonymous}}</span>&nbsp;
-	{% if self.negatives > 0 %}
-		<strong>negativos:</strong> <span id="a-neg-{{self.id}}" style="color: red;">{{self.negatives_sum}}</span>
-	{% else %}
-		<strong>negativos:</strong> <span id="a-neg-{{self.id}}" style="color: #aaa;">{{self.negatives_sum}}</span>
-	{% endif %}
-</span>
+	<strong>categoría:</strong>
+	<a class="category" href="{{ globals.base_url }}{% if self.status == 'published' %}jonealas.php{% endif %}?category={{ self.category }}"
+		title="{% trans _('categoría') %}">{{ self.category_name }}</a></span>
 
 <span class="tool">
 	<a href="{% exec get_share_to_twitter_url self.short_permalink self.title %}" rel="noopener" target="_blank">
@@ -109,60 +111,33 @@
 </span>
 
 {% if self.voted|null AND self.can_negative_vote AND type != 'preview' AND self.votes_enabled %}
-
-	<form  class="tool" action="" id="problem-{{ self.id }}">
-	<select name="ratings"  onchange="report_problem(this.form,{{current_user.user_id}},{{self.id}}, '{{self.md5}}')">
-
-	<option value="0" selected="selected"> {% trans _('sensurar') %} </option>
-	{% for pkey, pvalue in globals.negative_votes_values %}
-      <option value="{{pkey}}">{{ pvalue }}</option>
-  {% endfor %}
-	</select>
+<span class="tool">
+	<form class="tool" action="" id="problem-{{ self.id }}">
+		<select name="ratings"  onchange="report_problem(this.form,{{current_user.user_id}},{{self.id}}, '{{self.md5}}')">
+			<option value="0" selected="selected"> {% trans _('sensurar') %} </option>
+			{% for pkey, pvalue in globals.negative_votes_values %}
+				<option value="{{pkey}}">{{ pvalue }}</option>
+			{% endfor %}
+		</select>
 	</form>
-
+</span>
 {% endif %}
 
 
 {% if current_user.user_id > 0 %}
 	<span class="tool">
-	<a id="fav-{{ self.id }}" href="javascript:obtener('joneo_favorito.php','{{ current_user.user_id }}', 'fav-{{ self.id }}',0,'{{self.id }}')">
-        {% exec favorite_teaser current_user.user_id, self.id, 'link' %}
-	</a>
+		<a id="fav-{{ self.id }}" href="javascript:obtener('joneo_favorito.php','{{ current_user.user_id }}', 'fav-{{ self.id }}',0,'{{self.id }}')">
+			{% exec favorite_teaser current_user.user_id, self.id, 'link' %}
+		</a>
 	</span>
 {% endif %}
-
 </div>
 
 <div class="news-details">
 
-<span class="tool"><strong> {% trans _('categoría') %}:</strong>
-  {% if self.status == 'published'  %}
-  	<a href="{{ globals.base_url }}?category={{ self.category }}" title="{% trans _('categoría') %}"> {{self.category_name}}</a></span>
-  {% else %}
-  	<a href="{{ globals.base_url }}jonealas.php?category={{ self.category }}" title="{% trans _('categoría') %}">{{ self.category_name }}</a></span>
-  {% endif %}
 
 
-{% if self.show_tags AND self.tags AND globals.buscador_activado %}
-	{% exec explode "," self.tags as tags_array %}
 
-	<span class="tool"><b>{% trans _('etiquetas') %}:</b>
-	{% for id, tag in tags_array %}
-		{% if id > 0 %}, {% endif %}<a href="{{ globals.base_url }}search.php?p=tag&amp;q={{ tag|urlencode }}">{{ tag }}</a>{% endfor %}
-	</span>
-{% endif %}
-
-{% if self.clicks > 0%}
-	<span class="tool">
-	<strong>clics:</strong>  {{ self.clicks }}
-	</span>
-{% endif %}
-
-{% if self.visits > 0 %}
-	<span class="tool">
-	<strong>visitas:</strong> {{ self.visits }}
-	</span>
-{% endif %}
 
 </div>
 </div>

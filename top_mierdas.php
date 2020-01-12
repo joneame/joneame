@@ -36,7 +36,7 @@ $links = $db->get_results($sql);
 if ($links) {
     foreach($links as $dblink) {
         $link = Link::from_db($dblink->link_id);
-        $link->print_summary('short');
+        $link->print_summary();
     }
 }
 echo '</div>';

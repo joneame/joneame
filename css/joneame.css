@@ -415,7 +415,7 @@ border-color: #ddd;
 .news-summary .thumbnail {
     max-height: 75px;
     max-width: 100px;
-    box-shadow: 0 0 5px #ccc;
+    box-shadow: 0 0 5px #eee;
     margin: 0 0 10px 15px;
 }
 
@@ -828,13 +828,6 @@ line-height: 25px;
 
 .news-body h1 a {
     color: #3d668f;
-}
-
-.news-body h1 .n-edit {
-    font-size: 12px;
-    text-shadow: none;
-    height: 18px;
-    line-height: 20px;
 }
 
 .news-body p {
@@ -3167,9 +3160,11 @@ background: #72b055 url(/img/estructura/general.7.png) repeat-x scroll 0 -493px;
 border: 1px solid #255B85;
 font-weight: bold;
 color: white;
-padding: 0 4px 1px 16px;
+padding: 0 4px 0 16px;
 display: inline-block;
-margin-top: 1px;
+font-size: 9pt;
+line-height: 18px;
+margin-left: 6px;
 }
 
 .c-edit:active,
@@ -4186,9 +4181,6 @@ a .hglass {
     }
     .news-body {
         padding-left: 0;
-    }
-    .news-details .tool {
-        display: none;
     }
     #footwrap {
         padding: 15px 0;

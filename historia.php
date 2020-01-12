@@ -202,7 +202,7 @@ $globals['show_visits'] = true;
 
 echo '<div id="newswrap">';
 
-$link->print_summary();
+$link->print_summary('full');
 
 
 echo '<div id="contenido">';

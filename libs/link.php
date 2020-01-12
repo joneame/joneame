@@ -489,7 +489,7 @@ class Link {
         return $found;
     }
 
-    function print_summary($type='full', $karma_best_comment = 0, $show_tags = true) {
+    function print_summary($type='short', $karma_best_comment = 0, $show_tags = true) {
         global $current_user, $globals, $db;
 
         if(!$this->read)
@@ -536,19 +536,17 @@ class Link {
 
         /* URL and Content */
         $this->url_str =  htmlentities(preg_replace('/^https*:\/\//', '', txt_shorter($this->url)));
-        $this->url_domain = txt_shorter(parse_url($this->url, PHP_URL_HOST));
-        if (strpos($this->url_domain, 'www.') === 0) {
-            $this->url_domain = substr($this->url_domain, 4);
+        $host = parse_url($this->url, PHP_URL_HOST);
+        if ($host) {
+            $this->url_domain = txt_shorter(parse_url($this->url, PHP_URL_HOST));
+            if (strpos($this->url_domain, 'www.') === 0) {
+                $this->url_domain = substr($this->url_domain, 4);
+            }
+        } else {
+            // si no se puede parsear el host (mierda tipo about:blank) mostrarlo entero
+            $this->url_domain = $this_url;
         }
         $this->content_str = text_to_html(put_smileys($this->content, 'links'));
-
-        /* neiko: chapado */
-
-        /*Votos totales positivos*/
-        /* $votos_totales = $db->get_var("SELECT count(*) FROM votes WHERE vote_link_id=$this->id and vote_type='links' and vote_value >= 0"); */
-
-        // votos negativos no-aleatorios
-        /* $votos_negativos  = $db->get_var("SELECT count(*) FROM votes WHERE vote_link_id=$this->id and vote_type='links' and vote_aleatorio='normal' and vote_value < 0"); */
 
         if ($this->votes_enabled && !$this->discarded && $votos_negativos > 1 && $votos_negativos > $votos_totales/6)
             $this->tiene_negativos = true;

@@ -62,7 +62,7 @@ $links = $db->get_results("$sql LIMIT $offset,$page_size");
 if ($links) {
     foreach($links as $dblink) {
         $link = Link::from_db($dblink->link_id);
-        $link->print_summary('short');
+        $link->print_summary();
     }
 }
 do_pages($rows, $page_size);
