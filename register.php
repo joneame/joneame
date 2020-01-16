@@ -47,6 +47,8 @@ function do_register0() {
     echo '<h4>'._('registro en Jonéame').'</h4>';
     echo '<form class="fondo-caja" action="register.php" method="post" id="thisform" onSubmit="return check_checkfield(\'acceptlegal\', \''._('no has aceptado las condiciones de legales de uso').'\')">';
     echo '<fieldset>';
+    echo '<p class="returning-user">Si ya tenías una cuenta y la desactivaste, puedes enviarnos un correo a
+        <em>ad<em></em>min&#64;jo<strong></strong>neame&#46;n<strong></strong>et</em> para recuperarla.</p>';
     echo '<p><label for="name">' . _("nombre de usuario") . ':</label><br />';
     echo '<input type="text" name="username" id="name" value="" onkeyup="enablebutton(this.form.checkbutton1, this.form.submit, this)" size="25" tabindex="1"/>';
     echo '<span id="checkit"><input type="button" class="button" id="checkbutton1" disabled="disabled" value="'._('verificar').'" onclick="checkfield(\'username\', this.form, this.form.username)"/></span>';
@@ -59,8 +61,6 @@ function do_register0() {
     echo '<p><label for="password">' . _("contraseña") . ':</label><br />';
     echo '<span class="note">'._('al menos ocho caracteres, incluyendo mayúsculas, minúsculas y números').' </span><br />';
     echo '<input type="password" id="password" name="password" size="25" tabindex="3" onkeyup="return securePasswordCheck(this.form.password);"/><span id="password1-warning"></span></p>';
-    echo '<p><label for="verify">' . _("repite la contraseña") . ': </label><br />';
-    echo '<input type="password" id="verify" name="password2" size="25" tabindex="4" onkeyup="checkEqualFields(this.form.password2, this.form.password)"/></p>';
     echo '<p><input type="checkbox" id="acceptlegal" name="acceptlegal" value="accept" tabindex="5"/></span>';
     echo '<span class="note">'._('he leído y acepto tanto las ').'<a href="'.$globals['legal'].'">'._('condiciones legales').'</a>'._(' como las').' <a href="'.$globals['normas'].'">'._('normas').'</a>';
     echo '<p><input type="submit" class="button" disabled="disabled" name="submit" value="'._('crear usuario').'" class="log2" tabindex="6" /></p>';
@@ -68,6 +68,7 @@ function do_register0() {
     echo '</fieldset>';
     echo '</form>';
     echo '<div class="recoverpass" align="center"><h4 class="boton"><a href="login.php?op=recover">'._('¿Has olvidado la contraseña?').'</a></h4></div>';
+    echo '<div class="recoverpass" align="center"><h4 class="boton"><a href="login.php">'._('¿Ya tienes una cuenta? ¡Inicia sesión!').'</a></h4></div>';
 
 
 
@@ -95,7 +96,6 @@ function do_register1() {
     echo '<input type="hidden" name="email" value="'.clean_input_string($_POST["email"]).'" />';
     echo '<input type="hidden" name="username" value="'.clean_input_string($_POST["username"]).'" />';
     echo '<input type="hidden" name="password" value="'.clean_input_string($_POST["password"]).'" />';
-    echo '<input type="hidden" name="password2" value="'.clean_input_string($_POST["password2"]).'" />';
     echo '</fieldset></form>';
 
 }
@@ -135,7 +135,7 @@ function do_register2() {
             } else {
 
                 require_once(mnminclude.'mail.php');
-                $sent = send_recover_mail($user);
+                $sent = send_verification_mail($user);
                 log_insert('user_new', $user->id, $user->id);
 
                  // Generar su API.
@@ -190,18 +190,13 @@ function check_user_fields() {
         $error=true;
     }
 
-    if(preg_match('/[ \']/', $_POST["password"]) || preg_match('/[ \']/', $_POST["password2"]) ) {
+    if(preg_match('/[ \']/', $_POST["password"])) {
         register_error(_("Caracteres inválidos en la clave"));
         $error=true;
     }
 
     if(! check_password($_POST["password"])) {
         register_error(_("Clave demasiado corta, debe ser de 6 o más caracteres e incluir mayúsculas, minúsculas y números."));
-        $error=true;
-    }
-
-    if($_POST["password"] !== $_POST["password2"] ) {
-        register_error(_("Las claves no coinciden"));
         $error=true;
     }
 

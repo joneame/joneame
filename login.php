@@ -138,6 +138,7 @@ function do_login() {
     echo '<input type="hidden" name="return" value="'.htmlspecialchars($_REQUEST['return']).'"/>';
     echo '</fieldset>'. "\n";
     echo '</form>';
+    echo '<div class="recoverpass" align="center"><h4 class="boton"><a href="register.php">'._('¿No tienes cuenta? ¡Regístrate!').'</a></h4></div>';
     echo '<div class="recoverpass" align="center"><h4 class="boton"><a href="login.php?op=recover">'._('¿Has olvidado la contraseña?').'</a></h4></div>';
     echo '</div>';
     echo '<br clear="all"/>&nbsp;';
@@ -191,6 +192,7 @@ function do_recover() {
         echo '</fieldset>';
         echo '</form>';
     }
+    echo '<div class="recoverpass" align="center"><h4 class="boton"><a href="register.php">'._('¿No tienes cuenta? ¡Regístrate!').'</a></h4></div>';
     echo '</div>';
 }
 
