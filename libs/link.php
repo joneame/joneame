@@ -387,7 +387,7 @@ class Link {
         $link_date = $this->date;
         $link_sent_date = $this->sent_date;
         $link_sent = $this->sent;
-        $link_content_type = $db->escape($this->content_type);
+        $link_content_type = (in_array($this->content_type, ['text', 'video', 'image']) ? $this->content_type : 'text');
         $link_ip = $db->escape($this->ip);
         $broken_link = $db->escape($this->broken_link);
 
