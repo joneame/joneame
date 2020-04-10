@@ -226,7 +226,7 @@ function parseLinkAnswer (id, link) {
 
     if (link.value > 0) {
         if (link.aleatorio_valor == "no") {
-            disable_vote_link(link.id, "&#161;biibaaa!", '#FFFFFF');
+            disable_vote_link(link.id, "¡¡Biba!!", '#FFFFFF');
         } else {
             disable_vote_link(link.id, "valió " + link.aleatorio_valor, '#FFFFFF');
         }
