@@ -45,8 +45,13 @@ $globals['noindex'] = true;
 
 $response = do_search(false, $offset, $page_size);
 
-do_header(_('búsqueda de'). ' "'.htmlspecialchars($_REQUEST['words']).'"');
-do_tabs('main',_('búsqueda'), htmlentities($_SERVER['REQUEST_URI']));
+if ($_REQUEST['words']) {
+    do_header(_('búsqueda de'). ' "'.htmlspecialchars($_REQUEST['words']).'"');
+} else {
+    do_header(_('buscador'));
+}
+
+do_tabs('main',_('buscador'), htmlentities($_SERVER['REQUEST_URI']));
 
 switch ($_REQUEST['w']) {
     case 'posts':
